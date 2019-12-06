@@ -198,3 +198,20 @@ VLAN  Mac Address     Type     Prt  VTEP             Moves   Last Move
 1199  0e1d.c07f.d96c  EVPN     Vx1  192.168.254.5    1       0:00:02 ago
 Total Remote Mac Addresses for this criterion: 9
 ```
+
+## Revert topology
+
+Once demo is over, you can revert to previous stage:
+
+- Reset devices to ZTP mode (Only devices part of the demo)
+- Remove configlet deployed previously
+- Remove dedicated container topology
+- Reboot devices
+
+Playbook: [`dc1-fabric-reset-cvp.yml`](dc1-fabric-reset-cvp.yml)
+
+
+```shell
+# Reset EVPN/VXLAN Fabric tp ZTP
+$ ansible-playbook dc1-fabric-reset-cvp.yml
+```
