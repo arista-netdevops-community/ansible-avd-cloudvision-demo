@@ -6,7 +6,7 @@ This example implement a basic __EVPN/VXLAN Fabric__ based on __[Arista Validate
 
 It helps to demonstrate how to bring up an Arista EVPN/VXLAN Fabric from the first boot.
 
-![Lab Topology](data/lab-topology.png)
+![Lab Topology](data/cloudvision-device-topology.png)
 
 > Lab is based on GNS3 topology and a CloudVision server running on a VMware instance.
 

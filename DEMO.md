@@ -1,0 +1,200 @@
+
+# Demo script
+
+## Power up devices.
+
+Power up your devices what ever the solution is. You will see them in the __`undefined`__ container
+
+![ZTP Registration](data/cloudvision-ztpd-devices.png)
+
+__Check there is no container__
+
+![Streaming Inventory](data/streaming-inventory.png)
+
+
+__Check Configlets are not present__
+
+![Configlets](data/cloudvision-initial-configlet.png)
+
+
+## Run Ansible playbook to rollout EVPN Fabric
+
+A set of tags are available, but it is recommended to execute playbook in a row:
+
+### Playbook overview
+
+Playbook: [`dc1-fabric-deploy-cvp.yml`](dc1-fabric-deploy-cvp.yml)
+
+Playbook manage following actions:
+- Generate Variables for CVP structure:
+    - List of configlets
+    - Containers topology
+    - List of devices.
+- Collect CloudVision Facts
+- Deploy Configlet to CloudVision
+- Build Containers Topology
+- Configure devices with correct configlet and container.
+- Execute created tasks (wait 5 minutes while devices reboot)
+
+### Run Playbook
+
+```shell
+# Deploy EVPN/VXLAN Fabric
+$ ansible-playbook dc1-fabric-deploy-cvp.yml
+
+PLAY [Build Switch configuration] **********
+
+TASK [eos-l3ls-evpn : Generate switch configuration in structured format (yaml)] **********
+ok: [DC1-LEAF1B -> localhost]
+ok: [DC1-SPINE2 -> localhost]
+ok: [DC1-LEAF1A -> localhost]
+ok: [DC1-LEAF2A -> localhost]
+ok: [DC1-LEAF2B -> localhost]
+ok: [DC1-SPINE1 -> localhost]
+
+TASK [eos-l3ls-evpn : include device structured configuration] **********
+ok: [DC1-SPINE1 -> localhost]
+ok: [DC1-SPINE2 -> localhost]
+ok: [DC1-LEAF1A -> localhost]
+ok: [DC1-LEAF1B -> localhost]
+ok: [DC1-LEAF2A -> localhost]
+ok: [DC1-LEAF2B -> localhost]
+
+TASK [eos-l3ls-evpn : Generate EVPN fabric documentation] **********
+ok: [DC1-SPINE1 -> localhost]
+
+TASK [eos-l3ls-evpn : Generate EVPN fabric documentation - p2p links csv] **********
+ok: [DC1-SPINE1 -> localhost]
+
+TASK [eos-cli-config-gen : include data center fabric variables] **********
+ok: [DC1-SPINE1 -> localhost]
+ok: [DC1-SPINE2 -> localhost]
+ok: [DC1-LEAF1A -> localhost]
+ok: [DC1-LEAF1B -> localhost]
+ok: [DC1-LEAF2A -> localhost]
+ok: [DC1-LEAF2B -> localhost]
+
+TASK [eos-cli-config-gen : Generate eos intended configuration] **********
+ok: [DC1-SPINE1 -> localhost]
+ok: [DC1-LEAF1B -> localhost]
+ok: [DC1-LEAF2A -> localhost]
+ok: [DC1-LEAF1A -> localhost]
+ok: [DC1-SPINE2 -> localhost]
+ok: [DC1-LEAF2B -> localhost]
+
+TASK [eos-l3ls-evpn : Generate EVPN fabric documentation] **********
+ok: [DC1-SPINE1 -> localhost]
+
+TASK [eos-l3ls-evpn : Generate EVPN fabric documentation - p2p links csv] **********
+ok: [DC1-SPINE1 -> localhost]
+
+TASK [eos-cli-config-gen : include data center fabric variables] **********
+ok: [DC1-SPINE1 -> localhost]
+ok: [DC1-SPINE2 -> localhost]
+ok: [DC1-LEAF1A -> localhost]
+ok: [DC1-LEAF1B -> localhost]
+ok: [DC1-LEAF2A -> localhost]
+ok: [DC1-LEAF2B -> localhost]
+
+TASK [eos-cli-config-gen : Generate eos intended configuration] **********
+ok: [DC1-SPINE2 -> localhost]
+ok: [DC1-LEAF1A -> localhost]
+ok: [DC1-LEAF2A -> localhost]
+ok: [DC1-LEAF1B -> localhost]
+ok: [DC1-LEAF2B -> localhost]
+ok: [DC1-SPINE1 -> localhost]
+
+TASK [eos-cli-config-gen : Generate device documentation] **********
+ok: [DC1-SPINE1 -> localhost]
+ok: [DC1-LEAF1B -> localhost]
+ok: [DC1-SPINE2 -> localhost]
+ok: [DC1-LEAF2A -> localhost]
+ok: [DC1-LEAF2B -> localhost]
+ok: [DC1-LEAF1A -> localhost]
+
+PLAY [Configuration deployment with CVP] **********
+
+TASK [eos-config-deploy-cvp : generate intented variables] **********
+ok: [cvp]
+
+TASK [eos-config-deploy-cvp : Build DEVICES and CONTAINER definition for cvp] **********
+ok: [cvp -> localhost]
+
+TASK [eos-config-deploy-cvp : Load CVP device information for cvp] **********
+ok: [cvp]
+
+TASK [eos-config-deploy-cvp : Collecting facts from CVP cvp.] **********
+ok: [cvp]
+
+TASK [eos-config-deploy-cvp : Create configlets on CVP cvp.] **********
+changed: [cvp]
+
+TASK [eos-config-deploy-cvp : Building Container topology on cvp] **********
+changed: [cvp]
+
+TASK [eos-config-deploy-cvp : Configure devices on cvp] **********
+changed: [cvp]
+
+TASK [eos-config-deploy-cvp : Execute pending tasks on cvp] **********
+changed: [cvp]
+
+PLAY RECAP **********
+DC1-LEAF1A                 : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+DC1-LEAF1B                 : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+DC1-LEAF2A                 : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+DC1-LEAF2B                 : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+DC1-SPINE1                 : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+DC1-SPINE2                 : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+cvp                        : ok=8    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
+## Analyze result.
+
+### Topology Update
+
+Topology has been updated accordingly
+
+![Lab Topology](data/cloudvision-device-topology.png)
+
+### Configlet list
+
+A set of new configlets have been configured on CloudVision and attached to devices
+
+![Lab Topology](data/cloudvision-deployed-configlet.png)
+
+
+### Check devices
+
+To validate deployment, connect to devices and issue some commands:
+
+__BGP Status__
+
+```
+DC1-LEAF1B#show bgp evpn summary 
+BGP summary information for VRF default
+Router identifier 192.168.255.4, local AS number 65101
+Neighbor         V  AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
+  192.168.255.1    4  65001             56        66    0    0 00:00:36 Estab   86     86
+  192.168.255.2    4  65001             55        39    0    0 00:00:44 Estab   86     86
+```
+
+__VXLAN address table__
+
+```
+DC1-LEAF1B#show vxlan  address-table 
+          Vxlan Mac Address Table
+----------------------------------------------------------------------
+
+VLAN  Mac Address     Type     Prt  VTEP             Moves   Last Move
+----  -----------     ----     ---  ----             -----   ---------
+1191  0e1d.c07f.d96c  EVPN     Vx1  192.168.254.5    1       0:00:04 ago
+1192  0e1d.c07f.d96c  EVPN     Vx1  192.168.254.5    1       0:00:02 ago
+1193  0e1d.c07f.d96c  EVPN     Vx1  192.168.254.5    1       0:00:04 ago
+1194  0e1d.c07f.d96c  EVPN     Vx1  192.168.254.5    1       0:00:02 ago
+1195  0e1d.c07f.d96c  EVPN     Vx1  192.168.254.5    1       0:00:02 ago
+1196  0e1d.c07f.d96c  EVPN     Vx1  192.168.254.5    1       0:00:02 ago
+1197  0e1d.c07f.d96c  EVPN     Vx1  192.168.254.5    1       0:00:04 ago
+1198  0e1d.c07f.d96c  EVPN     Vx1  192.168.254.5    1       0:00:04 ago
+1199  0e1d.c07f.d96c  EVPN     Vx1  192.168.254.5    1       0:00:02 ago
+Total Remote Mac Addresses for this criterion: 9
+```

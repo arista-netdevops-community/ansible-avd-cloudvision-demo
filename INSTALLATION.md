@@ -29,6 +29,8 @@ This document explain how to customize demo information and how to setup this en
     - Any physical or virtual topology with oob connected to CVP should work.
 - A python environmentwith CloudVision access.
 
+![Lab Topology](data/lab-topology.png)
+
 ### IP Address management
 
 - ___CloudVision IP address___:
@@ -41,6 +43,12 @@ This document explain how to customize demo information and how to setup this en
     - _DC1-LEAF1B_: `10.255.0.14/24`
     - _DC1-LEAF2A_: `10.255.0.15/24`
     - _DC1-LEAF2B_: `10.255.0.16/24`
+- ___Default Username & Password___:
+    - admin / arista123
+    - cvpdamin / arista123
+    - ansible / ansible
+
+This management IP addresses are used in a private virtual-network between CloudVision and Arista EOS devices.
 
 ## Configure Python environment.
 
