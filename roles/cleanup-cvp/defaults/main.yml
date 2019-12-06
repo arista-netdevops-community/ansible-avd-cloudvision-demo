@@ -1,0 +1,5 @@
+---
+# defaults file for eos-config-deploy-cvp
+DEFAULT_CONTAINERS:
+  STAGING:
+    parent_container: Tenant

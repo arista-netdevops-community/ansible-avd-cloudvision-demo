@@ -1,0 +1,9 @@
+---
+- name: Clenup CVP in default configuration
+  hosts: CVP
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: run CVP provisioning
+      import_role:
+         name: cleanup-cvp
