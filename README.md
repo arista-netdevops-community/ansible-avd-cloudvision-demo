@@ -1,3 +1,4 @@
+![](https://img.shields.io/badge/Arista-CVP%20Automation-blue) ![](https://img.shields.io/badge/Arista-EOS%20Automation-blue) ![GitHub](https://img.shields.io/github/license/titom73/ansible-avd-cloudvision-demo)
 # Arista Validated Design with CloudVision deployment
 
 ## About
