@@ -13,6 +13,15 @@ It helps to demonstrate how to bring up an Arista EVPN/VXLAN Fabric from the fir
 ## Getting Started
 
 ```shell
+# Clone repository
+# For git > 2.12
+$ git clone --recurse-submodules https://github.com/titom73/ansible-avd-cloudvision-demo.git
+# For git <2.13 >2.9
+$ git clone --recursive https://github.com/titom73/ansible-avd-cloudvision-demo.git
+
+# Move to folder
+$ cd ansible-avd-cloudvision-demo
+
 # Install python requirements
 $ pip install -r requirements.txt
 
@@ -22,6 +31,8 @@ $ pip install -r requirements.txt
 # Run Ansible playbook 
 $ ansible-playbook dc1-fabric-deploy-cvp.yml
 ```
+
+> Getting started does not include management IP configuration. For complete installation, please refer to [installation guide](INSTALLATION.md)
 
 ## Ressources
 
