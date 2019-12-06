@@ -6,7 +6,7 @@ This example implement a basic __EVPN/VXLAN Fabric__ based on __[Arista Validate
 
 It helps to demonstrate how to bring up an Arista EVPN/VXLAN Fabric from the first boot.
 
-![Lab Topology](lab-topology.png)
+![Lab Topology](data/lab-topology.png)
 
 > Lab is based on GNS3 topology and a CloudVision server running on a VMware instance.
 
@@ -32,7 +32,7 @@ $ pip install -r requirements.txt
 $ ansible-playbook dc1-fabric-deploy-cvp.yml
 ```
 
-> Getting started does not include management IP configuration. For complete installation, please refer to [installation guide](INSTALLATION.md)
+> Getting started does not include management IP configuration. For complete installation, please refer to [installation guide](INSTALLATION.md) to configure correct environment.
 
 ## Ressources
 
