@@ -18,7 +18,6 @@ This document explain how to customize demo information and how to setup this en
 
 <!-- /code_chunk_output -->
 
-
 ## Demonstration requirements.
 
 ### Components
@@ -47,6 +46,9 @@ This document explain how to customize demo information and how to setup this en
     - admin / arista123
     - cvpdamin / arista123
     - ansible / ansible
+- ___Servers configuration___:
+    - Server 01: eth0 / `10.1.10.11/24`
+    - Server 02: eth0 / `10.1.10.12/24`
 
 This management IP addresses are used in a private virtual-network between CloudVision and Arista EOS devices.
 

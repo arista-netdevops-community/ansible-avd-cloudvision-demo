@@ -163,7 +163,7 @@ A set of new configlets have been configured on CloudVision and attached to devi
 ![Lab Topology](data/cloudvision-deployed-configlet.png)
 
 
-### Check devices
+### Check device status
 
 To validate deployment, connect to devices and issue some commands:
 
@@ -197,6 +197,24 @@ VLAN  Mac Address     Type     Prt  VTEP             Moves   Last Move
 1198  0e1d.c07f.d96c  EVPN     Vx1  192.168.254.5    1       0:00:04 ago
 1199  0e1d.c07f.d96c  EVPN     Vx1  192.168.254.5    1       0:00:02 ago
 Total Remote Mac Addresses for this criterion: 9
+```
+
+### Check device connectivity
+
+Connect on server 01 and issue a ping to server 02.
+
+```shell
+root@Server01:~# ping 10.1.10.12 -c 5
+PING 10.1.10.12 (10.1.10.12) 56(84) bytes of data.
+64 bytes from 10.1.10.12: icmp_seq=1 ttl=64 time=0.033 ms
+64 bytes from 10.1.10.12: icmp_seq=2 ttl=64 time=0.026 ms
+64 bytes from 10.1.10.12: icmp_seq=3 ttl=64 time=0.021 ms
+64 bytes from 10.1.10.12: icmp_seq=4 ttl=64 time=0.026 ms
+64 bytes from 10.1.10.12: icmp_seq=5 ttl=64 time=0.034 ms
+
+--- 10.1.10.12 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 3998ms
+rtt min/avg/max/mdev = 0.021/0.028/0.034/0.004 ms
 ```
 
 ## Revert topology

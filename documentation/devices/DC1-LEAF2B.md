@@ -333,8 +333,6 @@ bfd multihop interval 1200 min_rx 1200 multiplier 3
 | Interface | Description | MTU | Type | Mode | Allowed VLANs (trunk) | Trunk Group | MLAG ID | VRF | IP Address |
 | --------- | ----------- | --- | ---- | ---- | --------------------- | ----------- | ------- | --- | ---------- |
 | Port-Channel3 | MLAG_PEER_DC1-LEAF2A_Po3 | 1500 | switched | trunk | 2-4094 | LEAF_PEER_L3<br> MLAG | - | - | - |
-| Port-Channel10 | server01_PortChanne1 | 1500 | switched | trunk | 210-211 | - | 10 | - | - |
-| Port-Channel11 | server02_PortChanne1 | 1500 | switched | trunk | 210-211 | - | 11 | - | - |
 
 ### Port-Channel Interfaces Device Configuration
 
@@ -345,18 +343,6 @@ interface Port-Channel3
    switchport mode trunk
    switchport trunk group LEAF_PEER_L3
    switchport trunk group MLAG
-!
-interface Port-Channel10
-   description server01_PortChanne1
-   switchport trunk allowed vlan 210-211
-   switchport mode trunk
-   mlag 10
-!
-interface Port-Channel11
-   description server02_PortChanne1
-   switchport trunk allowed vlan 210-211
-   switchport mode trunk
-   mlag 11
 !
 ```
 
@@ -370,8 +356,6 @@ interface Port-Channel11
 | Ethernet2 | P2P_LINK_TO_DC1-SPINE2_Ethernet4 | 1500 | routed | access | - | - | - | 172.31.255.15/31 | - | - |
 | Ethernet3 | MLAG_PEER_DC1-LEAF2A_Ethernet3 | *1500 | *switched | *trunk | *2-4094 | *LEAF_PEER_L3<br> *MLAG | - | - | 3 | active |
 | Ethernet4 | MLAG_PEER_DC1-LEAF2A_Ethernet4 | *1500 | *switched | *trunk | *2-4094 | *LEAF_PEER_L3<br> *MLAG | - | - | 3 | active |
-| Ethernet10 | server01_Eth3 | *1500 | *switched | *trunk | *210-211 | - | - | - | 10 | active |
-| Ethernet11 | server02_Eth3 | *1500 | *switched | *trunk | *210-211 | - | - | - | 11 | active |
 
 *Inherited from Port-Channel Interface
 
@@ -395,14 +379,6 @@ interface Ethernet3
 interface Ethernet4
    description MLAG_PEER_DC1-LEAF2A_Ethernet4
    channel-group 3 mode active
-!
-interface Ethernet10
-   description server01_Eth3
-   channel-group 10 mode active
-!
-interface Ethernet11
-   description server02_Eth3
-   channel-group 11 mode active
 !
 ```
 

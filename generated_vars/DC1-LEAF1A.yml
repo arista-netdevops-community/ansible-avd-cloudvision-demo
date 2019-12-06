@@ -290,16 +290,10 @@ ethernet_interfaces:
     channel_group:
       id: 3
       mode: active
-  Ethernet5:
+  Ethernet12:
     host: server01
-    description: server01_Eth1
-    mode: trunk
-    vlans: 110
-    profile: TENANT_A
-  Ethernet6:
-    host: server02
-    description: server02_Eth1
-    mode: trunk
+    description: server01_Eth0
+    mode: access
     vlans: 110
     profile: TENANT_A
 

@@ -266,16 +266,6 @@ port_channel_interfaces:
     trunk_groups:
       - LEAF_PEER_L3
       - MLAG
-  Port-Channel10:
-    description: server01_PortChanne1
-    vlans: 210-211
-    mode: trunk
-    mlag: 10
-  Port-Channel11:
-    description: server02_PortChanne1
-    vlans: 210-211
-    mode: trunk
-    mlag: 11
 
 ### Ethernet Interfaces ###
 ethernet_interfaces:
@@ -300,24 +290,6 @@ ethernet_interfaces:
     channel_group:
       id: 3
       mode: active
-  Ethernet10:
-    host: server01
-    description: server01_Eth3
-    mode: trunk
-    vlans: 210-211
-    channel_group:
-      id: 10
-      mode: "active"
-    profile: TENANT_B
-  Ethernet11:
-    host: server02
-    description: server02_Eth3
-    mode: trunk
-    vlans: 210-211
-    channel_group:
-      id: 11
-      mode: "active"
-    profile: TENANT_B
 
 
 ### Loopback Interfaces ###

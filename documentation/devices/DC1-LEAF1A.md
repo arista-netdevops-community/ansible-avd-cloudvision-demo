@@ -356,8 +356,7 @@ interface Port-Channel3
 | Ethernet2 | P2P_LINK_TO_DC1-SPINE2_Ethernet1 | 1500 | routed | access | - | - | - | 172.31.255.3/31 | - | - |
 | Ethernet3 | MLAG_PEER_DC1-LEAF1B_Ethernet3 | *1500 | *switched | *trunk | *2-4094 | *LEAF_PEER_L3<br> *MLAG | - | - | 3 | active |
 | Ethernet4 | MLAG_PEER_DC1-LEAF1B_Ethernet4 | *1500 | *switched | *trunk | *2-4094 | *LEAF_PEER_L3<br> *MLAG | - | - | 3 | active |
-| Ethernet5 | server01_Eth1 | 1500 | switched | trunk | 110 | - | - | - | - | - |
-| Ethernet6 | server02_Eth1 | 1500 | switched | trunk | 110 | - | - | - | - | - |
+| Ethernet12 | server01_Eth0 | 1500 | switched | access | 110 | - | - | - | - | - |
 
 *Inherited from Port-Channel Interface
 
@@ -382,15 +381,9 @@ interface Ethernet4
    description MLAG_PEER_DC1-LEAF1B_Ethernet4
    channel-group 3 mode active
 !
-interface Ethernet5
-   description server01_Eth1
-   switchport trunk allowed vlan 110
-   switchport mode trunk
-!
-interface Ethernet6
-   description server02_Eth1
-   switchport trunk allowed vlan 110
-   switchport mode trunk
+interface Ethernet12
+   description server01_Eth0
+   switchport access vlan 110
 !
 ```
 
