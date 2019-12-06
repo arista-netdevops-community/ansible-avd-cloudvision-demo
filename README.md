@@ -39,7 +39,7 @@ $ ansible-playbook dc1-fabric-deploy-cvp.yml
 
 - Ansible [Arista Validated Design](https://github.com/aristanetworks/ansible-avd) repository.
 - [Ansible CloudVision Collection](https://github.com/aristanetworks/ansible-cvp) repository.
-- [How to install](INSTALL.md) demo environment.
+- [How to install](INSTALLATION.md) demo environment.
 - [Detailled demo script](DEMO.md).
 
 ## License
