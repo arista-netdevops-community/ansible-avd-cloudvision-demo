@@ -1,0 +1,6 @@
+[submodule "ansible-cvp"]
+	path = ansible-cvp
+	url = https://github.com/aristanetworks/ansible-cvp.git
+[submodule "ansible-avd"]
+	path = ansible-avd
+	url = https://github.com/aristanetworks/ansible-avd.git
