@@ -1,0 +1,17 @@
+---
+# tasks file for ztp-setup
+- name: 'Generate DHCPd configuration file'
+  template:
+    src: 'dhcpd.conf.j2'
+    dest: /etc/dhcp/dhcpd.conf
+    backup: yes
+
+- name: Check & activate DHCP service on {{inventory_hostname}}
+  service:
+    name: dhcpd
+    enabled: yes
+
+- name: Restart DHCP service on {{inventory_hostname}}
+  service:
+    name: dhcpd
+    state: restarted
