@@ -13,6 +13,8 @@ This document explain how to customize demo information and how to setup this en
     - [IP Address management](#ip-address-management)
   - [Configure Python environment.](#configure-python-environment)
   - [Configure DHCP server on CloudVision](#configure-dhcp-server-on-cloudvision)
+    - [Ansible playbook approach](#ansible-playbook-approach)
+    - [Manual approach](#manual-approach)
   - [Update Inventory](#update-inventory)
   - [Update Fabric information](#update-fabric-information)
 
@@ -86,6 +88,73 @@ Once you get mac-address of your switches, edit file `/etc/dhcp/dhcpd.conf` in C
 
 If CVP has not been configured to activate ZTP services, it is higly recommended to follow [these steps](https://www.arista.com/en/cg-cv/cv-dhcp-service-for-zero-touch-provisioning-ztp-setup)
 
+### Ansible playbook approach
+
+An ansible playbook is available to configure CloudVision to act as a DHCP server for your lab:
+
+- Edit variables in [__dc1-ztp-configuration.yml__](dc1-ztp-configuration.yml)
+
+```yaml
+vars:
+  ztp:
+    general:
+      network: 10.255.0.0
+      netmask: 255.255.255.0
+      gateway: 10.255.0.1
+      nameserver: '1.1.1.1, 8.8.8.8'
+      start: 10.255.0.200
+      end: 10.255.0.250
+      registration: 'http://10.255.0.1/ztp/bootstrap'
+    clients:
+      - name: DC1-SPINE1
+        mac: 0c:1d:c0:1d:62:01
+        ip4: 10.255.0.11
+```
+
+- Edit information related to ztp host in [__inventory.yml__](inventory.yml)
+
+```yaml
+all:
+  children:
+    CVP:
+      hosts:
+        ztp:
+          ansible_host: 10.83.28.164
+          ansible_user: root
+          ansible_password: ansible
+        cvp:
+          ansible_httpapi_host: 10.83.28.164
+          ansible_host: 10.83.28.164
+          ansible_user: ansible
+          ansible_password: ansible
+[...]
+          ansible_httpapi_port: 443
+          # Configuration to get Virtual Env information
+          ansible_python_interpreter: $(which python)
+```
+
+- Run playbook:
+
+```shell
+$ ansible-playbook dc1-ztp-configuration.yml
+
+PLAY [Configure ZTP service on CloudVision] *****************
+
+TASK [ztp-setup : Generate DHCPd configuration file] ********
+ok: [ztp]
+
+TASK [ztp-setup : Check & activate DHCP service on ztp] *****
+ok: [ztp]
+
+TASK [ztp-setup : Restart DHCP service on ztp] **************
+changed: [ztp]
+
+PLAY RECAP **************************************************
+ztp                        : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
+### Manual approach
+
 ```shell
 $ vi /etc/dhcp/dhcpd.conf
 
@@ -103,40 +172,7 @@ host DC1-SPINE1 {
     option bootfile-name "http://10.255.0.1/ztp/bootstrap";
 }
 
-host DC1-SPINE2 {
-    option host-name "DC1-SPINE2";
-    hardware ethernet 0c:1d:c0:1d:62:02;
-    fixed-address 10.255.0.12;
-    option bootfile-name "http://10.255.0.1/ztp/bootstrap";
-}
-
-host DC1-LEAF1A {
-    option host-name "DC1-LEAF1A";
-    hardware ethernet 0c:1d:c0:1d:62:11;
-    fixed-address 10.255.0.13;
-    option bootfile-name "http://10.255.0.1/ztp/bootstrap";
-}
-
-host DC1-LEAF1B {
-    option host-name "DC1-LEAF1B";
-    hardware ethernet 0c:1d:c0:1d:62:12;
-    fixed-address 10.255.0.14;
-    option bootfile-name "http://10.255.0.1/ztp/bootstrap";
-}
-
-host DC1-LEAF2A {
-    option host-name "DC1-LEAF2A";
-    hardware ethernet 0c:1d:c0:1d:62:21;
-    fixed-address 10.255.0.15;
-    option bootfile-name "http://10.255.0.1/ztp/bootstrap";
-}
-
-host DC1-LEAF2B {
-    option host-name "DC1-LEAF2B";
-    hardware ethernet 0c:1d:c0:1d:62:22;
-    fixed-address 10.255.0.16;
-    option bootfile-name "http://10.255.0.1/ztp/bootstrap";
-}
+[...]
 
 ```
 
@@ -150,8 +186,6 @@ $ service dhcpd restart
 
 From here, you can start your devices and let CVP register them into `undefined` container.
 
-
-
 ## Update Inventory
 
 In the [inventory](inventory.ini), update CloudVision information to target your own setup:
@@ -162,11 +196,16 @@ all:
   children:
     CVP:
       hosts:
+        ztp:
+          ansible_host: 10.83.28.164
+          ansible_user: root
+          ansible_password: ansible
         cvp:
           ansible_httpapi_host: 10.83.28.164
           ansible_host: 10.83.28.164
           ansible_user: ansible
           ansible_password: ansible
+[...]
           ansible_httpapi_port: 443
           # Configuration to get Virtual Env information
           ansible_python_interpreter: $(which python)
