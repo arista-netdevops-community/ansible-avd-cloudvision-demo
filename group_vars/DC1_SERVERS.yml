@@ -25,10 +25,10 @@ servers:
         profile: TENANT_A
 
   server02:
-    rack: RackB
+    rack: RackA
     adapters:
       - type: nic
         server_ports: [ Eth0 ]
         switch_ports: [ Ethernet12 ]
-        switches: [ DC1-LEAF2A ]
+        switches: [ DC1-LEAF2B ]
         profile: TENANT_A
