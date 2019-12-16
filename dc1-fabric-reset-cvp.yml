@@ -1,9 +1,14 @@
 ---
 - name: Clenup CVP in default configuration
-  hosts: CVP
+  hosts: CloudVision
   connection: local
   gather_facts: no
   tasks:
     - name: run CVP provisioning
       import_role:
-         name: cleanup-cvp
+         name: eos-config-deploy-cvp
+      vars:
+        container_root: 'DC1_FABRIC'
+        configlets_prefix: 'DC1-AVD'
+        device_filter: 'DC1-'
+        state: absent

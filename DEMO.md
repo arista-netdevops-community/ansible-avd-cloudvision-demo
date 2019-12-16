@@ -150,6 +150,8 @@ cvp                        : ok=8    changed=2    unreachable=0    failed=0    s
 
 ## Analyze result.
 
+Once devices rebooted, you can review fabric status on devices themselfs or on on CloudVision as well.
+
 ### Topology Update
 
 Topology has been updated accordingly
