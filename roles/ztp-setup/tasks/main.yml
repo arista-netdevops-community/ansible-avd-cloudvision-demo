@@ -7,11 +7,19 @@
     backup: yes
 
 - name: Check & activate DHCP service on {{inventory_hostname}}
-  service:
-    name: dhcpd
-    enabled: yes
+  shell:
+    cmd: chkconfig dhcpd on
+
+# - name: Check & activate DHCP service on {{inventory_hostname}}
+#   service:
+#     name: dhcpd
+#     enabled: yes
 
 - name: Restart DHCP service on {{inventory_hostname}}
-  service:
-    name: dhcpd
-    state: restarted
+  shell:
+    cmd: service dhcpd restart
+
+# - name: Restart DHCP service on {{inventory_hostname}}
+#   service:
+#     name: dhcpd
+#     state: restarted

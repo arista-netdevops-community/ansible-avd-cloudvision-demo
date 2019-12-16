@@ -2,9 +2,6 @@
 
 This document explain how to customize demo information and how to setup this environment.
 
-
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
 <!-- code_chunk_output -->
 
 - [Installation Process](#installation-process)
