@@ -6,7 +6,7 @@ all:
           ansible_host: 10.83.28.164
           ansible_user: root
           ansible_password: ansible
-        cvp:
+        CloudVision:
           ansible_httpapi_host: 10.83.28.164
           ansible_host: 10.83.28.164
           ansible_user: ansible
