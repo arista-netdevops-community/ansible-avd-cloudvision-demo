@@ -70,7 +70,7 @@ To use this example, it is higly recommended to work in a Python virtual-environ
 
 ```shell
 # Configure Python virtual environment
-$ virtualenv -p $(which python2.7) .venv
+$ virtualenv .venv
 $ source .venv/bin/activate
 
 # Install Python requirements

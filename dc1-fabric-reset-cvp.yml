@@ -3,10 +3,13 @@
   hosts: CloudVision
   connection: local
   gather_facts: no
+  collections:
+    - arista.avd
+    - arista.cvp
   tasks:
     - name: run CVP provisioning
       import_role:
-         name: eos-config-deploy-cvp
+         name: eos_config_deploy_cvp
       vars:
         container_root: 'DC1_FABRIC'
         configlets_prefix: 'DC1-AVD'
