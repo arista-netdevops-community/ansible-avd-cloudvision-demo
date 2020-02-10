@@ -24,6 +24,12 @@ tenants:
             tags: [ opzone ]
             enabled: true
             ip_subnet: 10.1.11.0/24
+          112:
+            vni_override: 50112
+            name: Tenant_A_OP_Zone_3
+            tags: [ opzone ]
+            enabled: true
+            ip_subnet: 10.1.12.0/24
       Tenant_A_WEB_Zone:
         vrf_vni: 11
         svis:

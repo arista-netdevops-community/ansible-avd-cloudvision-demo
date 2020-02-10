@@ -1,6 +1,6 @@
 ---
 - name: Clenup CVP in default configuration
-  hosts: CloudVision
+  hosts: cv_server
   connection: local
   gather_facts: no
   collections:

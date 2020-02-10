@@ -12,8 +12,8 @@ switch_mgmt_ip: 10.255.0.14/24
 leaf_filter_tenants: ['all']
 leaf_filter_tags: ['all']
 leaf_allowed_vrfs: ['Tenant_A_APP_Zone', 'Tenant_A_DB_Zone', 'Tenant_A_OP_Zone', 'Tenant_A_WAN_Zone', 'Tenant_A_WEB_Zone', 'Tenant_B_OP_Zone', 'Tenant_B_WAN_Zone', 'Tenant_C_OP_Zone', 'Tenant_C_WAN_Zone']
-leaf_allowed_svis: [130, 131, 140, 141, 110, 111, 150, 120, 121, 210, 211, 250, 310, 311, 350]
-leaf_allowed_vlans: [130, 131, 140, 141, 110, 111, 150, 120, 121, 160, 161, 210, 211, 250, 310, 311, 350]
+leaf_allowed_svis: [130, 131, 140, 141, 110, 111, 112, 150, 120, 121, 210, 211, 250, 310, 311, 350]
+leaf_allowed_vlans: [130, 131, 140, 141, 110, 111, 112, 150, 120, 121, 160, 161, 210, 211, 250, 310, 311, 350]
 leaf_mlag: True
 leaf_mlag_group: DC1_LEAF1
 leaf_mlag_role: secondary
@@ -145,6 +145,9 @@ vlans:
   111:
     tenant: Tenant_A
     name: Tenant_A_OP_Zone_2
+  112:
+    tenant: Tenant_A
+    name: Tenant_A_OP_Zone_3
   3009:
     tenant: Tenant_A
     name: MLAG_iBGP_Tenant_A_OP_Zone
@@ -392,6 +395,13 @@ vlan_interfaces:
     vrf: Tenant_A_OP_Zone
     ip_address: 10.1.11.1/24
     virtual: true
+  Vlan112:
+    tenant: Tenant_A
+    tags: ['opzone']
+    description: Tenant_A_OP_Zone_3
+    vrf: Tenant_A_OP_Zone
+    ip_address: 10.1.12.1/24
+    virtual: true
   Vlan3009:
     tenant: Tenant_A
     type: underlay_peering
@@ -523,6 +533,8 @@ vxlan_tunnel_interface:
           vni: 10110
         111:
           vni: 50111
+        112:
+          vni: 50112
         150:
           vni: 10150
         120:
@@ -698,7 +710,7 @@ router_bgp:
           asn: "10:10"
       redistribute_routes:
         - learned
-      vlan: 110-111
+      vlan: 110-112
     Tenant_A_WAN_Zone:
       rd: "192.168.255.4:14"
       route_targets:
