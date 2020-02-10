@@ -2,11 +2,11 @@ all:
   children:
     CVP:
       hosts:
-        ztp:
+        cv_ztp:
           ansible_host: 10.83.28.164
           ansible_user: root
           ansible_password: ansible
-        CloudVision:
+        cv_server:
           ansible_httpapi_host: 10.83.28.164
           ansible_host: 10.83.28.164
           ansible_user: ansible

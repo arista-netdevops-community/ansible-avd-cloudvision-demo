@@ -36,6 +36,8 @@ bgp_peer_groups:
 spine:
   platform: vEOS-LAB
   bgp_as: 65001
+  # defines the range of acceptable remote ASNs from leaf switches
+  leaf_as_range: 65101-65132
   nodes:
     DC1-SPINE1:
       id: 1
@@ -44,24 +46,21 @@ spine:
       id: 2
       mgmt_ip: 10.255.0.12/24
 
-# defines the range of acceptable remote ASNs from leaf switches
-leaf_as_range: 65101-65132
-
-# virtual router mac for VNIs assigned to Leaf switches format: xx:xx:xx:xx:xx:xx
-virtual_router_mac_address : 00:1c:73:00:dc:01
-
 # Leaf switch groups
 # A maximum of two nodes can form a leaf group
 # When two nodes are in a leaf group this will automatically form mlag pair
 
-l3leafs:
+l3leaf:
   defaults:
+    # virtual router mac for VNIs assigned to Leaf switches format: xx:xx:xx:xx:xx:xx
+    virtual_router_mac_address : 00:1c:73:00:dc:01
     platform: vEOS-LAB
     bgp_as: 65100
     spines: [ DC1-SPINE1, DC1-SPINE2 ]
     uplink_to_spine_interfaces: [ Ethernet1, Ethernet2 ]
     mlag_interfaces: [ Ethernet3, Ethernet4 ]
     spanning_tree_priority: 4096
+    spanning_tree_mode: mstp
   node_groups:
     DC1_LEAF1:
       bgp_as: 65101

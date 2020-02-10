@@ -17,7 +17,7 @@
          name: eos_cli_config_gen
 
 - name: Configuration deployment with CVP
-  hosts: CloudVision
+  hosts: cv_server
   connection: local
   gather_facts: no
   collections:
@@ -25,6 +25,7 @@
     - arista.cvp
   tasks:
     - name: run CVP provisioning
+      tags: [deploy]
       import_role:
          name: eos_config_deploy_cvp
       vars:

@@ -1,6 +1,6 @@
 ---
 - name: Configure ZTP service on CloudVision
-  hosts: ztp
+  hosts: cv_ztp
   gather_facts: no
   vars:
     ztp:
