@@ -21,16 +21,16 @@ Step 2/12 : LABEL maintainer="Arista Ansible Team <ansible@arista.com>"
 
 Power up your devices what ever the solution is. You will see them in the __`undefined`__ container
 
-![ZTP Registration](data/cloudvision-ztpd-devices.png)
+![ZTP Registration](../data/cloudvision-ztpd-devices.png)
 
 __Check there is no container__
 
-![Streaming Inventory](data/streaming-inventory.png)
+![Streaming Inventory](../data/streaming-inventory.png)
 
 
 __Check Configlets are not present__
 
-![Configlets](data/cloudvision-initial-configlet.png)
+![Configlets](../data/cloudvision-initial-configlet.png)
 
 
 ## Run Ansible playbook to rollout EVPN Fabric
@@ -173,13 +173,13 @@ Once devices rebooted, you can review fabric status on devices themselfs or on o
 
 Topology has been updated accordingly
 
-![Lab Topology](data/cloudvision-device-topology.png)
+![Lab Topology](../data/cloudvision-device-topology.png)
 
 ### Configlet list
 
 A set of new configlets have been configured on CloudVision and attached to devices
 
-![Lab Topology](data/cloudvision-deployed-configlet.png)
+![Lab Topology](../data/cloudvision-deployed-configlet.png)
 
 
 ### Check device status
