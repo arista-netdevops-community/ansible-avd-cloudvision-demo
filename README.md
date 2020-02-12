@@ -13,6 +13,8 @@ It helps to demonstrate how to bring up an Arista EVPN/VXLAN Fabric from the fir
 
 ## Getting Started
 
+For detailled setup and demo, please refer to [ressources](#ressources) below.
+
 ```shell
 # Clone repository
 # For git > 2.12
@@ -41,6 +43,7 @@ $ ansible-playbook dc1-fabric-deploy-cvp.yml
 - [Ansible CloudVision Collection](https://github.com/aristanetworks/ansible-cvp) repository.
 - [How to install](INSTALLATION.md) demo environment.
 - [Detailled demo script](DEMO.md).
+- [Detailled demo script with docker](data/DEMO_DOCKER.md)
 
 ## License
 
