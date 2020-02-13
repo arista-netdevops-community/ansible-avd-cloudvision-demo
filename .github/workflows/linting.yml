@@ -6,21 +6,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: 'Yamllint'
-        uses: karancode/yamllint-github-action@master
+      - name: 'Lint group_vars'
+        uses: ibiqlik/action-yamllint@master
         with:
-          yamllint_file_or_dir: 'group_vars/'
-          yamllint_config_filepath: '.github/yamllintrc'
-          yamllint_strict: false
-          yamllint_comment: true
-        env:
-          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
-      - name: 'Yamllint'
-        uses: karancode/yamllint-github-action@master
+          file_or_dir: ./group_vars/*.yml
+          config_file: ./.github/yamllintrc
+      - name: 'Lint Inventory'
+        uses: ibiqlik/action-yamllint@master
         with:
-          yamllint_file_or_dir: '.'
-          yamllint_config_filepath: '.github/yamllintrc'
-          yamllint_strict: false
-          yamllint_comment: true
-        env:
-          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+          file_or_dir: ./*.yml
