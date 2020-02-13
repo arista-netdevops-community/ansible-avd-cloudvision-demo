@@ -1,9 +1,8 @@
+---
 # DC1 Tenants Networks
 # Documentation of Tenant specific information - Vlans/VRFs
-
 tenants:
-
-# Tenant A Specific Information - VRFs / VLANs
+  # Tenant A Specific Information - VRFs / VLANs
   Tenant_A:
     mac_vrf_vni_base: 10000
     vrfs:
@@ -15,19 +14,19 @@ tenants:
         svis:
           110:
             name: Tenant_A_OP_Zone_1
-            tags: [ opzone ]
+            tags: [opzone]
             enabled: true
             ip_subnet: 10.1.10.0/24
           111:
             vni_override: 50111
             name: Tenant_A_OP_Zone_2
-            tags: [ opzone ]
+            tags: [opzone]
             enabled: true
             ip_subnet: 10.1.11.0/24
           112:
             vni_override: 50112
             name: Tenant_A_OP_Zone_3
-            tags: [ opzone ]
+            tags: [opzone]
             enabled: true
             ip_subnet: 10.1.12.0/24
       Tenant_A_WEB_Zone:
@@ -35,12 +34,12 @@ tenants:
         svis:
           120:
             name: Tenant_A_WEB_Zone_1
-            tags: [ web, erp1 ]
+            tags: [web, erp1]
             enabled: true
             ip_subnet: 10.1.20.0/24
           121:
             name: Tenant_A_WEBZone_2
-            tags: [ web ]
+            tags: [web]
             enabled: true
             ip_subnet: 10.1.21.0/24
       Tenant_A_APP_Zone:
@@ -48,12 +47,12 @@ tenants:
         svis:
           130:
             name: Tenant_A_APP_Zone_1
-            tags: [ app, erp1 ]
+            tags: [app, erp1]
             enabled: true
             ip_subnet: 10.1.30.0/24
           131:
             name: Tenant_A_APP_Zone_2
-            tags: [ app ]
+            tags: [app]
             enabled: true
             ip_subnet: 10.1.31.0/24
       Tenant_A_DB_Zone:
@@ -61,12 +60,12 @@ tenants:
         svis:
           140:
             name: Tenant_A_DB_BZone_1
-            tags: [ db, erp1 ]
+            tags: [db, erp1]
             enabled: true
             ip_subnet: 10.1.40.0/24
           141:
             name: Tenant_A_DB_Zone_2
-            tags: [ db ]
+            tags: [db]
             enabled: true
             ip_subnet: 10.1.41.0/24
       Tenant_A_WAN_Zone:
@@ -74,21 +73,19 @@ tenants:
         svis:
           150:
             name: Tenant_A_WAN_Zone_1
-            tags: [ wan ]
+            tags: [wan]
             enabled: true
             ip_subnet: 10.1.40.0/24
     l2vlans:
       160:
         vni_override: 55160
         name: Tenant_A_VMOTION
-        tags: [ vmotion ]
+        tags: [vmotion]
       161:
         name: Tenant_A_NFS
-        tags: [ nfs]
+        tags: [nfs]
 
-
-
-# Tenant B Specific Information - VRFs / VLANs
+  # Tenant B Specific Information - VRFs / VLANs
   Tenant_B:
     mac_vrf_vni_base: 20000
     vrfs:
@@ -97,12 +94,12 @@ tenants:
         svis:
           210:
             name: Tenant_B_OP_Zone_1
-            tags: [ opzone ]
+            tags: [opzone]
             enabled: true
             ip_subnet: 10.2.10.0/24
           211:
             name: Tenant_B_OP_Zone_2
-            tags: [ opzone ]
+            tags: [opzone]
             enabled: true
             ip_subnet: 10.2.11.0/24
       Tenant_B_WAN_Zone:
@@ -110,12 +107,11 @@ tenants:
         svis:
           250:
             name: Tenant_B_WAN_Zone_1
-            tags: [ wan ]
+            tags: [wan]
             enabled: true
             ip_subnet: 10.2.50.0/24
 
-
-# Tenant C Specific Information - VRFs / VLANs
+  # Tenant C Specific Information - VRFs / VLANs
   Tenant_C:
     mac_vrf_vni_base: 30000
     vrfs:
@@ -124,12 +120,12 @@ tenants:
         svis:
           310:
             name: Tenant_C_OP_Zone_1
-            tags: [ opzone ]
+            tags: [opzone]
             enabled: true
             ip_subnet: 10.3.10.0/24
           311:
             name: Tenant_C_OP_Zone_2
-            tags: [ opzone ]
+            tags: [opzone]
             enabled: true
             ip_subnet: 10.3.11.0/24
       Tenant_C_WAN_Zone:
@@ -137,6 +133,6 @@ tenants:
         svis:
           350:
             name: Tenant_C_WAN_Zone_1
-            tags: [ wan ]
+            tags: [wan]
             enabled: true
             ip_subnet: 10.3.50.0/24

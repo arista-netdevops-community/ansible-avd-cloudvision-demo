@@ -1,7 +1,7 @@
 ---
 - name: Configure ZTP service on CloudVision
   hosts: cv_ztp
-  gather_facts: no
+  gather_facts: false
   vars:
     ztp:
       general:
@@ -32,6 +32,6 @@
           mac: 0c:1d:c0:1d:62:22
           ip4: 10.255.0.16
   tasks:
-  - name: 'Execute ZTP configuration role'
-    import_role:
-      name: ztp-setup
+    - name: 'Execute ZTP configuration role'
+      import_role:
+        name: ztp-setup

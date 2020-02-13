@@ -1,3 +1,4 @@
+---
 all:
   children:
     CVP:
@@ -12,13 +13,13 @@ all:
           ansible_user: ansible
           ansible_password: ansible
           ansible_connection: httpapi
-          ansible_httpapi_use_ssl: True
-          ansible_httpapi_validate_certs: False
+          ansible_httpapi_use_ssl: true
+          ansible_httpapi_validate_certs: false
           ansible_network_os: eos
           ansible_httpapi_port: 443
           # Configuration to get Virtual Env information
           ansible_python_interpreter: $(which python)
-# DC1_Fabric - EVPN Fabric running in home lab
+    # DC1_Fabric - EVPN Fabric running in home lab
     DC1:
       children:
         DC1_FABRIC:
