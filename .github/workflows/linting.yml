@@ -1,9 +1,5 @@
 name: Code Quality
-on: 
-  push:
-    branches-ignore:
-      - master
-      - releases/*
+on: [push]
 jobs:
   code_linting:
     name: Run Python Linting
