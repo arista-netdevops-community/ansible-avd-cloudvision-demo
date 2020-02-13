@@ -6,9 +6,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Install development requirements
-        run: make setup-repository
-      - name: Install YAML Linter
-        run: apt-get update; apt-get install yamllint
-      - name: Yaml Linting
-        run: make linting
+      - name: 'Yamllint'
+        uses: karancode/yamllint-github-action@master
+        with:
+          yamllint_file_or_dir: 'group_vars/'
+          yamllint_strict: false
+          yamllint_comment: true
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+      - name: 'Yamllint'
+        uses: karancode/yamllint-github-action@master
+        with:
+          yamllint_file_or_dir: '.'
+          yamllint_strict: false
+          yamllint_comment: true
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
