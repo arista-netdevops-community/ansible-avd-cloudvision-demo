@@ -30,3 +30,7 @@ setup-repository: ## Install python requirements
 	pip install --upgrade wheel
 	pip install -r requirements.txt
 	pip install -r .github/requirements.dev.txt
+
+.PHONY: linting
+linting: ## Run pre-commit script for python code linting using pylint
+	sh .github/lint-yaml.sh

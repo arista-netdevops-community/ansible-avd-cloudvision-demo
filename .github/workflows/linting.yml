@@ -8,5 +8,5 @@ jobs:
       - uses: actions/checkout@master
       - name: Install development requirements
         run: make setup-repository
-      - name: Pylint
+      - name: Yaml Linting
         run: make linting
