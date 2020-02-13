@@ -8,5 +8,7 @@ jobs:
       - uses: actions/checkout@master
       - name: Install development requirements
         run: make setup-repository
+      - name: Install YAML Linter
+        run: apt-get update; apt-get install yamllint
       - name: Yaml Linting
         run: make linting
