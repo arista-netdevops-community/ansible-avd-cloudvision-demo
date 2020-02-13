@@ -23,3 +23,10 @@ reset: ## Run ansible playbook to reset all devices.
 .PHONY: clean
 clean: ## Delete previously generated outputs
 	sh repository-cleanup.sh
+
+
+.PHONY: setup-repository
+setup-repository: ## Install python requirements
+	pip install --upgrade wheel
+	pip install -r requirements.txt
+	pip install -r .github/requirements.dev.txt

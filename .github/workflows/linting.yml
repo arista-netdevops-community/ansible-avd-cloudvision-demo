@@ -1,0 +1,16 @@
+name: Code Quality
+on: 
+  push:
+    branches-ignore:
+      - master
+      - releases/*
+jobs:
+  code_linting:
+    name: Run Python Linting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Install development requirements
+        run: make setup-repository
+      - name: Pylint
+        run: make linting
