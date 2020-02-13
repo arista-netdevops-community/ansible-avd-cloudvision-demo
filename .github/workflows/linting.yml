@@ -10,6 +10,7 @@ jobs:
         uses: karancode/yamllint-github-action@master
         with:
           yamllint_file_or_dir: 'group_vars/'
+          yamllint_config_filepath: '.github/yamllintrc'
           yamllint_strict: false
           yamllint_comment: true
         env:
@@ -18,6 +19,7 @@ jobs:
         uses: karancode/yamllint-github-action@master
         with:
           yamllint_file_or_dir: '.'
+          yamllint_config_filepath: '.github/yamllintrc'
           yamllint_strict: false
           yamllint_comment: true
         env:
