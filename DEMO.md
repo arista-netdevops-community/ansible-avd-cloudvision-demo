@@ -1,6 +1,20 @@
 
 # Demo script
 
+- [Demo script](#demo-script)
+  - [Power up devices.](#power-up-devices)
+  - [Run Ansible playbook to rollout EVPN Fabric](#run-ansible-playbook-to-rollout-evpn-fabric)
+    - [Playbook overview](#playbook-overview)
+    - [Run Playbook](#run-playbook)
+      - [Generate EOS Configuration](#generate-eos-configuration)
+      - [Provision CloudVision Server](#provision-cloudvision-server)
+  - [Analyze result.](#analyze-result)
+    - [Topology Update](#topology-update)
+    - [Configlet list](#configlet-list)
+    - [Check device status](#check-device-status)
+    - [Check device connectivity](#check-device-connectivity)
+  - [Revert topology](#revert-topology)
+
 ## Power up devices.
 
 Power up your devices what ever the solution is. You will see them in the __`undefined`__ container
@@ -38,21 +52,19 @@ Playbook manage following actions:
 
 ### Run Playbook
 
+#### Generate EOS Configuration
+
+Use tag `build` to only generate 
+- [EOS structured configuration(YAML)](intended/structured_configs/)
+- [EOS configuration](intended/configs/)
+- [EOS Documentation](documentation/)
+- CloudVision parameters
+
 ```shell
 # Deploy EVPN/VXLAN Fabric
-$ ansible-playbook dc1-fabric-deploy-cvp.yml
+$ ansible-playbook dc1-fabric-deploy-cvp.yml --tags build
 
-PLAY [Build Switch configuration] **********
-
-TASK [eos-l3ls-evpn : Generate switch configuration in structured format (yaml)] **********
-ok: [DC1-LEAF1B -> localhost]
-ok: [DC1-SPINE2 -> localhost]
-ok: [DC1-LEAF1A -> localhost]
-ok: [DC1-LEAF2A -> localhost]
-ok: [DC1-LEAF2B -> localhost]
-ok: [DC1-SPINE1 -> localhost]
-
-TASK [eos-l3ls-evpn : include device structured configuration] **********
+TASK [eos_l3ls_evpn : Include device structured configuration, that was previously generated.] *****************************************************************************************************
 ok: [DC1-SPINE1 -> localhost]
 ok: [DC1-SPINE2 -> localhost]
 ok: [DC1-LEAF1A -> localhost]
@@ -60,35 +72,16 @@ ok: [DC1-LEAF1B -> localhost]
 ok: [DC1-LEAF2A -> localhost]
 ok: [DC1-LEAF2B -> localhost]
 
-TASK [eos-l3ls-evpn : Generate EVPN fabric documentation] **********
-ok: [DC1-SPINE1 -> localhost]
+TASK [eos_l3ls_evpn : Generate EVPN fabric documentation in Markdown Format.] **********************************************************************************************************************
+changed: [DC1-SPINE1 -> localhost]
 
-TASK [eos-l3ls-evpn : Generate EVPN fabric documentation - p2p links csv] **********
-ok: [DC1-SPINE1 -> localhost]
+TASK [eos_l3ls_evpn : Generate Leaf and Spine Point-To-Point Links summary in csv format.] *********************************************************************************************************
+changed: [DC1-SPINE1 -> localhost]
 
-TASK [eos-cli-config-gen : include data center fabric variables] **********
-ok: [DC1-SPINE1 -> localhost]
-ok: [DC1-SPINE2 -> localhost]
-ok: [DC1-LEAF1A -> localhost]
-ok: [DC1-LEAF1B -> localhost]
-ok: [DC1-LEAF2A -> localhost]
-ok: [DC1-LEAF2B -> localhost]
+TASK [eos_l3ls_evpn : Generate Fabric Topology in csv format.] *************************************************************************************************************************************
+changed: [DC1-SPINE1 -> localhost]
 
-TASK [eos-cli-config-gen : Generate eos intended configuration] **********
-ok: [DC1-SPINE1 -> localhost]
-ok: [DC1-LEAF1B -> localhost]
-ok: [DC1-LEAF2A -> localhost]
-ok: [DC1-LEAF1A -> localhost]
-ok: [DC1-SPINE2 -> localhost]
-ok: [DC1-LEAF2B -> localhost]
-
-TASK [eos-l3ls-evpn : Generate EVPN fabric documentation] **********
-ok: [DC1-SPINE1 -> localhost]
-
-TASK [eos-l3ls-evpn : Generate EVPN fabric documentation - p2p links csv] **********
-ok: [DC1-SPINE1 -> localhost]
-
-TASK [eos-cli-config-gen : include data center fabric variables] **********
+TASK [eos_cli_config_gen : include device intended structure configuration variables] **************************************************************************************************************
 ok: [DC1-SPINE1 -> localhost]
 ok: [DC1-SPINE2 -> localhost]
 ok: [DC1-LEAF1A -> localhost]
@@ -96,56 +89,57 @@ ok: [DC1-LEAF1B -> localhost]
 ok: [DC1-LEAF2A -> localhost]
 ok: [DC1-LEAF2B -> localhost]
 
-TASK [eos-cli-config-gen : Generate eos intended configuration] **********
-ok: [DC1-SPINE2 -> localhost]
-ok: [DC1-LEAF1A -> localhost]
+TASK [eos_cli_config_gen : Generate eos intended configuration] ************************************************************************************************************************************
 ok: [DC1-LEAF2A -> localhost]
-ok: [DC1-LEAF1B -> localhost]
-ok: [DC1-LEAF2B -> localhost]
 ok: [DC1-SPINE1 -> localhost]
-
-TASK [eos-cli-config-gen : Generate device documentation] **********
-ok: [DC1-SPINE1 -> localhost]
-ok: [DC1-LEAF1B -> localhost]
-ok: [DC1-SPINE2 -> localhost]
-ok: [DC1-LEAF2A -> localhost]
-ok: [DC1-LEAF2B -> localhost]
 ok: [DC1-LEAF1A -> localhost]
+ok: [DC1-LEAF2B -> localhost]
+ok: [DC1-SPINE2 -> localhost]
+ok: [DC1-LEAF1B -> localhost]
 
-PLAY [Configuration deployment with CVP] **********
+TASK [eos_cli_config_gen : Generate device documentation] ******************************************************************************************************************************************
+changed: [DC1-SPINE1 -> localhost]
+changed: [DC1-LEAF1A -> localhost]
+changed: [DC1-LEAF2A -> localhost]
+changed: [DC1-SPINE2 -> localhost]
+changed: [DC1-LEAF1B -> localhost]
+changed: [DC1-LEAF2B -> localhost]
 
-TASK [eos-config-deploy-cvp : generate intented variables] **********
-ok: [cvp]
+PLAY [Configuration deployment with CVP] ***********************************************************************************************************************************************************
 
-TASK [eos-config-deploy-cvp : Build DEVICES and CONTAINER definition for cvp] **********
-ok: [cvp -> localhost]
+TASK [eos_config_deploy_cvp : generate intented variables] *****************************************************************************************************************************************
+ok: [cv_server]
 
-TASK [eos-config-deploy-cvp : Load CVP device information for cvp] **********
-ok: [cvp]
+TASK [eos_config_deploy_cvp : Build DEVICES and CONTAINER definition for cv_server] ****************************************************************************************************************
+changed: [cv_server -> localhost]
 
-TASK [eos-config-deploy-cvp : Collecting facts from CVP cvp.] **********
-ok: [cvp]
+TASK [eos_config_deploy_cvp : Load CVP device information for cv_server] ***************************************************************************************************************************
+ok: [cv_server]
 
-TASK [eos-config-deploy-cvp : Create configlets on CVP cvp.] **********
-changed: [cvp]
+PLAY RECAP *****************************************************************************************************************************************************************************************
+DC1-LEAF1A                 : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+DC1-LEAF1B                 : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+DC1-LEAF2A                 : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+DC1-LEAF2B                 : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+DC1-SPINE1                 : ok=8    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+DC1-SPINE2                 : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+cv_server                  : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
 
-TASK [eos-config-deploy-cvp : Building Container topology on cvp] **********
-changed: [cvp]
+#### Provision CloudVision Server
 
-TASK [eos-config-deploy-cvp : Configure devices on cvp] **********
-changed: [cvp]
+Use tag `provision` to deploy configuration to CloudVision and prepare devices to be updated:
+- Create configlets on CloudVision servers
+- Create containers on CloudVision using inventory structure
+- Move devices to containers
+- Attach configlets to devices.
 
-TASK [eos-config-deploy-cvp : Execute pending tasks on cvp] **********
-changed: [cvp]
+This tag does not execute any pending tasks. It is a manual action that can be done with a Change Control. 
+If you want to automatically deploy, just use `execute_tasks: True` in [__`eos_config_deploy_cvp`__](https://github.com/titom73/ansible-avd-cloudvision-demo/blob/9cbacf68ef91a5835a6e210017e9f00c8aa6037e/dc1-fabric-deploy-cvp.yml#L27) role.
 
-PLAY RECAP **********
-DC1-LEAF1A                 : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-DC1-LEAF1B                 : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-DC1-LEAF2A                 : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-DC1-LEAF2B                 : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-DC1-SPINE1                 : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-DC1-SPINE2                 : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-cvp                        : ok=8    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```shell
+# Deploy EVPN/VXLAN Fabric
+$ ansible-playbook dc1-fabric-deploy-cvp.yml --tags build
 ```
 
 ## Analyze result.
