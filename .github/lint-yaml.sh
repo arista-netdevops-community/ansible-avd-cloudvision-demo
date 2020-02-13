@@ -17,8 +17,8 @@ exec 1>&2
 echo "Validating PEP8 compliance..."
 echo "------------------------------------------------------------------------------------------------------------"
 echo "  - Playbook & Inventory Validation"
-find $(PWD) -name "*.yml" -maxdepth 1 -exec yamllint -d "{extends: relaxed, rules: {line-length: {max: 140}}}" {} \;
+find . -name "*.yml" -maxdepth 1 -exec yamllint -d "{extends: relaxed, rules: {line-length: {max: 140}}}" {} \;
 echo "------------------------------------------------------------------------------------------------------------"
 echo "  - Group Variables"
-find $(PWD)/group_vars/ -name "*.yml" -maxdepth 1 -exec yamllint -d "{extends: relaxed, rules: {line-length: {max: 140}}}" {} \;
+find group_vars/ -name "*.yml" -maxdepth 1 -exec yamllint -d "{extends: relaxed, rules: {line-length: {max: 140}}}" {} \;
 echo "------------------------------------------------------------------------------------------------------------"
