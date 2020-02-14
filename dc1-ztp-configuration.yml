@@ -31,6 +31,12 @@
         - name: DC1-LEAF2B
           mac: 0c:1d:c0:1d:62:22
           ip4: 10.255.0.16
+        - name: DC1-L2LEAF1A
+          mac: 0c:1d:c0:1d:62:13
+          ip4: 10.255.0.17
+        - name: DC1-L2LEAF2A
+          mac: 0c:1d:c0:1d:62:23
+          ip4: 10.255.0.18
   tasks:
     - name: 'Execute ZTP configuration role'
       import_role:

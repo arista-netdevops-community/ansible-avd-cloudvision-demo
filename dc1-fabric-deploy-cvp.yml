@@ -25,7 +25,6 @@
     - arista.cvp
   tasks:
     - name: run CVP provisioning
-      tags: [deploy]
       import_role:
         name: eos_config_deploy_cvp
       vars:

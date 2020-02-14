@@ -17,10 +17,7 @@ For detailled setup and demo, please refer to [ressources](#ressources) below.
 
 ```shell
 # Clone repository
-# For git > 2.12
-$ git clone --recurse-submodules https://github.com/titom73/ansible-avd-cloudvision-demo.git
-# For git <2.13 >2.9
-$ git clone --recursive https://github.com/titom73/ansible-avd-cloudvision-demo.git
+$ git clone -https://github.com/titom73/ansible-avd-cloudvision-demo.git
 
 # Move to folder
 $ cd ansible-avd-cloudvision-demo
@@ -28,8 +25,17 @@ $ cd ansible-avd-cloudvision-demo
 # Install python requirements
 $ pip install -r requirements.txt
 
-# Edit ZTP file
-# Powerup your devices
+# Install required ansible collections
+$ make install
+
+# Edit ZTP information
+$ vim dc1-ztp-configuration.yml
+
+# Provision Zero Touch Provisioning server
+$ ansible-playbook dc1-ztp-configuration.yml
+
+# Power Up devices
+# Wait for devices to be available in CVP
 
 # Run Ansible playbook 
 $ ansible-playbook dc1-fabric-deploy-cvp.yml

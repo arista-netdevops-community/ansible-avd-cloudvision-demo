@@ -247,7 +247,6 @@ Once demo is over, you can revert to previous stage:
 
 Playbook: [`dc1-fabric-reset-cvp.yml`](dc1-fabric-reset-cvp.yml)
 
-
 ```shell
 # Reset EVPN/VXLAN Fabric tp ZTP
 $ make reset

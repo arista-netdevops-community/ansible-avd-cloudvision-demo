@@ -8,6 +8,7 @@
     - [Run Playbook](#run-playbook)
       - [Generate EOS Configuration](#generate-eos-configuration)
       - [Provision CloudVision Server](#provision-cloudvision-server)
+      - [Execute Pending tasks using a change control](#execute-pending-tasks-using-a-change-control)
   - [Analyze result.](#analyze-result)
     - [Topology Update](#topology-update)
     - [Configlet list](#configlet-list)
@@ -30,6 +31,7 @@ __Check Configlets are not present__
 
 ![Configlets](data/cloudvision-initial-configlet.png)
 
+> CloudVision might have some configlets, but not configlets with AVD related content.
 
 ## Run Ansible playbook to rollout EVPN Fabric
 
@@ -50,6 +52,10 @@ Playbook manage following actions:
 - Configure devices with correct configlet and container.
 - Execute created tasks (wait 5 minutes while devices reboot)
 
+This playbook supports 2 tags to run demo step by step:
+- __build__: Generate configuration.
+- __provision__: Push content to CloudVision.
+
 ### Run Playbook
 
 #### Generate EOS Configuration
@@ -64,7 +70,7 @@ Use tag `build` to only generate
 # Deploy EVPN/VXLAN Fabric
 $ ansible-playbook dc1-fabric-deploy-cvp.yml --tags build
 
-TASK [eos_l3ls_evpn : Include device structured configuration, that was previously generated.] *****************************************************************************************************
+TASK [eos_l3ls_evpn : Include device structured configuration, that was previously generated.] 
 ok: [DC1-SPINE1 -> localhost]
 ok: [DC1-SPINE2 -> localhost]
 ok: [DC1-LEAF1A -> localhost]
@@ -72,16 +78,16 @@ ok: [DC1-LEAF1B -> localhost]
 ok: [DC1-LEAF2A -> localhost]
 ok: [DC1-LEAF2B -> localhost]
 
-TASK [eos_l3ls_evpn : Generate EVPN fabric documentation in Markdown Format.] **********************************************************************************************************************
+TASK [eos_l3ls_evpn : Generate EVPN fabric documentation in Markdown Format.] 
 changed: [DC1-SPINE1 -> localhost]
 
-TASK [eos_l3ls_evpn : Generate Leaf and Spine Point-To-Point Links summary in csv format.] *********************************************************************************************************
+TASK [eos_l3ls_evpn : Generate Leaf and Spine Point-To-Point Links summary in csv format.] 
 changed: [DC1-SPINE1 -> localhost]
 
-TASK [eos_l3ls_evpn : Generate Fabric Topology in csv format.] *************************************************************************************************************************************
+TASK [eos_l3ls_evpn : Generate Fabric Topology in csv format.] 
 changed: [DC1-SPINE1 -> localhost]
 
-TASK [eos_cli_config_gen : include device intended structure configuration variables] **************************************************************************************************************
+TASK [eos_cli_config_gen : include device intended structure configuration variables] 
 ok: [DC1-SPINE1 -> localhost]
 ok: [DC1-SPINE2 -> localhost]
 ok: [DC1-LEAF1A -> localhost]
@@ -89,7 +95,7 @@ ok: [DC1-LEAF1B -> localhost]
 ok: [DC1-LEAF2A -> localhost]
 ok: [DC1-LEAF2B -> localhost]
 
-TASK [eos_cli_config_gen : Generate eos intended configuration] ************************************************************************************************************************************
+TASK [eos_cli_config_gen : Generate eos intended configuration] 
 ok: [DC1-LEAF2A -> localhost]
 ok: [DC1-SPINE1 -> localhost]
 ok: [DC1-LEAF1A -> localhost]
@@ -97,7 +103,7 @@ ok: [DC1-LEAF2B -> localhost]
 ok: [DC1-SPINE2 -> localhost]
 ok: [DC1-LEAF1B -> localhost]
 
-TASK [eos_cli_config_gen : Generate device documentation] ******************************************************************************************************************************************
+TASK [eos_cli_config_gen : Generate device documentation] 
 changed: [DC1-SPINE1 -> localhost]
 changed: [DC1-LEAF1A -> localhost]
 changed: [DC1-LEAF2A -> localhost]
@@ -105,18 +111,18 @@ changed: [DC1-SPINE2 -> localhost]
 changed: [DC1-LEAF1B -> localhost]
 changed: [DC1-LEAF2B -> localhost]
 
-PLAY [Configuration deployment with CVP] ***********************************************************************************************************************************************************
+PLAY [Configuration deployment with CVP] 
 
-TASK [eos_config_deploy_cvp : generate intented variables] *****************************************************************************************************************************************
+TASK [eos_config_deploy_cvp : generate intented variables] 
 ok: [cv_server]
 
-TASK [eos_config_deploy_cvp : Build DEVICES and CONTAINER definition for cv_server] ****************************************************************************************************************
+TASK [eos_config_deploy_cvp : Build DEVICES and CONTAINER definition for cv_server] 
 changed: [cv_server -> localhost]
 
-TASK [eos_config_deploy_cvp : Load CVP device information for cv_server] ***************************************************************************************************************************
+TASK [eos_config_deploy_cvp : Load CVP device information for cv_server] 
 ok: [cv_server]
 
-PLAY RECAP *****************************************************************************************************************************************************************************************
+PLAY RECAP 
 DC1-LEAF1A                 : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 DC1-LEAF1B                 : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 DC1-LEAF2A                 : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
@@ -139,8 +145,16 @@ If you want to automatically deploy, just use `execute_tasks: True` in [__`eos_c
 
 ```shell
 # Deploy EVPN/VXLAN Fabric
-$ ansible-playbook dc1-fabric-deploy-cvp.yml --tags build
+$ ansible-playbook dc1-fabric-deploy-cvp.yml --tags provision
 ```
+
+#### Execute Pending tasks using a change control
+
+Go to _Provisioning > Change Control_ to create a new change control
+
+![Change Control Example](data/figure-2-cloudvision-change-control.png)
+
+This change control is an example and you are free to build structure you want. In this scenario, all tasks can be run in parallel as we just rollout an EVPN/VXLAN fabric.
 
 ## Analyze result.
 

@@ -24,6 +24,15 @@ reset: ## Run ansible playbook to reset all devices.
 clean: ## Delete previously generated outputs
 	sh repository-cleanup.sh
 
+.PHONY: install
+install: ## Install Ansible collections
+	ansible-galaxy collection install arista.cvp -p ansible-cvp
+	ansible-galaxy collection install arista.avd -p ansible-avd
+
+.PHONY: uninstall
+uninstall: ## Remove collection from ansible
+	rm -rf ansible-avd
+	rm -rf ansible-cvp
 
 .PHONY: setup-repository
 setup-repository: ## Install python requirements
