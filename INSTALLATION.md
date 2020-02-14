@@ -41,6 +41,8 @@ This document explain how to customize demo information and how to setup this en
     - _DC1-LEAF1B_: `10.255.0.14/24`
     - _DC1-LEAF2A_: `10.255.0.15/24`
     - _DC1-LEAF2B_: `10.255.0.16/24`
+    - _DC1-L2LEAF1A_: `10.255.0.17/24`
+    - _DC1-L2LEAF2B_: `10.255.0.18/24`
 - ___Default Username & Password___:
     - admin / arista123
     - cvpdamin / arista123
@@ -57,24 +59,16 @@ First, clone repository and all the submodules configured:
 
 ```shell
 # Clone repository
-# For git > 2.12
-$ git clone --recurse-submodules https://github.com/titom73/ansible-avd-cloudvision-demo.git
-# For git <2.13 >2.9
-$ git clone --recursive https://github.com/titom73/ansible-avd-cloudvision-demo.git
+$ git clone -https://github.com/titom73/ansible-avd-cloudvision-demo.git
 
 # Move to folder
 $ cd ansible-avd-cloudvision-demo
-```
 
-To use this example, it is higly recommended to work in a Python virtual-environment:
-
-```shell
-# Configure Python virtual environment
-$ virtualenv .venv
-$ source .venv/bin/activate
-
-# Install Python requirements
+# Install python requirements
 $ pip install -r requirements.txt
+
+# Install required ansible collections
+$ make install
 ```
 
 ## Configure DHCP server on CloudVision
