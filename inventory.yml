@@ -58,9 +58,9 @@ all:
             ansible_connection: httpapi
             ansible_network_os: eos
             ansible_user: ansible
-            # should use vault for passwords - leaving un-encrypted for ease of sharing for labs
+            # should use vault for passwords
             ansible_ssh_pass: ansible
-            ansible_become: yes
+            ansible_become: true
             ansible_become_method: enable
             ansible_httpapi_use_ssl: true
             ansible_httpapi_validate_certs: false
