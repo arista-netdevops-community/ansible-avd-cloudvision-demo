@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Arista-CVP%20Automation-blue) ![](https://img.shields.io/badge/Arista-EOS%20Automation-blue) ![GitHub](https://img.shields.io/github/license/titom73/ansible-avd-cloudvision-demo)
+![](https://img.shields.io/badge/Arista-CVP%20Automation-blue) ![](https://img.shields.io/badge/Arista-EOS%20Automation-blue) ![Code Quality](https://github.com/titom73/ansible-avd-cloudvision-demo/workflows/Code%20Quality/badge.svg) ![GitHub](https://img.shields.io/github/license/titom73/ansible-avd-cloudvision-demo)
 # Arista Validated Design with CloudVision deployment
 
 ## About
@@ -13,12 +13,11 @@ It helps to demonstrate how to bring up an Arista EVPN/VXLAN Fabric from the fir
 
 ## Getting Started
 
+For detailled setup and demo, please refer to [ressources](#ressources) below.
+
 ```shell
 # Clone repository
-# For git > 2.12
-$ git clone --recurse-submodules https://github.com/titom73/ansible-avd-cloudvision-demo.git
-# For git <2.13 >2.9
-$ git clone --recursive https://github.com/titom73/ansible-avd-cloudvision-demo.git
+$ git clone -https://github.com/titom73/ansible-avd-cloudvision-demo.git
 
 # Move to folder
 $ cd ansible-avd-cloudvision-demo
@@ -26,8 +25,17 @@ $ cd ansible-avd-cloudvision-demo
 # Install python requirements
 $ pip install -r requirements.txt
 
-# Edit ZTP file
-# Powerup your devices
+# Install required ansible collections
+$ make install
+
+# Edit ZTP information
+$ vim dc1-ztp-configuration.yml
+
+# Provision Zero Touch Provisioning server
+$ ansible-playbook dc1-ztp-configuration.yml
+
+# Power Up devices
+# Wait for devices to be available in CVP
 
 # Run Ansible playbook 
 $ ansible-playbook dc1-fabric-deploy-cvp.yml
@@ -41,6 +49,7 @@ $ ansible-playbook dc1-fabric-deploy-cvp.yml
 - [Ansible CloudVision Collection](https://github.com/aristanetworks/ansible-cvp) repository.
 - [How to install](INSTALLATION.md) demo environment.
 - [Detailled demo script](DEMO.md).
+- [Detailled demo script with docker](data/DEMO_DOCKER.md)
 
 ## License
 

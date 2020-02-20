@@ -6,7 +6,3 @@
 *.code-workspace
 
 *.retry
-
-documentation/*
-intended_configs/*
-generated_vars/*

@@ -262,6 +262,12 @@ bfd_multihop:
 
 ### Port-Channel Interfaces ###
 port_channel_interfaces:
+## L2 LEAF Uplink DC1_L2LEAF1 ##
+  Port-Channel5:
+    description: DC1_L2LEAF1_Po1
+    vlans: 110-112,120-121,130-131
+    mode: trunk
+    mlag: 5
 ## mlag peer-link ##
   Port-Channel3:
     description: MLAG_PEER_DC1-LEAF1A_Po3
@@ -305,6 +311,15 @@ ethernet_interfaces:
     description: MLAG_PEER_DC1-LEAF1A_Ethernet4
     channel_group:
       id: 3
+      mode: active
+## L2 LEAF link DC1_L2LEAF1 ##
+  Ethernet5:
+    peer: DC1-L2LEAF1A
+    peer_interface: Ethernet2
+    peer_type: l2leaf
+    description: DC1-L2LEAF1A_Ethernet2
+    channel_group:
+      id: 5
       mode: active
 
 

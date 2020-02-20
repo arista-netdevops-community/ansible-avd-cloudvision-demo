@@ -2,7 +2,7 @@
 - name: Build Switch configuration
   hosts: DC1_FABRIC
   connection: local
-  gather_facts: no
+  gather_facts: false
   collections:
     - arista.avd
     - arista.cvp
@@ -10,24 +10,23 @@
     - name: generate intented variables
       tags: [build]
       import_role:
-         name: eos_l3ls_evpn
+        name: eos_l3ls_evpn
     - name: generate device intended config and documention
       tags: [build]
       import_role:
-         name: eos_cli_config_gen
+        name: eos_cli_config_gen
 
 - name: Configuration deployment with CVP
   hosts: cv_server
   connection: local
-  gather_facts: no
+  gather_facts: false
   collections:
     - arista.avd
     - arista.cvp
   tasks:
     - name: run CVP provisioning
-      tags: [deploy]
       import_role:
-         name: eos_config_deploy_cvp
+        name: eos_config_deploy_cvp
       vars:
         container_root: 'DC1_FABRIC'
         configlets_prefix: 'DC1-AVD'
