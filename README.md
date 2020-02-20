@@ -1,6 +1,8 @@
 ![](https://img.shields.io/badge/Arista-CVP%20Automation-blue) ![](https://img.shields.io/badge/Arista-EOS%20Automation-blue) ![Code Quality](https://github.com/titom73/ansible-avd-cloudvision-demo/workflows/Code%20Quality/badge.svg) ![GitHub](https://img.shields.io/github/license/titom73/ansible-avd-cloudvision-demo)
 # Arista Validated Design with CloudVision deployment
 
+Content mirrored in [Aristanetworks/netdevops-examples](https://github.com/aristanetworks/netdevops-examples) repository.
+
 ## About
 
 This example implement a basic __EVPN/VXLAN Fabric__ based on __[Arista Validated Design roles](https://github.com/aristanetworks/ansible-avd)__ with one layer of 2 spines and one layer of leafs (4 devices) using MLAG. Configuration deployment is not managed by eos EAPI, but through Arista CloudVision based on __[arista.cvp collection](https://github.com/aristanetworks/ansible-cvp/)__
