@@ -1,8 +1,8 @@
 name: Ansible Code Execution
 on: [push]
 jobs:
-  ansible_syntax_check:
-    name: Run Ansible Syntax Check
+  ansible_ci:
+    name: Run Ansible Checks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -15,17 +15,6 @@ jobs:
           ansible-playbook dc1-fabric-deploy-cvp.yml --syntax-check
           ansible-playbook dc1-fabric-reset-cvp.yml --syntax-check
           ansible-playbook dc1-ztp-configuration.yml --syntax-check
-      - name: 'Remove collections'
-        run: make uninstall
-  ansible_generate:
-    name: Run Ansible to generate configuration
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: 'Install Python dependencies'
-        run: make setup-repository
-      - name: 'Install collections'
-        run: make install
       - name: 'Run a generate playbook to test variables'
         run: |
           ansible-playbook dc1-fabric-deploy-cvp.yml --tags generate
