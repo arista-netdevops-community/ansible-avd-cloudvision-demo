@@ -2,7 +2,7 @@ name: Code Quality
 on: [push]
 jobs:
   code_linting:
-    name: Run Python Linting
+    name: Run YAML Linting
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -15,20 +15,5 @@ jobs:
         uses: ibiqlik/action-yamllint@master
         with:
           file_or_dir: ./*.yml
-  ansible_syntax_check:
-    name: Run Ansible Syntax Check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: 'Install Python dependencies'
-        run: make setup-repository
-      - name: 'Install collections'
-        run: make install
-      - name: 'Check ansible syntax'
-        run: |
-          ansible-playbook dc1-fabric-deploy-cvp.yml --syntax-check
-          ansible-playbook dc1-fabric-reset-cvp.yml --syntax-check
-          ansible-playbook dc1-ztp-configuration.yml --syntax-check
-      - name: 'Remove collections'
-        run: make uninstall
+
 

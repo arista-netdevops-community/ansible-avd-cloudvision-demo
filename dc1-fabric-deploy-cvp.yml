@@ -8,11 +8,11 @@
     - arista.cvp
   tasks:
     - name: generate intented variables
-      tags: [build]
+      tags: [build, generate]
       import_role:
         name: eos_l3ls_evpn
     - name: generate device intended config and documention
-      tags: [build]
+      tags: [build, generate]
       import_role:
         name: eos_cli_config_gen
 
