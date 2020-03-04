@@ -38,6 +38,11 @@ uninstall: ## Remove collection from ansible
 setup-repository: ## Install python requirements
 	pip install --upgrade wheel
 	pip install -r requirements.txt
+
+.PHONY: setup-repository-dev
+setup-repository-dev: ## Install python requirements
+	pip install --upgrade wheel
+	pip install -r requirements.txt
 	pip install -r .github/requirements.dev.txt
 
 .PHONY: linting
