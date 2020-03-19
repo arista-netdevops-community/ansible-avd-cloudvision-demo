@@ -7,3 +7,7 @@
 
 *.retry
 ansible-*
+
+intended/*
+documentation/*
+collections/
