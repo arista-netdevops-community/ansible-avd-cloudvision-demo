@@ -2,7 +2,7 @@
 # Demo script
 
 - [Demo script](#demo-script)
-  - [Power up devices.](#power-up-devices)
+  - [Power up devices](#power-up-devices)
     - [Check there is no container](#check-there-is-no-container)
     - [Check Configlets are not present](#check-configlets-are-not-present)
   - [Run Ansible playbook to rollout EVPN Fabric](#run-ansible-playbook-to-rollout-evpn-fabric)
@@ -15,10 +15,12 @@
     - [Topology Update](#topology-update)
     - [Configlet list](#configlet-list)
     - [Check device status](#check-device-status)
+    - [BGP Status](#bgp-status)
+    - [VXLAN address table](#vxlan-address-table)
     - [Check device connectivity](#check-device-connectivity)
   - [Revert topology](#revert-topology)
 
-## Power up devices.
+## Power up devices
 
 Power up your devices what ever the solution is. You will see them in the __`undefined`__ container
 
@@ -181,7 +183,7 @@ A set of new configlets have been configured on CloudVision and attached to devi
 
 To validate deployment, connect to devices and issue some commands:
 
-__BGP Status__
+### BGP Status
 
 ```shell
 DC1-LEAF1B#show bgp evpn summary
@@ -192,7 +194,7 @@ Neighbor         V  AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   Pf
   192.168.255.2    4  65001             55        39    0    0 00:00:44 Estab   86     86
 ```
 
-__VXLAN address table__
+### VXLAN address table
 
 ```shell
 DC1-LEAF1B#show vxlan  address-table
