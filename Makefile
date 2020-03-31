@@ -31,6 +31,10 @@ clean: ## Delete previously generated outputs
 ztp: ## Configure ZTP server
 	ansible-playbook dc1-ztp-configuration.yml
 
+.PHONY: configlet-upload
+configlet-upload: ## Upload configlets available in configlets/ to CVP.
+	ansible-playbook dc1-upload-configlets.yml
+
 # .PHONY: install
 # install: ## Install Ansible collections
 # 	ansible-galaxy collection install arista.cvp -p ansible-cvp

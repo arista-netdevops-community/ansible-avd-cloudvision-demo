@@ -7,11 +7,11 @@
     - arista.avd
     - arista.cvp
   tasks:
-    - name: generate intented variables
+    - name: generate intended variables
       tags: [build, generate]
       import_role:
-        name: eos_l3ls_evpn
-    - name: generate device intended config and documention
+        name: arista.avd.eos_l3ls_evpn
+    - name: generate device intended config and documentation
       tags: [build, generate]
       import_role:
         name: eos_cli_config_gen
@@ -26,7 +26,7 @@
   tasks:
     - name: run CVP provisioning
       import_role:
-        name: eos_config_deploy_cvp
+        name: arista.avd.eos_config_deploy_cvp
       vars:
         container_root: 'DC1_FABRIC'
         configlets_prefix: 'DC1-AVD'
