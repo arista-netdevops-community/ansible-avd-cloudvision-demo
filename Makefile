@@ -8,19 +8,19 @@ help: ## Display help message
 ################################################################################
 
 .PHONY: build
-avd-build: ## Run ansible playbook to build EVPN Fabric configuration.
+build: ## Run ansible playbook to build EVPN Fabric configuration.
 	ansible-playbook dc1-fabric-deploy-cvp.yml --tags build
 
-.PHONY: rovision
-avd-provision: ## Run ansible playbook to deploy EVPN Fabric.
+.PHONY: provision
+provision: ## Run ansible playbook to deploy EVPN Fabric.
 	ansible-playbook dc1-fabric-deploy-cvp.yml --tags provision
 
 .PHONY: deploy
-avd-deploy: ## Run ansible playbook to deploy EVPN Fabric.
+deploy: ## Run ansible playbook to deploy EVPN Fabric.
 	ansible-playbook dc1-fabric-deploy-cvp.yml --extra-vars "execute_tasks=true" --tags "build,provision,apply"
 
 .PHONY: reset
-avd-reset: ## Run ansible playbook to reset all devices.
+reset: ## Run ansible playbook to reset all devices.
 	ansible-playbook dc1-fabric-reset-cvp.yml
 
 .PHONY: clean
@@ -51,12 +51,26 @@ install-requirements: ## Install python requirements
 	pip install --upgrade wheel
 	pip install -r requirements.txt
 
-.PHONY: install-requirements-dev
-install-requirements-dev: ## Install python requirements
-	pip install --upgrade wheel
-	pip install -r requirements.txt
-	pip install -r .github/requirements.dev.txt
+################################################################################
+# Docker AVD Commands
+################################################################################
 
-.PHONY: linting
-linting: ## Run pre-commit script for python code linting using pylint
-	sh .github/lint-yaml.sh
+# .PHONY: build-docker
+# build-docker: ## Build docker image based on latest supported Python version
+# 	docker build -f Dockerfile -t $(DOCKER_NAME):latest .
+
+# .PHONY: run
+# run: ## Connect to docker container
+# 	docker run -it --rm -v $(PWD):/project $(DOCKER_NAME):latest sh
+
+# .PHONY: configure-ztp-docker
+# configure-ztp-docker: ## Connect to docker container
+# 	docker run -it --rm -v $(PWD):/project $(DOCKER_NAME):latest ansible-playbook dc1-ztp-configuration.yml
+
+# .PHONY: deploy-docker
+# deploy-docker: ## Run ansible playbook to deploy EVPN Fabric.
+# 	docker run -it --rm -v $(PWD):/project $(DOCKER_NAME):latest ansible-playbook dc1-fabric-deploy-cvp.yml
+
+# .PHONY: reset-docker
+# reset-docker: ## Run ansible playbook to reset all devices.
+# 	docker run -it --rm -v $(PWD):/project $(DOCKER_NAME):latest ansible-playbook dc1-fabric-reset-cvp.yml
