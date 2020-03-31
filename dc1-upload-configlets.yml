@@ -7,10 +7,10 @@
     - arista.avd
     - arista.cvp
   tasks:
-  - name: 'upload configlets to cloudvision {{inventory_hostname}}'
-    import_role:
-      name: arista.avd.cvp_configlet_upload
-    vars:
-      configlet_directory: '{{ configlet_dir_var }}'
-      configlets_cvp_prefix: '{{ configlets_prefix_var }}'
-      file_extension: '{{configlet_file_extension}}'
+    - name: 'upload configlets to cloudvision {{inventory_hostname}}'
+      import_role:
+        name: arista.avd.cvp_configlet_upload
+      vars:
+        configlet_directory: '{{ configlet_dir_var }}'
+        configlets_cvp_prefix: '{{ configlets_prefix_var }}'
+        file_extension: '{{configlet_file_extension}}'
