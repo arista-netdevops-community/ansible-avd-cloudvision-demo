@@ -7,7 +7,7 @@ fabric_name: DC1_FABRIC
 # Point to Point Network Summary range, assigned as /31 for each
 # uplink interfaces
 # Assign range larger then total [spines * total potential leafs * 2]
-underlay_p2p_network_summary: 172.31.255.0/24
+underlay_p2p_network_summary: 172.31.254.0/24
 
 # IP address range for evpn loopback for all switches in fabric,
 # assigned as /32s
@@ -153,10 +153,8 @@ bfd_multihop:
 
 # List of additional CVP configlets to bind to devices and containers
 # Configlets MUST be configured on CVP before running AVD playbooks.
-cv_configlets:
-  containers:
-    DC1_L3LEAFS:
-      - ASE_GLOBAL-ALIASES
-  devices:
-    DC1-L2LEAF1A:
-      - ASE_DEVICE-ALIASES.conf
+
+# cv_configlets:
+#   containers:
+#     DC1_L3LEAFS:
+#       - ASE_GLOBAL-ALIASES
