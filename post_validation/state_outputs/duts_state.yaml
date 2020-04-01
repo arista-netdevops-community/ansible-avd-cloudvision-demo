@@ -7,19 +7,19 @@ duts:
       internalBuildId: 2c34e816-9aa7-4c63-9a32-05140aec7dbd
       internalVersion: 4.22.0F-12170486.4220F
       isIntlVersion: false
-      memFree: 1135804
+      memFree: 1130060
       memTotal: 2014584
       mfgName: ''
       modelName: vEOS
       serialNumber: ''
       systemMacAddress: 0c:1d:c0:a3:43:e0
-      uptime: 14897.77
+      uptime: 15148.22
       version: 4.22.0F
     "show processes top once":
       cpuInfo:
         '%Cpu(s)':
           hwIrq: 11.5
-          idle: 75.4
+          idle: 75.5
           ioWait: 0.0
           nice: 0.1
           stolen: 0.0
@@ -28,18 +28,18 @@ duts:
           user: 4.5
       memInfo:
         physicalMem:
-          memBuffer: 189744
-          memFree: 57440
+          memBuffer: 189752
+          memFree: 51552
           memTotal: 2014584
-          memUsed: 1957144
+          memUsed: 1963032
         swapMem:
-          memBuffer: 1003784
+          memBuffer: 1003832
           memFree: 0
           memTotal: 0
           memUsed: 0
       processes:
         '1':
-          activeTime: 1355
+          activeTime: 1364
           cmd: systemd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -260,7 +260,7 @@ duts:
           userName: root
           virtMem: '0'
         '19933':
-          activeTime: 23
+          activeTime: 71
           cmd: kworker/0:0
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -312,9 +312,9 @@ duts:
           userName: root
           virtMem: '0'
         '21174':
-          activeTime: 1
+          activeTime: 53
           cmd: kworker/0:3
-          cpuPct: 2.5
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 0.0
           niceValue: 0
@@ -324,19 +324,45 @@ duts:
           status: S
           userName: root
           virtMem: '0'
-        '21198':
-          activeTime: 15
-          cmd: top
-          cpuPct: 35.4
+        '21628':
+          activeTime: 29
+          cmd: sshd
+          cpuPct: 0.0
+          cpuPctType: '{:.1f}'
+          memPct: 0.6
+          niceValue: 0
+          priority: '20'
+          residentMem: 11m
+          sharedMem: 10m
+          status: S
+          userName: root
+          virtMem: '19152'
+        '21659':
+          activeTime: 4
+          cmd: sshd
+          cpuPct: 0.0
+          cpuPctType: '{:.1f}'
+          memPct: 0.3
+          niceValue: 0
+          priority: '20'
+          residentMem: '5852'
+          sharedMem: '4620'
+          status: S
+          userName: ansible
+          virtMem: '19152'
+        '21662':
+          activeTime: 14
+          cmd: CliShell
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 0.4
           niceValue: 0
           priority: '20'
-          residentMem: '8244'
-          sharedMem: '7060'
-          status: R
+          residentMem: '8708'
+          sharedMem: '5304'
+          status: S
           userName: ansible
-          virtMem: '18012'
+          virtMem: '36976'
         '22':
           activeTime: 0
           cmd: kintegrityd
@@ -350,6 +376,19 @@ duts:
           status: S
           userName: root
           virtMem: '0'
+        '22070':
+          activeTime: 16
+          cmd: top
+          cpuPct: 3.6
+          cpuPctType: '{:.1f}'
+          memPct: 0.4
+          niceValue: 0
+          priority: '20'
+          residentMem: '8120'
+          sharedMem: '6936'
+          status: R
+          userName: ansible
+          virtMem: '18012'
         '23':
           activeTime: 0
           cmd: bioset
@@ -416,7 +455,7 @@ duts:
           userName: root
           virtMem: '4388'
         '2416':
-          activeTime: 51
+          activeTime: 52
           cmd: systemd-logind
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -429,7 +468,7 @@ duts:
           userName: root
           virtMem: '6060'
         '2417':
-          activeTime: 82
+          activeTime: 84
           cmd: dbus-daemon
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -507,9 +546,9 @@ duts:
           userName: root
           virtMem: '0'
         '3':
-          activeTime: 5301
+          activeTime: 5390
           cmd: ksoftirqd/0
-          cpuPct: 2.5
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 0.0
           niceValue: 0
@@ -611,7 +650,7 @@ duts:
           userName: root
           virtMem: 466m
         '3092':
-          activeTime: 4353
+          activeTime: 4422
           cmd: ProcMgr-worker
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -728,7 +767,7 @@ duts:
           userName: root
           virtMem: '0'
         '3222':
-          activeTime: 631
+          activeTime: 641
           cmd: EosOomAdjust
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -767,7 +806,7 @@ duts:
           userName: root
           virtMem: '4300'
         '3274':
-          activeTime: 162
+          activeTime: 164
           cmd: SlabMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -780,9 +819,9 @@ duts:
           userName: root
           virtMem: '4268'
         '3286':
-          activeTime: 3594
+          activeTime: 3635
           cmd: Sysdb
-          cpuPct: 0.0
+          cpuPct: 1.8
           cpuPctType: '{:.1f}'
           memPct: 11.3
           niceValue: 0
@@ -806,7 +845,7 @@ duts:
           userName: root
           virtMem: '0'
         '3328':
-          activeTime: 110
+          activeTime: 111
           cmd: StageMgr
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -819,7 +858,7 @@ duts:
           userName: root
           virtMem: 470m
         '3330':
-          activeTime: 9028
+          activeTime: 9171
           cmd: ConfigAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -884,14 +923,14 @@ duts:
           userName: root
           virtMem: '0'
         '3534':
-          activeTime: 23206
+          activeTime: 23603
           cmd: TerminAttr
-          cpuPct: 0.0
+          cpuPct: 30.9
           cpuPctType: '{:.1f}'
           memPct: 4.6
           niceValue: 0
           priority: '20'
-          residentMem: 89m
+          residentMem: 90m
           sharedMem: 15m
           status: S
           userName: root
@@ -923,7 +962,7 @@ duts:
           userName: root
           virtMem: 459m
         '3555':
-          activeTime: 3070
+          activeTime: 3111
           cmd: AgentMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -975,7 +1014,7 @@ duts:
           userName: root
           virtMem: 459m
         '3612':
-          activeTime: 571
+          activeTime: 581
           cmd: Lldp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1014,7 +1053,7 @@ duts:
           userName: root
           virtMem: 459m
         '3616':
-          activeTime: 94
+          activeTime: 95
           cmd: McastCommon
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1053,7 +1092,7 @@ duts:
           userName: root
           virtMem: 459m
         '3619':
-          activeTime: 101
+          activeTime: 103
           cmd: PortSec
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1092,7 +1131,7 @@ duts:
           userName: root
           virtMem: 459m
         '3623':
-          activeTime: 113
+          activeTime: 115
           cmd: Bfd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1131,7 +1170,7 @@ duts:
           userName: root
           virtMem: 459m
         '3627':
-          activeTime: 474
+          activeTime: 482
           cmd: Lag
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1144,7 +1183,7 @@ duts:
           userName: root
           virtMem: 463m
         '3628':
-          activeTime: 17193
+          activeTime: 17470
           cmd: SuperServer
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1183,7 +1222,7 @@ duts:
           userName: root
           virtMem: 459m
         '3638':
-          activeTime: 133
+          activeTime: 135
           cmd: Ira
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1222,7 +1261,7 @@ duts:
           userName: root
           virtMem: 459m
         '3644':
-          activeTime: 205
+          activeTime: 208
           cmd: LedPolicy
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1261,7 +1300,7 @@ duts:
           userName: root
           virtMem: 459m
         '3650':
-          activeTime: 378
+          activeTime: 384
           cmd: EventMgr
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1274,7 +1313,7 @@ duts:
           userName: root
           virtMem: 466m
         '3652':
-          activeTime: 226
+          activeTime: 231
           cmd: CapiApp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1313,7 +1352,7 @@ duts:
           userName: root
           virtMem: 459m
         '3658':
-          activeTime: 1685
+          activeTime: 1711
           cmd: StpTxRx
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1352,7 +1391,7 @@ duts:
           userName: root
           virtMem: 459m
         '3663':
-          activeTime: 77
+          activeTime: 79
           cmd: StandbyCpld
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1391,7 +1430,7 @@ duts:
           userName: root
           virtMem: 459m
         '3668':
-          activeTime: 3329
+          activeTime: 3382
           cmd: PhyEthtool
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1404,7 +1443,7 @@ duts:
           userName: root
           virtMem: 471m
         '3669':
-          activeTime: 145
+          activeTime: 148
           cmd: Tunnel
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1417,14 +1456,14 @@ duts:
           userName: root
           virtMem: 466m
         '3674':
-          activeTime: 394
+          activeTime: 420
           cmd: Aaa
-          cpuPct: 2.5
+          cpuPct: 1.8
           cpuPctType: '{:.1f}'
           memPct: 4.5
           niceValue: 0
           priority: '20'
-          residentMem: 88m
+          residentMem: 89m
           sharedMem: 62m
           status: S
           userName: root
@@ -1456,7 +1495,7 @@ duts:
           userName: root
           virtMem: 459m
         '3683':
-          activeTime: 102
+          activeTime: 103
           cmd: StpTopology
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1495,7 +1534,7 @@ duts:
           userName: root
           virtMem: 459m
         '3688':
-          activeTime: 759
+          activeTime: 768
           cmd: Acl
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1534,7 +1573,7 @@ duts:
           userName: root
           virtMem: 459m
         '3697':
-          activeTime: 717
+          activeTime: 728
           cmd: Stp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1573,7 +1612,7 @@ duts:
           userName: root
           virtMem: 459m
         '3702':
-          activeTime: 81
+          activeTime: 83
           cmd: KernelNetworkIn
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1612,7 +1651,7 @@ duts:
           userName: root
           virtMem: 459m
         '3709':
-          activeTime: 92
+          activeTime: 94
           cmd: McastCommon6
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1625,9 +1664,9 @@ duts:
           userName: root
           virtMem: 462m
         '3714':
-          activeTime: 7819
+          activeTime: 7943
           cmd: Etba
-          cpuPct: 0.0
+          cpuPct: 1.8
           cpuPctType: '{:.1f}'
           memPct: 7.3
           niceValue: 0
@@ -1664,7 +1703,7 @@ duts:
           userName: root
           virtMem: 459m
         '3753':
-          activeTime: 172
+          activeTime: 175
           cmd: LacpTxAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1703,7 +1742,7 @@ duts:
           userName: root
           virtMem: 459m
         '3772':
-          activeTime: 203
+          activeTime: 206
           cmd: Arp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1742,7 +1781,7 @@ duts:
           userName: root
           virtMem: 459m
         '3797':
-          activeTime: 113
+          activeTime: 115
           cmd: KernelFib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1781,7 +1820,7 @@ duts:
           userName: root
           virtMem: 459m
         '3809':
-          activeTime: 138
+          activeTime: 139
           cmd: Qos
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1820,7 +1859,7 @@ duts:
           userName: root
           virtMem: 459m
         '3829':
-          activeTime: 87
+          activeTime: 88
           cmd: Thermostat
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1859,7 +1898,7 @@ duts:
           userName: root
           virtMem: 459m
         '3836':
-          activeTime: 115
+          activeTime: 117
           cmd: L2Rib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1898,7 +1937,7 @@ duts:
           userName: root
           virtMem: 459m
         '3844':
-          activeTime: 78
+          activeTime: 79
           cmd: TopoAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -1976,7 +2015,7 @@ duts:
           userName: root
           virtMem: 459m
         '3859':
-          activeTime: 67
+          activeTime: 68
           cmd: PowerManager
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -2015,7 +2054,7 @@ duts:
           userName: root
           virtMem: 459m
         '3869':
-          activeTime: 157
+          activeTime: 159
           cmd: Ebra
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -2054,7 +2093,7 @@ duts:
           userName: root
           virtMem: 459m
         '3891':
-          activeTime: 76
+          activeTime: 77
           cmd: ReloadCauseAgen
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -2080,7 +2119,7 @@ duts:
           userName: root
           virtMem: '4460'
         '3898':
-          activeTime: 141
+          activeTime: 143
           cmd: IgmpSnooping
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -2106,7 +2145,7 @@ duts:
           userName: root
           virtMem: 459m
         '3900':
-          activeTime: 70
+          activeTime: 71
           cmd: SharedSecretPro
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -2145,7 +2184,7 @@ duts:
           userName: root
           virtMem: 459m
         '3931':
-          activeTime: 119
+          activeTime: 120
           cmd: StaticRoute
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -2184,7 +2223,7 @@ duts:
           userName: root
           virtMem: 459m
         '3949':
-          activeTime: 313
+          activeTime: 315
           cmd: IpRib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -2223,7 +2262,7 @@ duts:
           userName: root
           virtMem: 459m
         '3962':
-          activeTime: 115
+          activeTime: 116
           cmd: ConnectedRoute
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -2275,7 +2314,7 @@ duts:
           userName: root
           virtMem: 471m
         '3987':
-          activeTime: 91
+          activeTime: 92
           cmd: EvpnrtrEncap
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -2288,7 +2327,7 @@ duts:
           userName: root
           virtMem: 468m
         '3993':
-          activeTime: 499
+          activeTime: 502
           cmd: Bgp-main
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -2314,7 +2353,7 @@ duts:
           userName: root
           virtMem: '4460'
         '4334':
-          activeTime: 13
+          activeTime: 14
           cmd: rsyslogd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -2340,7 +2379,7 @@ duts:
           userName: root
           virtMem: '11636'
         '4401':
-          activeTime: 92
+          activeTime: 97
           cmd: nginx
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -2353,7 +2392,7 @@ duts:
           userName: nobody
           virtMem: '20108'
         '4487':
-          activeTime: 1
+          activeTime: 2
           cmd: xinetd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -2652,7 +2691,7 @@ duts:
           userName: root
           virtMem: '0'
         '6':
-          activeTime: 5
+          activeTime: 6
           cmd: kworker/u2:0
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -2756,7 +2795,7 @@ duts:
           userName: root
           virtMem: '0'
         '7':
-          activeTime: 239
+          activeTime: 243
           cmd: rcu_preempt
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -2822,18 +2861,18 @@ duts:
           virtMem: '0'
       threadsStateInfo:
         run: 1
-        sleep: 213
+        sleep: 216
         stop: 0
-        total: 214
+        total: 217
         zombie: 0
       timeInfo:
-        currentTime: 1585752065.778355
+        currentTime: 1585752316.355346
         loadAvg:
-        - 0.1
-        - 0.19
-        - 0.18
-        upTime: 14898.23
-        users: 0
+        - 0.41
+        - 0.26
+        - 0.2
+        upTime: 15148.81
+        users: 1
     "show port-channel summary":
       numberOfAggregators: 1
       numberOfChannelsInUse: 1
@@ -2845,18 +2884,18 @@ duts:
             Ethernet1:
               intf: Ethernet1
               lacpMisconfig:
-                status: negotiation
+                status: bundled
               lacpState:
                 activity: true
                 aggregation: true
-                collecting: false
+                collecting: true
                 defaulted: false
-                distributing: false
+                distributing: true
                 expired: false
                 synchronization: true
                 timeout: false
-              lagMember: false
-              linkDown: true
+              lagMember: true
+              linkDown: false
               staticLag: false
               suspended: false
             Ethernet2:
@@ -2923,6 +2962,10 @@ duts:
       state: disabled
     "show lldp neighbors":
       lldpNeighbors:
+      - neighborDevice: DC1-LEAF1A
+        neighborPort: Ethernet5
+        port: Ethernet1
+        ttl: 120
       - neighborDevice: DC1-LEAF1B
         neighborPort: Ethernet5
         port: Ethernet2
@@ -2958,8 +3001,8 @@ duts:
       tablesAgeOuts: 0
       tablesDeletes: 1
       tablesDrops: 0
-      tablesInserts: 9
-      tablesLastChangeTime: 1585751389.451029
+      tablesInserts: 10
+      tablesLastChangeTime: 1585752285.928704
   DC1-L2LEAF2A:
     "show version":
       architecture: i386
@@ -2968,13 +3011,13 @@ duts:
       internalBuildId: 2c34e816-9aa7-4c63-9a32-05140aec7dbd
       internalVersion: 4.22.0F-12170486.4220F
       isIntlVersion: false
-      memFree: 1139360
+      memFree: 1140184
       memTotal: 2014584
       mfgName: ''
       modelName: vEOS
       serialNumber: ''
       systemMacAddress: 0c:1d:c0:f3:f1:ea
-      uptime: 14904.71
+      uptime: 15155.64
       version: 4.22.0F
     "show processes top once":
       cpuInfo:
@@ -2989,18 +3032,18 @@ duts:
           user: 4.5
       memInfo:
         physicalMem:
-          memBuffer: 189312
-          memFree: 56448
+          memBuffer: 189320
+          memFree: 56764
           memTotal: 2014584
-          memUsed: 1958136
+          memUsed: 1957820
         swapMem:
-          memBuffer: 1008660
+          memBuffer: 1008712
           memFree: 0
           memTotal: 0
           memUsed: 0
       processes:
         '1':
-          activeTime: 1261
+          activeTime: 1271
           cmd: systemd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -3065,7 +3108,7 @@ duts:
           userName: root
           virtMem: '0'
         '139':
-          activeTime: 21
+          activeTime: 22
           cmd: jbd2/sdb2-8
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -3130,7 +3173,7 @@ duts:
           userName: root
           virtMem: '0'
         '17':
-          activeTime: 47
+          activeTime: 48
           cmd: khungtaskd2
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -3143,7 +3186,7 @@ duts:
           userName: root
           virtMem: '0'
         '17324':
-          activeTime: 71
+          activeTime: 81
           cmd: kworker/0:1
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -3195,7 +3238,7 @@ duts:
           userName: root
           virtMem: '7664'
         '18563':
-          activeTime: 76
+          activeTime: 117
           cmd: kworker/0:0
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -3221,7 +3264,7 @@ duts:
           userName: root
           virtMem: '0'
         '19748':
-          activeTime: 55
+          activeTime: 68
           cmd: kworker/0:3
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -3260,9 +3303,9 @@ duts:
           userName: root
           virtMem: '0'
         '2043':
-          activeTime: 45
+          activeTime: 46
           cmd: ProcMonitor
-          cpuPct: 2.1
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 0.1
           niceValue: 0
@@ -3299,7 +3342,7 @@ duts:
           userName: root
           virtMem: '4388'
         '2052':
-          activeTime: 53
+          activeTime: 54
           cmd: systemd-logind
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -3312,7 +3355,7 @@ duts:
           userName: root
           virtMem: '6060'
         '2053':
-          activeTime: 78
+          activeTime: 79
           cmd: dbus-daemon
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -3324,19 +3367,6 @@ duts:
           status: S
           userName: dbus
           virtMem: '17848'
-        '20814':
-          activeTime: 16
-          cmd: top
-          cpuPct: 31.6
-          cpuPctType: '{:.1f}'
-          memPct: 0.4
-          niceValue: 0
-          priority: '20'
-          residentMem: '8364'
-          sharedMem: '7180'
-          status: R
-          userName: ansible
-          virtMem: '18012'
         '21':
           activeTime: 0
           cmd: crypto
@@ -3350,6 +3380,32 @@ duts:
           status: S
           userName: root
           virtMem: '0'
+        '21003':
+          activeTime: 36
+          cmd: kworker/0:2
+          cpuPct: 0.0
+          cpuPctType: '{:.1f}'
+          memPct: 0.0
+          niceValue: 0
+          priority: '20'
+          residentMem: '0'
+          sharedMem: '0'
+          status: S
+          userName: root
+          virtMem: '0'
+        '21663':
+          activeTime: 14
+          cmd: top
+          cpuPct: 36.0
+          cpuPctType: '{:.1f}'
+          memPct: 0.4
+          niceValue: 0
+          priority: '20'
+          residentMem: '8364'
+          sharedMem: '7180'
+          status: R
+          userName: ansible
+          virtMem: '18012'
         '22':
           activeTime: 0
           cmd: kintegrityd
@@ -3533,9 +3589,9 @@ duts:
           userName: root
           virtMem: 466m
         '2827':
-          activeTime: 4458
+          activeTime: 4530
           cmd: ProcMgr-worker
-          cpuPct: 0.0
+          cpuPct: 2.8
           cpuPctType: '{:.1f}'
           memPct: 3.0
           niceValue: 0
@@ -3624,7 +3680,7 @@ duts:
           userName: root
           virtMem: '4464'
         '2960':
-          activeTime: 621
+          activeTime: 632
           cmd: EosOomAdjust
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -3663,9 +3719,9 @@ duts:
           userName: root
           virtMem: '4300'
         '3':
-          activeTime: 5465
+          activeTime: 5565
           cmd: ksoftirqd/0
-          cpuPct: 2.1
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 0.0
           niceValue: 0
@@ -3689,7 +3745,7 @@ duts:
           userName: root
           virtMem: '0'
         '3024':
-          activeTime: 168
+          activeTime: 171
           cmd: SlabMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -3702,7 +3758,7 @@ duts:
           userName: root
           virtMem: '4268'
         '3025':
-          activeTime: 3744
+          activeTime: 3784
           cmd: Sysdb
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -3715,7 +3771,7 @@ duts:
           userName: root
           virtMem: 503m
         '3067':
-          activeTime: 113
+          activeTime: 115
           cmd: StageMgr
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -3728,7 +3784,7 @@ duts:
           userName: root
           virtMem: 470m
         '3069':
-          activeTime: 9078
+          activeTime: 9139
           cmd: ConfigAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -3741,7 +3797,7 @@ duts:
           userName: root
           virtMem: 743m
         '3082':
-          activeTime: 161
+          activeTime: 163
           cmd: Fru
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -3754,7 +3810,7 @@ duts:
           userName: root
           virtMem: 480m
         '3084':
-          activeTime: 356
+          activeTime: 357
           cmd: Launcher
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -3793,14 +3849,14 @@ duts:
           userName: root
           virtMem: '0'
         '3273':
-          activeTime: 23787
+          activeTime: 24177
           cmd: TerminAttr
-          cpuPct: 2.1
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 4.5
           niceValue: 0
           priority: '20'
-          residentMem: 88m
+          residentMem: 87m
           sharedMem: 15m
           status: S
           userName: root
@@ -3832,7 +3888,7 @@ duts:
           userName: root
           virtMem: 459m
         '3293':
-          activeTime: 3080
+          activeTime: 3121
           cmd: AgentMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -3884,7 +3940,7 @@ duts:
           userName: root
           virtMem: 459m
         '3350':
-          activeTime: 569
+          activeTime: 578
           cmd: Lldp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -3923,7 +3979,7 @@ duts:
           userName: root
           virtMem: 459m
         '3354':
-          activeTime: 93
+          activeTime: 94
           cmd: McastCommon
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -3962,7 +4018,7 @@ duts:
           userName: root
           virtMem: 459m
         '3358':
-          activeTime: 106
+          activeTime: 107
           cmd: PortSec
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4001,7 +4057,7 @@ duts:
           userName: root
           virtMem: 459m
         '3362':
-          activeTime: 105
+          activeTime: 107
           cmd: Bfd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4040,7 +4096,7 @@ duts:
           userName: root
           virtMem: 459m
         '3366':
-          activeTime: 540
+          activeTime: 547
           cmd: Lag
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4053,9 +4109,9 @@ duts:
           userName: root
           virtMem: 463m
         '3368':
-          activeTime: 17569
+          activeTime: 17851
           cmd: SuperServer
-          cpuPct: 0.0
+          cpuPct: 2.8
           cpuPctType: '{:.1f}'
           memPct: 6.3
           niceValue: 0
@@ -4092,7 +4148,7 @@ duts:
           userName: root
           virtMem: 459m
         '3376':
-          activeTime: 120
+          activeTime: 121
           cmd: Ira
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4131,7 +4187,7 @@ duts:
           userName: root
           virtMem: 459m
         '3381':
-          activeTime: 193
+          activeTime: 196
           cmd: LedPolicy
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4170,7 +4226,7 @@ duts:
           userName: root
           virtMem: 459m
         '3387':
-          activeTime: 388
+          activeTime: 394
           cmd: EventMgr
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4183,7 +4239,7 @@ duts:
           userName: root
           virtMem: 466m
         '3389':
-          activeTime: 221
+          activeTime: 225
           cmd: CapiApp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4222,7 +4278,7 @@ duts:
           userName: root
           virtMem: 459m
         '3393':
-          activeTime: 1722
+          activeTime: 1745
           cmd: StpTxRx
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4261,7 +4317,7 @@ duts:
           userName: root
           virtMem: 459m
         '3398':
-          activeTime: 73
+          activeTime: 74
           cmd: StandbyCpld
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4300,7 +4356,7 @@ duts:
           userName: root
           virtMem: '0'
         '3400':
-          activeTime: 3311
+          activeTime: 3366
           cmd: PhyEthtool
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4326,7 +4382,7 @@ duts:
           userName: root
           virtMem: 459m
         '3403':
-          activeTime: 148
+          activeTime: 149
           cmd: Tunnel
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4339,9 +4395,9 @@ duts:
           userName: root
           virtMem: 466m
         '3405':
-          activeTime: 323
+          activeTime: 338
           cmd: Aaa
-          cpuPct: 0.0
+          cpuPct: 2.8
           cpuPctType: '{:.1f}'
           memPct: 4.5
           niceValue: 0
@@ -4378,7 +4434,7 @@ duts:
           userName: root
           virtMem: 459m
         '3414':
-          activeTime: 103
+          activeTime: 104
           cmd: StpTopology
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4417,7 +4473,7 @@ duts:
           userName: root
           virtMem: 459m
         '3422':
-          activeTime: 746
+          activeTime: 755
           cmd: Acl
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4456,7 +4512,7 @@ duts:
           userName: root
           virtMem: 459m
         '3429':
-          activeTime: 710
+          activeTime: 720
           cmd: Stp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4534,7 +4590,7 @@ duts:
           userName: root
           virtMem: 459m
         '3440':
-          activeTime: 93
+          activeTime: 94
           cmd: McastCommon6
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4547,9 +4603,9 @@ duts:
           userName: root
           virtMem: 462m
         '3443':
-          activeTime: 8051
+          activeTime: 8174
           cmd: Etba
-          cpuPct: 2.1
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 7.2
           niceValue: 0
@@ -4586,7 +4642,7 @@ duts:
           userName: root
           virtMem: 459m
         '3478':
-          activeTime: 167
+          activeTime: 168
           cmd: LacpTxAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4638,7 +4694,7 @@ duts:
           userName: root
           virtMem: 459m
         '3504':
-          activeTime: 210
+          activeTime: 213
           cmd: Arp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4677,7 +4733,7 @@ duts:
           userName: root
           virtMem: 459m
         '3529':
-          activeTime: 122
+          activeTime: 123
           cmd: KernelFib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4716,7 +4772,7 @@ duts:
           userName: root
           virtMem: 459m
         '3544':
-          activeTime: 141
+          activeTime: 142
           cmd: Qos
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4755,7 +4811,7 @@ duts:
           userName: root
           virtMem: 459m
         '3573':
-          activeTime: 92
+          activeTime: 93
           cmd: Thermostat
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4807,7 +4863,7 @@ duts:
           userName: root
           virtMem: '4460'
         '3582':
-          activeTime: 118
+          activeTime: 119
           cmd: L2Rib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4833,7 +4889,7 @@ duts:
           userName: root
           virtMem: 459m
         '3587':
-          activeTime: 84
+          activeTime: 86
           cmd: TopoAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4872,7 +4928,7 @@ duts:
           userName: root
           virtMem: 459m
         '3597':
-          activeTime: 69
+          activeTime: 70
           cmd: PowerFuse
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4924,7 +4980,7 @@ duts:
           userName: root
           virtMem: 459m
         '3608':
-          activeTime: 70
+          activeTime: 71
           cmd: PowerManager
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -4963,7 +5019,7 @@ duts:
           userName: root
           virtMem: 459m
         '3619':
-          activeTime: 157
+          activeTime: 158
           cmd: Ebra
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -5015,7 +5071,7 @@ duts:
           userName: root
           virtMem: '4460'
         '3637':
-          activeTime: 78
+          activeTime: 79
           cmd: ReloadCauseAgen
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -5041,7 +5097,7 @@ duts:
           userName: root
           virtMem: 459m
         '3645':
-          activeTime: 144
+          activeTime: 146
           cmd: IgmpSnooping
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -5054,7 +5110,7 @@ duts:
           userName: root
           virtMem: 477m
         '3646':
-          activeTime: 72
+          activeTime: 73
           cmd: SharedSecretPro
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -5093,7 +5149,7 @@ duts:
           userName: root
           virtMem: 459m
         '3677':
-          activeTime: 121
+          activeTime: 122
           cmd: StaticRoute
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -5132,7 +5188,7 @@ duts:
           userName: root
           virtMem: 459m
         '3686':
-          activeTime: 368
+          activeTime: 371
           cmd: IpRib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -5171,7 +5227,7 @@ duts:
           userName: root
           virtMem: 459m
         '3705':
-          activeTime: 116
+          activeTime: 118
           cmd: ConnectedRoute
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -5210,7 +5266,7 @@ duts:
           userName: root
           virtMem: 459m
         '3727':
-          activeTime: 115
+          activeTime: 116
           cmd: RouteInput
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -5223,7 +5279,7 @@ duts:
           userName: root
           virtMem: 471m
         '3732':
-          activeTime: 90
+          activeTime: 91
           cmd: EvpnrtrEncap
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -5236,7 +5292,7 @@ duts:
           userName: root
           virtMem: 468m
         '3739':
-          activeTime: 522
+          activeTime: 525
           cmd: Bgp-main
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -5288,7 +5344,7 @@ duts:
           userName: root
           virtMem: '11636'
         '4136':
-          activeTime: 91
+          activeTime: 96
           cmd: nginx
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -5704,7 +5760,7 @@ duts:
           userName: root
           virtMem: '0'
         '7':
-          activeTime: 255
+          activeTime: 259
           cmd: rcu_preempt
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -5770,17 +5826,17 @@ duts:
           virtMem: '0'
       threadsStateInfo:
         run: 1
-        sleep: 212
+        sleep: 213
         stop: 0
-        total: 213
+        total: 214
         zombie: 0
       timeInfo:
-        currentTime: 1585752065.247512
+        currentTime: 1585752316.043867
         loadAvg:
         - 0.14
-        - 0.19
-        - 0.18
-        upTime: 14905.25
+        - 0.17
+        - 0.17
+        upTime: 15156.04
         users: 0
     "show port-channel summary":
       numberOfAggregators: 1
@@ -5911,7 +5967,7 @@ duts:
       tablesDeletes: 0
       tablesDrops: 0
       tablesInserts: 9
-      tablesLastChangeTime: 1585737312.8450916
+      tablesLastChangeTime: 1585737312.8450918
   DC1-LEAF1A:
     "show version":
       architecture: i686
@@ -5920,19 +5976,19 @@ duts:
       internalBuildId: bb097f5d-d38c-4c32-898b-c20f6e18b00a
       internalVersion: 4.22.1F-13062802.4221F
       isIntlVersion: false
-      memFree: 993716
+      memFree: 999056
       memTotal: 2014520
       mfgName: ''
       modelName: vEOS
       serialNumber: ''
       systemMacAddress: 0c:1d:c0:f0:bd:d1
-      uptime: 14968.56
+      uptime: 15214.08
       version: 4.22.1F
     "show processes top once":
       cpuInfo:
         '%Cpu(s)':
           hwIrq: 12.1
-          idle: 72.3
+          idle: 72.4
           ioWait: 0.0
           nice: 0.2
           stolen: 0.0
@@ -5941,18 +5997,18 @@ duts:
           user: 6.8
       memInfo:
         physicalMem:
-          memBuffer: 161240
-          memFree: 49112
+          memBuffer: 161248
+          memFree: 54020
           memTotal: 2014520
-          memUsed: 1965408
+          memUsed: 1960500
         swapMem:
-          memBuffer: 924212
+          memBuffer: 924224
           memFree: 0
           memTotal: 0
           memUsed: 0
       processes:
         '1':
-          activeTime: 743
+          activeTime: 744
           cmd: systemd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6004,7 +6060,7 @@ duts:
           userName: root
           virtMem: '0'
         '12740':
-          activeTime: 375
+          activeTime: 398
           cmd: kworker/0:0
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6068,60 +6124,8 @@ duts:
           status: S
           userName: root
           virtMem: '7704'
-        '13533':
-          activeTime: 80
-          cmd: kworker/0:1
-          cpuPct: 0.0
-          cpuPctType: '{:.1f}'
-          memPct: 0.0
-          niceValue: 0
-          priority: '20'
-          residentMem: '0'
-          sharedMem: '0'
-          status: S
-          userName: root
-          virtMem: '0'
-        '13650':
-          activeTime: 38
-          cmd: sshd
-          cpuPct: 0.0
-          cpuPctType: '{:.1f}'
-          memPct: 0.6
-          niceValue: 0
-          priority: '20'
-          residentMem: 11m
-          sharedMem: 9.9m
-          status: S
-          userName: root
-          virtMem: '18704'
-        '13669':
-          activeTime: 2
-          cmd: sshd
-          cpuPct: 0.0
-          cpuPctType: '{:.1f}'
-          memPct: 0.3
-          niceValue: 0
-          priority: '20'
-          residentMem: '5600'
-          sharedMem: '4404'
-          status: S
-          userName: ansible
-          virtMem: '18704'
-        '13672':
-          activeTime: 25
-          cmd: CliShell
-          cpuPct: 0.0
-          cpuPctType: '{:.1f}'
-          memPct: 0.4
-          niceValue: 0
-          priority: '20'
-          residentMem: '8628'
-          sharedMem: '5164'
-          status: S
-          userName: ansible
-          virtMem: '37132'
         '13895':
-          activeTime: 57
+          activeTime: 123
           cmd: kworker/0:3
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6172,16 +6176,29 @@ duts:
           status: S
           userName: root
           virtMem: '0'
-        '14035':
-          activeTime: 16
-          cmd: top
+        '14085':
+          activeTime: 32
+          cmd: kworker/0:1
           cpuPct: 0.0
+          cpuPctType: '{:.1f}'
+          memPct: 0.0
+          niceValue: 0
+          priority: '20'
+          residentMem: '0'
+          sharedMem: '0'
+          status: S
+          userName: root
+          virtMem: '0'
+        '14174':
+          activeTime: 17
+          cmd: top
+          cpuPct: 33.6
           cpuPctType: '{:.1f}'
           memPct: 0.4
           niceValue: 0
           priority: '20'
-          residentMem: '7668'
-          sharedMem: '6508'
+          residentMem: '7676'
+          sharedMem: '6516'
           status: R
           userName: ansible
           virtMem: '17696'
@@ -6212,7 +6229,7 @@ duts:
           userName: root
           virtMem: '0'
         '17':
-          activeTime: 50
+          activeTime: 51
           cmd: khungtaskd2
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6225,7 +6242,7 @@ duts:
           userName: root
           virtMem: '0'
         '1773':
-          activeTime: 49
+          activeTime: 50
           cmd: ProcMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6342,7 +6359,7 @@ duts:
           userName: root
           virtMem: '0'
         '2011':
-          activeTime: 24
+          activeTime: 25
           cmd: wdogdev
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6446,16 +6463,16 @@ duts:
           userName: root
           virtMem: 435m
         '2125':
-          activeTime: 5781
+          activeTime: 5872
           cmd: ProcMgr-worker
-          cpuPct: 2.4
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 3.0
           niceValue: 0
           priority: '20'
           residentMem: 58m
           sharedMem: 36m
-          status: R
+          status: S
           userName: root
           virtMem: 435m
         '2131':
@@ -6485,7 +6502,7 @@ duts:
           userName: root
           virtMem: '4400'
         '2146':
-          activeTime: 5
+          activeTime: 6
           cmd: python
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6498,7 +6515,7 @@ duts:
           userName: root
           virtMem: '8256'
         '2147':
-          activeTime: 0
+          activeTime: 1
           cmd: inotifywait
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6550,7 +6567,7 @@ duts:
           userName: root
           virtMem: '0'
         '2269':
-          activeTime: 710
+          activeTime: 721
           cmd: EosOomAdjust
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6602,7 +6619,7 @@ duts:
           userName: root
           virtMem: '0'
         '2327':
-          activeTime: 172
+          activeTime: 175
           cmd: SlabMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6615,7 +6632,7 @@ duts:
           userName: root
           virtMem: '4280'
         '2328':
-          activeTime: 4760
+          activeTime: 4820
           cmd: Sysdb
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6628,7 +6645,7 @@ duts:
           userName: root
           virtMem: 472m
         '2367':
-          activeTime: 120
+          activeTime: 121
           cmd: StageMgr
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6641,7 +6658,7 @@ duts:
           userName: root
           virtMem: 439m
         '2369':
-          activeTime: 11213
+          activeTime: 11283
           cmd: ConfigAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6654,7 +6671,7 @@ duts:
           userName: root
           virtMem: 686m
         '2378':
-          activeTime: 155
+          activeTime: 156
           cmd: Fru
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6667,7 +6684,7 @@ duts:
           userName: root
           virtMem: 444m
         '2381':
-          activeTime: 452
+          activeTime: 455
           cmd: Launcher
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6706,11 +6723,11 @@ duts:
           userName: root
           virtMem: '0'
         '2573':
-          activeTime: 43238
+          activeTime: 43926
           cmd: TerminAttr
-          cpuPct: 4.8
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
-          memPct: 5.4
+          memPct: 5.5
           niceValue: 0
           priority: '20'
           residentMem: 107m
@@ -6745,7 +6762,7 @@ duts:
           userName: root
           virtMem: 427m
         '2592':
-          activeTime: 3332
+          activeTime: 3378
           cmd: AgentMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6797,7 +6814,7 @@ duts:
           userName: root
           virtMem: 427m
         '2633':
-          activeTime: 765
+          activeTime: 776
           cmd: Lldp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6836,7 +6853,7 @@ duts:
           userName: root
           virtMem: 427m
         '2636':
-          activeTime: 97
+          activeTime: 98
           cmd: McastCommon
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6875,7 +6892,7 @@ duts:
           userName: root
           virtMem: 427m
         '2641':
-          activeTime: 147
+          activeTime: 148
           cmd: PortSec
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6914,7 +6931,7 @@ duts:
           userName: root
           virtMem: 427m
         '2645':
-          activeTime: 136
+          activeTime: 138
           cmd: Bfd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6953,7 +6970,7 @@ duts:
           userName: root
           virtMem: 427m
         '2650':
-          activeTime: 511
+          activeTime: 518
           cmd: Lag
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -6966,7 +6983,7 @@ duts:
           userName: root
           virtMem: 432m
         '2652':
-          activeTime: 2059
+          activeTime: 2090
           cmd: SuperServer
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7005,7 +7022,7 @@ duts:
           userName: root
           virtMem: 427m
         '2663':
-          activeTime: 187
+          activeTime: 189
           cmd: Ira
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7044,7 +7061,7 @@ duts:
           userName: root
           virtMem: 427m
         '2668':
-          activeTime: 186
+          activeTime: 190
           cmd: LedPolicy
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7083,7 +7100,7 @@ duts:
           userName: root
           virtMem: 427m
         '2672':
-          activeTime: 127
+          activeTime: 128
           cmd: Vxlan
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7122,7 +7139,7 @@ duts:
           userName: root
           virtMem: 427m
         '2677':
-          activeTime: 464
+          activeTime: 469
           cmd: EventMgr
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7135,9 +7152,9 @@ duts:
           userName: root
           virtMem: 435m
         '2679':
-          activeTime: 5821
+          activeTime: 5913
           cmd: Mlag
-          cpuPct: 2.4
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 6.8
           niceValue: 0
@@ -7148,7 +7165,7 @@ duts:
           userName: root
           virtMem: 455m
         '2684':
-          activeTime: 219
+          activeTime: 224
           cmd: CapiApp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7187,7 +7204,7 @@ duts:
           userName: root
           virtMem: 427m
         '2689':
-          activeTime: 1602
+          activeTime: 1631
           cmd: StpTxRx
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7226,7 +7243,7 @@ duts:
           userName: root
           virtMem: 427m
         '2695':
-          activeTime: 3267
+          activeTime: 3320
           cmd: PhyEthtool
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7239,7 +7256,7 @@ duts:
           userName: root
           virtMem: 439m
         '2696':
-          activeTime: 71
+          activeTime: 72
           cmd: StandbyCpld
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7252,7 +7269,7 @@ duts:
           userName: root
           virtMem: 430m
         '2698':
-          activeTime: 1375
+          activeTime: 1396
           cmd: MlagTunnel
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7304,7 +7321,7 @@ duts:
           userName: root
           virtMem: 427m
         '2705':
-          activeTime: 509
+          activeTime: 516
           cmd: Fhrp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7317,9 +7334,9 @@ duts:
           userName: root
           virtMem: 443m
         '2708':
-          activeTime: 385
+          activeTime: 406
           cmd: Aaa
-          cpuPct: 2.4
+          cpuPct: 2.2
           cpuPctType: '{:.1f}'
           memPct: 4.5
           niceValue: 0
@@ -7356,7 +7373,7 @@ duts:
           userName: root
           virtMem: 427m
         '2715':
-          activeTime: 130
+          activeTime: 131
           cmd: VxlanSwFwd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7395,7 +7412,7 @@ duts:
           userName: root
           virtMem: 427m
         '2742':
-          activeTime: 98
+          activeTime: 99
           cmd: StpTopology
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7434,7 +7451,7 @@ duts:
           userName: root
           virtMem: 427m
         '2753':
-          activeTime: 146
+          activeTime: 148
           cmd: Tunnel
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7473,7 +7490,7 @@ duts:
           userName: root
           virtMem: 427m
         '2762':
-          activeTime: 2647
+          activeTime: 2681
           cmd: Acl
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7512,7 +7529,7 @@ duts:
           userName: root
           virtMem: 427m
         '2784':
-          activeTime: 964
+          activeTime: 976
           cmd: Stp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7564,7 +7581,7 @@ duts:
           userName: root
           virtMem: '0'
         '2805':
-          activeTime: 137
+          activeTime: 139
           cmd: KernelNetworkIn
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7603,7 +7620,7 @@ duts:
           userName: root
           virtMem: 427m
         '2824':
-          activeTime: 87
+          activeTime: 88
           cmd: McastCommon6
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7616,9 +7633,9 @@ duts:
           userName: root
           virtMem: 431m
         '2831':
-          activeTime: 38340
+          activeTime: 38958
           cmd: Etba
-          cpuPct: 4.8
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 7.3
           niceValue: 0
@@ -7655,7 +7672,7 @@ duts:
           userName: root
           virtMem: 427m
         '2867':
-          activeTime: 184
+          activeTime: 186
           cmd: LacpTxAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7694,7 +7711,7 @@ duts:
           userName: root
           virtMem: 427m
         '2878':
-          activeTime: 304
+          activeTime: 308
           cmd: Arp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7733,7 +7750,7 @@ duts:
           userName: root
           virtMem: 427m
         '2895':
-          activeTime: 71
+          activeTime: 72
           cmd: ReloadCauseAgen
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7772,7 +7789,7 @@ duts:
           userName: root
           virtMem: 427m
         '2904':
-          activeTime: 118
+          activeTime: 120
           cmd: Qos
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7811,7 +7828,7 @@ duts:
           userName: root
           virtMem: 427m
         '2942':
-          activeTime: 82
+          activeTime: 83
           cmd: Thermostat
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7850,7 +7867,7 @@ duts:
           userName: root
           virtMem: 427m
         '2950':
-          activeTime: 124
+          activeTime: 125
           cmd: L2Rib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7889,7 +7906,7 @@ duts:
           userName: root
           virtMem: 427m
         '2957':
-          activeTime: 81
+          activeTime: 82
           cmd: TopoAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -7928,7 +7945,7 @@ duts:
           userName: root
           virtMem: 427m
         '2969':
-          activeTime: 65
+          activeTime: 66
           cmd: SharedSecretPro
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -8006,7 +8023,7 @@ duts:
           userName: root
           virtMem: 427m
         '2988':
-          activeTime: 181
+          activeTime: 182
           cmd: Ebra
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -8045,9 +8062,9 @@ duts:
           userName: root
           virtMem: 427m
         '3':
-          activeTime: 5849
+          activeTime: 5944
           cmd: ksoftirqd/0
-          cpuPct: 2.4
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 0.0
           niceValue: 0
@@ -8071,7 +8088,7 @@ duts:
           userName: root
           virtMem: '0'
         '3001':
-          activeTime: 162
+          activeTime: 163
           cmd: KernelFib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -8123,7 +8140,7 @@ duts:
           userName: root
           virtMem: 429m
         '3014':
-          activeTime: 8779
+          activeTime: 8927
           cmd: IgmpSnooping
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -8162,7 +8179,7 @@ duts:
           userName: root
           virtMem: 427m
         '3051':
-          activeTime: 138
+          activeTime: 139
           cmd: StaticRoute
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -8201,7 +8218,7 @@ duts:
           userName: root
           virtMem: 427m
         '3062':
-          activeTime: 1794
+          activeTime: 1818
           cmd: IpRib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -8240,7 +8257,7 @@ duts:
           userName: root
           virtMem: 427m
         '3080':
-          activeTime: 133
+          activeTime: 134
           cmd: ConnectedRoute
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -8279,7 +8296,7 @@ duts:
           userName: root
           virtMem: 427m
         '3099':
-          activeTime: 147
+          activeTime: 149
           cmd: RouteInput
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -8305,9 +8322,9 @@ duts:
           userName: root
           virtMem: '0'
         '3107':
-          activeTime: 1035
+          activeTime: 1038
           cmd: EvpnrtrEncap
-          cpuPct: 2.4
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 2.0
           niceValue: 0
@@ -8318,7 +8335,7 @@ duts:
           userName: root
           virtMem: 438m
         '3115':
-          activeTime: 1451
+          activeTime: 1468
           cmd: Bgp-main
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -8370,7 +8387,7 @@ duts:
           userName: root
           virtMem: 427m
         '3251':
-          activeTime: 525
+          activeTime: 526
           cmd: BgpCliHelper
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -8435,7 +8452,7 @@ duts:
           userName: root
           virtMem: '11772'
         '3589':
-          activeTime: 92
+          activeTime: 98
           cmd: nginx
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -8461,7 +8478,7 @@ duts:
           userName: root
           virtMem: '0'
         '3737':
-          activeTime: 29
+          activeTime: 30
           cmd: rsyslogd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -8552,7 +8569,7 @@ duts:
           userName: root
           virtMem: '4328'
         '4122':
-          activeTime: 93
+          activeTime: 95
           cmd: sed
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -8903,7 +8920,7 @@ duts:
           userName: root
           virtMem: '0'
         '7':
-          activeTime: 269
+          activeTime: 273
           cmd: rcu_preempt
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -8968,19 +8985,19 @@ duts:
           userName: root
           virtMem: '12408'
       threadsStateInfo:
-        run: 3
-        sleep: 228
+        run: 2
+        sleep: 226
         stop: 0
-        total: 232
+        total: 229
         zombie: 1
       timeInfo:
-        currentTime: 1585752066.536901
+        currentTime: 1585752312.098159
         loadAvg:
-        - 0.79
-        - 0.45
-        - 0.33
-        upTime: 14969.06
-        users: 1
+        - 0.14
+        - 0.31
+        - 0.3
+        upTime: 15214.62
+        users: 0
     "show port-channel summary":
       numberOfAggregators: 2
       numberOfChannelsInUse: 2
@@ -9031,18 +9048,18 @@ duts:
             Ethernet5:
               intf: Ethernet5
               lacpMisconfig:
-                status: negotiation
+                status: bundled
               lacpState:
                 activity: true
                 aggregation: true
-                collecting: false
+                collecting: true
                 defaulted: false
-                distributing: false
+                distributing: true
                 expired: false
                 synchronization: true
                 timeout: false
-              lagMember: false
-              linkDown: true
+              lagMember: true
+              linkDown: false
               staticLag: false
               suspended: false
             PeerEthernet5:
@@ -9062,8 +9079,8 @@ duts:
             10.255.251.1:
               asn: '65101'
               inMsgQueue: 0
-              msgReceived: 299
-              msgSent: 300
+              msgReceived: 304
+              msgSent: 305
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 15
@@ -9074,8 +9091,8 @@ duts:
             172.31.255.0:
               asn: '65001'
               inMsgQueue: 0
-              msgReceived: 293
-              msgSent: 294
+              msgReceived: 298
+              msgSent: 300
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 11
@@ -9086,8 +9103,8 @@ duts:
             172.31.255.2:
               asn: '65001'
               inMsgQueue: 0
-              msgReceived: 292
-              msgSent: 296
+              msgReceived: 296
+              msgSent: 301
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 11
@@ -9105,8 +9122,8 @@ duts:
             192.168.255.1:
               asn: '65001'
               inMsgQueue: 0
-              msgReceived: 428
-              msgSent: 393
+              msgReceived: 432
+              msgSent: 398
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 90
@@ -9117,8 +9134,8 @@ duts:
             192.168.255.2:
               asn: '65001'
               inMsgQueue: 0
-              msgReceived: 459
-              msgSent: 420
+              msgReceived: 463
+              msgSent: 425
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 90
@@ -9151,15 +9168,15 @@ duts:
         peerMacAddress: 0c:1d:c0:f4:7b:39
         peerMacRoutingSupported: false
         peerMlagState: secondary
-        peerMonotonicClockOffset: -13.887384558481855
+        peerMonotonicClockOffset: -13.888633709144633
         peerPortsErrdisabled: false
         peerPrimaryPriority: 32767
         primaryPriority: 32767
         secondaryFromFailover: false
         stateChanges: 2
         udpHeartbeatAlive: true
-        udpHeartbeatsReceived: 3700
-        udpHeartbeatsSent: 3701
+        udpHeartbeatsReceived: 3761
+        udpHeartbeatsSent: 3762
       domainId: DC1_LEAF1
       dualPrimaryDetectionState: configured
       heartbeatPeerAddress: 10.255.0.14
@@ -9167,8 +9184,8 @@ duts:
       localInterface: Vlan4094
       localIntfStatus: up
       mlagPorts:
-        Active-full: 0
-        Active-partial: 1
+        Active-full: 1
+        Active-partial: 0
         Configured: 0
         Disabled: 0
         Inactive: 0
@@ -9198,6 +9215,10 @@ duts:
       - neighborDevice: DC1-LEAF1B
         neighborPort: Ethernet4
         port: Ethernet4
+        ttl: 120
+      - neighborDevice: DC1-L2LEAF1A
+        neighborPort: Ethernet1
+        port: Ethernet5
         ttl: 120
       - neighborDevice: DC1-LEAF2A
         neighborPort: Management1
@@ -9230,8 +9251,8 @@ duts:
       tablesAgeOuts: 0
       tablesDeletes: 1
       tablesDrops: 0
-      tablesInserts: 12
-      tablesLastChangeTime: 1585751389.93208
+      tablesInserts: 13
+      tablesLastChangeTime: 1585752286.3579977
   DC1-LEAF1B:
     "show version":
       architecture: i686
@@ -9240,13 +9261,13 @@ duts:
       internalBuildId: bb097f5d-d38c-4c32-898b-c20f6e18b00a
       internalVersion: 4.22.1F-13062802.4221F
       isIntlVersion: false
-      memFree: 1001268
+      memFree: 1001436
       memTotal: 2014520
       mfgName: ''
       modelName: vEOS
       serialNumber: ''
       systemMacAddress: 0c:1d:c0:f4:7b:39
-      uptime: 14958.95
+      uptime: 15200.4
       version: 4.22.1F
     "show processes top once":
       cpuInfo:
@@ -9258,15 +9279,15 @@ duts:
           stolen: 0.0
           swIrq: 3.7
           system: 4.8
-          user: 6.7
+          user: 6.6
       memInfo:
         physicalMem:
-          memBuffer: 163720
-          memFree: 49464
+          memBuffer: 163728
+          memFree: 49560
           memTotal: 2014520
-          memUsed: 1965056
+          memUsed: 1964960
         swapMem:
-          memBuffer: 928368
+          memBuffer: 928372
           memFree: 0
           memTotal: 0
           memUsed: 0
@@ -9311,7 +9332,7 @@ duts:
           userName: root
           virtMem: '0'
         '12':
-          activeTime: 8
+          activeTime: 9
           cmd: watchdog/0
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -9376,7 +9397,7 @@ duts:
           userName: root
           virtMem: '7704'
         '13256':
-          activeTime: 166
+          activeTime: 228
           cmd: kworker/0:4
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -9389,7 +9410,7 @@ duts:
           userName: root
           virtMem: '0'
         '13441':
-          activeTime: 92
+          activeTime: 105
           cmd: kworker/0:0
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -9401,19 +9422,19 @@ duts:
           status: S
           userName: root
           virtMem: '0'
-        '13769':
-          activeTime: 16
-          cmd: top
-          cpuPct: 34.4
+        '13796':
+          activeTime: 41
+          cmd: kworker/0:1
+          cpuPct: 2.0
           cpuPctType: '{:.1f}'
-          memPct: 0.4
+          memPct: 0.0
           niceValue: 0
           priority: '20'
-          residentMem: '7584'
-          sharedMem: '6424'
-          status: R
-          userName: ansible
-          virtMem: '17692'
+          residentMem: '0'
+          sharedMem: '0'
+          status: S
+          userName: root
+          virtMem: '0'
         '139':
           activeTime: 44
           cmd: jbd2/sdb2-8
@@ -9427,6 +9448,19 @@ duts:
           status: S
           userName: root
           virtMem: '0'
+        '13906':
+          activeTime: 17
+          cmd: top
+          cpuPct: 30.6
+          cpuPctType: '{:.1f}'
+          memPct: 0.4
+          niceValue: 0
+          priority: '20'
+          residentMem: '7572'
+          sharedMem: '6416'
+          status: R
+          userName: ansible
+          virtMem: '17692'
         '14':
           activeTime: 0
           cmd: kdevtmpfs
@@ -9480,7 +9514,7 @@ duts:
           userName: root
           virtMem: '0'
         '17':
-          activeTime: 51
+          activeTime: 52
           cmd: khungtaskd2
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -9493,7 +9527,7 @@ duts:
           userName: root
           virtMem: '0'
         '1773':
-          activeTime: 50
+          activeTime: 51
           cmd: ProcMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -9545,7 +9579,7 @@ duts:
           userName: root
           virtMem: '6092'
         '1786':
-          activeTime: 73
+          activeTime: 74
           cmd: dbus-daemon
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -9714,7 +9748,7 @@ duts:
           userName: root
           virtMem: 435m
         '2122':
-          activeTime: 5671
+          activeTime: 5757
           cmd: ProcMgr-worker
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -9818,7 +9852,7 @@ duts:
           userName: root
           virtMem: '0'
         '2266':
-          activeTime: 669
+          activeTime: 678
           cmd: EosOomAdjust
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -9870,7 +9904,7 @@ duts:
           userName: root
           virtMem: '0'
         '2324':
-          activeTime: 173
+          activeTime: 175
           cmd: SlabMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -9883,7 +9917,7 @@ duts:
           userName: root
           virtMem: '4280'
         '2325':
-          activeTime: 4183
+          activeTime: 4231
           cmd: Sysdb
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -9896,7 +9930,7 @@ duts:
           userName: root
           virtMem: 472m
         '2356':
-          activeTime: 113
+          activeTime: 115
           cmd: StageMgr
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -9909,7 +9943,7 @@ duts:
           userName: root
           virtMem: 439m
         '2359':
-          activeTime: 11518
+          activeTime: 11585
           cmd: ConfigAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -9922,7 +9956,7 @@ duts:
           userName: root
           virtMem: 678m
         '2367':
-          activeTime: 147
+          activeTime: 148
           cmd: Fru
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -9935,7 +9969,7 @@ duts:
           userName: root
           virtMem: 444m
         '2372':
-          activeTime: 415
+          activeTime: 416
           cmd: Launcher
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -9974,9 +10008,9 @@ duts:
           userName: root
           virtMem: '0'
         '2572':
-          activeTime: 42300
+          activeTime: 42990
           cmd: TerminAttr
-          cpuPct: 4.6
+          cpuPct: 10.2
           cpuPctType: '{:.1f}'
           memPct: 5.3
           niceValue: 0
@@ -10026,7 +10060,7 @@ duts:
           userName: root
           virtMem: 427m
         '2627':
-          activeTime: 757
+          activeTime: 769
           cmd: Lldp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10065,7 +10099,7 @@ duts:
           userName: root
           virtMem: 427m
         '2631':
-          activeTime: 89
+          activeTime: 90
           cmd: McastCommon
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10104,7 +10138,7 @@ duts:
           userName: root
           virtMem: 427m
         '2634':
-          activeTime: 136
+          activeTime: 138
           cmd: PortSec
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10143,7 +10177,7 @@ duts:
           userName: root
           virtMem: 427m
         '2638':
-          activeTime: 121
+          activeTime: 122
           cmd: Bfd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10182,7 +10216,7 @@ duts:
           userName: root
           virtMem: 427m
         '2643':
-          activeTime: 569
+          activeTime: 577
           cmd: Lag
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10195,7 +10229,7 @@ duts:
           userName: root
           virtMem: 432m
         '2645':
-          activeTime: 2012
+          activeTime: 2042
           cmd: SuperServer
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10234,7 +10268,7 @@ duts:
           userName: root
           virtMem: 427m
         '2651':
-          activeTime: 173
+          activeTime: 175
           cmd: Ira
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10273,7 +10307,7 @@ duts:
           userName: root
           virtMem: 427m
         '2656':
-          activeTime: 185
+          activeTime: 188
           cmd: LedPolicy
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10312,7 +10346,7 @@ duts:
           userName: root
           virtMem: 427m
         '2661':
-          activeTime: 124
+          activeTime: 126
           cmd: Vxlan
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10351,7 +10385,7 @@ duts:
           userName: root
           virtMem: 427m
         '2667':
-          activeTime: 460
+          activeTime: 465
           cmd: EventMgr
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10364,9 +10398,9 @@ duts:
           userName: root
           virtMem: 435m
         '2669':
-          activeTime: 5524
+          activeTime: 5608
           cmd: Mlag
-          cpuPct: 0.0
+          cpuPct: 2.0
           cpuPctType: '{:.1f}'
           memPct: 6.7
           niceValue: 0
@@ -10377,7 +10411,7 @@ duts:
           userName: root
           virtMem: 455m
         '2673':
-          activeTime: 211
+          activeTime: 215
           cmd: CapiApp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10416,7 +10450,7 @@ duts:
           userName: root
           virtMem: 427m
         '2678':
-          activeTime: 1274
+          activeTime: 1295
           cmd: StpTxRx
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10455,7 +10489,7 @@ duts:
           userName: root
           virtMem: 427m
         '2684':
-          activeTime: 72
+          activeTime: 74
           cmd: StandbyCpld
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10494,7 +10528,7 @@ duts:
           userName: root
           virtMem: 427m
         '2688':
-          activeTime: 3129
+          activeTime: 3170
           cmd: AgentMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10507,7 +10541,7 @@ duts:
           userName: root
           virtMem: 428m
         '2690':
-          activeTime: 3257
+          activeTime: 3308
           cmd: PhyEthtool
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10520,9 +10554,9 @@ duts:
           userName: root
           virtMem: 439m
         '2692':
-          activeTime: 1373
+          activeTime: 1395
           cmd: MlagTunnel
-          cpuPct: 2.3
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 5.1
           niceValue: 0
@@ -10572,7 +10606,7 @@ duts:
           userName: root
           virtMem: 427m
         '2716':
-          activeTime: 442
+          activeTime: 448
           cmd: Fhrp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10585,9 +10619,9 @@ duts:
           userName: root
           virtMem: 443m
         '2720':
-          activeTime: 357
+          activeTime: 378
           cmd: Aaa
-          cpuPct: 0.0
+          cpuPct: 2.0
           cpuPctType: '{:.1f}'
           memPct: 4.5
           niceValue: 0
@@ -10624,7 +10658,7 @@ duts:
           userName: root
           virtMem: 427m
         '2726':
-          activeTime: 123
+          activeTime: 125
           cmd: VxlanSwFwd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10663,7 +10697,7 @@ duts:
           userName: root
           virtMem: 427m
         '2736':
-          activeTime: 97
+          activeTime: 99
           cmd: StpTopology
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10702,7 +10736,7 @@ duts:
           userName: root
           virtMem: 427m
         '2747':
-          activeTime: 141
+          activeTime: 142
           cmd: Tunnel
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10741,7 +10775,7 @@ duts:
           userName: root
           virtMem: 427m
         '2762':
-          activeTime: 2637
+          activeTime: 2672
           cmd: Acl
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10780,7 +10814,7 @@ duts:
           userName: root
           virtMem: 427m
         '2781':
-          activeTime: 301
+          activeTime: 305
           cmd: Stp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10832,7 +10866,7 @@ duts:
           userName: root
           virtMem: '0'
         '2800':
-          activeTime: 123
+          activeTime: 124
           cmd: KernelNetworkIn
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10871,7 +10905,7 @@ duts:
           userName: root
           virtMem: 427m
         '2814':
-          activeTime: 85
+          activeTime: 86
           cmd: McastCommon6
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10884,9 +10918,9 @@ duts:
           userName: root
           virtMem: 431m
         '2826':
-          activeTime: 38400
+          activeTime: 39008
           cmd: Etba
-          cpuPct: 4.6
+          cpuPct: 4.1
           cpuPctType: '{:.1f}'
           memPct: 7.2
           niceValue: 0
@@ -10923,7 +10957,7 @@ duts:
           userName: root
           virtMem: 427m
         '2837':
-          activeTime: 192
+          activeTime: 194
           cmd: LacpTxAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -10962,7 +10996,7 @@ duts:
           userName: root
           virtMem: 427m
         '2853':
-          activeTime: 288
+          activeTime: 292
           cmd: Arp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -11001,7 +11035,7 @@ duts:
           userName: root
           virtMem: 427m
         '2873':
-          activeTime: 69
+          activeTime: 70
           cmd: ReloadCauseAgen
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -11040,7 +11074,7 @@ duts:
           userName: root
           virtMem: 427m
         '2886':
-          activeTime: 119
+          activeTime: 121
           cmd: Qos
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -11131,7 +11165,7 @@ duts:
           userName: root
           virtMem: '4472'
         '2908':
-          activeTime: 124
+          activeTime: 126
           cmd: L2Rib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -11157,7 +11191,7 @@ duts:
           userName: root
           virtMem: 427m
         '2912':
-          activeTime: 80
+          activeTime: 81
           cmd: TopoAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -11274,7 +11308,7 @@ duts:
           userName: root
           virtMem: 427m
         '2967':
-          activeTime: 177
+          activeTime: 179
           cmd: Ebra
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -11313,7 +11347,7 @@ duts:
           userName: root
           virtMem: 427m
         '2985':
-          activeTime: 153
+          activeTime: 154
           cmd: KernelFib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -11339,7 +11373,7 @@ duts:
           userName: root
           virtMem: '4472'
         '3':
-          activeTime: 5658
+          activeTime: 5748
           cmd: ksoftirqd/0
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -11378,7 +11412,7 @@ duts:
           userName: root
           virtMem: 427m
         '3002':
-          activeTime: 68
+          activeTime: 69
           cmd: PowerFuse
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -11391,9 +11425,9 @@ duts:
           userName: root
           virtMem: 429m
         '3004':
-          activeTime: 8833
+          activeTime: 8973
           cmd: IgmpSnooping
-          cpuPct: 2.3
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 5.6
           niceValue: 0
@@ -11430,7 +11464,7 @@ duts:
           userName: root
           virtMem: 427m
         '3028':
-          activeTime: 140
+          activeTime: 142
           cmd: StaticRoute
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -11469,7 +11503,7 @@ duts:
           userName: root
           virtMem: 427m
         '3037':
-          activeTime: 1523
+          activeTime: 1545
           cmd: IpRib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -11508,7 +11542,7 @@ duts:
           userName: root
           virtMem: 427m
         '3056':
-          activeTime: 131
+          activeTime: 132
           cmd: ConnectedRoute
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -11547,7 +11581,7 @@ duts:
           userName: root
           virtMem: 427m
         '3069':
-          activeTime: 152
+          activeTime: 154
           cmd: RouteInput
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -11560,7 +11594,7 @@ duts:
           userName: root
           virtMem: 441m
         '3074':
-          activeTime: 729
+          activeTime: 732
           cmd: EvpnrtrEncap
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -11573,7 +11607,7 @@ duts:
           userName: root
           virtMem: 438m
         '3079':
-          activeTime: 1413
+          activeTime: 1429
           cmd: Bgp-main
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -11625,7 +11659,7 @@ duts:
           userName: root
           virtMem: 427m
         '3155':
-          activeTime: 500
+          activeTime: 502
           cmd: BgpCliHelper
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -11716,7 +11750,7 @@ duts:
           userName: root
           virtMem: '11772'
         '3644':
-          activeTime: 90
+          activeTime: 96
           cmd: nginx
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -11729,7 +11763,7 @@ duts:
           userName: nobody
           virtMem: '20028'
         '3807':
-          activeTime: 24
+          activeTime: 25
           cmd: rsyslogd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -11807,7 +11841,7 @@ duts:
           userName: root
           virtMem: '5452'
         '4088':
-          activeTime: 25
+          activeTime: 26
           cmd: tail
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -11820,7 +11854,7 @@ duts:
           userName: root
           virtMem: '4328'
         '4089':
-          activeTime: 90
+          activeTime: 91
           cmd: sed
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -12158,7 +12192,7 @@ duts:
           userName: root
           virtMem: '0'
         '7':
-          activeTime: 256
+          activeTime: 260
           cmd: rcu_preempt
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -12224,17 +12258,17 @@ duts:
           virtMem: '12296'
       threadsStateInfo:
         run: 1
-        sleep: 226
+        sleep: 227
         stop: 0
-        total: 227
+        total: 228
         zombie: 0
       timeInfo:
-        currentTime: 1585752070.420351
+        currentTime: 1585752311.977197
         loadAvg:
-        - 0.03
-        - 0.17
-        - 0.26
-        upTime: 14959.47
+        - 0.37
+        - 0.23
+        - 0.27
+        upTime: 15201.03
         users: 0
     "show port-channel summary":
       numberOfAggregators: 2
@@ -12304,8 +12338,8 @@ duts:
               intf: PeerEthernet5
               lacpMisconfig:
                 status: unknown
-              lagMember: false
-              linkDown: true
+              lagMember: true
+              linkDown: false
               staticLag: false
               suspended: false
           protocol: lacp
@@ -12317,8 +12351,8 @@ duts:
             10.255.251.0:
               asn: '65101'
               inMsgQueue: 0
-              msgReceived: 300
-              msgSent: 300
+              msgReceived: 305
+              msgSent: 305
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 15
@@ -12329,8 +12363,8 @@ duts:
             172.31.255.4:
               asn: '65001'
               inMsgQueue: 0
-              msgReceived: 296
-              msgSent: 295
+              msgReceived: 300
+              msgSent: 300
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 11
@@ -12341,8 +12375,8 @@ duts:
             172.31.255.6:
               asn: '65001'
               inMsgQueue: 0
-              msgReceived: 293
-              msgSent: 294
+              msgReceived: 298
+              msgSent: 298
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 11
@@ -12360,8 +12394,8 @@ duts:
             192.168.255.1:
               asn: '65001'
               inMsgQueue: 0
-              msgReceived: 431
-              msgSent: 398
+              msgReceived: 436
+              msgSent: 403
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 90
@@ -12372,8 +12406,8 @@ duts:
             192.168.255.2:
               asn: '65001'
               inMsgQueue: 0
-              msgReceived: 433
-              msgSent: 387
+              msgReceived: 438
+              msgSent: 392
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 90
@@ -12406,15 +12440,15 @@ duts:
         peerMacAddress: 0c:1d:c0:f0:bd:d1
         peerMacRoutingSupported: false
         peerMlagState: primary
-        peerMonotonicClockOffset: 13.88739963841565
+        peerMonotonicClockOffset: 13.888612786092716
         peerPortsErrdisabled: false
         peerPrimaryPriority: 32767
         primaryPriority: 32767
         secondaryFromFailover: false
         stateChanges: 2
         udpHeartbeatAlive: true
-        udpHeartbeatsReceived: 3700
-        udpHeartbeatsSent: 3700
+        udpHeartbeatsReceived: 3760
+        udpHeartbeatsSent: 3759
       domainId: DC1_LEAF1
       dualPrimaryDetectionState: configured
       heartbeatPeerAddress: 10.255.0.13
@@ -12422,8 +12456,8 @@ duts:
       localInterface: Vlan4094
       localIntfStatus: up
       mlagPorts:
-        Active-full: 0
-        Active-partial: 1
+        Active-full: 1
+        Active-partial: 0
         Configured: 0
         Disabled: 0
         Inactive: 0
@@ -12490,7 +12524,7 @@ duts:
       tablesDeletes: 0
       tablesDrops: 0
       tablesInserts: 12
-      tablesLastChangeTime: 1585737325.1176257
+      tablesLastChangeTime: 1585737325.1176283
   DC1-LEAF2A:
     "show version":
       architecture: i686
@@ -12499,19 +12533,19 @@ duts:
       internalBuildId: bb097f5d-d38c-4c32-898b-c20f6e18b00a
       internalVersion: 4.22.1F-13062802.4221F
       isIntlVersion: false
-      memFree: 1000140
+      memFree: 999528
       memTotal: 2014520
       mfgName: ''
       modelName: vEOS
       serialNumber: ''
       systemMacAddress: 0c:1d:c0:90:13:79
-      uptime: 14966.18
+      uptime: 15207.99
       version: 4.22.1F
     "show processes top once":
       cpuInfo:
         '%Cpu(s)':
           hwIrq: 12.1
-          idle: 72.5
+          idle: 72.6
           ioWait: 0.0
           nice: 0.2
           stolen: 0.0
@@ -12520,18 +12554,18 @@ duts:
           user: 6.8
       memInfo:
         physicalMem:
-          memBuffer: 159456
-          memFree: 64752
+          memBuffer: 159464
+          memFree: 63884
           memTotal: 2014520
-          memUsed: 1949768
+          memUsed: 1950636
         swapMem:
-          memBuffer: 916112
+          memBuffer: 916108
           memFree: 0
           memTotal: 0
           memUsed: 0
       processes:
         '1':
-          activeTime: 739
+          activeTime: 740
           cmd: systemd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -12583,7 +12617,7 @@ duts:
           userName: root
           virtMem: '0'
         '12846':
-          activeTime: 228
+          activeTime: 276
           cmd: kworker/0:2
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -12647,21 +12681,8 @@ duts:
           status: S
           userName: root
           virtMem: '7704'
-        '13231':
-          activeTime: 66
-          cmd: kworker/0:0
-          cpuPct: 0.0
-          cpuPctType: '{:.1f}'
-          memPct: 0.0
-          niceValue: 0
-          priority: '20'
-          residentMem: '0'
-          sharedMem: '0'
-          status: S
-          userName: root
-          virtMem: '0'
         '13534':
-          activeTime: 75
+          activeTime: 105
           cmd: kworker/0:3
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -12673,16 +12694,29 @@ duts:
           status: S
           userName: root
           virtMem: '0'
-        '13680':
-          activeTime: 16
+        '13730':
+          activeTime: 36
+          cmd: kworker/0:0
+          cpuPct: 0.0
+          cpuPctType: '{:.1f}'
+          memPct: 0.0
+          niceValue: 0
+          priority: '20'
+          residentMem: '0'
+          sharedMem: '0'
+          status: S
+          userName: root
+          virtMem: '0'
+        '13817':
+          activeTime: 20
           cmd: top
-          cpuPct: 34.4
+          cpuPct: 44.6
           cpuPctType: '{:.1f}'
           memPct: 0.4
           niceValue: 0
           priority: '20'
-          residentMem: '7604'
-          sharedMem: '6448'
+          residentMem: '7716'
+          sharedMem: '6556'
           status: R
           userName: ansible
           virtMem: '17692'
@@ -12752,7 +12786,7 @@ duts:
           userName: root
           virtMem: '0'
         '17':
-          activeTime: 52
+          activeTime: 53
           cmd: khungtaskd2
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -12765,7 +12799,7 @@ duts:
           userName: root
           virtMem: '0'
         '1773':
-          activeTime: 55
+          activeTime: 57
           cmd: ProcMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -12804,7 +12838,7 @@ duts:
           userName: root
           virtMem: '4424'
         '1785':
-          activeTime: 51
+          activeTime: 52
           cmd: systemd-logind
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -12817,7 +12851,7 @@ duts:
           userName: root
           virtMem: '6092'
         '1786':
-          activeTime: 75
+          activeTime: 76
           cmd: dbus-daemon
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -12986,9 +13020,9 @@ duts:
           userName: root
           virtMem: 435m
         '2124':
-          activeTime: 5861
+          activeTime: 5950
           cmd: ProcMgr-worker
-          cpuPct: 2.3
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 3.0
           niceValue: 0
@@ -13090,7 +13124,7 @@ duts:
           userName: root
           virtMem: '0'
         '2268':
-          activeTime: 695
+          activeTime: 708
           cmd: EosOomAdjust
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13142,7 +13176,7 @@ duts:
           userName: root
           virtMem: '0'
         '2326':
-          activeTime: 174
+          activeTime: 177
           cmd: SlabMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13155,7 +13189,7 @@ duts:
           userName: root
           virtMem: '4280'
         '2327':
-          activeTime: 4201
+          activeTime: 4246
           cmd: Sysdb
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13168,7 +13202,7 @@ duts:
           userName: root
           virtMem: 474m
         '2360':
-          activeTime: 112
+          activeTime: 114
           cmd: StageMgr
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13181,7 +13215,7 @@ duts:
           userName: root
           virtMem: 439m
         '2362':
-          activeTime: 11137
+          activeTime: 11199
           cmd: ConfigAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13194,7 +13228,7 @@ duts:
           userName: root
           virtMem: 679m
         '2370':
-          activeTime: 162
+          activeTime: 163
           cmd: Fru
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13207,7 +13241,7 @@ duts:
           userName: root
           virtMem: 444m
         '2376':
-          activeTime: 443
+          activeTime: 445
           cmd: Launcher
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13246,14 +13280,14 @@ duts:
           userName: root
           virtMem: '0'
         '2576':
-          activeTime: 42162
+          activeTime: 42814
           cmd: TerminAttr
-          cpuPct: 4.6
+          cpuPct: 2.2
           cpuPctType: '{:.1f}'
-          memPct: 5.4
+          memPct: 5.5
           niceValue: 0
           priority: '20'
-          residentMem: 106m
+          residentMem: 107m
           sharedMem: 17m
           status: S
           userName: root
@@ -13285,7 +13319,7 @@ duts:
           userName: root
           virtMem: 427m
         '2597':
-          activeTime: 3210
+          activeTime: 3251
           cmd: AgentMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13337,7 +13371,7 @@ duts:
           userName: root
           virtMem: 427m
         '2636':
-          activeTime: 817
+          activeTime: 831
           cmd: Lldp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13376,7 +13410,7 @@ duts:
           userName: root
           virtMem: 427m
         '2639':
-          activeTime: 89
+          activeTime: 90
           cmd: McastCommon
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13415,7 +13449,7 @@ duts:
           userName: root
           virtMem: 427m
         '2643':
-          activeTime: 146
+          activeTime: 148
           cmd: PortSec
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13454,7 +13488,7 @@ duts:
           userName: root
           virtMem: 427m
         '2647':
-          activeTime: 123
+          activeTime: 124
           cmd: Bfd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13493,7 +13527,7 @@ duts:
           userName: root
           virtMem: 427m
         '2651':
-          activeTime: 582
+          activeTime: 590
           cmd: Lag
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13506,7 +13540,7 @@ duts:
           userName: root
           virtMem: 432m
         '2653':
-          activeTime: 2057
+          activeTime: 2086
           cmd: SuperServer
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13545,7 +13579,7 @@ duts:
           userName: root
           virtMem: 427m
         '2664':
-          activeTime: 169
+          activeTime: 170
           cmd: Ira
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13584,7 +13618,7 @@ duts:
           userName: root
           virtMem: 427m
         '2669':
-          activeTime: 184
+          activeTime: 187
           cmd: LedPolicy
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13623,7 +13657,7 @@ duts:
           userName: root
           virtMem: 427m
         '2673':
-          activeTime: 122
+          activeTime: 123
           cmd: Vxlan
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13662,7 +13696,7 @@ duts:
           userName: root
           virtMem: 427m
         '2678':
-          activeTime: 484
+          activeTime: 490
           cmd: EventMgr
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13675,9 +13709,9 @@ duts:
           userName: root
           virtMem: 435m
         '2680':
-          activeTime: 5443
+          activeTime: 5573
           cmd: Mlag
-          cpuPct: 0.0
+          cpuPct: 2.2
           cpuPctType: '{:.1f}'
           memPct: 6.8
           niceValue: 0
@@ -13688,7 +13722,7 @@ duts:
           userName: root
           virtMem: 455m
         '2688':
-          activeTime: 207
+          activeTime: 210
           cmd: CapiApp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13727,7 +13761,7 @@ duts:
           userName: root
           virtMem: 427m
         '2692':
-          activeTime: 1337
+          activeTime: 1358
           cmd: StpTxRx
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13766,7 +13800,7 @@ duts:
           userName: root
           virtMem: 427m
         '2697':
-          activeTime: 71
+          activeTime: 72
           cmd: StandbyCpld
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13779,7 +13813,7 @@ duts:
           userName: root
           virtMem: 430m
         '2698':
-          activeTime: 3283
+          activeTime: 3333
           cmd: PhyEthtool
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13805,7 +13839,7 @@ duts:
           userName: root
           virtMem: '0'
         '2700':
-          activeTime: 1373
+          activeTime: 1395
           cmd: MlagTunnel
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13844,7 +13878,7 @@ duts:
           userName: root
           virtMem: 427m
         '2724':
-          activeTime: 438
+          activeTime: 444
           cmd: Fhrp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13857,9 +13891,9 @@ duts:
           userName: root
           virtMem: 443m
         '2729':
-          activeTime: 347
+          activeTime: 364
           cmd: Aaa
-          cpuPct: 2.3
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 4.5
           niceValue: 0
@@ -13896,7 +13930,7 @@ duts:
           userName: root
           virtMem: 427m
         '2739':
-          activeTime: 125
+          activeTime: 126
           cmd: VxlanSwFwd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13935,7 +13969,7 @@ duts:
           userName: root
           virtMem: 427m
         '2747':
-          activeTime: 97
+          activeTime: 98
           cmd: StpTopology
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -13974,7 +14008,7 @@ duts:
           userName: root
           virtMem: 427m
         '2758':
-          activeTime: 143
+          activeTime: 145
           cmd: Tunnel
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14013,7 +14047,7 @@ duts:
           userName: root
           virtMem: 427m
         '2774':
-          activeTime: 2604
+          activeTime: 2637
           cmd: Acl
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14065,7 +14099,7 @@ duts:
           userName: root
           virtMem: 427m
         '2803':
-          activeTime: 331
+          activeTime: 337
           cmd: Stp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14117,7 +14151,7 @@ duts:
           userName: root
           virtMem: '4472'
         '2829':
-          activeTime: 124
+          activeTime: 125
           cmd: KernelNetworkIn
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14143,7 +14177,7 @@ duts:
           userName: root
           virtMem: 427m
         '2840':
-          activeTime: 88
+          activeTime: 89
           cmd: McastCommon6
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14156,9 +14190,9 @@ duts:
           userName: root
           virtMem: 431m
         '2844':
-          activeTime: 38848
+          activeTime: 39467
           cmd: Etba
-          cpuPct: 4.6
+          cpuPct: 2.2
           cpuPctType: '{:.1f}'
           memPct: 7.3
           niceValue: 0
@@ -14195,7 +14229,7 @@ duts:
           userName: root
           virtMem: 427m
         '2871':
-          activeTime: 192
+          activeTime: 194
           cmd: LacpTxAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14234,7 +14268,7 @@ duts:
           userName: root
           virtMem: 427m
         '2884':
-          activeTime: 252
+          activeTime: 255
           cmd: Arp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14312,7 +14346,7 @@ duts:
           userName: root
           virtMem: 427m
         '2930':
-          activeTime: 118
+          activeTime: 120
           cmd: Qos
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14377,7 +14411,7 @@ duts:
           userName: root
           virtMem: 427m
         '2953':
-          activeTime: 84
+          activeTime: 85
           cmd: Thermostat
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14390,7 +14424,7 @@ duts:
           userName: root
           virtMem: 431m
         '2954':
-          activeTime: 122
+          activeTime: 126
           cmd: L2Rib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14429,7 +14463,7 @@ duts:
           userName: root
           virtMem: 427m
         '2970':
-          activeTime: 75
+          activeTime: 76
           cmd: TopoAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14468,7 +14502,7 @@ duts:
           userName: root
           virtMem: 427m
         '2980':
-          activeTime: 64
+          activeTime: 66
           cmd: SharedSecretPro
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14507,7 +14541,7 @@ duts:
           userName: root
           virtMem: 427m
         '2989':
-          activeTime: 63
+          activeTime: 64
           cmd: PowerManager
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14546,7 +14580,7 @@ duts:
           userName: root
           virtMem: 427m
         '2999':
-          activeTime: 161
+          activeTime: 162
           cmd: Ebra
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14559,7 +14593,7 @@ duts:
           userName: root
           virtMem: 439m
         '3':
-          activeTime: 5615
+          activeTime: 5700
           cmd: ksoftirqd/0
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14611,7 +14645,7 @@ duts:
           userName: root
           virtMem: 427m
         '3023':
-          activeTime: 148
+          activeTime: 149
           cmd: KernelFib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14650,7 +14684,7 @@ duts:
           userName: root
           virtMem: 427m
         '3085':
-          activeTime: 68
+          activeTime: 69
           cmd: PowerFuse
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14663,7 +14697,7 @@ duts:
           userName: root
           virtMem: 429m
         '3095':
-          activeTime: 8869
+          activeTime: 9008
           cmd: IgmpSnooping
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14715,7 +14749,7 @@ duts:
           userName: root
           virtMem: 427m
         '3121':
-          activeTime: 114
+          activeTime: 115
           cmd: StaticRoute
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14754,9 +14788,9 @@ duts:
           userName: root
           virtMem: 427m
         '3130':
-          activeTime: 1348
+          activeTime: 1372
           cmd: IpRib
-          cpuPct: 0.0
+          cpuPct: 2.2
           cpuPctType: '{:.1f}'
           memPct: 7.1
           niceValue: 0
@@ -14793,7 +14827,7 @@ duts:
           userName: root
           virtMem: 427m
         '3143':
-          activeTime: 126
+          activeTime: 127
           cmd: ConnectedRoute
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14832,7 +14866,7 @@ duts:
           userName: root
           virtMem: 427m
         '3168':
-          activeTime: 112
+          activeTime: 113
           cmd: RouteInput
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14845,7 +14879,7 @@ duts:
           userName: root
           virtMem: 441m
         '3185':
-          activeTime: 779
+          activeTime: 782
           cmd: EvpnrtrEncap
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14858,7 +14892,7 @@ duts:
           userName: root
           virtMem: 438m
         '3190':
-          activeTime: 1380
+          activeTime: 1394
           cmd: Bgp-main
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14910,7 +14944,7 @@ duts:
           userName: root
           virtMem: 427m
         '3299':
-          activeTime: 487
+          activeTime: 488
           cmd: BgpCliHelper
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -14962,7 +14996,7 @@ duts:
           userName: root
           virtMem: '11772'
         '3406':
-          activeTime: 97
+          activeTime: 103
           cmd: nginx
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -15001,7 +15035,7 @@ duts:
           userName: root
           virtMem: '0'
         '3654':
-          activeTime: 20
+          activeTime: 21
           cmd: rsyslogd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -15430,7 +15464,7 @@ duts:
           userName: root
           virtMem: '0'
         '7':
-          activeTime: 248
+          activeTime: 252
           cmd: rcu_preempt
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -15501,12 +15535,12 @@ duts:
         total: 228
         zombie: 0
       timeInfo:
-        currentTime: 1585752070.031475
+        currentTime: 1585752311.832124
         loadAvg:
-        - 0.53
-        - 0.42
-        - 0.31
-        upTime: 14966.7
+        - 0.24
+        - 0.37
+        - 0.32
+        upTime: 15208.5
         users: 0
     "show port-channel summary":
       numberOfAggregators: 2
@@ -15589,8 +15623,8 @@ duts:
             10.255.251.5:
               asn: '65102'
               inMsgQueue: 0
-              msgReceived: 299
-              msgSent: 299
+              msgReceived: 304
+              msgSent: 303
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 15
@@ -15601,8 +15635,8 @@ duts:
             172.31.255.10:
               asn: '65001'
               inMsgQueue: 0
-              msgReceived: 293
-              msgSent: 298
+              msgReceived: 298
+              msgSent: 303
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 11
@@ -15613,8 +15647,8 @@ duts:
             172.31.255.8:
               asn: '65001'
               inMsgQueue: 0
-              msgReceived: 297
-              msgSent: 295
+              msgReceived: 301
+              msgSent: 300
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 11
@@ -15632,8 +15666,8 @@ duts:
             192.168.255.1:
               asn: '65001'
               inMsgQueue: 0
-              msgReceived: 458
-              msgSent: 402
+              msgReceived: 463
+              msgSent: 407
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 90
@@ -15644,8 +15678,8 @@ duts:
             192.168.255.2:
               asn: '65001'
               inMsgQueue: 0
-              msgReceived: 428
-              msgSent: 397
+              msgReceived: 433
+              msgSent: 401
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 90
@@ -15678,15 +15712,15 @@ duts:
         peerMacAddress: 0c:1d:c0:7f:d9:6c
         peerMacRoutingSupported: false
         peerMlagState: primary
-        peerMonotonicClockOffset: -5.842827704242955
+        peerMonotonicClockOffset: -5.843425361527544
         peerPortsErrdisabled: false
         peerPrimaryPriority: 32767
         primaryPriority: 32767
         secondaryFromFailover: false
         stateChanges: 2
         udpHeartbeatAlive: true
-        udpHeartbeatsReceived: 3702
-        udpHeartbeatsSent: 3702
+        udpHeartbeatsReceived: 3762
+        udpHeartbeatsSent: 3762
       domainId: DC1_LEAF2
       dualPrimaryDetectionState: configured
       heartbeatPeerAddress: 10.255.0.16
@@ -15762,7 +15796,7 @@ duts:
       tablesDeletes: 0
       tablesDrops: 0
       tablesInserts: 12
-      tablesLastChangeTime: 1585737315.155081
+      tablesLastChangeTime: 1585737315.1550817
   DC1-LEAF2B:
     "show version":
       architecture: i686
@@ -15771,13 +15805,13 @@ duts:
       internalBuildId: bb097f5d-d38c-4c32-898b-c20f6e18b00a
       internalVersion: 4.22.1F-13062802.4221F
       isIntlVersion: false
-      memFree: 1001128
+      memFree: 1000416
       memTotal: 2014520
       mfgName: ''
       modelName: vEOS
       serialNumber: ''
       systemMacAddress: 0c:1d:c0:7f:d9:6c
-      uptime: 14960.8
+      uptime: 15206.77
       version: 4.22.1F
     "show processes top once":
       cpuInfo:
@@ -15792,18 +15826,18 @@ duts:
           user: 6.6
       memInfo:
         physicalMem:
-          memBuffer: 161248
-          memFree: 56016
+          memBuffer: 161256
+          memFree: 55268
           memTotal: 2014520
-          memUsed: 1958504
+          memUsed: 1959252
         swapMem:
-          memBuffer: 923580
+          memBuffer: 923584
           memFree: 0
           memTotal: 0
           memUsed: 0
       processes:
         '1':
-          activeTime: 801
+          activeTime: 802
           cmd: systemd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -15855,7 +15889,7 @@ duts:
           userName: root
           virtMem: '0'
         '12889':
-          activeTime: 162
+          activeTime: 180
           cmd: kworker/0:1
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -15920,7 +15954,7 @@ duts:
           userName: root
           virtMem: '0'
         '13298':
-          activeTime: 79
+          activeTime: 124
           cmd: kworker/0:0
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -15932,16 +15966,29 @@ duts:
           status: S
           userName: root
           virtMem: '0'
-        '13600':
-          activeTime: 16
+        '13627':
+          activeTime: 55
+          cmd: kworker/0:3
+          cpuPct: 0.0
+          cpuPctType: '{:.1f}'
+          memPct: 0.0
+          niceValue: 0
+          priority: '20'
+          residentMem: '0'
+          sharedMem: '0'
+          status: S
+          userName: root
+          virtMem: '0'
+        '13738':
+          activeTime: 14
           cmd: top
-          cpuPct: 35.0
+          cpuPct: 34.3
           cpuPctType: '{:.1f}'
           memPct: 0.4
           niceValue: 0
           priority: '20'
-          residentMem: '7600'
-          sharedMem: '6444'
+          residentMem: '7664'
+          sharedMem: '6504'
           status: R
           userName: ansible
           virtMem: '17692'
@@ -16024,7 +16071,7 @@ duts:
           userName: root
           virtMem: '0'
         '1775':
-          activeTime: 49
+          activeTime: 50
           cmd: ProcMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16076,7 +16123,7 @@ duts:
           userName: root
           virtMem: '6092'
         '1788':
-          activeTime: 74
+          activeTime: 75
           cmd: dbus-daemon
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16245,7 +16292,7 @@ duts:
           userName: root
           virtMem: 435m
         '2126':
-          activeTime: 5946
+          activeTime: 6041
           cmd: ProcMgr-worker
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16349,7 +16396,7 @@ duts:
           userName: root
           virtMem: '0'
         '2267':
-          activeTime: 689
+          activeTime: 700
           cmd: EosOomAdjust
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16362,7 +16409,7 @@ duts:
           userName: root
           virtMem: '4276'
         '2274':
-          activeTime: 17
+          activeTime: 18
           cmd: rbfd_vrf_cleanu
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16401,7 +16448,7 @@ duts:
           userName: root
           virtMem: '0'
         '2325':
-          activeTime: 173
+          activeTime: 176
           cmd: SlabMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16414,7 +16461,7 @@ duts:
           userName: root
           virtMem: '4280'
         '2326':
-          activeTime: 4764
+          activeTime: 4818
           cmd: Sysdb
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16440,7 +16487,7 @@ duts:
           userName: root
           virtMem: 439m
         '2362':
-          activeTime: 11471
+          activeTime: 11534
           cmd: ConfigAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16453,7 +16500,7 @@ duts:
           userName: root
           virtMem: 680m
         '2369':
-          activeTime: 157
+          activeTime: 158
           cmd: Fru
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16466,7 +16513,7 @@ duts:
           userName: root
           virtMem: 444m
         '2375':
-          activeTime: 428
+          activeTime: 430
           cmd: Launcher
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16505,14 +16552,14 @@ duts:
           userName: root
           virtMem: '0'
         '2571':
-          activeTime: 43687
+          activeTime: 44381
           cmd: TerminAttr
-          cpuPct: 2.3
+          cpuPct: 2.6
           cpuPctType: '{:.1f}'
           memPct: 5.4
           niceValue: 0
           priority: '20'
-          residentMem: 105m
+          residentMem: 106m
           sharedMem: 17m
           status: S
           userName: root
@@ -16557,7 +16604,7 @@ duts:
           userName: root
           virtMem: 427m
         '2627':
-          activeTime: 787
+          activeTime: 800
           cmd: Lldp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16635,7 +16682,7 @@ duts:
           userName: root
           virtMem: 427m
         '2635':
-          activeTime: 141
+          activeTime: 143
           cmd: PortSec
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16674,7 +16721,7 @@ duts:
           userName: root
           virtMem: 427m
         '2639':
-          activeTime: 123
+          activeTime: 124
           cmd: Bfd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16713,7 +16760,7 @@ duts:
           userName: root
           virtMem: 427m
         '2643':
-          activeTime: 514
+          activeTime: 521
           cmd: Lag
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16726,7 +16773,7 @@ duts:
           userName: root
           virtMem: 432m
         '2645':
-          activeTime: 1994
+          activeTime: 2025
           cmd: SuperServer
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16765,7 +16812,7 @@ duts:
           userName: root
           virtMem: 427m
         '2653':
-          activeTime: 164
+          activeTime: 166
           cmd: Ira
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16804,7 +16851,7 @@ duts:
           userName: root
           virtMem: 427m
         '2659':
-          activeTime: 183
+          activeTime: 185
           cmd: LedPolicy
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16843,7 +16890,7 @@ duts:
           userName: root
           virtMem: 427m
         '2663':
-          activeTime: 123
+          activeTime: 124
           cmd: Vxlan
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16882,7 +16929,7 @@ duts:
           userName: root
           virtMem: 427m
         '2669':
-          activeTime: 489
+          activeTime: 495
           cmd: EventMgr
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16895,9 +16942,9 @@ duts:
           userName: root
           virtMem: 435m
         '2671':
-          activeTime: 5678
+          activeTime: 5768
           cmd: Mlag
-          cpuPct: 2.3
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 6.7
           niceValue: 0
@@ -16908,7 +16955,7 @@ duts:
           userName: root
           virtMem: 455m
         '2676':
-          activeTime: 212
+          activeTime: 216
           cmd: CapiApp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16947,7 +16994,7 @@ duts:
           userName: root
           virtMem: 427m
         '2682':
-          activeTime: 1503
+          activeTime: 1529
           cmd: StpTxRx
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -16999,7 +17046,7 @@ duts:
           userName: root
           virtMem: '4472'
         '2688':
-          activeTime: 71
+          activeTime: 73
           cmd: StandbyCpld
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17025,7 +17072,7 @@ duts:
           userName: root
           virtMem: 427m
         '2691':
-          activeTime: 3295
+          activeTime: 3346
           cmd: PhyEthtool
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17038,7 +17085,7 @@ duts:
           userName: root
           virtMem: 439m
         '2692':
-          activeTime: 3292
+          activeTime: 3336
           cmd: AgentMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17051,7 +17098,7 @@ duts:
           userName: root
           virtMem: 428m
         '2694':
-          activeTime: 1360
+          activeTime: 1381
           cmd: MlagTunnel
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17103,7 +17150,7 @@ duts:
           userName: root
           virtMem: 427m
         '2718':
-          activeTime: 414
+          activeTime: 420
           cmd: Fhrp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17116,7 +17163,7 @@ duts:
           userName: root
           virtMem: 443m
         '2722':
-          activeTime: 389
+          activeTime: 404
           cmd: Aaa
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17155,7 +17202,7 @@ duts:
           userName: root
           virtMem: 427m
         '2732':
-          activeTime: 121
+          activeTime: 123
           cmd: VxlanSwFwd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17194,7 +17241,7 @@ duts:
           userName: root
           virtMem: 427m
         '2741':
-          activeTime: 96
+          activeTime: 97
           cmd: StpTopology
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17233,7 +17280,7 @@ duts:
           userName: root
           virtMem: 427m
         '2752':
-          activeTime: 146
+          activeTime: 148
           cmd: Tunnel
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17272,7 +17319,7 @@ duts:
           userName: root
           virtMem: 427m
         '2761':
-          activeTime: 2673
+          activeTime: 2706
           cmd: Acl
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17324,7 +17371,7 @@ duts:
           userName: root
           virtMem: '0'
         '2805':
-          activeTime: 975
+          activeTime: 987
           cmd: Stp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17376,7 +17423,7 @@ duts:
           userName: root
           virtMem: 427m
         '2826':
-          activeTime: 114
+          activeTime: 116
           cmd: KernelNetworkIn
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17402,7 +17449,7 @@ duts:
           userName: root
           virtMem: 427m
         '2828':
-          activeTime: 82
+          activeTime: 84
           cmd: McastCommon6
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17415,16 +17462,16 @@ duts:
           userName: root
           virtMem: 431m
         '2837':
-          activeTime: 38203
+          activeTime: 38825
           cmd: Etba
-          cpuPct: 2.3
+          cpuPct: 7.9
           cpuPctType: '{:.1f}'
           memPct: 7.3
           niceValue: 0
           priority: '20'
           residentMem: 142m
           sharedMem: 113m
-          status: R
+          status: S
           userName: root
           virtMem: 451m
         '2856':
@@ -17454,7 +17501,7 @@ duts:
           userName: root
           virtMem: 427m
         '2861':
-          activeTime: 185
+          activeTime: 187
           cmd: LacpTxAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17493,7 +17540,7 @@ duts:
           userName: root
           virtMem: 427m
         '2877':
-          activeTime: 248
+          activeTime: 251
           cmd: Arp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17571,7 +17618,7 @@ duts:
           userName: root
           virtMem: 427m
         '2923':
-          activeTime: 114
+          activeTime: 116
           cmd: Qos
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17623,7 +17670,7 @@ duts:
           userName: root
           virtMem: '4472'
         '2936':
-          activeTime: 79
+          activeTime: 81
           cmd: Thermostat
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17649,7 +17696,7 @@ duts:
           userName: root
           virtMem: 427m
         '2943':
-          activeTime: 119
+          activeTime: 121
           cmd: L2Rib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17688,7 +17735,7 @@ duts:
           userName: root
           virtMem: 427m
         '2949':
-          activeTime: 78
+          activeTime: 79
           cmd: TopoAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17766,7 +17813,7 @@ duts:
           userName: root
           virtMem: 427m
         '2967':
-          activeTime: 63
+          activeTime: 64
           cmd: PowerManager
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17805,7 +17852,7 @@ duts:
           userName: root
           virtMem: 427m
         '2973':
-          activeTime: 172
+          activeTime: 173
           cmd: Ebra
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17844,7 +17891,7 @@ duts:
           userName: root
           virtMem: 427m
         '2993':
-          activeTime: 147
+          activeTime: 148
           cmd: KernelFib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17870,7 +17917,7 @@ duts:
           userName: root
           virtMem: '4472'
         '3':
-          activeTime: 5796
+          activeTime: 5890
           cmd: ksoftirqd/0
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17909,7 +17956,7 @@ duts:
           userName: root
           virtMem: 427m
         '3004':
-          activeTime: 67
+          activeTime: 68
           cmd: PowerFuse
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -17922,9 +17969,9 @@ duts:
           userName: root
           virtMem: 429m
         '3005':
-          activeTime: 8766
+          activeTime: 8902
           cmd: IgmpSnooping
-          cpuPct: 2.3
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 5.6
           niceValue: 0
@@ -17961,7 +18008,7 @@ duts:
           userName: root
           virtMem: 427m
         '3032':
-          activeTime: 116
+          activeTime: 117
           cmd: StaticRoute
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -18000,7 +18047,7 @@ duts:
           userName: root
           virtMem: 427m
         '3058':
-          activeTime: 1029
+          activeTime: 1038
           cmd: IpRib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -18039,7 +18086,7 @@ duts:
           userName: root
           virtMem: 427m
         '3073':
-          activeTime: 126
+          activeTime: 127
           cmd: ConnectedRoute
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -18104,7 +18151,7 @@ duts:
           userName: root
           virtMem: 441m
         '3154':
-          activeTime: 702
+          activeTime: 706
           cmd: EvpnrtrEncap
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -18117,7 +18164,7 @@ duts:
           userName: root
           virtMem: 438m
         '3163':
-          activeTime: 1377
+          activeTime: 1393
           cmd: Bgp-main
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -18169,7 +18216,7 @@ duts:
           userName: root
           virtMem: 427m
         '3246':
-          activeTime: 511
+          activeTime: 512
           cmd: BgpCliHelper
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -18234,7 +18281,7 @@ duts:
           userName: root
           virtMem: '11772'
         '3551':
-          activeTime: 100
+          activeTime: 105
           cmd: nginx
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -18364,7 +18411,7 @@ duts:
           userName: root
           virtMem: '5452'
         '4679':
-          activeTime: 23
+          activeTime: 24
           cmd: tail
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -18689,7 +18736,7 @@ duts:
           userName: root
           virtMem: '0'
         '7':
-          activeTime: 254
+          activeTime: 257
           cmd: rcu_preempt
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -18754,18 +18801,18 @@ duts:
           userName: root
           virtMem: '12420'
       threadsStateInfo:
-        run: 2
-        sleep: 225
+        run: 1
+        sleep: 227
         stop: 0
-        total: 227
+        total: 228
         zombie: 0
       timeInfo:
-        currentTime: 1585752070.957866
+        currentTime: 1585752316.884118
         loadAvg:
-        - 0.08
-        - 0.24
-        - 0.25
-        upTime: 14961.28
+        - 0.34
+        - 0.32
+        - 0.28
+        upTime: 15207.2
         users: 0
     "show port-channel summary":
       numberOfAggregators: 2
@@ -18848,8 +18895,8 @@ duts:
             10.255.251.4:
               asn: '65102'
               inMsgQueue: 0
-              msgReceived: 298
-              msgSent: 300
+              msgReceived: 303
+              msgSent: 305
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 15
@@ -18860,8 +18907,8 @@ duts:
             172.31.255.12:
               asn: '65001'
               inMsgQueue: 0
-              msgReceived: 296
-              msgSent: 300
+              msgReceived: 301
+              msgSent: 305
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 11
@@ -18872,8 +18919,8 @@ duts:
             172.31.255.14:
               asn: '65001'
               inMsgQueue: 0
-              msgReceived: 289
-              msgSent: 292
+              msgReceived: 294
+              msgSent: 297
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 11
@@ -18891,8 +18938,8 @@ duts:
             192.168.255.1:
               asn: '65001'
               inMsgQueue: 0
-              msgReceived: 428
-              msgSent: 397
+              msgReceived: 433
+              msgSent: 402
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 90
@@ -18903,8 +18950,8 @@ duts:
             192.168.255.2:
               asn: '65001'
               inMsgQueue: 0
-              msgReceived: 428
-              msgSent: 378
+              msgReceived: 433
+              msgSent: 382
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 90
@@ -18937,15 +18984,15 @@ duts:
         peerMacAddress: 0c:1d:c0:90:13:79
         peerMacRoutingSupported: false
         peerMlagState: secondary
-        peerMonotonicClockOffset: 5.842842834819688
+        peerMonotonicClockOffset: 5.843414030986213
         peerPortsErrdisabled: false
         peerPrimaryPriority: 32767
         primaryPriority: 32767
         secondaryFromFailover: false
         stateChanges: 2
         udpHeartbeatAlive: true
-        udpHeartbeatsReceived: 3700
-        udpHeartbeatsSent: 3700
+        udpHeartbeatsReceived: 3761
+        udpHeartbeatsSent: 3761
       domainId: DC1_LEAF2
       dualPrimaryDetectionState: configured
       heartbeatPeerAddress: 10.255.0.15
@@ -19021,7 +19068,7 @@ duts:
       tablesDeletes: 2
       tablesDrops: 0
       tablesInserts: 14
-      tablesLastChangeTime: 1585737310.3538675
+      tablesLastChangeTime: 1585737310.3538673
   DC1-SPINE1:
     "show version":
       architecture: i386
@@ -19030,19 +19077,19 @@ duts:
       internalBuildId: 2c34e816-9aa7-4c63-9a32-05140aec7dbd
       internalVersion: 4.22.0F-12170486.4220F
       isIntlVersion: false
-      memFree: 1134484
+      memFree: 1134272
       memTotal: 2014584
       mfgName: ''
       modelName: vEOS
       serialNumber: ''
       systemMacAddress: 0c:1d:c0:a3:86:f3
-      uptime: 14906.34
+      uptime: 15152.28
       version: 4.22.0F
     "show processes top once":
       cpuInfo:
         '%Cpu(s)':
           hwIrq: 11.8
-          idle: 72.9
+          idle: 73.0
           ioWait: 0.0
           nice: 0.1
           stolen: 0.0
@@ -19051,18 +19098,18 @@ duts:
           user: 5.8
       memInfo:
         physicalMem:
-          memBuffer: 189524
-          memFree: 56524
+          memBuffer: 189532
+          memFree: 56708
           memTotal: 2014584
-          memUsed: 1958060
+          memUsed: 1957876
         swapMem:
-          memBuffer: 1003668
+          memBuffer: 1003732
           memFree: 0
           memTotal: 0
           memUsed: 0
       processes:
         '1':
-          activeTime: 1268
+          activeTime: 1277
           cmd: systemd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -19127,7 +19174,7 @@ duts:
           userName: root
           virtMem: '0'
         '139':
-          activeTime: 19
+          activeTime: 21
           cmd: jbd2/sdb2-8
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -19205,7 +19252,7 @@ duts:
           userName: root
           virtMem: '0'
         '17741':
-          activeTime: 1
+          activeTime: 2
           cmd: ntpd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -19244,7 +19291,7 @@ duts:
           userName: root
           virtMem: '7664'
         '18160':
-          activeTime: 162
+          activeTime: 214
           cmd: kworker/0:2
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -19309,7 +19356,7 @@ duts:
           userName: root
           virtMem: '0'
         '2051':
-          activeTime: 45
+          activeTime: 46
           cmd: ProcMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -19348,7 +19395,7 @@ duts:
           userName: root
           virtMem: '4388'
         '2060':
-          activeTime: 51
+          activeTime: 52
           cmd: systemd-logind
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -19374,9 +19421,9 @@ duts:
           userName: dbus
           virtMem: '17848'
         '20622':
-          activeTime: 14
+          activeTime: 67
           cmd: kworker/0:0
-          cpuPct: 2.3
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 0.0
           niceValue: 0
@@ -19386,19 +19433,6 @@ duts:
           status: S
           userName: root
           virtMem: '0'
-        '20839':
-          activeTime: 14
-          cmd: top
-          cpuPct: 30.1
-          cpuPctType: '{:.1f}'
-          memPct: 0.4
-          niceValue: 0
-          priority: '20'
-          residentMem: '8176'
-          sharedMem: '6992'
-          status: R
-          userName: ansible
-          virtMem: '18012'
         '21':
           activeTime: 0
           cmd: crypto
@@ -19412,6 +19446,19 @@ duts:
           status: S
           userName: root
           virtMem: '0'
+        '21671':
+          activeTime: 14
+          cmd: top
+          cpuPct: 33.6
+          cpuPctType: '{:.1f}'
+          memPct: 0.4
+          niceValue: 0
+          priority: '20'
+          residentMem: '8108'
+          sharedMem: '6924'
+          status: R
+          userName: ansible
+          virtMem: '18012'
         '22':
           activeTime: 0
           cmd: kintegrityd
@@ -19595,7 +19642,7 @@ duts:
           userName: root
           virtMem: 466m
         '2833':
-          activeTime: 4323
+          activeTime: 4392
           cmd: ProcMgr-worker
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -19686,7 +19733,7 @@ duts:
           userName: root
           virtMem: '4392'
         '2966':
-          activeTime: 636
+          activeTime: 647
           cmd: EosOomAdjust
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -19725,9 +19772,9 @@ duts:
           userName: root
           virtMem: '4300'
         '3':
-          activeTime: 5272
+          activeTime: 5353
           cmd: ksoftirqd/0
-          cpuPct: 2.3
+          cpuPct: 2.6
           cpuPctType: '{:.1f}'
           memPct: 0.0
           niceValue: 0
@@ -19751,7 +19798,7 @@ duts:
           userName: root
           virtMem: '0'
         '3019':
-          activeTime: 165
+          activeTime: 168
           cmd: SlabMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -19764,7 +19811,7 @@ duts:
           userName: root
           virtMem: '4268'
         '3028':
-          activeTime: 3485
+          activeTime: 3522
           cmd: Sysdb
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -19777,7 +19824,7 @@ duts:
           userName: root
           virtMem: 503m
         '3069':
-          activeTime: 113
+          activeTime: 114
           cmd: StageMgr
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -19790,7 +19837,7 @@ duts:
           userName: root
           virtMem: 470m
         '3071':
-          activeTime: 9397
+          activeTime: 9458
           cmd: ConfigAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -19803,7 +19850,7 @@ duts:
           userName: root
           virtMem: 751m
         '3085':
-          activeTime: 162
+          activeTime: 164
           cmd: Fru
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -19855,14 +19902,14 @@ duts:
           userName: root
           virtMem: '0'
         '3298':
-          activeTime: 34606
+          activeTime: 35172
           cmd: TerminAttr
-          cpuPct: 2.3
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 4.5
           niceValue: 0
           priority: '20'
-          residentMem: 89m
+          residentMem: 88m
           sharedMem: 15m
           status: S
           userName: root
@@ -19907,7 +19954,7 @@ duts:
           userName: root
           virtMem: 459m
         '3371':
-          activeTime: 650
+          activeTime: 661
           cmd: Lldp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -19946,7 +19993,7 @@ duts:
           userName: root
           virtMem: 459m
         '3375':
-          activeTime: 92
+          activeTime: 93
           cmd: McastCommon
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -19985,7 +20032,7 @@ duts:
           userName: root
           virtMem: 459m
         '3378':
-          activeTime: 109
+          activeTime: 111
           cmd: PortSec
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20024,7 +20071,7 @@ duts:
           userName: root
           virtMem: 459m
         '3382':
-          activeTime: 106
+          activeTime: 107
           cmd: Bfd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20063,7 +20110,7 @@ duts:
           userName: root
           virtMem: 459m
         '3387':
-          activeTime: 298
+          activeTime: 302
           cmd: Lag
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20076,9 +20123,9 @@ duts:
           userName: root
           virtMem: 463m
         '3389':
-          activeTime: 17148
+          activeTime: 17419
           cmd: SuperServer
-          cpuPct: 2.3
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 6.3
           niceValue: 0
@@ -20115,7 +20162,7 @@ duts:
           userName: root
           virtMem: 459m
         '3398':
-          activeTime: 118
+          activeTime: 120
           cmd: Ira
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20167,7 +20214,7 @@ duts:
           userName: root
           virtMem: 459m
         '3402':
-          activeTime: 185
+          activeTime: 187
           cmd: LedPolicy
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20206,7 +20253,7 @@ duts:
           userName: root
           virtMem: 459m
         '3406':
-          activeTime: 366
+          activeTime: 372
           cmd: EventMgr
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20219,9 +20266,9 @@ duts:
           userName: root
           virtMem: 466m
         '3409':
-          activeTime: 225
+          activeTime: 230
           cmd: CapiApp
-          cpuPct: 0.0
+          cpuPct: 2.6
           cpuPctType: '{:.1f}'
           memPct: 3.6
           niceValue: 0
@@ -20258,7 +20305,7 @@ duts:
           userName: root
           virtMem: 459m
         '3413':
-          activeTime: 430
+          activeTime: 436
           cmd: StpTxRx
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20297,7 +20344,7 @@ duts:
           userName: root
           virtMem: 459m
         '3418':
-          activeTime: 71
+          activeTime: 73
           cmd: StandbyCpld
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20336,7 +20383,7 @@ duts:
           userName: root
           virtMem: 459m
         '3422':
-          activeTime: 2912
+          activeTime: 2951
           cmd: AgentMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20375,7 +20422,7 @@ duts:
           userName: root
           virtMem: 459m
         '3427':
-          activeTime: 3276
+          activeTime: 3330
           cmd: PhyEthtool
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20388,7 +20435,7 @@ duts:
           userName: root
           virtMem: 471m
         '3428':
-          activeTime: 137
+          activeTime: 138
           cmd: Tunnel
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20401,9 +20448,9 @@ duts:
           userName: root
           virtMem: 466m
         '3431':
-          activeTime: 333
+          activeTime: 356
           cmd: Aaa
-          cpuPct: 2.3
+          cpuPct: 5.2
           cpuPctType: '{:.1f}'
           memPct: 4.5
           niceValue: 0
@@ -20440,7 +20487,7 @@ duts:
           userName: root
           virtMem: 459m
         '3437':
-          activeTime: 101
+          activeTime: 102
           cmd: StpTopology
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20479,7 +20526,7 @@ duts:
           userName: root
           virtMem: 459m
         '3444':
-          activeTime: 793
+          activeTime: 803
           cmd: Acl
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20518,7 +20565,7 @@ duts:
           userName: root
           virtMem: 459m
         '3452':
-          activeTime: 235
+          activeTime: 239
           cmd: Stp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20557,7 +20604,7 @@ duts:
           userName: root
           virtMem: 459m
         '3459':
-          activeTime: 85
+          activeTime: 86
           cmd: KernelNetworkIn
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20596,7 +20643,7 @@ duts:
           userName: root
           virtMem: 459m
         '3475':
-          activeTime: 92
+          activeTime: 93
           cmd: McastCommon6
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20609,9 +20656,9 @@ duts:
           userName: root
           virtMem: 462m
         '3478':
-          activeTime: 34276
+          activeTime: 34846
           cmd: Etba
-          cpuPct: 0.0
+          cpuPct: 2.6
           cpuPctType: '{:.1f}'
           memPct: 7.2
           niceValue: 0
@@ -20661,7 +20708,7 @@ duts:
           userName: root
           virtMem: 459m
         '3518':
-          activeTime: 98
+          activeTime: 99
           cmd: LacpTxAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20700,7 +20747,7 @@ duts:
           userName: root
           virtMem: 459m
         '3548':
-          activeTime: 205
+          activeTime: 208
           cmd: Arp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20739,7 +20786,7 @@ duts:
           userName: root
           virtMem: 459m
         '3575':
-          activeTime: 118
+          activeTime: 120
           cmd: KernelFib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20778,7 +20825,7 @@ duts:
           userName: root
           virtMem: 459m
         '3598':
-          activeTime: 139
+          activeTime: 141
           cmd: Qos
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20830,7 +20877,7 @@ duts:
           userName: root
           virtMem: 459m
         '3614':
-          activeTime: 86
+          activeTime: 87
           cmd: Thermostat
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20869,7 +20916,7 @@ duts:
           userName: root
           virtMem: 459m
         '3621':
-          activeTime: 116
+          activeTime: 119
           cmd: L2Rib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20908,7 +20955,7 @@ duts:
           userName: root
           virtMem: 459m
         '3630':
-          activeTime: 81
+          activeTime: 82
           cmd: TopoAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20947,7 +20994,7 @@ duts:
           userName: root
           virtMem: 459m
         '3645':
-          activeTime: 68
+          activeTime: 70
           cmd: PowerFuse
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -20999,7 +21046,7 @@ duts:
           userName: root
           virtMem: '4460'
         '3658':
-          activeTime: 64
+          activeTime: 66
           cmd: PowerManager
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -21025,7 +21072,7 @@ duts:
           userName: root
           virtMem: 459m
         '3664':
-          activeTime: 157
+          activeTime: 159
           cmd: Ebra
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -21064,7 +21111,7 @@ duts:
           userName: root
           virtMem: 459m
         '3682':
-          activeTime: 72
+          activeTime: 73
           cmd: ReloadCauseAgen
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -21103,7 +21150,7 @@ duts:
           userName: root
           virtMem: 459m
         '3692':
-          activeTime: 67
+          activeTime: 68
           cmd: SharedSecretPro
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -21116,7 +21163,7 @@ duts:
           userName: root
           virtMem: 460m
         '3695':
-          activeTime: 141
+          activeTime: 142
           cmd: IgmpSnooping
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -21194,7 +21241,7 @@ duts:
           userName: root
           virtMem: 459m
         '3741':
-          activeTime: 348
+          activeTime: 352
           cmd: IpRib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -21233,7 +21280,7 @@ duts:
           userName: root
           virtMem: 459m
         '3762':
-          activeTime: 108
+          activeTime: 110
           cmd: ConnectedRoute
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -21272,7 +21319,7 @@ duts:
           userName: root
           virtMem: 459m
         '3769':
-          activeTime: 110
+          activeTime: 111
           cmd: RouteInput
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -21285,7 +21332,7 @@ duts:
           userName: root
           virtMem: 471m
         '3771':
-          activeTime: 88
+          activeTime: 90
           cmd: EvpnrtrEncap
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -21298,7 +21345,7 @@ duts:
           userName: root
           virtMem: 468m
         '3775':
-          activeTime: 929
+          activeTime: 938
           cmd: Bgp-main
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -21324,7 +21371,7 @@ duts:
           userName: root
           virtMem: '4460'
         '4098':
-          activeTime: 12
+          activeTime: 13
           cmd: rsyslogd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -21350,7 +21397,7 @@ duts:
           userName: root
           virtMem: '11636'
         '4221':
-          activeTime: 90
+          activeTime: 96
           cmd: nginx
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -21428,7 +21475,7 @@ duts:
           userName: root
           virtMem: '5440'
         '4410':
-          activeTime: 24
+          activeTime: 25
           cmd: tail
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -21726,19 +21773,6 @@ duts:
           status: S
           userName: root
           virtMem: '0'
-        '6597':
-          activeTime: 608
-          cmd: kworker/0:1
-          cpuPct: 0.0
-          cpuPctType: '{:.1f}'
-          memPct: 0.0
-          niceValue: 0
-          priority: '20'
-          residentMem: '0'
-          sharedMem: '0'
-          status: S
-          userName: root
-          virtMem: '0'
         '66':
           activeTime: 0
           cmd: ndisc_cache-prd
@@ -21779,7 +21813,7 @@ duts:
           userName: root
           virtMem: '0'
         '7':
-          activeTime: 252
+          activeTime: 255
           cmd: rcu_preempt
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -21845,17 +21879,17 @@ duts:
           virtMem: '0'
       threadsStateInfo:
         run: 1
-        sleep: 213
+        sleep: 212
         stop: 0
-        total: 214
+        total: 213
         zombie: 0
       timeInfo:
-        currentTime: 1585752065.804451
+        currentTime: 1585752311.688864
         loadAvg:
-        - 0.08
-        - 0.18
-        - 0.19
-        upTime: 14906.84
+        - 0.45
+        - 0.26
+        - 0.2
+        upTime: 15152.72
         users: 0
     "show port-channel summary":
       numberOfAggregators: 0
@@ -21869,8 +21903,8 @@ duts:
             172.31.255.1:
               asn: '65101'
               inMsgQueue: 0
-              msgReceived: 294
-              msgSent: 293
+              msgReceived: 300
+              msgSent: 298
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 8
@@ -21881,8 +21915,8 @@ duts:
             172.31.255.13:
               asn: '65102'
               inMsgQueue: 0
-              msgReceived: 300
-              msgSent: 296
+              msgReceived: 305
+              msgSent: 301
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 8
@@ -21893,8 +21927,8 @@ duts:
             172.31.255.5:
               asn: '65101'
               inMsgQueue: 0
-              msgReceived: 295
-              msgSent: 296
+              msgReceived: 300
+              msgSent: 300
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 8
@@ -21905,8 +21939,8 @@ duts:
             172.31.255.9:
               asn: '65102'
               inMsgQueue: 0
-              msgReceived: 295
-              msgSent: 297
+              msgReceived: 300
+              msgSent: 301
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 8
@@ -21924,8 +21958,8 @@ duts:
             192.168.255.3:
               asn: '65101'
               inMsgQueue: 0
-              msgReceived: 392
-              msgSent: 429
+              msgReceived: 397
+              msgSent: 433
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 45
@@ -21936,8 +21970,8 @@ duts:
             192.168.255.4:
               asn: '65101'
               inMsgQueue: 0
-              msgReceived: 397
-              msgSent: 432
+              msgReceived: 402
+              msgSent: 437
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 45
@@ -21948,8 +21982,8 @@ duts:
             192.168.255.5:
               asn: '65102'
               inMsgQueue: 0
-              msgReceived: 399
-              msgSent: 460
+              msgReceived: 404
+              msgSent: 465
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 45
@@ -21960,8 +21994,8 @@ duts:
             192.168.255.6:
               asn: '65102'
               inMsgQueue: 0
-              msgReceived: 396
-              msgSent: 429
+              msgReceived: 401
+              msgSent: 434
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 45
@@ -22061,7 +22095,7 @@ duts:
       tablesDeletes: 0
       tablesDrops: 0
       tablesInserts: 11
-      tablesLastChangeTime: 1585737307.6426144
+      tablesLastChangeTime: 1585737307.6426153
   DC1-SPINE2:
     "show version":
       architecture: i386
@@ -22070,13 +22104,13 @@ duts:
       internalBuildId: 2c34e816-9aa7-4c63-9a32-05140aec7dbd
       internalVersion: 4.22.0F-12170486.4220F
       isIntlVersion: false
-      memFree: 1134092
+      memFree: 1134320
       memTotal: 2014584
       mfgName: ''
       modelName: vEOS
       serialNumber: ''
       systemMacAddress: 0c:1d:c0:5f:61:3b
-      uptime: 14893.22
+      uptime: 15139.06
       version: 4.22.0F
     "show processes top once":
       cpuInfo:
@@ -22091,18 +22125,18 @@ duts:
           user: 5.9
       memInfo:
         physicalMem:
-          memBuffer: 189528
-          memFree: 48984
+          memBuffer: 189536
+          memFree: 48804
           memTotal: 2014584
-          memUsed: 1965600
+          memUsed: 1965780
         swapMem:
-          memBuffer: 1011424
+          memBuffer: 1011472
           memFree: 0
           memTotal: 0
           memUsed: 0
       processes:
         '1':
-          activeTime: 1321
+          activeTime: 1330
           cmd: systemd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -22232,7 +22266,7 @@ duts:
           userName: root
           virtMem: '0'
         '17':
-          activeTime: 48
+          activeTime: 49
           cmd: khungtaskd2
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -22245,9 +22279,9 @@ duts:
           userName: root
           virtMem: '0'
         '17346':
-          activeTime: 119
+          activeTime: 157
           cmd: kworker/0:3
-          cpuPct: 0.0
+          cpuPct: 2.2
           cpuPctType: '{:.1f}'
           memPct: 0.0
           niceValue: 0
@@ -22297,7 +22331,7 @@ duts:
           userName: root
           virtMem: '7664'
         '18588':
-          activeTime: 94
+          activeTime: 104
           cmd: kworker/0:1
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -22323,9 +22357,9 @@ duts:
           userName: root
           virtMem: '0'
         '19773':
-          activeTime: 61
+          activeTime: 74
           cmd: kworker/0:2
-          cpuPct: 2.5
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 0.0
           niceValue: 0
@@ -22361,21 +22395,8 @@ duts:
           status: S
           userName: root
           virtMem: '0'
-        '20855':
-          activeTime: 16
-          cmd: top
-          cpuPct: 36.8
-          cpuPctType: '{:.1f}'
-          memPct: 0.4
-          niceValue: 0
-          priority: '20'
-          residentMem: '8340'
-          sharedMem: '7156'
-          status: R
-          userName: ansible
-          virtMem: '18012'
         '2094':
-          activeTime: 45
+          activeTime: 47
           cmd: ProcMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -22388,7 +22409,7 @@ duts:
           userName: root
           virtMem: '4264'
         '2095':
-          activeTime: 14
+          activeTime: 15
           cmd: crond
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -22440,7 +22461,7 @@ duts:
           userName: root
           virtMem: '6060'
         '2104':
-          activeTime: 73
+          activeTime: 75
           cmd: dbus-daemon
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -22452,6 +22473,32 @@ duts:
           status: S
           userName: dbus
           virtMem: '17848'
+        '21044':
+          activeTime: 41
+          cmd: kworker/0:0
+          cpuPct: 0.0
+          cpuPctType: '{:.1f}'
+          memPct: 0.0
+          niceValue: 0
+          priority: '20'
+          residentMem: '0'
+          sharedMem: '0'
+          status: S
+          userName: root
+          virtMem: '0'
+        '21682':
+          activeTime: 16
+          cmd: top
+          cpuPct: 30.5
+          cpuPctType: '{:.1f}'
+          memPct: 0.4
+          niceValue: 0
+          priority: '20'
+          residentMem: '8176'
+          sharedMem: '6996'
+          status: R
+          userName: ansible
+          virtMem: '18012'
         '22':
           activeTime: 0
           cmd: kintegrityd
@@ -22635,7 +22682,7 @@ duts:
           userName: root
           virtMem: 466m
         '2877':
-          activeTime: 4407
+          activeTime: 4478
           cmd: ProcMgr-worker
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -22726,7 +22773,7 @@ duts:
           userName: root
           virtMem: '4464'
         '3':
-          activeTime: 5382
+          activeTime: 5475
           cmd: ksoftirqd/0
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -22752,7 +22799,7 @@ duts:
           userName: root
           virtMem: '0'
         '3013':
-          activeTime: 624
+          activeTime: 633
           cmd: EosOomAdjust
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -22791,7 +22838,7 @@ duts:
           userName: root
           virtMem: '4300'
         '3074':
-          activeTime: 167
+          activeTime: 169
           cmd: SlabMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -22804,7 +22851,7 @@ duts:
           userName: root
           virtMem: '4268'
         '3075':
-          activeTime: 3642
+          activeTime: 3679
           cmd: Sysdb
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -22843,7 +22890,7 @@ duts:
           userName: root
           virtMem: 470m
         '3118':
-          activeTime: 9504
+          activeTime: 9565
           cmd: ConfigAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -22856,7 +22903,7 @@ duts:
           userName: root
           virtMem: 751m
         '3130':
-          activeTime: 174
+          activeTime: 175
           cmd: Fru
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -22869,7 +22916,7 @@ duts:
           userName: root
           virtMem: 480m
         '3135':
-          activeTime: 383
+          activeTime: 385
           cmd: Launcher
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -22908,9 +22955,9 @@ duts:
           userName: root
           virtMem: '0'
         '3344':
-          activeTime: 34583
+          activeTime: 35163
           cmd: TerminAttr
-          cpuPct: 4.9
+          cpuPct: 2.2
           cpuPctType: '{:.1f}'
           memPct: 4.5
           niceValue: 0
@@ -22960,7 +23007,7 @@ duts:
           userName: root
           virtMem: 459m
         '3423':
-          activeTime: 626
+          activeTime: 636
           cmd: Lldp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -22999,7 +23046,7 @@ duts:
           userName: root
           virtMem: 459m
         '3427':
-          activeTime: 97
+          activeTime: 98
           cmd: McastCommon
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23051,7 +23098,7 @@ duts:
           userName: root
           virtMem: '4460'
         '3432':
-          activeTime: 118
+          activeTime: 119
           cmd: PortSec
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23077,7 +23124,7 @@ duts:
           userName: root
           virtMem: 459m
         '3434':
-          activeTime: 112
+          activeTime: 113
           cmd: Bfd
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23116,7 +23163,7 @@ duts:
           userName: root
           virtMem: 459m
         '3438':
-          activeTime: 320
+          activeTime: 324
           cmd: Lag
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23129,9 +23176,9 @@ duts:
           userName: root
           virtMem: 463m
         '3441':
-          activeTime: 17183
+          activeTime: 17455
           cmd: SuperServer
-          cpuPct: 0.0
+          cpuPct: 2.2
           cpuPctType: '{:.1f}'
           memPct: 6.3
           niceValue: 0
@@ -23168,7 +23215,7 @@ duts:
           userName: root
           virtMem: 459m
         '3450':
-          activeTime: 123
+          activeTime: 126
           cmd: Ira
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23207,7 +23254,7 @@ duts:
           userName: root
           virtMem: 459m
         '3455':
-          activeTime: 193
+          activeTime: 195
           cmd: LedPolicy
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23246,7 +23293,7 @@ duts:
           userName: root
           virtMem: 459m
         '3461':
-          activeTime: 384
+          activeTime: 388
           cmd: EventMgr
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23259,7 +23306,7 @@ duts:
           userName: root
           virtMem: 466m
         '3462':
-          activeTime: 218
+          activeTime: 222
           cmd: CapiApp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23298,7 +23345,7 @@ duts:
           userName: root
           virtMem: 459m
         '3467':
-          activeTime: 596
+          activeTime: 605
           cmd: StpTxRx
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23376,7 +23423,7 @@ duts:
           userName: root
           virtMem: 459m
         '3476':
-          activeTime: 3225
+          activeTime: 3267
           cmd: AgentMonitor
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23415,7 +23462,7 @@ duts:
           userName: root
           virtMem: 459m
         '3481':
-          activeTime: 142
+          activeTime: 144
           cmd: Tunnel
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23428,9 +23475,9 @@ duts:
           userName: root
           virtMem: 466m
         '3482':
-          activeTime: 3253
+          activeTime: 3305
           cmd: PhyEthtool
-          cpuPct: 2.5
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 4.6
           niceValue: 0
@@ -23441,9 +23488,9 @@ duts:
           userName: root
           virtMem: 471m
         '3485':
-          activeTime: 336
+          activeTime: 354
           cmd: Aaa
-          cpuPct: 0.0
+          cpuPct: 4.4
           cpuPctType: '{:.1f}'
           memPct: 4.5
           niceValue: 0
@@ -23480,7 +23527,7 @@ duts:
           userName: root
           virtMem: 459m
         '3492':
-          activeTime: 101
+          activeTime: 102
           cmd: StpTopology
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23519,7 +23566,7 @@ duts:
           userName: root
           virtMem: 459m
         '3498':
-          activeTime: 852
+          activeTime: 866
           cmd: Acl
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23571,7 +23618,7 @@ duts:
           userName: root
           virtMem: 459m
         '3506':
-          activeTime: 236
+          activeTime: 240
           cmd: Stp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23610,7 +23657,7 @@ duts:
           userName: root
           virtMem: 459m
         '3523':
-          activeTime: 88
+          activeTime: 89
           cmd: KernelNetworkIn
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23662,9 +23709,9 @@ duts:
           userName: root
           virtMem: 462m
         '3535':
-          activeTime: 34868
+          activeTime: 35431
           cmd: Etba
-          cpuPct: 2.5
+          cpuPct: 0.0
           cpuPctType: '{:.1f}'
           memPct: 7.3
           niceValue: 0
@@ -23701,7 +23748,7 @@ duts:
           userName: root
           virtMem: 459m
         '3566':
-          activeTime: 99
+          activeTime: 100
           cmd: LacpTxAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23740,7 +23787,7 @@ duts:
           userName: root
           virtMem: 459m
         '3593':
-          activeTime: 204
+          activeTime: 207
           cmd: Arp
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23792,7 +23839,7 @@ duts:
           userName: root
           virtMem: 459m
         '3624':
-          activeTime: 113
+          activeTime: 114
           cmd: KernelFib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23883,7 +23930,7 @@ duts:
           userName: root
           virtMem: '4460'
         '3654':
-          activeTime: 90
+          activeTime: 92
           cmd: Thermostat
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23909,7 +23956,7 @@ duts:
           userName: root
           virtMem: 459m
         '3660':
-          activeTime: 118
+          activeTime: 120
           cmd: L2Rib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23948,7 +23995,7 @@ duts:
           userName: root
           virtMem: 459m
         '3669':
-          activeTime: 81
+          activeTime: 83
           cmd: TopoAgent
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -23987,7 +24034,7 @@ duts:
           userName: root
           virtMem: 459m
         '3679':
-          activeTime: 73
+          activeTime: 74
           cmd: PowerFuse
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -24065,7 +24112,7 @@ duts:
           userName: root
           virtMem: 459m
         '3703':
-          activeTime: 153
+          activeTime: 155
           cmd: Ebra
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -24104,7 +24151,7 @@ duts:
           userName: root
           virtMem: 459m
         '3719':
-          activeTime: 74
+          activeTime: 75
           cmd: ReloadCauseAgen
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -24156,7 +24203,7 @@ duts:
           userName: root
           virtMem: 460m
         '3733':
-          activeTime: 144
+          activeTime: 146
           cmd: IgmpSnooping
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -24195,7 +24242,7 @@ duts:
           userName: root
           virtMem: 459m
         '3763':
-          activeTime: 113
+          activeTime: 115
           cmd: StaticRoute
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -24234,7 +24281,7 @@ duts:
           userName: root
           virtMem: 459m
         '3784':
-          activeTime: 355
+          activeTime: 359
           cmd: IpRib
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -24273,7 +24320,7 @@ duts:
           userName: root
           virtMem: 459m
         '3797':
-          activeTime: 108
+          activeTime: 109
           cmd: ConnectedRoute
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -24325,7 +24372,7 @@ duts:
           userName: root
           virtMem: 471m
         '3812':
-          activeTime: 91
+          activeTime: 92
           cmd: EvpnrtrEncap
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -24338,7 +24385,7 @@ duts:
           userName: root
           virtMem: 468m
         '3817':
-          activeTime: 942
+          activeTime: 954
           cmd: Bgp-main
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -24390,7 +24437,7 @@ duts:
           userName: root
           virtMem: '11636'
         '4259':
-          activeTime: 88
+          activeTime: 93
           cmd: nginx
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -24806,7 +24853,7 @@ duts:
           userName: root
           virtMem: '0'
         '7':
-          activeTime: 277
+          activeTime: 281
           cmd: rcu_preempt
           cpuPct: 0.0
           cpuPctType: '{:.1f}'
@@ -24872,17 +24919,17 @@ duts:
           virtMem: '0'
       threadsStateInfo:
         run: 1
-        sleep: 212
+        sleep: 213
         stop: 0
-        total: 213
+        total: 214
         zombie: 0
       timeInfo:
-        currentTime: 1585752065.113295
+        currentTime: 1585752310.973019
         loadAvg:
         - 0.1
-        - 0.16
+        - 0.19
         - 0.18
-        upTime: 14893.72
+        upTime: 15139.58
         users: 0
     "show port-channel summary":
       numberOfAggregators: 0
@@ -24896,8 +24943,8 @@ duts:
             172.31.255.11:
               asn: '65102'
               inMsgQueue: 0
-              msgReceived: 298
-              msgSent: 293
+              msgReceived: 303
+              msgSent: 298
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 8
@@ -24908,8 +24955,8 @@ duts:
             172.31.255.15:
               asn: '65102'
               inMsgQueue: 0
-              msgReceived: 292
-              msgSent: 289
+              msgReceived: 297
+              msgSent: 293
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 8
@@ -24920,8 +24967,8 @@ duts:
             172.31.255.3:
               asn: '65101'
               inMsgQueue: 0
-              msgReceived: 296
-              msgSent: 292
+              msgReceived: 301
+              msgSent: 296
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 8
@@ -24932,8 +24979,8 @@ duts:
             172.31.255.7:
               asn: '65101'
               inMsgQueue: 0
-              msgReceived: 294
-              msgSent: 293
+              msgReceived: 298
+              msgSent: 298
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 8
@@ -24951,8 +24998,8 @@ duts:
             192.168.255.3:
               asn: '65101'
               inMsgQueue: 0
-              msgReceived: 418
-              msgSent: 461
+              msgReceived: 423
+              msgSent: 465
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 45
@@ -24963,8 +25010,8 @@ duts:
             192.168.255.4:
               asn: '65101'
               inMsgQueue: 0
-              msgReceived: 387
-              msgSent: 433
+              msgReceived: 391
+              msgSent: 438
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 45
@@ -24975,8 +25022,8 @@ duts:
             192.168.255.5:
               asn: '65102'
               inMsgQueue: 0
-              msgReceived: 396
-              msgSent: 430
+              msgReceived: 400
+              msgSent: 435
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 45
@@ -24987,8 +25034,8 @@ duts:
             192.168.255.6:
               asn: '65102'
               inMsgQueue: 0
-              msgReceived: 377
-              msgSent: 428
+              msgReceived: 382
+              msgSent: 433
               outMsgQueue: 0
               peerState: Established
               prefixAccepted: 45
@@ -25088,6 +25135,6 @@ duts:
       tablesDeletes: 0
       tablesDrops: 0
       tablesInserts: 11
-      tablesLastChangeTime: 1585737319.3790631
+      tablesLastChangeTime: 1585737319.3790636
 
 topology_csv_file: ./documentation/DC1_FABRIC/DC1_FABRIC-topology.csv

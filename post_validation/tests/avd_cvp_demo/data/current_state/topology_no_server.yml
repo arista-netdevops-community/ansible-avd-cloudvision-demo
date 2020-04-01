@@ -1,4 +1,7 @@
 DC1-L2LEAF1A:
+  Ethernet1:
+    neighbor_hostname: DC1-LEAF1A
+    neighbor_port_name: Ethernet5
   Ethernet2:
     neighbor_hostname: DC1-LEAF1B
     neighbor_port_name: Ethernet5
@@ -22,6 +25,9 @@ DC1-LEAF1A:
   Ethernet4:
     neighbor_hostname: DC1-LEAF1B
     neighbor_port_name: Ethernet4
+  Ethernet5:
+    neighbor_hostname: DC1-L2LEAF1A
+    neighbor_port_name: Ethernet1
 DC1-LEAF1B:
   Ethernet1:
     neighbor_hostname: DC1-SPINE1
