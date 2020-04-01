@@ -2,5 +2,5 @@
     "python.linting.flake8Enabled": false,
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
-    "python.pythonPath": "~/.venv/arista-ansible/bin/python"
+    "python.pythonPath": "venv/bin/python"
 }

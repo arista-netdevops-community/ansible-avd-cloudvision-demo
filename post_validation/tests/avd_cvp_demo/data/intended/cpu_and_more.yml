@@ -1,13 +1,3 @@
-DC1-BL1A:
-  cpuInfo:
-    idle:
-      __comparison_mode: ge
-      __ref_value: 90
-DC1-BL1B:
-  cpuInfo:
-    idle:
-      __comparison_mode: ge
-      __ref_value: 90
 DC1-L2LEAF1A:
   cpuInfo:
     idle:
@@ -18,12 +8,12 @@ DC1-L2LEAF2A:
     idle:
       __comparison_mode: ge
       __ref_value: 90
-DC1-L2LEAF2B:
+DC1-LEAF1A:
   cpuInfo:
     idle:
       __comparison_mode: ge
       __ref_value: 90
-DC1-LEAF1A:
+DC1-LEAF1B:
   cpuInfo:
     idle:
       __comparison_mode: ge
@@ -44,26 +34,6 @@ DC1-SPINE1:
       __comparison_mode: ge
       __ref_value: 90
 DC1-SPINE2:
-  cpuInfo:
-    idle:
-      __comparison_mode: ge
-      __ref_value: 90
-DC1-SPINE3:
-  cpuInfo:
-    idle:
-      __comparison_mode: ge
-      __ref_value: 90
-DC1-SPINE4:
-  cpuInfo:
-    idle:
-      __comparison_mode: ge
-      __ref_value: 90
-DC1-SVC3A:
-  cpuInfo:
-    idle:
-      __comparison_mode: ge
-      __ref_value: 90
-DC1-SVC3B:
   cpuInfo:
     idle:
       __comparison_mode: ge

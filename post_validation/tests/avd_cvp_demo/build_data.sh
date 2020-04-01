@@ -14,12 +14,11 @@ CURRENT_DATA_DIR=${BASH_SCRIPT_DIRECTORY}/data/current_state
 CDD=${CURRENT_DATA_DIR}  # short name
 
 AVD_PYMOD=${POST_VALIDATION_REPOSITORY_DIRECTORY}/netdiff/env/avd  # AVD Python modules
-PATH_TO_AVD=${AVD_CVP_DEMO_DIRECTORY}/ansible-avd  # path to AVD test case data
 # data structures required to build AVD data
-DUT_STATE_YAML=${PATH_TO_AVD}/post_validation/state_outputs/duts_state.yaml
-DUT_STATE_JSON=${PATH_TO_AVD}/post_validation/state_outputs/duts_state.json
+DUT_STATE_YAML=${AVD_CVP_DEMO_DIRECTORY}/post_validation/state_outputs/duts_state.yaml
+DUT_STATE_JSON=${AVD_CVP_DEMO_DIRECTORY}/post_validation/state_outputs/duts_state.json
 TOPOLOGY_DOCUMENT=${AVD_CVP_DEMO_DIRECTORY}/documentation/DC1_FABRIC/DC1_FABRIC-topology.csv
-STRUCTURED_CONFIGS_DIR=${PATH_TO_AVD}/intended/structured_configs
+STRUCTURED_CONFIGS_DIR=${AVD_CVP_DEMO_DIRECTORY}/intended/structured_configs
 
 export PYTHONPATH=${POST_VALIDATION_REPOSITORY_DIRECTORY}  # for Python to find modules
 export INTENDED_DATA_DIR  # used by some python modules
@@ -64,8 +63,8 @@ export PATH="$( echo $PATH:$POST_VALIDATION_REPOSITORY_DIRECTORY )"
 echo "-------- 3. Run Tests -----------------"
 echo
 echo "3.1 Run Ward tests."
-cd ${TESTS_DIRECTORY}/avd/ward
+cd ${TESTS_DIRECTORY}/avd_cvp_demo/ward
 ward
 # echo "3.1 Run PyTest tests."
-# cd ${TESTS_DIRECTORY}/avd/pytest
+# cd ${TESTS_DIRECTORY}/avd_cvp_demo/pytest
 # pytest -vv --html=pytest_report.html > /dev/null 2>&1
