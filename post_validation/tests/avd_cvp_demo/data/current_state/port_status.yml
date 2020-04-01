@@ -36,9 +36,9 @@ DC1-LEAF1A:
       ports:
         Ethernet5:
           lacpMisconfig:
-            status: bundled
-          lagMember: true
-          linkDown: false
+            status: negotiation
+          lagMember: false
+          linkDown: true
           suspended: false
 DC1-LEAF1B:
   portChannels:
