@@ -6,7 +6,7 @@
 
 | Management Interface | description | VRF | IP Address | Gateway |
 | -------------------- | ----------- | --- | ---------- | ------- |
-| Management1 | oob_management | MGMT | 10.255.0.14/24 | 10.255.0.1 |
+| Management1 | oob_management | MGMT | 10.255.0.14/24 | 10.255.0.3 |
 
 ### Management Interfaces Device Configuration
 
@@ -80,15 +80,13 @@ VRF: MGMT
 
 | Node | Primary |
 | ---- | ------- |
-| 0.fr.pool.ntp.org | True |
-| 1.fr.pool.ntp.org | - |
+| 10.255.0.3 | True |
 
 ### NTP Device Configuration
 
 ```eos
 ntp local-interface vrf MGMT Management1
-ntp server vrf MGMT 0.fr.pool.ntp.org prefer
-ntp server vrf MGMT 1.fr.pool.ntp.org
+ntp server vrf MGMT 10.255.0.3 prefer
 !
 ```
 
@@ -707,12 +705,12 @@ ip address virtual source-nat vrf Tenant_A_OP_Zone address 10.255.1.4
 
 | VRF | Destination Prefix | Fowarding Address / Interface |
 | --- | ------------------ | ----------------------------- |
-| MGMT | 0.0.0.0/0 | 10.255.0.1 |
+| MGMT | 0.0.0.0/0 | 10.255.0.3 |
 
 ### Static Routes Device Configuration
 
 ```eos
-ip route vrf MGMT 0.0.0.0/0 10.255.0.1
+ip route vrf MGMT 0.0.0.0/0 10.255.0.3
 !
 ```
 

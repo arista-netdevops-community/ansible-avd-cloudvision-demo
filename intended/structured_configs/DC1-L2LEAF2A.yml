@@ -61,8 +61,7 @@ ntp_server:
     vrf: MGMT
     interface: Management1
   nodes:
-    - 0.fr.pool.ntp.org
-    - 1.fr.pool.ntp.org
+    - 10.255.0.3
 
 ### Redundancy ###
 redundancy:
@@ -167,7 +166,7 @@ management_interfaces:
     description: oob_management
     vrf: MGMT
     ip_address: 10.255.0.18/24
-    gateway: 10.255.0.1
+    gateway: 10.255.0.3
 
 ### VLAN Interfaces ###
 vlan_interfaces:
@@ -182,7 +181,7 @@ mac_address_table:
 static_routes:
   - vrf: MGMT
     destination_address_prefix: 0.0.0.0/0
-    gateway: 10.255.0.1
+    gateway: 10.255.0.3
 
 
 ### Queue Monitor Streaming ###
