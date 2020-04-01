@@ -7,3 +7,5 @@
 
 *.retry
 ansible-*
+
+venv/
