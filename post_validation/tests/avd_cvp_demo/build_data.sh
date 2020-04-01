@@ -7,18 +7,18 @@ set -o errexit  # exit script if statement returns non-true value, same as set -
 BASH_SCRIPT_DIRECTORY="$( cd "$(dirname "$0")" ; pwd -P )"
 TESTS_DIRECTORY=$(dirname "${BASH_SCRIPT_DIRECTORY}")
 POST_VALIDATION_REPOSITORY_DIRECTORY=$(dirname "${TESTS_DIRECTORY}")
-NETDEVOPS_EXAMPLES_REPOSITORY_DIRECTORY=$(dirname "${POST_VALIDATION_REPOSITORY_DIRECTORY}")
+AVD_CVP_DEMO_DIRECTORY=$(dirname "${POST_VALIDATION_REPOSITORY_DIRECTORY}")
 INTENDED_DATA_DIR=${BASH_SCRIPT_DIRECTORY}/data/intended
 IDD=${INTENDED_DATA_DIR}  # short name
 CURRENT_DATA_DIR=${BASH_SCRIPT_DIRECTORY}/data/current_state
 CDD=${CURRENT_DATA_DIR}  # short name
 
 AVD_PYMOD=${POST_VALIDATION_REPOSITORY_DIRECTORY}/netdiff/env/avd  # AVD Python modules
-PATH_TO_AVD=${NETDEVOPS_EXAMPLES_REPOSITORY_DIRECTORY}/ansible/avd-evpn-l3ls-1  # path to AVD test case data
+PATH_TO_AVD=${AVD_CVP_DEMO_DIRECTORY}/ansible-avd  # path to AVD test case data
 # data structures required to build AVD data
 DUT_STATE_YAML=${PATH_TO_AVD}/post_validation/state_outputs/duts_state.yaml
 DUT_STATE_JSON=${PATH_TO_AVD}/post_validation/state_outputs/duts_state.json
-TOPOLOGY_DOCUMENT=${PATH_TO_AVD}/documentation/DC1_FABRIC/DC1_FABRIC-topology.csv
+TOPOLOGY_DOCUMENT=${AVD_CVP_DEMO_DIRECTORY}/documentation/DC1_FABRIC/DC1_FABRIC-topology.csv
 STRUCTURED_CONFIGS_DIR=${PATH_TO_AVD}/intended/structured_configs
 
 export PYTHONPATH=${POST_VALIDATION_REPOSITORY_DIRECTORY}  # for Python to find modules
