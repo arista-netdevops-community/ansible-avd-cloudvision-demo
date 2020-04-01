@@ -80,13 +80,15 @@ VRF: MGMT
 
 | Node | Primary |
 | ---- | ------- |
-| 10.255.0.3 | True |
+| 0.fr.pool.ntp.org | True |
+| 1.fr.pool.ntp.org | - |
 
 ### NTP Device Configuration
 
 ```eos
 ntp local-interface vrf MGMT Management1
-ntp server vrf MGMT 10.255.0.3 prefer
+ntp server vrf MGMT 0.fr.pool.ntp.org prefer
+ntp server vrf MGMT 1.fr.pool.ntp.org
 !
 ```
 

@@ -68,7 +68,8 @@ ntp_server:
     vrf: MGMT
     interface: Management1
   nodes:
-    - 10.255.0.3
+    - 0.fr.pool.ntp.org
+    - 1.fr.pool.ntp.org
 
 ### Redundancy ###
 redundancy:
