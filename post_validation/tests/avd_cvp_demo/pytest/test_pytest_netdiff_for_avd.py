@@ -41,11 +41,6 @@ def test_can_assert_true():
     # before any test verify if PyTest is working and can assert True
     assert True
 
-@pytest.mark.parametrize("filename", ['topology.yml'])
-def test_if_topology_is_correct(filename):
-    current_data_aka_left, intended_data_aka_right = netdiff.process.test_data.for_yaml_diff(filename)
-    assert current_data_aka_left == intended_data_aka_right
-
 @pytest.mark.parametrize("filename", ['topology_no_server.yml'])
 def test_if_topology_is_correct_without_servers(filename):
     current_data_aka_left, intended_data_aka_right = netdiff.process.test_data.for_yaml_diff(filename)

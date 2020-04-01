@@ -5,9 +5,6 @@ DC1-L2LEAF1A:
   Ethernet2:
     neighbor_hostname: DC1-LEAF1B
     neighbor_port_name: Ethernet5
-  Management1:
-    neighbor_hostname: DC1-SPINE2
-    neighbor_port_name: Management1
 DC1-L2LEAF2A:
   Ethernet1:
     neighbor_hostname: DC1-LEAF2A
@@ -15,9 +12,6 @@ DC1-L2LEAF2A:
   Ethernet2:
     neighbor_hostname: DC1-LEAF2B
     neighbor_port_name: Ethernet5
-  Management1:
-    neighbor_hostname: DC1-SPINE2
-    neighbor_port_name: Management1
 DC1-LEAF1A:
   Ethernet1:
     neighbor_hostname: DC1-SPINE1
@@ -34,9 +28,6 @@ DC1-LEAF1A:
   Ethernet5:
     neighbor_hostname: DC1-L2LEAF1A
     neighbor_port_name: Ethernet1
-  Management1:
-    neighbor_hostname: DC1-SPINE2
-    neighbor_port_name: Management1
 DC1-LEAF1B:
   Ethernet1:
     neighbor_hostname: DC1-SPINE1
@@ -53,9 +44,6 @@ DC1-LEAF1B:
   Ethernet5:
     neighbor_hostname: DC1-L2LEAF1A
     neighbor_port_name: Ethernet2
-  Management1:
-    neighbor_hostname: DC1-SPINE2
-    neighbor_port_name: Management1
 DC1-LEAF2A:
   Ethernet1:
     neighbor_hostname: DC1-SPINE1
@@ -72,9 +60,6 @@ DC1-LEAF2A:
   Ethernet5:
     neighbor_hostname: DC1-L2LEAF2A
     neighbor_port_name: Ethernet1
-  Management1:
-    neighbor_hostname: DC1-SPINE2
-    neighbor_port_name: Management1
 DC1-LEAF2B:
   Ethernet1:
     neighbor_hostname: DC1-SPINE1
@@ -91,9 +76,6 @@ DC1-LEAF2B:
   Ethernet5:
     neighbor_hostname: DC1-L2LEAF2A
     neighbor_port_name: Ethernet2
-  Management1:
-    neighbor_hostname: DC1-SPINE2
-    neighbor_port_name: Management1
 DC1-SPINE1:
   Ethernet1:
     neighbor_hostname: DC1-LEAF1A
@@ -107,9 +89,6 @@ DC1-SPINE1:
   Ethernet4:
     neighbor_hostname: DC1-LEAF2B
     neighbor_port_name: Ethernet1
-  Management1:
-    neighbor_hostname: DC1-SPINE2
-    neighbor_port_name: Management1
 DC1-SPINE2:
   Ethernet1:
     neighbor_hostname: DC1-LEAF1A
@@ -123,6 +102,3 @@ DC1-SPINE2:
   Ethernet4:
     neighbor_hostname: DC1-LEAF2B
     neighbor_port_name: Ethernet2
-  Management1:
-    neighbor_hostname: DC1-L2LEAF2A
-    neighbor_port_name: Management1
