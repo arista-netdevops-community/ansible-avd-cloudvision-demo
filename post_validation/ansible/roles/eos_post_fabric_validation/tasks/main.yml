@@ -26,17 +26,3 @@
   tags:
     - fabric_validation
     - config
-
-- name: translate data models
-  shell:
-    cmd: "./translate_data.py"
-    chdir: "post_validation/"
-  delegate_to: localhost
-  run_once: True
-
-- name: Validate EVPN
-  shell:
-    cmd: "pytest -vv test_network_with_pytest.py --html ./results/post_validation.html"
-    chdir: "post_validation/"
-  delegate_to: localhost
-  run_once: True
