@@ -78,3 +78,7 @@ install-requirements: ## Install python requirements
 # .PHONY: reset-docker
 # reset-docker: ## Run ansible playbook to reset all devices.
 # 	docker run -it --rm -v $(PWD):/project $(DOCKER_NAME):latest ansible-playbook dc1-fabric-reset-cvp.yml
+
+.PHONY: webdoc
+webdoc: ## Build documentation to publish static content
+	mkdocs build -f mkdocs.yml
