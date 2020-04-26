@@ -7,10 +7,10 @@
     - arista.avd
     - arista.cvp
   tasks:
-    - name: 'reset local folders for output'
-      tags: [build, generate]
-      import_role:
-        name: arista.avd.build_output_folders
+    # - name: 'reset local folders for output'
+    #   tags: [build, generate]
+    #   import_role:
+    #     name: arista.avd.build_output_folders
     - name: 'create cvp structure config folder: {{documentation_dir_name}}'
       tags: [build, generate]
       file:
@@ -26,6 +26,11 @@
       tags: [build, generate]
       import_role:
         name: eos_cli_config_gen
+    - name: 'Generate documentation with mkdocs'
+      tags: [build, generate]
+      import_role:
+        name: publish-documentation
+      run_once: True
 
 - name: Configuration deployment with CVP
   hosts: cv_server

@@ -6,6 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - name: 'Setup Python 3 on runner'
+        uses: actions/setup-python@v1.2.0
+        with:
+          python-version: '3.x'
       - name: 'Install Python dependencies'
         run: make install-requirements
       - name: 'Install collections'
@@ -31,3 +35,11 @@ jobs:
         with:
           name: intended-files
           path: intended/
+      - name: 'Build mkdocs content to site folder'
+        run: |
+            make webdoc
+      - name: 'Deploy last version to gh-pages'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./site
