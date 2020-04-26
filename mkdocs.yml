@@ -18,13 +18,13 @@ repo_url: https://github.com/aristanetworks/ansible-cvp
 use_directory_urls: true
 nav:
   - Fabric overview:
-    - IPAM: DC1_FABRIC/DC1_FABRIC.md
+      - IPAM: DC1_FABRIC/DC1_FABRIC.md
   - Devices documentation:
-    - DC1-SPINE1: devices/DC1-SPINE1.md
-    - DC1-SPINE2: devices/DC1-SPINE2.md
-    - DC1-LEAF1A: devices/DC1-LEAF1A.md
-    - DC1-LEAF1B: devices/DC1-LEAF1B.md
-    - DC1-LEAF2A: devices/DC1-LEAF2A.md
-    - DC1-LEAF2B: devices/DC1-LEAF2B.md
-    - DC1-L2LEAF1A: devices/DC1-L2LEAF1A.md
-    - DC1-L2LEAF2A: devices/DC1-L2LEAF2A.md
+      - DC1-SPINE1: devices/DC1-SPINE1.md
+      - DC1-SPINE2: devices/DC1-SPINE2.md
+      - DC1-LEAF1A: devices/DC1-LEAF1A.md
+      - DC1-LEAF1B: devices/DC1-LEAF1B.md
+      - DC1-LEAF2A: devices/DC1-LEAF2A.md
+      - DC1-LEAF2B: devices/DC1-LEAF2B.md
+      - DC1-L2LEAF1A: devices/DC1-L2LEAF1A.md
+      - DC1-L2LEAF2A: devices/DC1-L2LEAF2A.md

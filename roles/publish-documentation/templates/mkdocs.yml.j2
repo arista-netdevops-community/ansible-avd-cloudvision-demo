@@ -18,8 +18,8 @@ repo_url: https://github.com/aristanetworks/ansible-cvp
 use_directory_urls: true
 nav:
   - Fabric overview:
-    - IPAM: DC1_FABRIC/{{ fabric_name | upper}}.md
+      - IPAM: DC1_FABRIC/{{ fabric_name | upper}}.md
   - Devices documentation:
 {% for device in groups[fabric_name] %}
-    - {{ device }}: devices/{{ device }}.md
+      - {{ device }}: devices/{{ device }}.md
 {% endfor %}
