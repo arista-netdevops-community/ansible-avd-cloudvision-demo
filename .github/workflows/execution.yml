@@ -31,3 +31,11 @@ jobs:
         with:
           name: intended-files
           path: intended/
+      - name: 'Build mkdocs content to site folder'
+        run: |
+            make webdoc
+      - name: 'Deploy last version to gh-pages'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./site
