@@ -6,6 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - name: 'Setup Python 3 on runner'
+        uses: actions/setup-python@v1.2.0
+        with:
+          python-version: '3.x'
       - name: 'Install Python dependencies'
         run: make install-requirements
       - name: 'Install collections'
