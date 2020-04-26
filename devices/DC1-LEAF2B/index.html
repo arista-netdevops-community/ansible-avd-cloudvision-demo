@@ -1,0 +1,2429 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Arista Ansible Team">
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>DC1-LEAF2B - Arista AVD Fabric Documentation.</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Arista AVD Fabric Documentation.</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Fabric overview <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../DC1_FABRIC/DC1_FABRIC/" class="dropdown-item">IPAM</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Devices documentation <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../DC1-SPINE1/" class="dropdown-item">DC1-SPINE1</a>
+</li>
+                                    
+<li>
+    <a href="../DC1-SPINE2/" class="dropdown-item">DC1-SPINE2</a>
+</li>
+                                    
+<li>
+    <a href="../DC1-L2LEAF1A/" class="dropdown-item">DC1-L2LEAF1A</a>
+</li>
+                                    
+<li>
+    <a href="../DC1-L2LEAF2A/" class="dropdown-item">DC1-L2LEAF2A</a>
+</li>
+                                    
+<li>
+    <a href="../DC1-LEAF1A/" class="dropdown-item">DC1-LEAF1A</a>
+</li>
+                                    
+<li>
+    <a href="../DC1-LEAF1B/" class="dropdown-item">DC1-LEAF1B</a>
+</li>
+                                    
+<li>
+    <a href="../DC1-LEAF2A/" class="dropdown-item">DC1-LEAF2A</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">DC1-LEAF2B</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../DC1-LEAF2A/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/aristanetworks/ansible-cvp/edit/master/docs/devices/DC1-LEAF2B.md" class="nav-link">Edit on Github</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#dc1-leaf2b" class="nav-link">DC1-LEAF2B</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#management-interfaces" class="nav-link">Management Interfaces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#hardware-counters" class="nav-link">Hardware Counters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#terminattr-daemon" class="nav-link">TerminAttr Daemon</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#internal-vlan-allocation-policy" class="nav-link">Internal VLAN allocation Policy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#name-servers" class="nav-link">Name Servers</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#ntp" class="nav-link">NTP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#spanning-tree" class="nav-link">Spanning Tree</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#aaa-authentication" class="nav-link">AAA Authentication</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#local-users" class="nav-link">Local Users</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#vlans" class="nav-link">VLANs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#vrf-instances" class="nav-link">VRF Instances</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#bfd-multihop-interval" class="nav-link">BFD Multihop Interval</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#port-channel-interfaces" class="nav-link">Port-Channel Interfaces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#ethernet-interfaces" class="nav-link">Ethernet Interfaces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#loopback-interfaces" class="nav-link">Loopback Interfaces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#vlan-interfaces" class="nav-link">VLAN Interfaces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#vxlan-interface" class="nav-link">VXLAN Interface</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#virtual-router-mac-address-virtual-source-nat" class="nav-link">Virtual Router MAC Address &amp; Virtual Source NAT</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#static-routes" class="nav-link">Static Routes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#ip-routing" class="nav-link">IP Routing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#prefix-lists" class="nav-link">Prefix Lists</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#mlag" class="nav-link">MLAG</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#route-maps" class="nav-link">Route Maps</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#peer-filters" class="nav-link">Peer Filters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#router-bgp" class="nav-link">Router BGP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="dc1-leaf2b">DC1-LEAF2B</h1>
+<h2 id="management-interfaces">Management Interfaces</h2>
+<h3 id="management-interfaces-summary">Management Interfaces Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Management Interface</th>
+<th>description</th>
+<th>VRF</th>
+<th>IP Address</th>
+<th>Gateway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Management1</td>
+<td>oob_management</td>
+<td>MGMT</td>
+<td>10.255.0.16/24</td>
+<td>10.255.0.1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="management-interfaces-device-configuration">Management Interfaces Device Configuration</h3>
+<pre><code class="eos">interface Management1
+   description oob_management
+   vrf MGMT
+   ip address 10.255.0.16/24
+!
+</code></pre>
+
+<h2 id="hardware-counters">Hardware Counters</h2>
+<p>No Hardware Counters defined</p>
+<h2 id="terminattr-daemon">TerminAttr Daemon</h2>
+<h3 id="terminattr-daemon-summary">TerminAttr Daemon Summary</h3>
+<table>
+<thead>
+<tr>
+<th>CV Compression</th>
+<th>Ingest gRPC URL</th>
+<th>Ingest Authentication Key</th>
+<th>Smash Excludes</th>
+<th>Ingest Exclude</th>
+<th>Ingest VRF</th>
+<th>NTP VRF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gzip</td>
+<td>10.255.0.1:9910</td>
+<td></td>
+<td>ale,flexCounter,hardware,kni,pulse,strata</td>
+<td>/Sysdb/cell/1/agent,/Sysdb/cell/2/agent</td>
+<td>MGMT</td>
+<td>MGMT</td>
+</tr>
+</tbody>
+</table>
+<h3 id="terminattr-daemon-device-configuration">TerminAttr Daemon Device Configuration</h3>
+<pre><code class="eos">daemon TerminAttr
+   exec /usr/bin/TerminAttr -ingestgrpcurl=10.255.0.1:9910 -cvcompression=gzip -ingestauth=key, -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -ingestvrf=MGMT -taillogs
+   no shutdown
+!
+</code></pre>
+
+<h2 id="internal-vlan-allocation-policy">Internal VLAN allocation Policy</h2>
+<h3 id="internal-vlan-allocation-policy-summary">Internal VLAN Allocation Policy Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Policy Allocation</th>
+<th>Range Beginning</th>
+<th>Range Ending</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ascending</td>
+<td>1006</td>
+<td>1199</td>
+</tr>
+</tbody>
+</table>
+<h3 id="internal-vlan-allocation-policy-configuration">Internal VLAN Allocation Policy Configuration</h3>
+<pre><code class="eos">vlan internal order ascending range 1006 1199
+!
+</code></pre>
+
+<h2 id="name-servers">Name Servers</h2>
+<h3 id="name-servers-summary">Name Servers Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Name Server</th>
+<th>Source VRF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.2.1</td>
+<td>MGMT</td>
+</tr>
+<tr>
+<td>8.8.8.8</td>
+<td>MGMT</td>
+</tr>
+</tbody>
+</table>
+<h3 id="name-servers-device-configuration">Name Servers Device Configuration</h3>
+<pre><code class="eos">ip name-server vrf MGMT 192.168.2.1
+ip name-server vrf MGMT 8.8.8.8
+!
+</code></pre>
+
+<h2 id="ntp">NTP</h2>
+<h3 id="ntp-summary">NTP Summary</h3>
+<p>Local Interface: Management1
+VRF: MGMT</p>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Primary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.fr.pool.ntp.org</td>
+<td>True</td>
+</tr>
+<tr>
+<td>1.fr.pool.ntp.org</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ntp-device-configuration">NTP Device Configuration</h3>
+<pre><code class="eos">ntp local-interface vrf MGMT Management1
+ntp server vrf MGMT 0.fr.pool.ntp.org prefer
+ntp server vrf MGMT 1.fr.pool.ntp.org
+!
+</code></pre>
+
+<h2 id="spanning-tree">Spanning Tree</h2>
+<h3 id="spanning-tree-summary">Spanning Tree Summary</h3>
+<p>Mode: mstp</p>
+<p><strong>MSTP Instance and Priority</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Instance</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>4096</td>
+</tr>
+</tbody>
+</table>
+<h3 id="spanning-tree-device-configuration">Spanning Tree Device Configuration</h3>
+<pre><code class="eos">spanning-tree mode mstp
+no spanning-tree vlan-id 4094
+spanning-tree mst 0 priority 4096
+!
+</code></pre>
+
+<h2 id="aaa-authentication">AAA Authentication</h2>
+<p>AAA Not Configured</p>
+<h2 id="local-users">Local Users</h2>
+<h3 id="local-users-summary">Local Users Summary</h3>
+<table>
+<thead>
+<tr>
+<th>User</th>
+<th>Privilege</th>
+<th>role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>admin</td>
+<td>15</td>
+<td>network-admin</td>
+</tr>
+<tr>
+<td>ansible</td>
+<td>15</td>
+<td>network-admin</td>
+</tr>
+<tr>
+<td>cvpadmin</td>
+<td>15</td>
+<td>network-admin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="local-users-device-configuration">Local Users Device Configuration</h3>
+<pre><code class="eos">username admin privilege 15 role network-admin secret sha512 $6$Df86J4/SFMDE3/1K$Hef4KstdoxNDaami37cBquTWOTplC.miMPjXVgQxMe92.e5wxlnXOLlebgPj8Fz1KO0za/RCO7ZIs4Q6Eiq1g1
+username ansible privilege 15 role network-admin secret sha512 $6$Dzu11L7yp9j3nCM9$FSptxMPyIL555OMO.ldnjDXgwZmrfMYwHSr0uznE5Qoqvd9a6UdjiFcJUhGLtvXVZR1r.A/iF5aAt50hf/EK4/
+username cvpadmin privilege 15 role network-admin secret sha512 $6$rZKcbIZ7iWGAWTUM$TCgDn1KcavS0s.OV8lacMTUkxTByfzcGlFlYUWroxYuU7M/9bIodhRO7nXGzMweUxvbk8mJmQl8Bh44cRktUj.
+!
+</code></pre>
+
+<h2 id="vlans">VLANs</h2>
+<h3 id="vlans-summary">VLANs Summary</h3>
+<table>
+<thead>
+<tr>
+<th>VLAN ID</th>
+<th>Name</th>
+<th>Trunk Groups</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>110</td>
+<td>Tenant_A_OP_Zone_1</td>
+<td>none</td>
+</tr>
+<tr>
+<td>111</td>
+<td>Tenant_A_OP_Zone_2</td>
+<td>none</td>
+</tr>
+<tr>
+<td>112</td>
+<td>Tenant_A_OP_Zone_3</td>
+<td>none</td>
+</tr>
+<tr>
+<td>120</td>
+<td>Tenant_A_WEB_Zone_1</td>
+<td>none</td>
+</tr>
+<tr>
+<td>121</td>
+<td>Tenant_A_WEBZone_2</td>
+<td>none</td>
+</tr>
+<tr>
+<td>130</td>
+<td>Tenant_A_APP_Zone_1</td>
+<td>none</td>
+</tr>
+<tr>
+<td>131</td>
+<td>Tenant_A_APP_Zone_2</td>
+<td>none</td>
+</tr>
+<tr>
+<td>140</td>
+<td>Tenant_A_DB_BZone_1</td>
+<td>none</td>
+</tr>
+<tr>
+<td>141</td>
+<td>Tenant_A_DB_Zone_2</td>
+<td>none</td>
+</tr>
+<tr>
+<td>150</td>
+<td>Tenant_A_WAN_Zone_1</td>
+<td>none</td>
+</tr>
+<tr>
+<td>160</td>
+<td>Tenant_A_VMOTION</td>
+<td>none</td>
+</tr>
+<tr>
+<td>161</td>
+<td>Tenant_A_NFS</td>
+<td>none</td>
+</tr>
+<tr>
+<td>210</td>
+<td>Tenant_B_OP_Zone_1</td>
+<td>none</td>
+</tr>
+<tr>
+<td>211</td>
+<td>Tenant_B_OP_Zone_2</td>
+<td>none</td>
+</tr>
+<tr>
+<td>250</td>
+<td>Tenant_B_WAN_Zone_1</td>
+<td>none</td>
+</tr>
+<tr>
+<td>310</td>
+<td>Tenant_C_OP_Zone_1</td>
+<td>none</td>
+</tr>
+<tr>
+<td>311</td>
+<td>Tenant_C_OP_Zone_2</td>
+<td>none</td>
+</tr>
+<tr>
+<td>350</td>
+<td>Tenant_C_WAN_Zone_1</td>
+<td>none</td>
+</tr>
+<tr>
+<td>3009</td>
+<td>MLAG_iBGP_Tenant_A_OP_Zone</td>
+<td>LEAF_PEER_L3</td>
+</tr>
+<tr>
+<td>3010</td>
+<td>MLAG_iBGP_Tenant_A_WEB_Zone</td>
+<td>LEAF_PEER_L3</td>
+</tr>
+<tr>
+<td>3011</td>
+<td>MLAG_iBGP_Tenant_A_APP_Zone</td>
+<td>LEAF_PEER_L3</td>
+</tr>
+<tr>
+<td>3012</td>
+<td>MLAG_iBGP_Tenant_A_DB_Zone</td>
+<td>LEAF_PEER_L3</td>
+</tr>
+<tr>
+<td>3013</td>
+<td>MLAG_iBGP_Tenant_A_WAN_Zone</td>
+<td>LEAF_PEER_L3</td>
+</tr>
+<tr>
+<td>3019</td>
+<td>MLAG_iBGP_Tenant_B_OP_Zone</td>
+<td>LEAF_PEER_L3</td>
+</tr>
+<tr>
+<td>3020</td>
+<td>MLAG_iBGP_Tenant_B_WAN_Zone</td>
+<td>LEAF_PEER_L3</td>
+</tr>
+<tr>
+<td>3029</td>
+<td>MLAG_iBGP_Tenant_C_OP_Zone</td>
+<td>LEAF_PEER_L3</td>
+</tr>
+<tr>
+<td>3030</td>
+<td>MLAG_iBGP_Tenant_C_WAN_Zone</td>
+<td>LEAF_PEER_L3</td>
+</tr>
+<tr>
+<td>4093</td>
+<td>LEAF_PEER_L3</td>
+<td>LEAF_PEER_L3</td>
+</tr>
+<tr>
+<td>4094</td>
+<td>MLAG_PEER</td>
+<td>MLAG</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vlans-device-configuration">VLANs Device Configuration</h3>
+<pre><code class="eos">vlan 110
+   name Tenant_A_OP_Zone_1
+!
+vlan 111
+   name Tenant_A_OP_Zone_2
+!
+vlan 112
+   name Tenant_A_OP_Zone_3
+!
+vlan 120
+   name Tenant_A_WEB_Zone_1
+!
+vlan 121
+   name Tenant_A_WEBZone_2
+!
+vlan 130
+   name Tenant_A_APP_Zone_1
+!
+vlan 131
+   name Tenant_A_APP_Zone_2
+!
+vlan 140
+   name Tenant_A_DB_BZone_1
+!
+vlan 141
+   name Tenant_A_DB_Zone_2
+!
+vlan 150
+   name Tenant_A_WAN_Zone_1
+!
+vlan 160
+   name Tenant_A_VMOTION
+!
+vlan 161
+   name Tenant_A_NFS
+!
+vlan 210
+   name Tenant_B_OP_Zone_1
+!
+vlan 211
+   name Tenant_B_OP_Zone_2
+!
+vlan 250
+   name Tenant_B_WAN_Zone_1
+!
+vlan 310
+   name Tenant_C_OP_Zone_1
+!
+vlan 311
+   name Tenant_C_OP_Zone_2
+!
+vlan 350
+   name Tenant_C_WAN_Zone_1
+!
+vlan 3009
+   name MLAG_iBGP_Tenant_A_OP_Zone
+   trunk group LEAF_PEER_L3
+!
+vlan 3010
+   name MLAG_iBGP_Tenant_A_WEB_Zone
+   trunk group LEAF_PEER_L3
+!
+vlan 3011
+   name MLAG_iBGP_Tenant_A_APP_Zone
+   trunk group LEAF_PEER_L3
+!
+vlan 3012
+   name MLAG_iBGP_Tenant_A_DB_Zone
+   trunk group LEAF_PEER_L3
+!
+vlan 3013
+   name MLAG_iBGP_Tenant_A_WAN_Zone
+   trunk group LEAF_PEER_L3
+!
+vlan 3019
+   name MLAG_iBGP_Tenant_B_OP_Zone
+   trunk group LEAF_PEER_L3
+!
+vlan 3020
+   name MLAG_iBGP_Tenant_B_WAN_Zone
+   trunk group LEAF_PEER_L3
+!
+vlan 3029
+   name MLAG_iBGP_Tenant_C_OP_Zone
+   trunk group LEAF_PEER_L3
+!
+vlan 3030
+   name MLAG_iBGP_Tenant_C_WAN_Zone
+   trunk group LEAF_PEER_L3
+!
+vlan 4093
+   name LEAF_PEER_L3
+   trunk group LEAF_PEER_L3
+!
+vlan 4094
+   name MLAG_PEER
+   trunk group MLAG
+!
+</code></pre>
+
+<h2 id="vrf-instances">VRF Instances</h2>
+<h3 id="vrf-instances-summary">VRF Instances Summary</h3>
+<table>
+<thead>
+<tr>
+<th>VRF Name</th>
+<th>IP Routing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MGMT</td>
+<td>disabled</td>
+</tr>
+<tr>
+<td>Tenant_A_APP_Zone</td>
+<td>enabled</td>
+</tr>
+<tr>
+<td>Tenant_A_DB_Zone</td>
+<td>enabled</td>
+</tr>
+<tr>
+<td>Tenant_A_OP_Zone</td>
+<td>enabled</td>
+</tr>
+<tr>
+<td>Tenant_A_WAN_Zone</td>
+<td>enabled</td>
+</tr>
+<tr>
+<td>Tenant_A_WEB_Zone</td>
+<td>enabled</td>
+</tr>
+<tr>
+<td>Tenant_B_OP_Zone</td>
+<td>enabled</td>
+</tr>
+<tr>
+<td>Tenant_B_WAN_Zone</td>
+<td>enabled</td>
+</tr>
+<tr>
+<td>Tenant_C_OP_Zone</td>
+<td>enabled</td>
+</tr>
+<tr>
+<td>Tenant_C_WAN_Zone</td>
+<td>enabled</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vrf-instances-device-configuration">VRF Instances Device Configuration</h3>
+<pre><code class="eos">vrf instance MGMT
+!
+vrf instance Tenant_A_APP_Zone
+!
+vrf instance Tenant_A_DB_Zone
+!
+vrf instance Tenant_A_OP_Zone
+!
+vrf instance Tenant_A_WAN_Zone
+!
+vrf instance Tenant_A_WEB_Zone
+!
+vrf instance Tenant_B_OP_Zone
+!
+vrf instance Tenant_B_WAN_Zone
+!
+vrf instance Tenant_C_OP_Zone
+!
+vrf instance Tenant_C_WAN_Zone
+!
+</code></pre>
+
+<h2 id="bfd-multihop-interval">BFD Multihop Interval</h2>
+<h3 id="bfd-multihop-summary">BFD Multihop Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Interval</th>
+<th>Minimum RX</th>
+<th>Multiplier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1200</td>
+<td>1200</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bfd-multihop-device-configuration">BFD Multihop Device Configuration</h3>
+<pre><code class="eos">bfd multihop interval 1200 min_rx 1200 multiplier 3
+!
+</code></pre>
+
+<h2 id="port-channel-interfaces">Port-Channel Interfaces</h2>
+<h3 id="port-channel-interfaces-summary">Port-Channel Interfaces Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Description</th>
+<th>MTU</th>
+<th>Type</th>
+<th>Mode</th>
+<th>Allowed VLANs (trunk)</th>
+<th>Trunk Group</th>
+<th>MLAG ID</th>
+<th>VRF</th>
+<th>IP Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Port-Channel3</td>
+<td>MLAG_PEER_DC1-LEAF2A_Po3</td>
+<td>1500</td>
+<td>switched</td>
+<td>trunk</td>
+<td>2-4094</td>
+<td>LEAF_PEER_L3<br> MLAG</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Port-Channel5</td>
+<td>DC1_L2LEAF2_Po1</td>
+<td>1500</td>
+<td>switched</td>
+<td>trunk</td>
+<td>110-112,120-121,130-131</td>
+<td>-</td>
+<td>5</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="port-channel-interfaces-device-configuration">Port-Channel Interfaces Device Configuration</h3>
+<pre><code class="eos">interface Port-Channel3
+   description MLAG_PEER_DC1-LEAF2A_Po3
+   switchport trunk allowed vlan 2-4094
+   switchport mode trunk
+   switchport trunk group LEAF_PEER_L3
+   switchport trunk group MLAG
+!
+interface Port-Channel5
+   description DC1_L2LEAF2_Po1
+   switchport trunk allowed vlan 110-112,120-121,130-131
+   switchport mode trunk
+   mlag 5
+!
+</code></pre>
+
+<h2 id="ethernet-interfaces">Ethernet Interfaces</h2>
+<h3 id="ethernet-interfaces-summary">Ethernet Interfaces Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Description</th>
+<th>MTU</th>
+<th>Type</th>
+<th>Mode</th>
+<th>Allowed VLANs (Trunk)</th>
+<th>Trunk Group</th>
+<th>VRF</th>
+<th>IP Address</th>
+<th>Channel-Group ID</th>
+<th>Channel-Group Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ethernet1</td>
+<td>P2P_LINK_TO_DC1-SPINE1_Ethernet4</td>
+<td>1500</td>
+<td>routed</td>
+<td>access</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>172.31.255.13/31</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Ethernet2</td>
+<td>P2P_LINK_TO_DC1-SPINE2_Ethernet4</td>
+<td>1500</td>
+<td>routed</td>
+<td>access</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>172.31.255.15/31</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Ethernet3</td>
+<td>MLAG_PEER_DC1-LEAF2A_Ethernet3</td>
+<td>*1500</td>
+<td>*switched</td>
+<td>*trunk</td>
+<td>*2-4094</td>
+<td><em>LEAF_PEER_L3<br> </em>MLAG</td>
+<td>-</td>
+<td>-</td>
+<td>3</td>
+<td>active</td>
+</tr>
+<tr>
+<td>Ethernet4</td>
+<td>MLAG_PEER_DC1-LEAF2A_Ethernet4</td>
+<td>*1500</td>
+<td>*switched</td>
+<td>*trunk</td>
+<td>*2-4094</td>
+<td><em>LEAF_PEER_L3<br> </em>MLAG</td>
+<td>-</td>
+<td>-</td>
+<td>3</td>
+<td>active</td>
+</tr>
+<tr>
+<td>Ethernet5</td>
+<td>DC1-L2LEAF2A_Ethernet2</td>
+<td>*1500</td>
+<td>*switched</td>
+<td>*trunk</td>
+<td>*110-112,120-121,130-131</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>5</td>
+<td>active</td>
+</tr>
+</tbody>
+</table>
+<p>*Inherited from Port-Channel Interface</p>
+<h3 id="ethernet-interfaces-device-configuration">Ethernet Interfaces Device Configuration</h3>
+<pre><code class="eos">interface Ethernet1
+   description P2P_LINK_TO_DC1-SPINE1_Ethernet4
+   no switchport
+   ip address 172.31.255.13/31
+!
+interface Ethernet2
+   description P2P_LINK_TO_DC1-SPINE2_Ethernet4
+   no switchport
+   ip address 172.31.255.15/31
+!
+interface Ethernet3
+   description MLAG_PEER_DC1-LEAF2A_Ethernet3
+   channel-group 3 mode active
+!
+interface Ethernet4
+   description MLAG_PEER_DC1-LEAF2A_Ethernet4
+   channel-group 3 mode active
+!
+interface Ethernet5
+   description DC1-L2LEAF2A_Ethernet2
+   channel-group 5 mode active
+!
+</code></pre>
+
+<h2 id="loopback-interfaces">Loopback Interfaces</h2>
+<h3 id="loopback-interfaces-summary">Loopback Interfaces Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Description</th>
+<th>VRF</th>
+<th>IP Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Loopback0</td>
+<td>EVPN_Overlay_Peering</td>
+<td>Global Routing Table</td>
+<td>192.168.255.6/32</td>
+</tr>
+<tr>
+<td>Loopback1</td>
+<td>VTEP_VXLAN_Tunnel_Source</td>
+<td>Global Routing Table</td>
+<td>192.168.254.5/32</td>
+</tr>
+<tr>
+<td>Loopback100</td>
+<td>Tenant_A_OP_Zone_VTEP_DIAGNOSTICS</td>
+<td>Tenant_A_OP_Zone</td>
+<td>10.255.1.6/32</td>
+</tr>
+</tbody>
+</table>
+<h3 id="loopback-interfaces-device-configuration">Loopback Interfaces Device Configuration</h3>
+<pre><code class="eos">interface Loopback0
+   description EVPN_Overlay_Peering
+   ip address 192.168.255.6/32
+!
+interface Loopback1
+   description VTEP_VXLAN_Tunnel_Source
+   ip address 192.168.254.5/32
+!
+interface Loopback100
+   description Tenant_A_OP_Zone_VTEP_DIAGNOSTICS
+   vrf Tenant_A_OP_Zone
+   ip address 10.255.1.6/32
+!
+</code></pre>
+
+<h2 id="vlan-interfaces">VLAN Interfaces</h2>
+<h3 id="vlan-interfaces-summary">VLAN Interfaces Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Description</th>
+<th>VRF</th>
+<th>IP Address</th>
+<th>Virtual</th>
+<th>IP Address Secondary</th>
+<th>Virtual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vlan110</td>
+<td>Tenant_A_OP_Zone_1</td>
+<td>Tenant_A_OP_Zone</td>
+<td>10.1.10.1/24</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan111</td>
+<td>Tenant_A_OP_Zone_2</td>
+<td>Tenant_A_OP_Zone</td>
+<td>10.1.11.1/24</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan112</td>
+<td>Tenant_A_OP_Zone_3</td>
+<td>Tenant_A_OP_Zone</td>
+<td>10.1.12.1/24</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan120</td>
+<td>Tenant_A_WEB_Zone_1</td>
+<td>Tenant_A_WEB_Zone</td>
+<td>10.1.20.1/24</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan121</td>
+<td>Tenant_A_WEBZone_2</td>
+<td>Tenant_A_WEB_Zone</td>
+<td>10.1.21.1/24</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan130</td>
+<td>Tenant_A_APP_Zone_1</td>
+<td>Tenant_A_APP_Zone</td>
+<td>10.1.30.1/24</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan131</td>
+<td>Tenant_A_APP_Zone_2</td>
+<td>Tenant_A_APP_Zone</td>
+<td>10.1.31.1/24</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan140</td>
+<td>Tenant_A_DB_BZone_1</td>
+<td>Tenant_A_DB_Zone</td>
+<td>10.1.40.1/24</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan141</td>
+<td>Tenant_A_DB_Zone_2</td>
+<td>Tenant_A_DB_Zone</td>
+<td>10.1.41.1/24</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan150</td>
+<td>Tenant_A_WAN_Zone_1</td>
+<td>Tenant_A_WAN_Zone</td>
+<td>10.1.40.1/24</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan210</td>
+<td>Tenant_B_OP_Zone_1</td>
+<td>Tenant_B_OP_Zone</td>
+<td>10.2.10.1/24</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan211</td>
+<td>Tenant_B_OP_Zone_2</td>
+<td>Tenant_B_OP_Zone</td>
+<td>10.2.11.1/24</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan250</td>
+<td>Tenant_B_WAN_Zone_1</td>
+<td>Tenant_B_WAN_Zone</td>
+<td>10.2.50.1/24</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan310</td>
+<td>Tenant_C_OP_Zone_1</td>
+<td>Tenant_C_OP_Zone</td>
+<td>10.3.10.1/24</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan311</td>
+<td>Tenant_C_OP_Zone_2</td>
+<td>Tenant_C_OP_Zone</td>
+<td>10.3.11.1/24</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan350</td>
+<td>Tenant_C_WAN_Zone_1</td>
+<td>Tenant_C_WAN_Zone</td>
+<td>10.3.50.1/24</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan3009</td>
+<td>MLAG_PEER_L3_iBGP: vrf Tenant_A_OP_Zone</td>
+<td>Tenant_A_OP_Zone</td>
+<td>10.255.251.5/31</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan3010</td>
+<td>MLAG_PEER_L3_iBGP: vrf Tenant_A_WEB_Zone</td>
+<td>Tenant_A_WEB_Zone</td>
+<td>10.255.251.5/31</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan3011</td>
+<td>MLAG_PEER_L3_iBGP: vrf Tenant_A_APP_Zone</td>
+<td>Tenant_A_APP_Zone</td>
+<td>10.255.251.5/31</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan3012</td>
+<td>MLAG_PEER_L3_iBGP: vrf Tenant_A_DB_Zone</td>
+<td>Tenant_A_DB_Zone</td>
+<td>10.255.251.5/31</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan3013</td>
+<td>MLAG_PEER_L3_iBGP: vrf Tenant_A_WAN_Zone</td>
+<td>Tenant_A_WAN_Zone</td>
+<td>10.255.251.5/31</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan3019</td>
+<td>MLAG_PEER_L3_iBGP: vrf Tenant_B_OP_Zone</td>
+<td>Tenant_B_OP_Zone</td>
+<td>10.255.251.5/31</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan3020</td>
+<td>MLAG_PEER_L3_iBGP: vrf Tenant_B_WAN_Zone</td>
+<td>Tenant_B_WAN_Zone</td>
+<td>10.255.251.5/31</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan3029</td>
+<td>MLAG_PEER_L3_iBGP: vrf Tenant_C_OP_Zone</td>
+<td>Tenant_C_OP_Zone</td>
+<td>10.255.251.5/31</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan3030</td>
+<td>MLAG_PEER_L3_iBGP: vrf Tenant_C_WAN_Zone</td>
+<td>Tenant_C_WAN_Zone</td>
+<td>10.255.251.5/31</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan4093</td>
+<td>MLAG_PEER_L3_PEERING</td>
+<td>Global Routing Table</td>
+<td>10.255.251.5/31</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Vlan4094</td>
+<td>MLAG_PEER</td>
+<td>Global Routing Table</td>
+<td>10.255.252.5/31</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vlan-interfaces-device-configuration">VLAN Interfaces Device Configuration</h3>
+<pre><code class="eos">interface Vlan110
+   description Tenant_A_OP_Zone_1
+   vrf Tenant_A_OP_Zone
+   ip address virtual 10.1.10.1/24
+!
+interface Vlan111
+   description Tenant_A_OP_Zone_2
+   vrf Tenant_A_OP_Zone
+   ip address virtual 10.1.11.1/24
+!
+interface Vlan112
+   description Tenant_A_OP_Zone_3
+   vrf Tenant_A_OP_Zone
+   ip address virtual 10.1.12.1/24
+!
+interface Vlan120
+   description Tenant_A_WEB_Zone_1
+   vrf Tenant_A_WEB_Zone
+   ip address virtual 10.1.20.1/24
+!
+interface Vlan121
+   description Tenant_A_WEBZone_2
+   vrf Tenant_A_WEB_Zone
+   ip address virtual 10.1.21.1/24
+!
+interface Vlan130
+   description Tenant_A_APP_Zone_1
+   vrf Tenant_A_APP_Zone
+   ip address virtual 10.1.30.1/24
+!
+interface Vlan131
+   description Tenant_A_APP_Zone_2
+   vrf Tenant_A_APP_Zone
+   ip address virtual 10.1.31.1/24
+!
+interface Vlan140
+   description Tenant_A_DB_BZone_1
+   vrf Tenant_A_DB_Zone
+   ip address virtual 10.1.40.1/24
+!
+interface Vlan141
+   description Tenant_A_DB_Zone_2
+   vrf Tenant_A_DB_Zone
+   ip address virtual 10.1.41.1/24
+!
+interface Vlan150
+   description Tenant_A_WAN_Zone_1
+   vrf Tenant_A_WAN_Zone
+   ip address virtual 10.1.40.1/24
+!
+interface Vlan210
+   description Tenant_B_OP_Zone_1
+   vrf Tenant_B_OP_Zone
+   ip address virtual 10.2.10.1/24
+!
+interface Vlan211
+   description Tenant_B_OP_Zone_2
+   vrf Tenant_B_OP_Zone
+   ip address virtual 10.2.11.1/24
+!
+interface Vlan250
+   description Tenant_B_WAN_Zone_1
+   vrf Tenant_B_WAN_Zone
+   ip address virtual 10.2.50.1/24
+!
+interface Vlan310
+   description Tenant_C_OP_Zone_1
+   vrf Tenant_C_OP_Zone
+   ip address virtual 10.3.10.1/24
+!
+interface Vlan311
+   description Tenant_C_OP_Zone_2
+   vrf Tenant_C_OP_Zone
+   ip address virtual 10.3.11.1/24
+!
+interface Vlan350
+   description Tenant_C_WAN_Zone_1
+   vrf Tenant_C_WAN_Zone
+   ip address virtual 10.3.50.1/24
+!
+interface Vlan3009
+   description MLAG_PEER_L3_iBGP: vrf Tenant_A_OP_Zone
+   vrf Tenant_A_OP_Zone
+   ip address 10.255.251.5/31
+!
+interface Vlan3010
+   description MLAG_PEER_L3_iBGP: vrf Tenant_A_WEB_Zone
+   vrf Tenant_A_WEB_Zone
+   ip address 10.255.251.5/31
+!
+interface Vlan3011
+   description MLAG_PEER_L3_iBGP: vrf Tenant_A_APP_Zone
+   vrf Tenant_A_APP_Zone
+   ip address 10.255.251.5/31
+!
+interface Vlan3012
+   description MLAG_PEER_L3_iBGP: vrf Tenant_A_DB_Zone
+   vrf Tenant_A_DB_Zone
+   ip address 10.255.251.5/31
+!
+interface Vlan3013
+   description MLAG_PEER_L3_iBGP: vrf Tenant_A_WAN_Zone
+   vrf Tenant_A_WAN_Zone
+   ip address 10.255.251.5/31
+!
+interface Vlan3019
+   description MLAG_PEER_L3_iBGP: vrf Tenant_B_OP_Zone
+   vrf Tenant_B_OP_Zone
+   ip address 10.255.251.5/31
+!
+interface Vlan3020
+   description MLAG_PEER_L3_iBGP: vrf Tenant_B_WAN_Zone
+   vrf Tenant_B_WAN_Zone
+   ip address 10.255.251.5/31
+!
+interface Vlan3029
+   description MLAG_PEER_L3_iBGP: vrf Tenant_C_OP_Zone
+   vrf Tenant_C_OP_Zone
+   ip address 10.255.251.5/31
+!
+interface Vlan3030
+   description MLAG_PEER_L3_iBGP: vrf Tenant_C_WAN_Zone
+   vrf Tenant_C_WAN_Zone
+   ip address 10.255.251.5/31
+!
+interface Vlan4093
+   description MLAG_PEER_L3_PEERING
+   ip address 10.255.251.5/31
+!
+interface Vlan4094
+   description MLAG_PEER
+   no autostate
+   ip address 10.255.252.5/31
+!
+</code></pre>
+
+<h2 id="vxlan-interface">VXLAN Interface</h2>
+<h3 id="vxlan-interface-summary">VXLAN Interface Summary</h3>
+<p><strong>Source Interface:</strong> Loopback1
+<strong>UDP port:</strong> 4789</p>
+<p><strong>VLAN to VNI Mappings:</strong></p>
+<table>
+<thead>
+<tr>
+<th>VLAN</th>
+<th>VNI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>110</td>
+<td>10110</td>
+</tr>
+<tr>
+<td>111</td>
+<td>50111</td>
+</tr>
+<tr>
+<td>112</td>
+<td>50112</td>
+</tr>
+<tr>
+<td>120</td>
+<td>10120</td>
+</tr>
+<tr>
+<td>121</td>
+<td>10121</td>
+</tr>
+<tr>
+<td>130</td>
+<td>10130</td>
+</tr>
+<tr>
+<td>131</td>
+<td>10131</td>
+</tr>
+<tr>
+<td>140</td>
+<td>10140</td>
+</tr>
+<tr>
+<td>141</td>
+<td>10141</td>
+</tr>
+<tr>
+<td>150</td>
+<td>10150</td>
+</tr>
+<tr>
+<td>160</td>
+<td>55160</td>
+</tr>
+<tr>
+<td>161</td>
+<td>10161</td>
+</tr>
+<tr>
+<td>210</td>
+<td>20210</td>
+</tr>
+<tr>
+<td>211</td>
+<td>20211</td>
+</tr>
+<tr>
+<td>250</td>
+<td>20250</td>
+</tr>
+<tr>
+<td>310</td>
+<td>30310</td>
+</tr>
+<tr>
+<td>311</td>
+<td>30311</td>
+</tr>
+<tr>
+<td>350</td>
+<td>30350</td>
+</tr>
+</tbody>
+</table>
+<p><strong>VRF to VNI Mappings:</strong></p>
+<table>
+<thead>
+<tr>
+<th>VLAN</th>
+<th>VNI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tenant_A_APP_Zone</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Tenant_A_DB_Zone</td>
+<td>13</td>
+</tr>
+<tr>
+<td>Tenant_A_OP_Zone</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Tenant_A_WAN_Zone</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Tenant_A_WEB_Zone</td>
+<td>11</td>
+</tr>
+<tr>
+<td>Tenant_B_OP_Zone</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Tenant_B_WAN_Zone</td>
+<td>21</td>
+</tr>
+<tr>
+<td>Tenant_C_OP_Zone</td>
+<td>30</td>
+</tr>
+<tr>
+<td>Tenant_C_WAN_Zone</td>
+<td>31</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vxlan-interface-device-configuration">VXLAN Interface Device Configuration</h3>
+<pre><code class="eos">interface Vxlan1
+   vxlan source-interface Loopback1
+   vxlan virtual-router encapsulation mac-address mlag-system-id
+   vxlan udp-port 4789
+   vxlan vlan 110 vni 10110
+   vxlan vlan 111 vni 50111
+   vxlan vlan 112 vni 50112
+   vxlan vlan 120 vni 10120
+   vxlan vlan 121 vni 10121
+   vxlan vlan 130 vni 10130
+   vxlan vlan 131 vni 10131
+   vxlan vlan 140 vni 10140
+   vxlan vlan 141 vni 10141
+   vxlan vlan 150 vni 10150
+   vxlan vlan 160 vni 55160
+   vxlan vlan 161 vni 10161
+   vxlan vlan 210 vni 20210
+   vxlan vlan 211 vni 20211
+   vxlan vlan 250 vni 20250
+   vxlan vlan 310 vni 30310
+   vxlan vlan 311 vni 30311
+   vxlan vlan 350 vni 30350
+   vxlan vrf Tenant_A_APP_Zone vni 12
+   vxlan vrf Tenant_A_DB_Zone vni 13
+   vxlan vrf Tenant_A_OP_Zone vni 10
+   vxlan vrf Tenant_A_WAN_Zone vni 14
+   vxlan vrf Tenant_A_WEB_Zone vni 11
+   vxlan vrf Tenant_B_OP_Zone vni 20
+   vxlan vrf Tenant_B_WAN_Zone vni 21
+   vxlan vrf Tenant_C_OP_Zone vni 30
+   vxlan vrf Tenant_C_WAN_Zone vni 31
+!
+</code></pre>
+
+<h2 id="virtual-router-mac-address-virtual-source-nat">Virtual Router MAC Address &amp; Virtual Source NAT</h2>
+<h3 id="virtual-router-mac-address-and-virtual-source-nat-summary">Virtual Router MAC Address and Virtual Source NAT Summary</h3>
+<p><strong>Virtual Router MAC Address:</strong> 00:1c:73:00:dc:01</p>
+<h3 id="virtual-source-nat-summary">Virtual Source NAT Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Source NAT VRF</th>
+<th>Source NAT IP Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tenant_A_OP_Zone</td>
+<td>10.255.1.6</td>
+</tr>
+</tbody>
+</table>
+<h3 id="virtual-router-mac-address-device-and-virtual-source-nat-configuration">Virtual Router MAC Address Device and Virtual Source NAT Configuration</h3>
+<pre><code class="eos">ip virtual-router mac-address 00:1c:73:00:dc:01
+ip address virtual source-nat vrf Tenant_A_OP_Zone address 10.255.1.6
+!
+</code></pre>
+
+<h2 id="static-routes">Static Routes</h2>
+<h3 id="static-routes-summary">Static Routes Summary</h3>
+<table>
+<thead>
+<tr>
+<th>VRF</th>
+<th>Destination Prefix</th>
+<th>Fowarding Address / Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MGMT</td>
+<td>0.0.0.0/0</td>
+<td>10.255.0.1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="static-routes-device-configuration">Static Routes Device Configuration</h3>
+<pre><code class="eos">ip route vrf MGMT 0.0.0.0/0 10.255.0.1
+!
+</code></pre>
+
+<h2 id="ip-routing">IP Routing</h2>
+<h3 id="ip-routing-summary">IP Routing Summary</h3>
+<table>
+<thead>
+<tr>
+<th>VRF</th>
+<th>Routing Enabled</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MGMT</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Tenant_A_APP_Zone</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Tenant_A_DB_Zone</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Tenant_A_OP_Zone</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Tenant_A_WAN_Zone</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Tenant_A_WEB_Zone</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Tenant_B_OP_Zone</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Tenant_B_WAN_Zone</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Tenant_C_OP_Zone</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Tenant_C_WAN_Zone</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ip-routing-device-configuration">IP Routing Device Configuration</h3>
+<pre><code class="eos">ip routing
+no ip routing vrf MGMT
+ip routing vrf Tenant_A_APP_Zone
+ip routing vrf Tenant_A_DB_Zone
+ip routing vrf Tenant_A_OP_Zone
+ip routing vrf Tenant_A_WAN_Zone
+ip routing vrf Tenant_A_WEB_Zone
+ip routing vrf Tenant_B_OP_Zone
+ip routing vrf Tenant_B_WAN_Zone
+ip routing vrf Tenant_C_OP_Zone
+ip routing vrf Tenant_C_WAN_Zone
+!
+</code></pre>
+
+<h2 id="prefix-lists">Prefix Lists</h2>
+<h3 id="prefix-lists-summary">Prefix Lists Summary</h3>
+<p><strong>PL-LOOPBACKS-EVPN-OVERLAY:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Sequence</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>permit 192.168.255.0/24 eq 32</td>
+</tr>
+<tr>
+<td>20</td>
+<td>permit 192.168.254.0/24 eq 32</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PL-P2P-UNDERLAY:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Sequence</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>permit 172.31.255.0/24 le 31</td>
+</tr>
+<tr>
+<td>20</td>
+<td>permit 10.255.251.0/24 le 31</td>
+</tr>
+</tbody>
+</table>
+<h3 id="prefix-lists-device-configuration">Prefix Lists Device Configuration</h3>
+<pre><code class="eos">ip prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+   seq 10 permit 192.168.255.0/24 eq 32
+   seq 20 permit 192.168.254.0/24 eq 32
+!
+ip prefix-list PL-P2P-UNDERLAY
+   seq 10 permit 172.31.255.0/24 le 31
+   seq 20 permit 10.255.251.0/24 le 31
+!
+</code></pre>
+
+<h2 id="mlag">MLAG</h2>
+<h3 id="mlag-summary">MLAG Summary</h3>
+<table>
+<thead>
+<tr>
+<th>domain-id</th>
+<th>local-interface</th>
+<th>peer-address</th>
+<th>peer-link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DC1_LEAF2</td>
+<td>Vlan4094</td>
+<td>10.255.252.4</td>
+<td>Port-Channel3</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mlag-device-configuration">MLAG Device Configuration</h3>
+<pre><code class="eos">mlag configuration
+   domain-id DC1_LEAF2
+   local-interface Vlan4094
+   peer-address 10.255.252.4
+   peer-address heartbeat 10.255.0.15 vrf MGMT
+   peer-link Port-Channel3
+   dual-primary detection delay 5 action errdisable all-interfaces
+   reload-delay mlag 360
+   reload-delay non-mlag 300
+!
+</code></pre>
+
+<h2 id="route-maps">Route Maps</h2>
+<h3 id="route-maps-summary">Route Maps Summary</h3>
+<p><strong>RM-CONN-2-BGP:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Sequence</th>
+<th>Type</th>
+<th>Match</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>permit</td>
+<td>ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY</td>
+</tr>
+<tr>
+<td>20</td>
+<td>permit</td>
+<td>ip address prefix-list PL-P2P-UNDERLAY</td>
+</tr>
+</tbody>
+</table>
+<h3 id="route-maps-device-configuration">Route Maps Device Configuration</h3>
+<pre><code class="eos">route-map RM-CONN-2-BGP permit 10
+   match ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+!
+route-map RM-CONN-2-BGP permit 20
+   match ip address prefix-list PL-P2P-UNDERLAY
+!
+</code></pre>
+
+<h2 id="peer-filters">Peer Filters</h2>
+<p>No Peer Filters defined</p>
+<h2 id="router-bgp">Router BGP</h2>
+<h3 id="router-bgp-summary">Router BGP Summary</h3>
+<table>
+<thead>
+<tr>
+<th>BGP AS</th>
+<th>Router ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>65102</td>
+<td>192.168.255.6</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>BGP Tuning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no bgp default ipv4-unicast</td>
+</tr>
+<tr>
+<td>distance bgp 20 200 200</td>
+</tr>
+<tr>
+<td>graceful-restart restart-time 300</td>
+</tr>
+<tr>
+<td>graceful-restart</td>
+</tr>
+<tr>
+<td>maximum-paths 2 ecmp 2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="router-bgp-peer-groups">Router BGP Peer Groups</h3>
+<p><strong>EVPN-OVERLAY-PEERS</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Settings</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Address Family</td>
+<td>evpn</td>
+</tr>
+<tr>
+<td>remote_as</td>
+<td>65001</td>
+</tr>
+<tr>
+<td>source</td>
+<td>Loopback0</td>
+</tr>
+<tr>
+<td>bfd</td>
+<td>True</td>
+</tr>
+<tr>
+<td>ebgp multihop</td>
+<td>3</td>
+</tr>
+<tr>
+<td>send community</td>
+<td>true</td>
+</tr>
+<tr>
+<td>maximum routes</td>
+<td>0 (no limit)</td>
+</tr>
+<tr>
+<td><strong>Neighbors:</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Neighbor</th>
+<th>Remote AS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.255.1</td>
+<td>*65001</td>
+</tr>
+<tr>
+<td>192.168.255.2</td>
+<td>*65001</td>
+</tr>
+</tbody>
+</table>
+<p>*Inherited from peer group</p>
+<p><strong>IPv4-UNDERLAY-PEERS</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Settings</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Address Family</td>
+<td>ipv4</td>
+</tr>
+<tr>
+<td>remote_as</td>
+<td>65001</td>
+</tr>
+<tr>
+<td>send community</td>
+<td>true</td>
+</tr>
+<tr>
+<td>maximum routes</td>
+<td>12000</td>
+</tr>
+<tr>
+<td><strong>Neighbors:</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Neighbor</th>
+<th>Remote AS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>172.31.255.12</td>
+<td>*65001</td>
+</tr>
+<tr>
+<td>172.31.255.14</td>
+<td>*65001</td>
+</tr>
+</tbody>
+</table>
+<p>*Inherited from peer group</p>
+<p><strong>MLAG-IPv4-UNDERLAY-PEER</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Settings</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Address Family</td>
+<td>ipv4</td>
+</tr>
+<tr>
+<td>remote_as</td>
+<td>65102</td>
+</tr>
+<tr>
+<td>next-hop self</td>
+<td>True</td>
+</tr>
+<tr>
+<td>send community</td>
+<td>true</td>
+</tr>
+<tr>
+<td>maximum routes</td>
+<td>12000</td>
+</tr>
+<tr>
+<td><strong>Neighbors:</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Neighbor</th>
+<th>Remote AS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10.255.251.4</td>
+<td>*65102</td>
+</tr>
+</tbody>
+</table>
+<p>*Inherited from peer group</p>
+<h3 id="router-bgp-evpn-address-family">Router BGP EVPN Address Family</h3>
+<h4 id="router-bgp-evpn-mac-vrfs">Router BGP EVPN MAC-VRFs</h4>
+<p><strong>VLAN aware bundles:</strong></p>
+<table>
+<thead>
+<tr>
+<th>VLAN Aware Bundle</th>
+<th>Route-Distinguisher</th>
+<th>Route Target</th>
+<th>Redistribute</th>
+<th>VLANs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tenant_A_APP_Zone</td>
+<td>192.168.255.6:12</td>
+<td>both 12:12</td>
+<td>learned</td>
+<td>130-131</td>
+</tr>
+<tr>
+<td>Tenant_A_DB_Zone</td>
+<td>192.168.255.6:13</td>
+<td>both 13:13</td>
+<td>learned</td>
+<td>140-141</td>
+</tr>
+<tr>
+<td>Tenant_A_NFS</td>
+<td>192.168.255.6:10161</td>
+<td>both 10161:10161</td>
+<td>learned</td>
+<td>161</td>
+</tr>
+<tr>
+<td>Tenant_A_OP_Zone</td>
+<td>192.168.255.6:10</td>
+<td>both 10:10</td>
+<td>learned</td>
+<td>110-112</td>
+</tr>
+<tr>
+<td>Tenant_A_VMOTION</td>
+<td>192.168.255.6:55160</td>
+<td>both 55160:55160</td>
+<td>learned</td>
+<td>160</td>
+</tr>
+<tr>
+<td>Tenant_A_WAN_Zone</td>
+<td>192.168.255.6:14</td>
+<td>both 14:14</td>
+<td>learned</td>
+<td>150</td>
+</tr>
+<tr>
+<td>Tenant_A_WEB_Zone</td>
+<td>192.168.255.6:11</td>
+<td>both 11:11</td>
+<td>learned</td>
+<td>120-121</td>
+</tr>
+<tr>
+<td>Tenant_B_OP_Zone</td>
+<td>192.168.255.6:20</td>
+<td>both 20:20</td>
+<td>learned</td>
+<td>210-211</td>
+</tr>
+<tr>
+<td>Tenant_B_WAN_Zone</td>
+<td>192.168.255.6:21</td>
+<td>both 21:21</td>
+<td>learned</td>
+<td>250</td>
+</tr>
+<tr>
+<td>Tenant_C_OP_Zone</td>
+<td>192.168.255.6:30</td>
+<td>both 30:30</td>
+<td>learned</td>
+<td>310-311</td>
+</tr>
+<tr>
+<td>Tenant_C_WAN_Zone</td>
+<td>192.168.255.6:31</td>
+<td>both 31:31</td>
+<td>learned</td>
+<td>350</td>
+</tr>
+</tbody>
+</table>
+<h4 id="router-bgp-evpn-vrfs">Router BGP EVPN VRFs</h4>
+<table>
+<thead>
+<tr>
+<th>VRF</th>
+<th>Route-Distinguisher</th>
+<th>Route Target</th>
+<th>Redistribute</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tenant_A_APP_Zone</td>
+<td>192.168.255.6:12</td>
+<td>import 12:12<br> export 12:12</td>
+<td>connected</td>
+</tr>
+<tr>
+<td>Tenant_A_DB_Zone</td>
+<td>192.168.255.6:13</td>
+<td>import 13:13<br> export 13:13</td>
+<td>connected</td>
+</tr>
+<tr>
+<td>Tenant_A_OP_Zone</td>
+<td>192.168.255.6:10</td>
+<td>import 10:10<br> export 10:10</td>
+<td>connected</td>
+</tr>
+<tr>
+<td>Tenant_A_WAN_Zone</td>
+<td>192.168.255.6:14</td>
+<td>import 14:14<br> export 14:14</td>
+<td>connected</td>
+</tr>
+<tr>
+<td>Tenant_A_WEB_Zone</td>
+<td>192.168.255.6:11</td>
+<td>import 11:11<br> export 11:11</td>
+<td>connected</td>
+</tr>
+<tr>
+<td>Tenant_B_OP_Zone</td>
+<td>192.168.255.6:20</td>
+<td>import 20:20<br> export 20:20</td>
+<td>connected</td>
+</tr>
+<tr>
+<td>Tenant_B_WAN_Zone</td>
+<td>192.168.255.6:21</td>
+<td>import 21:21<br> export 21:21</td>
+<td>connected</td>
+</tr>
+<tr>
+<td>Tenant_C_OP_Zone</td>
+<td>192.168.255.6:30</td>
+<td>import 30:30<br> export 30:30</td>
+<td>connected</td>
+</tr>
+<tr>
+<td>Tenant_C_WAN_Zone</td>
+<td>192.168.255.6:31</td>
+<td>import 31:31<br> export 31:31</td>
+<td>connected</td>
+</tr>
+</tbody>
+</table>
+<h3 id="router-bgp-device-configuration">Router BGP Device Configuration</h3>
+<pre><code class="eos">router bgp 65102
+   router-id 192.168.255.6
+   no bgp default ipv4-unicast
+   distance bgp 20 200 200
+   graceful-restart restart-time 300
+   graceful-restart
+   maximum-paths 2 ecmp 2
+   neighbor EVPN-OVERLAY-PEERS peer group
+   neighbor EVPN-OVERLAY-PEERS remote-as 65001
+   neighbor EVPN-OVERLAY-PEERS update-source Loopback0
+   neighbor EVPN-OVERLAY-PEERS bfd
+   neighbor EVPN-OVERLAY-PEERS ebgp-multihop 3
+   neighbor EVPN-OVERLAY-PEERS password 7 q+VNViP5i4rVjW1cxFv2wA==
+   neighbor EVPN-OVERLAY-PEERS send-community
+   neighbor EVPN-OVERLAY-PEERS maximum-routes 0
+   neighbor IPv4-UNDERLAY-PEERS peer group
+   neighbor IPv4-UNDERLAY-PEERS remote-as 65001
+   neighbor IPv4-UNDERLAY-PEERS password 7 AQQvKeimxJu+uGQ/yYvv9w==
+   neighbor IPv4-UNDERLAY-PEERS send-community
+   neighbor IPv4-UNDERLAY-PEERS maximum-routes 12000
+   neighbor MLAG-IPv4-UNDERLAY-PEER peer group
+   neighbor MLAG-IPv4-UNDERLAY-PEER remote-as 65102
+   neighbor MLAG-IPv4-UNDERLAY-PEER next-hop-self
+   neighbor MLAG-IPv4-UNDERLAY-PEER password 7 vnEaG8gMeQf3d3cN6PktXQ==
+   neighbor MLAG-IPv4-UNDERLAY-PEER send-community
+   neighbor MLAG-IPv4-UNDERLAY-PEER maximum-routes 12000
+   neighbor 10.255.251.4 peer group MLAG-IPv4-UNDERLAY-PEER
+   neighbor 172.31.255.12 peer group IPv4-UNDERLAY-PEERS
+   neighbor 172.31.255.14 peer group IPv4-UNDERLAY-PEERS
+   neighbor 192.168.255.1 peer group EVPN-OVERLAY-PEERS
+   neighbor 192.168.255.2 peer group EVPN-OVERLAY-PEERS
+   redistribute connected route-map RM-CONN-2-BGP
+   !
+   vlan-aware-bundle Tenant_A_APP_Zone
+      rd 192.168.255.6:12
+      route-target both 12:12
+      redistribute learned
+      vlan 130-131
+   !
+   vlan-aware-bundle Tenant_A_DB_Zone
+      rd 192.168.255.6:13
+      route-target both 13:13
+      redistribute learned
+      vlan 140-141
+   !
+   vlan-aware-bundle Tenant_A_NFS
+      rd 192.168.255.6:10161
+      route-target both 10161:10161
+      redistribute learned
+      vlan 161
+   !
+   vlan-aware-bundle Tenant_A_OP_Zone
+      rd 192.168.255.6:10
+      route-target both 10:10
+      redistribute learned
+      vlan 110-112
+   !
+   vlan-aware-bundle Tenant_A_VMOTION
+      rd 192.168.255.6:55160
+      route-target both 55160:55160
+      redistribute learned
+      vlan 160
+   !
+   vlan-aware-bundle Tenant_A_WAN_Zone
+      rd 192.168.255.6:14
+      route-target both 14:14
+      redistribute learned
+      vlan 150
+   !
+   vlan-aware-bundle Tenant_A_WEB_Zone
+      rd 192.168.255.6:11
+      route-target both 11:11
+      redistribute learned
+      vlan 120-121
+   !
+   vlan-aware-bundle Tenant_B_OP_Zone
+      rd 192.168.255.6:20
+      route-target both 20:20
+      redistribute learned
+      vlan 210-211
+   !
+   vlan-aware-bundle Tenant_B_WAN_Zone
+      rd 192.168.255.6:21
+      route-target both 21:21
+      redistribute learned
+      vlan 250
+   !
+   vlan-aware-bundle Tenant_C_OP_Zone
+      rd 192.168.255.6:30
+      route-target both 30:30
+      redistribute learned
+      vlan 310-311
+   !
+   vlan-aware-bundle Tenant_C_WAN_Zone
+      rd 192.168.255.6:31
+      route-target both 31:31
+      redistribute learned
+      vlan 350
+   !
+   address-family evpn
+      neighbor EVPN-OVERLAY-PEERS activate
+      no neighbor IPv4-UNDERLAY-PEERS activate
+      no neighbor MLAG-IPv4-UNDERLAY-PEER activate
+   !
+   address-family ipv4
+      no neighbor EVPN-OVERLAY-PEERS activate
+      neighbor IPv4-UNDERLAY-PEERS activate
+      neighbor MLAG-IPv4-UNDERLAY-PEER activate
+   !
+   vrf Tenant_A_APP_Zone
+      rd 192.168.255.6:12
+      route-target import evpn 12:12
+      route-target export evpn 12:12
+      neighbor 10.255.251.4 peer group MLAG-IPv4-UNDERLAY-PEER
+      redistribute connected
+   !
+   vrf Tenant_A_DB_Zone
+      rd 192.168.255.6:13
+      route-target import evpn 13:13
+      route-target export evpn 13:13
+      neighbor 10.255.251.4 peer group MLAG-IPv4-UNDERLAY-PEER
+      redistribute connected
+   !
+   vrf Tenant_A_OP_Zone
+      rd 192.168.255.6:10
+      route-target import evpn 10:10
+      route-target export evpn 10:10
+      neighbor 10.255.251.4 peer group MLAG-IPv4-UNDERLAY-PEER
+      redistribute connected
+   !
+   vrf Tenant_A_WAN_Zone
+      rd 192.168.255.6:14
+      route-target import evpn 14:14
+      route-target export evpn 14:14
+      neighbor 10.255.251.4 peer group MLAG-IPv4-UNDERLAY-PEER
+      redistribute connected
+   !
+   vrf Tenant_A_WEB_Zone
+      rd 192.168.255.6:11
+      route-target import evpn 11:11
+      route-target export evpn 11:11
+      neighbor 10.255.251.4 peer group MLAG-IPv4-UNDERLAY-PEER
+      redistribute connected
+   !
+   vrf Tenant_B_OP_Zone
+      rd 192.168.255.6:20
+      route-target import evpn 20:20
+      route-target export evpn 20:20
+      neighbor 10.255.251.4 peer group MLAG-IPv4-UNDERLAY-PEER
+      redistribute connected
+   !
+   vrf Tenant_B_WAN_Zone
+      rd 192.168.255.6:21
+      route-target import evpn 21:21
+      route-target export evpn 21:21
+      neighbor 10.255.251.4 peer group MLAG-IPv4-UNDERLAY-PEER
+      redistribute connected
+   !
+   vrf Tenant_C_OP_Zone
+      rd 192.168.255.6:30
+      route-target import evpn 30:30
+      route-target export evpn 30:30
+      neighbor 10.255.251.4 peer group MLAG-IPv4-UNDERLAY-PEER
+      redistribute connected
+   !
+   vrf Tenant_C_WAN_Zone
+      rd 192.168.255.6:31
+      route-target import evpn 31:31
+      route-target export evpn 31:31
+      neighbor 10.255.251.4 peer group MLAG-IPv4-UNDERLAY-PEER
+      redistribute connected
+!
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Copyright &copy; 2019 - 2020 Arista Networks</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

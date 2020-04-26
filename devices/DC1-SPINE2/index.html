@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Arista Ansible Team">
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>DC1-SPINE2 - Arista AVD Fabric Documentation.</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Arista AVD Fabric Documentation.</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Fabric overview <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../DC1_FABRIC/DC1_FABRIC/" class="dropdown-item">IPAM</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Devices documentation <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../DC1-SPINE1/" class="dropdown-item">DC1-SPINE1</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">DC1-SPINE2</a>
+</li>
+                                    
+<li>
+    <a href="../DC1-L2LEAF1A/" class="dropdown-item">DC1-L2LEAF1A</a>
+</li>
+                                    
+<li>
+    <a href="../DC1-L2LEAF2A/" class="dropdown-item">DC1-L2LEAF2A</a>
+</li>
+                                    
+<li>
+    <a href="../DC1-LEAF1A/" class="dropdown-item">DC1-LEAF1A</a>
+</li>
+                                    
+<li>
+    <a href="../DC1-LEAF1B/" class="dropdown-item">DC1-LEAF1B</a>
+</li>
+                                    
+<li>
+    <a href="../DC1-LEAF2A/" class="dropdown-item">DC1-LEAF2A</a>
+</li>
+                                    
+<li>
+    <a href="../DC1-LEAF2B/" class="dropdown-item">DC1-LEAF2B</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../DC1-SPINE1/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../DC1-L2LEAF1A/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/aristanetworks/ansible-cvp/edit/master/docs/devices/DC1-SPINE2.md" class="nav-link">Edit on Github</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#dc1-spine2" class="nav-link">DC1-SPINE2</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#management-interfaces" class="nav-link">Management Interfaces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#hardware-counters" class="nav-link">Hardware Counters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#terminattr-daemon" class="nav-link">TerminAttr Daemon</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#internal-vlan-allocation-policy" class="nav-link">Internal VLAN allocation Policy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#name-servers" class="nav-link">Name Servers</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#ntp" class="nav-link">NTP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#spanning-tree" class="nav-link">Spanning Tree</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#aaa-authentication" class="nav-link">AAA Authentication</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#local-users" class="nav-link">Local Users</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#vlans" class="nav-link">VLANs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#vrf-instances" class="nav-link">VRF Instances</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#bfd-multihop-interval" class="nav-link">BFD Multihop Interval</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#port-channel-interfaces" class="nav-link">Port-Channel Interfaces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#ethernet-interfaces" class="nav-link">Ethernet Interfaces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#loopback-interfaces" class="nav-link">Loopback Interfaces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#vlan-interfaces" class="nav-link">VLAN Interfaces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#vxlan-interface" class="nav-link">VXLAN Interface</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#virtual-router-mac-address-virtual-source-nat" class="nav-link">Virtual Router MAC Address &amp; Virtual Source NAT</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#static-routes" class="nav-link">Static Routes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#ip-routing" class="nav-link">IP Routing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#prefix-lists" class="nav-link">Prefix Lists</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#mlag" class="nav-link">MLAG</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#route-maps" class="nav-link">Route Maps</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#peer-filters" class="nav-link">Peer Filters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#router-bgp" class="nav-link">Router BGP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="dc1-spine2">DC1-SPINE2</h1>
+<h2 id="management-interfaces">Management Interfaces</h2>
+<h3 id="management-interfaces-summary">Management Interfaces Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Management Interface</th>
+<th>description</th>
+<th>VRF</th>
+<th>IP Address</th>
+<th>Gateway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Management1</td>
+<td>oob_management</td>
+<td>MGMT</td>
+<td>10.255.0.12/24</td>
+<td>10.255.0.1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="management-interfaces-device-configuration">Management Interfaces Device Configuration</h3>
+<pre><code class="eos">interface Management1
+   description oob_management
+   vrf MGMT
+   ip address 10.255.0.12/24
+!
+</code></pre>
+
+<h2 id="hardware-counters">Hardware Counters</h2>
+<p>No Hardware Counters defined</p>
+<h2 id="terminattr-daemon">TerminAttr Daemon</h2>
+<h3 id="terminattr-daemon-summary">TerminAttr Daemon Summary</h3>
+<table>
+<thead>
+<tr>
+<th>CV Compression</th>
+<th>Ingest gRPC URL</th>
+<th>Ingest Authentication Key</th>
+<th>Smash Excludes</th>
+<th>Ingest Exclude</th>
+<th>Ingest VRF</th>
+<th>NTP VRF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gzip</td>
+<td>10.255.0.1:9910</td>
+<td></td>
+<td>ale,flexCounter,hardware,kni,pulse,strata</td>
+<td>/Sysdb/cell/1/agent,/Sysdb/cell/2/agent</td>
+<td>MGMT</td>
+<td>MGMT</td>
+</tr>
+</tbody>
+</table>
+<h3 id="terminattr-daemon-device-configuration">TerminAttr Daemon Device Configuration</h3>
+<pre><code class="eos">daemon TerminAttr
+   exec /usr/bin/TerminAttr -ingestgrpcurl=10.255.0.1:9910 -cvcompression=gzip -ingestauth=key, -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -ingestvrf=MGMT -taillogs
+   no shutdown
+!
+</code></pre>
+
+<h2 id="internal-vlan-allocation-policy">Internal VLAN allocation Policy</h2>
+<h3 id="internal-vlan-allocation-policy-summary">Internal VLAN Allocation Policy Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Policy Allocation</th>
+<th>Range Beginning</th>
+<th>Range Ending</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ascending</td>
+<td>1006</td>
+<td>1199</td>
+</tr>
+</tbody>
+</table>
+<h3 id="internal-vlan-allocation-policy-configuration">Internal VLAN Allocation Policy Configuration</h3>
+<pre><code class="eos">vlan internal order ascending range 1006 1199
+!
+</code></pre>
+
+<h2 id="name-servers">Name Servers</h2>
+<h3 id="name-servers-summary">Name Servers Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Name Server</th>
+<th>Source VRF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.2.1</td>
+<td>MGMT</td>
+</tr>
+<tr>
+<td>8.8.8.8</td>
+<td>MGMT</td>
+</tr>
+</tbody>
+</table>
+<h3 id="name-servers-device-configuration">Name Servers Device Configuration</h3>
+<pre><code class="eos">ip name-server vrf MGMT 192.168.2.1
+ip name-server vrf MGMT 8.8.8.8
+!
+</code></pre>
+
+<h2 id="ntp">NTP</h2>
+<h3 id="ntp-summary">NTP Summary</h3>
+<p>Local Interface: Management1
+VRF: MGMT</p>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Primary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.fr.pool.ntp.org</td>
+<td>True</td>
+</tr>
+<tr>
+<td>1.fr.pool.ntp.org</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ntp-device-configuration">NTP Device Configuration</h3>
+<pre><code class="eos">ntp local-interface vrf MGMT Management1
+ntp server vrf MGMT 0.fr.pool.ntp.org prefer
+ntp server vrf MGMT 1.fr.pool.ntp.org
+!
+</code></pre>
+
+<h2 id="spanning-tree">Spanning Tree</h2>
+<h3 id="spanning-tree-summary">Spanning Tree Summary</h3>
+<p>Mode: none</p>
+<h3 id="spanning-tree-device-configuration">Spanning Tree Device Configuration</h3>
+<pre><code class="eos">spanning-tree mode none
+!
+</code></pre>
+
+<h2 id="aaa-authentication">AAA Authentication</h2>
+<p>AAA Not Configured</p>
+<h2 id="local-users">Local Users</h2>
+<h3 id="local-users-summary">Local Users Summary</h3>
+<table>
+<thead>
+<tr>
+<th>User</th>
+<th>Privilege</th>
+<th>role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>admin</td>
+<td>15</td>
+<td>network-admin</td>
+</tr>
+<tr>
+<td>ansible</td>
+<td>15</td>
+<td>network-admin</td>
+</tr>
+<tr>
+<td>cvpadmin</td>
+<td>15</td>
+<td>network-admin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="local-users-device-configuration">Local Users Device Configuration</h3>
+<pre><code class="eos">username admin privilege 15 role network-admin secret sha512 $6$Df86J4/SFMDE3/1K$Hef4KstdoxNDaami37cBquTWOTplC.miMPjXVgQxMe92.e5wxlnXOLlebgPj8Fz1KO0za/RCO7ZIs4Q6Eiq1g1
+username ansible privilege 15 role network-admin secret sha512 $6$Dzu11L7yp9j3nCM9$FSptxMPyIL555OMO.ldnjDXgwZmrfMYwHSr0uznE5Qoqvd9a6UdjiFcJUhGLtvXVZR1r.A/iF5aAt50hf/EK4/
+username cvpadmin privilege 15 role network-admin secret sha512 $6$rZKcbIZ7iWGAWTUM$TCgDn1KcavS0s.OV8lacMTUkxTByfzcGlFlYUWroxYuU7M/9bIodhRO7nXGzMweUxvbk8mJmQl8Bh44cRktUj.
+!
+</code></pre>
+
+<h2 id="vlans">VLANs</h2>
+<p>No VLANs defined</p>
+<h2 id="vrf-instances">VRF Instances</h2>
+<h3 id="vrf-instances-summary">VRF Instances Summary</h3>
+<table>
+<thead>
+<tr>
+<th>VRF Name</th>
+<th>IP Routing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MGMT</td>
+<td>disabled</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vrf-instances-device-configuration">VRF Instances Device Configuration</h3>
+<pre><code class="eos">vrf instance MGMT
+!
+</code></pre>
+
+<h2 id="bfd-multihop-interval">BFD Multihop Interval</h2>
+<h3 id="bfd-multihop-summary">BFD Multihop Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Interval</th>
+<th>Minimum RX</th>
+<th>Multiplier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1200</td>
+<td>1200</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bfd-multihop-device-configuration">BFD Multihop Device Configuration</h3>
+<pre><code class="eos">bfd multihop interval 1200 min_rx 1200 multiplier 3
+!
+</code></pre>
+
+<h2 id="port-channel-interfaces">Port-Channel Interfaces</h2>
+<p>No Port-Channels defined</p>
+<h2 id="ethernet-interfaces">Ethernet Interfaces</h2>
+<h3 id="ethernet-interfaces-summary">Ethernet Interfaces Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Description</th>
+<th>MTU</th>
+<th>Type</th>
+<th>Mode</th>
+<th>Allowed VLANs (Trunk)</th>
+<th>Trunk Group</th>
+<th>VRF</th>
+<th>IP Address</th>
+<th>Channel-Group ID</th>
+<th>Channel-Group Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ethernet1</td>
+<td>P2P_LINK_TO_DC1-LEAF1A_Ethernet2</td>
+<td>1500</td>
+<td>routed</td>
+<td>access</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>172.31.255.2/31</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Ethernet2</td>
+<td>P2P_LINK_TO_DC1-LEAF1B_Ethernet2</td>
+<td>1500</td>
+<td>routed</td>
+<td>access</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>172.31.255.6/31</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Ethernet3</td>
+<td>P2P_LINK_TO_DC1-LEAF2A_Ethernet2</td>
+<td>1500</td>
+<td>routed</td>
+<td>access</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>172.31.255.10/31</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Ethernet4</td>
+<td>P2P_LINK_TO_DC1-LEAF2B_Ethernet2</td>
+<td>1500</td>
+<td>routed</td>
+<td>access</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>172.31.255.14/31</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>*Inherited from Port-Channel Interface</p>
+<h3 id="ethernet-interfaces-device-configuration">Ethernet Interfaces Device Configuration</h3>
+<pre><code class="eos">interface Ethernet1
+   description P2P_LINK_TO_DC1-LEAF1A_Ethernet2
+   no switchport
+   ip address 172.31.255.2/31
+!
+interface Ethernet2
+   description P2P_LINK_TO_DC1-LEAF1B_Ethernet2
+   no switchport
+   ip address 172.31.255.6/31
+!
+interface Ethernet3
+   description P2P_LINK_TO_DC1-LEAF2A_Ethernet2
+   no switchport
+   ip address 172.31.255.10/31
+!
+interface Ethernet4
+   description P2P_LINK_TO_DC1-LEAF2B_Ethernet2
+   no switchport
+   ip address 172.31.255.14/31
+!
+</code></pre>
+
+<h2 id="loopback-interfaces">Loopback Interfaces</h2>
+<h3 id="loopback-interfaces-summary">Loopback Interfaces Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Description</th>
+<th>VRF</th>
+<th>IP Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Loopback0</td>
+<td>EVPN_Overlay_Peering</td>
+<td>Global Routing Table</td>
+<td>192.168.255.2/32</td>
+</tr>
+</tbody>
+</table>
+<h3 id="loopback-interfaces-device-configuration">Loopback Interfaces Device Configuration</h3>
+<pre><code class="eos">interface Loopback0
+   description EVPN_Overlay_Peering
+   ip address 192.168.255.2/32
+!
+</code></pre>
+
+<h2 id="vlan-interfaces">VLAN Interfaces</h2>
+<p>No VLAN interfaces defined</p>
+<h2 id="vxlan-interface">VXLAN Interface</h2>
+<p>No VXLAN interface defined</p>
+<h2 id="virtual-router-mac-address-virtual-source-nat">Virtual Router MAC Address &amp; Virtual Source NAT</h2>
+<h2 id="static-routes">Static Routes</h2>
+<h3 id="static-routes-summary">Static Routes Summary</h3>
+<table>
+<thead>
+<tr>
+<th>VRF</th>
+<th>Destination Prefix</th>
+<th>Fowarding Address / Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MGMT</td>
+<td>0.0.0.0/0</td>
+<td>10.255.0.1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="static-routes-device-configuration">Static Routes Device Configuration</h3>
+<pre><code class="eos">ip route vrf MGMT 0.0.0.0/0 10.255.0.1
+!
+</code></pre>
+
+<h2 id="ip-routing">IP Routing</h2>
+<h3 id="ip-routing-summary">IP Routing Summary</h3>
+<table>
+<thead>
+<tr>
+<th>VRF</th>
+<th>Routing Enabled</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MGMT</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ip-routing-device-configuration">IP Routing Device Configuration</h3>
+<pre><code class="eos">ip routing
+no ip routing vrf MGMT
+!
+</code></pre>
+
+<h2 id="prefix-lists">Prefix Lists</h2>
+<h3 id="prefix-lists-summary">Prefix Lists Summary</h3>
+<p><strong>PL-LOOPBACKS-EVPN-OVERLAY:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Sequence</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>permit 192.168.255.0/24 le 32</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PL-P2P-UNDERLAY:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Sequence</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>permit 172.31.255.0/24 le 31</td>
+</tr>
+</tbody>
+</table>
+<h3 id="prefix-lists-device-configuration">Prefix Lists Device Configuration</h3>
+<pre><code class="eos">ip prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+   seq 10 permit 192.168.255.0/24 le 32
+!
+ip prefix-list PL-P2P-UNDERLAY
+   seq 10 permit 172.31.255.0/24 le 31
+!
+</code></pre>
+
+<h2 id="mlag">MLAG</h2>
+<p>MLAG not defined</p>
+<h2 id="route-maps">Route Maps</h2>
+<h3 id="route-maps-summary">Route Maps Summary</h3>
+<p><strong>RM-CONN-2-BGP:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Sequence</th>
+<th>Type</th>
+<th>Match</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>permit</td>
+<td>ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY</td>
+</tr>
+<tr>
+<td>20</td>
+<td>permit</td>
+<td>ip address prefix-list PL-P2P-UNDERLAY</td>
+</tr>
+</tbody>
+</table>
+<h3 id="route-maps-device-configuration">Route Maps Device Configuration</h3>
+<pre><code class="eos">route-map RM-CONN-2-BGP permit 10
+   match ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+!
+route-map RM-CONN-2-BGP permit 20
+   match ip address prefix-list PL-P2P-UNDERLAY
+!
+</code></pre>
+
+<h2 id="peer-filters">Peer Filters</h2>
+<h3 id="peer-filters-summary">Peer Filters Summary</h3>
+<p><strong>LEAF-AS-RANGE:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Sequence</th>
+<th>Match</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>as-range 65101-65132 result accept</td>
+</tr>
+</tbody>
+</table>
+<h3 id="peer-filters-device-configuration">Peer Filters Device Configuration</h3>
+<pre><code class="eos">peer-filter LEAF-AS-RANGE
+   10 match as-range 65101-65132 result accept
+!
+</code></pre>
+
+<h2 id="router-bgp">Router BGP</h2>
+<h3 id="router-bgp-summary">Router BGP Summary</h3>
+<table>
+<thead>
+<tr>
+<th>BGP AS</th>
+<th>Router ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>65001</td>
+<td>192.168.255.2</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>BGP Tuning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no bgp default ipv4-unicast</td>
+</tr>
+<tr>
+<td>distance bgp 20 200 200</td>
+</tr>
+<tr>
+<td>graceful-restart restart-time 300</td>
+</tr>
+<tr>
+<td>graceful-restart</td>
+</tr>
+<tr>
+<td>maximum-paths 2 ecmp 2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="router-bgp-peer-groups">Router BGP Peer Groups</h3>
+<p><strong>EVPN-OVERLAY-PEERS</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Settings</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Address Family</td>
+<td>evpn</td>
+</tr>
+<tr>
+<td>next-hop unchanged</td>
+<td>True</td>
+</tr>
+<tr>
+<td>source</td>
+<td>Loopback0</td>
+</tr>
+<tr>
+<td>bfd</td>
+<td>True</td>
+</tr>
+<tr>
+<td>ebgp multihop</td>
+<td>3</td>
+</tr>
+<tr>
+<td>send community</td>
+<td>true</td>
+</tr>
+<tr>
+<td>maximum routes</td>
+<td>0 (no limit)</td>
+</tr>
+<tr>
+<td><strong>Neighbors:</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Neighbor</th>
+<th>Remote AS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.255.3</td>
+<td>65101</td>
+</tr>
+<tr>
+<td>192.168.255.4</td>
+<td>65101</td>
+</tr>
+<tr>
+<td>192.168.255.5</td>
+<td>65102</td>
+</tr>
+<tr>
+<td>192.168.255.6</td>
+<td>65102</td>
+</tr>
+</tbody>
+</table>
+<p>*Inherited from peer group</p>
+<p><strong>IPv4-UNDERLAY-PEERS</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Settings</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Address Family</td>
+<td>ipv4</td>
+</tr>
+<tr>
+<td>maximum routes</td>
+<td>12000</td>
+</tr>
+<tr>
+<td><strong>Neighbors:</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Neighbor</th>
+<th>Remote AS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>172.31.255.3</td>
+<td>65101</td>
+</tr>
+<tr>
+<td>172.31.255.7</td>
+<td>65101</td>
+</tr>
+<tr>
+<td>172.31.255.11</td>
+<td>65102</td>
+</tr>
+<tr>
+<td>172.31.255.15</td>
+<td>65102</td>
+</tr>
+</tbody>
+</table>
+<p>*Inherited from peer group</p>
+<h3 id="router-bgp-evpn-address-family">Router BGP EVPN Address Family</h3>
+<h4 id="router-bgp-evpn-mac-vrfs">Router BGP EVPN MAC-VRFs</h4>
+<h4 id="router-bgp-evpn-vrfs">Router BGP EVPN VRFs</h4>
+<h3 id="router-bgp-device-configuration">Router BGP Device Configuration</h3>
+<pre><code class="eos">router bgp 65001
+   router-id 192.168.255.2
+   no bgp default ipv4-unicast
+   distance bgp 20 200 200
+   graceful-restart restart-time 300
+   graceful-restart
+   maximum-paths 2 ecmp 2
+   neighbor EVPN-OVERLAY-PEERS peer group
+   neighbor EVPN-OVERLAY-PEERS next-hop-unchanged
+   neighbor EVPN-OVERLAY-PEERS update-source Loopback0
+   neighbor EVPN-OVERLAY-PEERS bfd
+   neighbor EVPN-OVERLAY-PEERS ebgp-multihop 3
+   neighbor EVPN-OVERLAY-PEERS password 7 q+VNViP5i4rVjW1cxFv2wA==
+   neighbor EVPN-OVERLAY-PEERS send-community
+   neighbor EVPN-OVERLAY-PEERS maximum-routes 0
+   neighbor IPv4-UNDERLAY-PEERS peer group
+   neighbor IPv4-UNDERLAY-PEERS password 7 AQQvKeimxJu+uGQ/yYvv9w==
+   neighbor IPv4-UNDERLAY-PEERS maximum-routes 12000
+   neighbor 172.31.255.3 peer group IPv4-UNDERLAY-PEERS
+   neighbor 172.31.255.3 remote-as 65101
+   neighbor 172.31.255.7 peer group IPv4-UNDERLAY-PEERS
+   neighbor 172.31.255.7 remote-as 65101
+   neighbor 172.31.255.11 peer group IPv4-UNDERLAY-PEERS
+   neighbor 172.31.255.11 remote-as 65102
+   neighbor 172.31.255.15 peer group IPv4-UNDERLAY-PEERS
+   neighbor 172.31.255.15 remote-as 65102
+   neighbor 192.168.255.3 peer group EVPN-OVERLAY-PEERS
+   neighbor 192.168.255.3 remote-as 65101
+   neighbor 192.168.255.4 peer group EVPN-OVERLAY-PEERS
+   neighbor 192.168.255.4 remote-as 65101
+   neighbor 192.168.255.5 peer group EVPN-OVERLAY-PEERS
+   neighbor 192.168.255.5 remote-as 65102
+   neighbor 192.168.255.6 peer group EVPN-OVERLAY-PEERS
+   neighbor 192.168.255.6 remote-as 65102
+   redistribute connected route-map RM-CONN-2-BGP
+   !
+   address-family evpn
+      neighbor EVPN-OVERLAY-PEERS activate
+      no neighbor IPv4-UNDERLAY-PEERS activate
+   !
+   address-family ipv4
+      no neighbor EVPN-OVERLAY-PEERS activate
+      neighbor IPv4-UNDERLAY-PEERS activate
+!
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Copyright &copy; 2019 - 2020 Arista Networks</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

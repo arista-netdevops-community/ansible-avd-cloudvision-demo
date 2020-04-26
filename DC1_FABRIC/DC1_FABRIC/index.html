@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Arista Ansible Team">
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>IPAM - Arista AVD Fabric Documentation.</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Arista AVD Fabric Documentation.</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Fabric overview <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active">IPAM</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Devices documentation <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../devices/DC1-SPINE1/" class="dropdown-item">DC1-SPINE1</a>
+</li>
+                                    
+<li>
+    <a href="../../devices/DC1-SPINE2/" class="dropdown-item">DC1-SPINE2</a>
+</li>
+                                    
+<li>
+    <a href="../../devices/DC1-L2LEAF1A/" class="dropdown-item">DC1-L2LEAF1A</a>
+</li>
+                                    
+<li>
+    <a href="../../devices/DC1-L2LEAF2A/" class="dropdown-item">DC1-L2LEAF2A</a>
+</li>
+                                    
+<li>
+    <a href="../../devices/DC1-LEAF1A/" class="dropdown-item">DC1-LEAF1A</a>
+</li>
+                                    
+<li>
+    <a href="../../devices/DC1-LEAF1B/" class="dropdown-item">DC1-LEAF1B</a>
+</li>
+                                    
+<li>
+    <a href="../../devices/DC1-LEAF2A/" class="dropdown-item">DC1-LEAF2A</a>
+</li>
+                                    
+<li>
+    <a href="../../devices/DC1-LEAF2B/" class="dropdown-item">DC1-LEAF2B</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../devices/DC1-SPINE1/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/aristanetworks/ansible-cvp/edit/master/docs/DC1_FABRIC/DC1_FABRIC.md" class="nav-link">Edit on Github</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#dc1_fabric" class="nav-link">DC1_FABRIC</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#table-of-contents" class="nav-link">Table of Contents</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#fabric-switches-and-management-ip" class="nav-link">Fabric Switches and Management IP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#fabric-topology" class="nav-link">Fabric Topology</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#fabric-ip-allocation" class="nav-link">Fabric IP Allocation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="dc1_fabric">DC1_FABRIC</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#dc1fabric">DC1_FABRIC</a></li>
+<li><a href="#fabric-switches-and-management-ip">Fabric Switches and Management IP</a></li>
+<li><a href="#fabric-topology">Fabric Topology</a></li>
+<li><a href="#fabric-ip-allocation">Fabric IP Allocation</a><ul>
+<li><a href="#fabric-point-to-point-links">Fabric Point-To-Point Links</a></li>
+<li><a href="#point-to-point-links-node-allocation">Point-To-Point Links Node Allocation</a></li>
+<li><a href="#overlay-loopback-interfaces-bgp-evpn-peering">Overlay Loopback Interfaces (BGP EVPN Peering)</a></li>
+<li><a href="#loopback0-interfaces-node-allocation">Loopback0 Interfaces Node Allocation</a></li>
+<li><a href="#vtep-loopback-vxlan-tunnel-source-interfaces-leafs-only">VTEP Loopback VXLAN Tunnel Source Interfaces (Leafs Only)</a></li>
+<li><a href="#vtep-loopback-node-allocation">VTEP Loopback Node allocation</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="fabric-switches-and-management-ip">Fabric Switches and Management IP</h2>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Management IP</th>
+<th>Platform</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DC1-SPINE1</td>
+<td>10.255.0.11/24</td>
+<td>vEOS-LAB</td>
+</tr>
+<tr>
+<td>DC1-SPINE2</td>
+<td>10.255.0.12/24</td>
+<td>vEOS-LAB</td>
+</tr>
+<tr>
+<td>DC1-LEAF1A</td>
+<td>10.255.0.13/24</td>
+<td>vEOS-LAB</td>
+</tr>
+<tr>
+<td>DC1-LEAF1B</td>
+<td>10.255.0.14/24</td>
+<td>vEOS-LAB</td>
+</tr>
+<tr>
+<td>DC1-LEAF2A</td>
+<td>10.255.0.15/24</td>
+<td>vEOS-LAB</td>
+</tr>
+<tr>
+<td>DC1-LEAF2B</td>
+<td>10.255.0.16/24</td>
+<td>vEOS-LAB</td>
+</tr>
+<tr>
+<td>DC1-L2LEAF1A</td>
+<td>10.255.0.17/24</td>
+<td>vEOS-LAB</td>
+</tr>
+<tr>
+<td>DC1-L2LEAF2A</td>
+<td>10.255.0.18/24</td>
+<td>vEOS-LAB</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fabric-topology">Fabric Topology</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Leaf Node</th>
+<th>Leaf Interface</th>
+<th>Peer Node</th>
+<th>Peer Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L3 Leaf</td>
+<td>DC1-LEAF1A</td>
+<td>Ethernet1</td>
+<td>DC1-SPINE1</td>
+<td>Ethernet1</td>
+</tr>
+<tr>
+<td>L3 Leaf</td>
+<td>DC1-LEAF1A</td>
+<td>Ethernet2</td>
+<td>DC1-SPINE2</td>
+<td>Ethernet1</td>
+</tr>
+<tr>
+<td>L3 Leaf</td>
+<td>DC1-LEAF1B</td>
+<td>Ethernet1</td>
+<td>DC1-SPINE1</td>
+<td>Ethernet2</td>
+</tr>
+<tr>
+<td>L3 Leaf</td>
+<td>DC1-LEAF1B</td>
+<td>Ethernet2</td>
+<td>DC1-SPINE2</td>
+<td>Ethernet2</td>
+</tr>
+<tr>
+<td>L3 Leaf</td>
+<td>DC1-LEAF2A</td>
+<td>Ethernet1</td>
+<td>DC1-SPINE1</td>
+<td>Ethernet3</td>
+</tr>
+<tr>
+<td>L3 Leaf</td>
+<td>DC1-LEAF2A</td>
+<td>Ethernet2</td>
+<td>DC1-SPINE2</td>
+<td>Ethernet3</td>
+</tr>
+<tr>
+<td>L3 Leaf</td>
+<td>DC1-LEAF2B</td>
+<td>Ethernet1</td>
+<td>DC1-SPINE1</td>
+<td>Ethernet4</td>
+</tr>
+<tr>
+<td>L3 Leaf</td>
+<td>DC1-LEAF2B</td>
+<td>Ethernet2</td>
+<td>DC1-SPINE2</td>
+<td>Ethernet4</td>
+</tr>
+<tr>
+<td>L2 Leaf</td>
+<td>DC1-L2LEAF1A</td>
+<td>Ethernet1</td>
+<td>DC1-LEAF1A</td>
+<td>Ethernet5</td>
+</tr>
+<tr>
+<td>L2 Leaf</td>
+<td>DC1-L2LEAF1A</td>
+<td>Ethernet2</td>
+<td>DC1-LEAF1B</td>
+<td>Ethernet5</td>
+</tr>
+<tr>
+<td>L2 Leaf</td>
+<td>DC1-L2LEAF2A</td>
+<td>Ethernet1</td>
+<td>DC1-LEAF2A</td>
+<td>Ethernet5</td>
+</tr>
+<tr>
+<td>L2 Leaf</td>
+<td>DC1-L2LEAF2A</td>
+<td>Ethernet2</td>
+<td>DC1-LEAF2B</td>
+<td>Ethernet5</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fabric-ip-allocation">Fabric IP Allocation</h2>
+<h3 id="fabric-point-to-point-links">Fabric Point-To-Point Links</h3>
+<table>
+<thead>
+<tr>
+<th>P2P Summary</th>
+<th>Available Addresses</th>
+<th>Assigned addresses</th>
+<th>Assigned Address %</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>172.31.255.0/24</td>
+<td>256</td>
+<td>16</td>
+<td>6.25 %</td>
+</tr>
+</tbody>
+</table>
+<h3 id="point-to-point-links-node-allocation">Point-To-Point Links Node Allocation</h3>
+<table>
+<thead>
+<tr>
+<th>Leaf Node</th>
+<th>Leaf Interface</th>
+<th>Leaf IP Address</th>
+<th>Spine Node</th>
+<th>Spine Interface</th>
+<th>Spine IP Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DC1-LEAF1A</td>
+<td>Ethernet1</td>
+<td>172.31.255.1/31</td>
+<td>DC1-SPINE1</td>
+<td>Ethernet1</td>
+<td>172.31.255.0/31</td>
+</tr>
+<tr>
+<td>DC1-LEAF1A</td>
+<td>Ethernet2</td>
+<td>172.31.255.3/31</td>
+<td>DC1-SPINE2</td>
+<td>Ethernet1</td>
+<td>172.31.255.2/31</td>
+</tr>
+<tr>
+<td>DC1-LEAF1B</td>
+<td>Ethernet1</td>
+<td>172.31.255.5/31</td>
+<td>DC1-SPINE1</td>
+<td>Ethernet2</td>
+<td>172.31.255.4/31</td>
+</tr>
+<tr>
+<td>DC1-LEAF1B</td>
+<td>Ethernet2</td>
+<td>172.31.255.7/31</td>
+<td>DC1-SPINE2</td>
+<td>Ethernet2</td>
+<td>172.31.255.6/31</td>
+</tr>
+<tr>
+<td>DC1-LEAF2A</td>
+<td>Ethernet1</td>
+<td>172.31.255.9/31</td>
+<td>DC1-SPINE1</td>
+<td>Ethernet3</td>
+<td>172.31.255.8/31</td>
+</tr>
+<tr>
+<td>DC1-LEAF2A</td>
+<td>Ethernet2</td>
+<td>172.31.255.11/31</td>
+<td>DC1-SPINE2</td>
+<td>Ethernet3</td>
+<td>172.31.255.10/31</td>
+</tr>
+<tr>
+<td>DC1-LEAF2B</td>
+<td>Ethernet1</td>
+<td>172.31.255.13/31</td>
+<td>DC1-SPINE1</td>
+<td>Ethernet4</td>
+<td>172.31.255.12/31</td>
+</tr>
+<tr>
+<td>DC1-LEAF2B</td>
+<td>Ethernet2</td>
+<td>172.31.255.15/31</td>
+<td>DC1-SPINE2</td>
+<td>Ethernet4</td>
+<td>172.31.255.14/31</td>
+</tr>
+</tbody>
+</table>
+<h3 id="overlay-loopback-interfaces-bgp-evpn-peering">Overlay Loopback Interfaces (BGP EVPN Peering)</h3>
+<table>
+<thead>
+<tr>
+<th>Overlay Loopback Summary</th>
+<th>Available Addresses</th>
+<th>Assigned addresses</th>
+<th>Assigned Address %</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.255.0/24</td>
+<td>256</td>
+<td>6</td>
+<td>2.35 %</td>
+</tr>
+</tbody>
+</table>
+<h3 id="loopback0-interfaces-node-allocation">Loopback0 Interfaces Node Allocation</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Loopback0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DC1-SPINE1</td>
+<td>192.168.255.1/32</td>
+</tr>
+<tr>
+<td>DC1-SPINE2</td>
+<td>192.168.255.2/32</td>
+</tr>
+<tr>
+<td>DC1-LEAF1A</td>
+<td>192.168.255.3/32</td>
+</tr>
+<tr>
+<td>DC1-LEAF1B</td>
+<td>192.168.255.4/32</td>
+</tr>
+<tr>
+<td>DC1-LEAF2A</td>
+<td>192.168.255.5/32</td>
+</tr>
+<tr>
+<td>DC1-LEAF2B</td>
+<td>192.168.255.6/32</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vtep-loopback-vxlan-tunnel-source-interfaces-leafs-only">VTEP Loopback VXLAN Tunnel Source Interfaces (Leafs Only)</h3>
+<table>
+<thead>
+<tr>
+<th>VTEP Loopback Summary</th>
+<th>Available Addresses</th>
+<th>Assigned addresses</th>
+<th>Assigned Address %</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.254.0/24</td>
+<td>256</td>
+<td>4</td>
+<td>1.57 %</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vtep-loopback-node-allocation">VTEP Loopback Node allocation</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Loopback1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DC1-LEAF1A</td>
+<td>192.168.254.3/32</td>
+</tr>
+<tr>
+<td>DC1-LEAF1B</td>
+<td>192.168.254.3/32</td>
+</tr>
+<tr>
+<td>DC1-LEAF2A</td>
+<td>192.168.254.5/32</td>
+</tr>
+<tr>
+<td>DC1-LEAF2B</td>
+<td>192.168.254.5/32</td>
+</tr>
+</tbody>
+</table></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Copyright &copy; 2019 - 2020 Arista Networks</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
