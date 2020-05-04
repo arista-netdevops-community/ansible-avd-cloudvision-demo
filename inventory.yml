@@ -18,7 +18,7 @@ all:
           ansible_network_os: eos
           ansible_httpapi_port: 443
           # Configuration to get Virtual Env information
-          ansible_python_interpreter: $(which python)
+          ansible_python_interpreter: $(which python3)
     # DC1_Fabric - EVPN Fabric running in home lab
     DC1:
       children:
