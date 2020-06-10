@@ -55,7 +55,7 @@ This management IP addresses are used in a private virtual-network between Cloud
 
 ## Configure Python environment.
 
-First, clone repository and all the submodules configured:
+First, clone repository and all the sub-modules configured:
 
 ```shell
 # Clone repository
@@ -64,9 +64,8 @@ $ git clone -https://github.com/titom73/ansible-avd-cloudvision-demo.git
 # Move to folder
 $ cd ansible-avd-cloudvision-demo
 
-# Install python requirements
-# make: install-requirements
-$ pip install -r requirements.txt
+# Run demo shell using docker
+$ make shell
 
 # Install required ansible collections
 $ make install
@@ -84,7 +83,7 @@ If CVP has not been configured to activate ZTP services, it is higly recommended
 
 An ansible playbook is available to configure CloudVision to act as a DHCP server for your lab:
 
-- Edit variables in [__dc1-ztp-configuration.yml__](dc1-ztp-configuration.yml)
+- Edit variables in [__inventory/group_vars/CVP.yml__](inventory/group_vars/CVP.yml)
 
 ```yaml
 vars:
@@ -110,7 +109,7 @@ ztp:
       ip4: 10.255.0.11
 ```
 
-- Edit information related to ztp host in [__inventory.yml__](inventory.yml)
+- Edit information related to ztp host in [__inventory/inventory.yml__](inventory/inventory.yml)
 
 ```yaml
 all:
@@ -135,7 +134,7 @@ all:
 - Run playbook:
 
 ```shell
-$ ansible-playbook dc1-ztp-configuration.yml
+$ ansible-playbook playbooks/dc1-ztp-configuration.yml
 
 PLAY [Configure ZTP service on CloudVision] *****************
 
@@ -153,6 +152,8 @@ ztp                        : ok=3    changed=1    unreachable=0    failed=0    s
 ```
 
 ### Manual approach
+
+On your DHCP server, create configuration for all your devices. Below is an example for isc-dhcpd server.
 
 ```shell
 $ vi /etc/dhcp/dhcpd.conf
@@ -187,7 +188,7 @@ From here, you can start your devices and let CVP register them into `undefined`
 
 ## Update Inventory
 
-In the [inventory](inventory.ini), update CloudVision information to target your own setup:
+In the [__inventory/inventory.yml__](inventory/inventory.yml), update CloudVision information to target your own setup:
 
 ```yaml
 # inventory.yml
@@ -216,7 +217,7 @@ Because Ansible will never connect to devices, there is no reason to configure I
 
 > If you do not change IP addresses described above, this section is optional.
 
-__Edit [DC1_FABRIC.yml](group_vars/DC1_FABRIC.yml)__
+__Edit [DC1_FABRIC.yml](inventory/group_vars/DC1_FABRIC.yml)__
 
 - Add / Remove devices in the list.
 - Management IP of every device.
@@ -252,7 +253,7 @@ cv_configlets:
       - ASE_DEVICE-ALIASES.conf
 ```
 
-__Edit [DC1.yml](group_vars/DC1.yml)__
+__Edit [DC1.yml](inventory/group_vars/DC1.yml)__
 
 - Manage your username. Configured username and password are:
   - admin / arista123

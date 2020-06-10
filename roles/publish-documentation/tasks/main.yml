@@ -1,6 +1,0 @@
----
-# tasks file for publish-documentation
-- name: "Build MKDOCS configuration file"
-  template:
-    src: 'mkdocs.yml.j2'
-    dest: '{{ playbook_dir }}/mkdocs.yml'

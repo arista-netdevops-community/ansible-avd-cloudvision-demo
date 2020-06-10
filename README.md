@@ -15,43 +15,47 @@ It helps to demonstrate how to bring up an Arista EVPN/VXLAN Fabric from the fir
 
 ## Getting Started
 
-For detailled setup and demo, please refer to [ressources](#ressources) below.
+For detailed setup and demo, please refer to [resources](#resources) below.
+
+> It is recommended to use [docker image](https://hub.docker.com/repository/docker/avdteam/base) with all [arista.cvp](https://github.com/aristanetworks/ansible-cvp) and [arista.avd](https://github.com/aristanetworks/ansible-avd) requirements. It is done with `make shell` command
 
 ```shell
 # Clone repository
-$ git clone -https://github.com/titom73/ansible-avd-cloudvision-demo.git
+$ git clone https://github.com/titom73/ansible-avd-cloudvision-demo.git
 
 # Move to folder
 $ cd ansible-avd-cloudvision-demo
 
-# Install python requirements
-$ pip install -r requirements.txt
+# Run demo shell using docker
+$ make shell
 
 # Install required ansible collections
 $ make install
 
+# Edit Inventory information & Authentication information
+$ vim inventory/inventory.yml
+
 # Edit ZTP information
-$ vim dc1-ztp-configuration.yml
+$ vim inventory/group_vars/CVP.yml
 
 # Provision Zero Touch Provisioning server
-$ ansible-playbook dc1-ztp-configuration.yml
+$ ansible-playbook playbooks/dc1-ztp-configuration.yml
 
 # Power Up devices
 # Wait for devices to be available in CVP
 
-# Run Ansible playbook 
+# Run Ansible playbook
 $ ansible-playbook dc1-fabric-deploy-cvp.yml
 ```
 
 > Getting started does not include management IP configuration. For complete installation, please refer to [installation guide](INSTALLATION.md) to configure correct environment.
 
-## Ressources
+## Resources
 
 - Ansible [Arista Validated Design](https://github.com/aristanetworks/ansible-avd) repository.
 - [Ansible CloudVision Collection](https://github.com/aristanetworks/ansible-cvp) repository.
 - [How to install](INSTALLATION.md) demo environment.
-- [Detailled demo script](DEMO.md).
-- [Detailled demo script with docker](data/DEMO_DOCKER.md)
+- [Detailed demo script](DEMO.md).
 
 ## License
 
