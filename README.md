@@ -1,7 +1,5 @@
-![](https://img.shields.io/badge/Arista-CVP%20Automation-blue) ![](https://img.shields.io/badge/Arista-EOS%20Automation-blue) ![Code Quality](https://github.com/titom73/ansible-avd-cloudvision-demo/workflows/Code%20Quality/badge.svg) ![Ansible Code Execution](https://github.com/titom73/ansible-avd-cloudvision-demo/workflows/Ansible%20Code%20Execution/badge.svg?branch=master) ![GitHub](https://img.shields.io/github/license/titom73/ansible-avd-cloudvision-demo)
+![](https://img.shields.io/badge/Arista-CVP%20Automation-blue) ![](https://img.shields.io/badge/Arista-EOS%20Automation-blue) ![Ansible Code Execution](https://github.com/arista-netdevops-community/ansible-avd-cloudvision-demo/workflows/Ansible%20Code%20Execution/badge.svg) ![GitHub](https://img.shields.io/github/license/arista-netdevops-community/ansible-avd-cloudvision-demo)
 # Arista Validated Design with CloudVision deployment
-
-Content mirrored in [Aristanetworks/netdevops-examples](https://github.com/aristanetworks/netdevops-examples) repository.
 
 ## About
 
@@ -21,7 +19,7 @@ For detailed setup and demo, please refer to [resources](#resources) below.
 
 ```shell
 # Clone repository
-$ git clone https://github.com/titom73/ansible-avd-cloudvision-demo.git
+$ git clone https://github.com/arista-netdevops-community/ansible-avd-cloudvision-demo.git
 
 # Move to folder
 $ cd ansible-avd-cloudvision-demo
@@ -59,4 +57,4 @@ $ ansible-playbook dc1-fabric-deploy-cvp.yml
 
 ## License
 
-Project is published under [3-Clause BSD License](LICENSE).
+Project is published under [Apache License](LICENSE).
