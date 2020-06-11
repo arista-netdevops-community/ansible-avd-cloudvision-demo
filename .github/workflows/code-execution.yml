@@ -22,8 +22,8 @@ jobs:
           ansible-playbook playbooks/dc1-fabric-deploy-cvp.yml --tags build
       - name: 'Save Python libs version'
         run: |
-          pip freeze
-          pip freeze > intended/pip-version.txt
+          pip3 freeze
+          pip3 freeze > intended/pip-version.txt
       - name: 'Remove collections'
         run: make uninstall
       - uses: actions/upload-artifact@v1
