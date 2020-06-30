@@ -1,4 +1,4 @@
-CONTAINER ?= avdteam/base:centos-8
+CONTAINER ?= avdteam/base:3.6
 HOME_DIR = $(shell pwd)
 
 help: ## Display help message
@@ -36,6 +36,7 @@ configlet-upload: ## Upload configlets available in configlets/ to CVP.
 install: ## Install Ansible collections
 	git clone https://github.com/aristanetworks/ansible-avd.git
 	git clone https://github.com/aristanetworks/ansible-cvp.git
+	pip3 install -r requirements.txt
 
 .PHONY: uninstall
 uninstall: ## Remove collection from ansible
@@ -48,6 +49,7 @@ webdoc: ## Build documentation to publish static content
 
 .PHONY: shell
 shell: ## Start docker to get a preconfigured shell
+	docker pull $(CONTAINER) && \
 	docker run --rm -it \
 		-v $(HOME_DIR)/:/projects \
 		-v /etc/hosts:/etc/hosts $(CONTAINER)
