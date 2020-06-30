@@ -59,7 +59,7 @@ First, clone repository and all the sub-modules configured:
 
 ```shell
 # Clone repository
-$ git clone -https://github.com/titom73/ansible-avd-cloudvision-demo.git
+$ git clone git clone https://github.com/arista-netdevops-community/ansible-avd-cloudvision-demo.git
 
 # Move to folder
 $ cd ansible-avd-cloudvision-demo
@@ -105,9 +105,11 @@ ztp:
         lease_time: 300
   clients:
     - name: DC1-SPINE1
-      mac: 0c:1d:c0:1d:62:01
+      mac: "0c:1d:c0:1d:62:01"
       ip4: 10.255.0.11
 ```
+
+> Please ensure to use quote to define your mac-address. Otherwise in some cases, ansible might consider them as HEX string.
 
 - Edit information related to ztp host in [__inventory/inventory.yml__](inventory/inventory.yml)
 
