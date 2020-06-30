@@ -4,7 +4,7 @@ jobs:
   ansible_ci:
     name: Run Ansible Checks
     runs-on: ubuntu-latest
-    container: avdteam/base:centos-8
+    container: avdteam/base:3.6
     steps:
       - uses: actions/checkout@master
       - name: 'Install collections'
