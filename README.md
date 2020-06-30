@@ -43,7 +43,7 @@ $ ansible-playbook playbooks/dc1-ztp-configuration.yml
 # Wait for devices to be available in CVP
 
 # Run Ansible playbook
-$ ansible-playbook dc1-fabric-deploy-cvp.yml
+$ ansible-playbook playbooks/dc1-fabric-deploy-cvp.yml
 ```
 
 > Getting started does not include management IP configuration. For complete installation, please refer to [installation guide](INSTALLATION.md) to configure correct environment.
