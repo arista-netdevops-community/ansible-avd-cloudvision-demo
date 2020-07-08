@@ -1,7 +1,7 @@
 ---
 - name: Configure ZTP/DHCP service on CloudVision
   hosts: cv_ztp
-  gather_facts: false
+  gather_facts: true
   tasks:
   - name: 'Execute ZTP configuration role'
     import_role:
