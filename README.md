@@ -9,13 +9,13 @@ It helps to demonstrate how to bring up an Arista EVPN/VXLAN Fabric from the fir
 
 ![Lab Topology](data/cloudvision-device-topology.png)
 
-> Lab is based on GNS3 topology and a CloudVision server running on a VMware instance.
+> Lab is based on EVE-NG topology and a CloudVision server running on a VMware instance. A complete guide to setup Arista EOS devices on EVE is available on [AVD website](https://avd.sh/en/latest/docs/how-to/lab-with-nat/)
 
 ## Getting Started
 
 For detailed setup and demo, please refer to [resources](#resources) below.
 
-> It is recommended to use [docker image](https://hub.docker.com/repository/docker/avdteam/base) with all [arista.cvp](https://github.com/aristanetworks/ansible-cvp) and [arista.avd](https://github.com/aristanetworks/ansible-avd) requirements. It is done with `make shell` command
+> It is recommended to use [docker image](https://hub.docker.com/repository/docker/avdteam/base) with all [arista.cvp](https://github.com/aristanetworks/ansible-cvp) and [arista.avd](https://github.com/aristanetworks/ansible-avd) [requirements](https://avd.sh/en/latest/docs/installation/requirements/). It is done with `make shell` command.
 
 ```shell
 # Clone repository
@@ -24,11 +24,12 @@ $ git clone https://github.com/arista-netdevops-community/ansible-avd-cloudvisio
 # Move to folder
 $ cd ansible-avd-cloudvision-demo
 
-# Run demo shell using docker
+# Run demo shell using docker (optional)
 $ make shell
 
 # Install required ansible collections
-$ make install
+$ ansible-galaxy collection install arista.avd:==2.0.0
+$ ansible-galaxy collection install arista.cvp:==2.1.2
 
 # Edit Inventory information & Authentication information
 $ vim inventory/inventory.yml
