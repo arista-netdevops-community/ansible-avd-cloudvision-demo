@@ -8,7 +8,9 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: 'Install collections'
-        run: make install
+        run: |
+          pip install -r requirements.txt
+          make install
       - name: 'Check ansible syntax'
         run: |
           ansible-playbook playbooks/dc1-fabric-deploy-cvp.yml --syntax-check
@@ -20,13 +22,3 @@ jobs:
       - name: 'Build AVD & CVP content'
         run: |
           ansible-playbook playbooks/dc1-fabric-deploy-cvp.yml --tags build
-      - name: 'Save Python libs version'
-        run: |
-          pip3 freeze
-          pip3 freeze > inventory/intended/pip-version.txt
-      - name: 'Remove collections'
-        run: make uninstall
-      - uses: actions/upload-artifact@v1
-        with:
-          name: intended-files
-          path: inventory/

@@ -65,10 +65,20 @@ $ git clone git clone https://github.com/arista-netdevops-community/ansible-avd-
 $ cd ansible-avd-cloudvision-demo
 
 # Run demo shell using docker
+#  Makefile approach
 $ make shell
+#  Manual installation
+$ docker pull avdteam/base:3.6
+$ docker run --rm -it \
+		-v ./:/projects \
+		-v /etc/hosts:/etc/hosts avdteam/base:3.6
 
 # Install required ansible collections
+#  Makefile approach
 $ make install
+#  Manual installation
+$ ansible-galaxy collection install arista.avd:==2.0.0
+$ ansible-galaxy collection install arista.cvp:==2.1.2
 ```
 
 ## Configure DHCP server on CloudVision

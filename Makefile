@@ -2,8 +2,8 @@ CONTAINER ?= avdteam/base:3.6
 VSCODE_CONTAINER ?= avdteam/vscode:latest
 VSCODE_PORT ?= 8080
 HOME_DIR = $(shell pwd)
-AVD_COLLECTION_VERSION ?= v1.1.2
-CVP_COLLECTION_VERSION ?= v2.1.1
+AVD_COLLECTION_VERSION ?= 2.0.0
+CVP_COLLECTION_VERSION ?= 2.1.2
 
 help: ## Display help message
 	@grep -E '^[0-9a-zA-Z_-]+\.*[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -36,11 +36,16 @@ ztp: ## Configure ZTP server
 configlet-upload: ## Upload configlets available in configlets/ to CVP.
 	ansible-playbook playbooks/dc1-upload-configlets.yml
 
+.PHONY: install-git
+install-git: ## Install Ansible collections from git
+	git clone --depth 1 --branch v$(AVD_COLLECTION_VERSION) https://github.com/aristanetworks/ansible-avd.git
+	git clone --depth 1 --branch v$(CVP_COLLECTION_VERSION) https://github.com/aristanetworks/ansible-cvp.git
+	pip3 install -r ansible-avd/development/requirements.txt
+
 .PHONY: install
 install: ## Install Ansible collections
-	git clone --depth 1 --branch $(AVD_COLLECTION_VERSION) https://github.com/aristanetworks/ansible-avd.git
-	git clone --depth 1 --branch $(CVP_COLLECTION_VERSION) https://github.com/aristanetworks/ansible-cvp.git
-	pip3 install -r ansible-avd/development/requirements.txt
+	ansible-galaxy collection install arista.avd:==${AVD_COLLECTION_VERSION}
+	ansible-galaxy collection install arista.cvp:==${CVP_COLLECTION_VERSION}
 
 .PHONY: uninstall
 uninstall: ## Remove collection from ansible
