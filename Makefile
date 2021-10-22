@@ -2,7 +2,7 @@ CONTAINER ?= avdteam/base:3.8-edge
 VSCODE_CONTAINER ?= avdteam/vscode:latest
 VSCODE_PORT ?= 8080
 HOME_DIR = $(shell pwd)
-AVD_COLLECTION_VERSION ?= 3.0.0rc1
+AVD_COLLECTION_VERSION ?= 3.0.0
 CVP_COLLECTION_VERSION ?= 3.2.2
 
 help: ## Display help message
