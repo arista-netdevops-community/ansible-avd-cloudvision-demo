@@ -2,8 +2,8 @@ CONTAINER ?= avdteam/base:3.8-edge
 VSCODE_CONTAINER ?= avdteam/vscode:latest
 VSCODE_PORT ?= 8080
 HOME_DIR = $(shell pwd)
-AVD_COLLECTION_VERSION ?= 3.0.0
-CVP_COLLECTION_VERSION ?= 3.2.2
+AVD_COLLECTION_VERSION ?= 3.1.0
+CVP_COLLECTION_VERSION ?= 3.2.0
 
 help: ## Display help message
 	@grep -E '^[0-9a-zA-Z_-]+\.*[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
