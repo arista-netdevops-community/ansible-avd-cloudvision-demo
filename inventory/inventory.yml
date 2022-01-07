@@ -4,14 +4,14 @@ all:
     CVP:
       hosts:
         cv_ztp:
-          ansible_host: 10.83.28.164
+          ansible_host: 172.16.47.11
           ansible_user: root
-          ansible_password: ansible
+          ansible_password: '@rista123!'
         cv_server:
-          ansible_httpapi_host: 10.83.28.164
-          ansible_host: 10.83.28.164
+          ansible_httpapi_host: 172.16.47.11
+          ansible_host: 172.16.47.11
           ansible_user: ansible
-          ansible_password: ansible
+          ansible_password: '@rista123!'
           ansible_connection: httpapi
           ansible_httpapi_use_ssl: true
           ansible_httpapi_validate_certs: false
@@ -28,44 +28,42 @@ all:
               vars:
                 type: spine
               hosts:
-                DC1-SPINE1:
-                  ansible_host: 10.255.0.11
-                DC1-SPINE2:
-                  ansible_host: 10.255.0.12
+                DC1_SPINE-1:
+                  ansible_host: 172.16.47.21
+                DC1_SPINE-2:
+                  ansible_host: 172.16.47.22
+                DC1_SPINE-3:
+                  ansible_host: 172.16.47.23
+                DC1_SPINE-4:
+                  ansible_host: 172.16.47.24                  
             DC1_L3LEAFS:
               vars:
                 type: l3leaf
               children:
                 DC1_LEAF1:
                   hosts:
-                    DC1-LEAF1A:
-                      ansible_host: 10.255.0.13
-                    DC1-LEAF1B:
-                      ansible_host: 10.255.0.14
+                    DC1_LEAF-1A:
+                      ansible_host: 172.16.47.31
+                    DC1_LEAF-1B:
+                      ansible_host: 172.16.47.32
                 DC1_LEAF2:
                   hosts:
-                    DC1-LEAF2A:
-                      ansible_host: 10.255.0.15
-                    DC1-LEAF2B:
-                      ansible_host: 10.255.0.16
-            DC1_L2LEAFS:
-              vars:
-                type: l2leaf
-              children:
-                DC1_L2LEAF1:
+                    DC1_LEAF-2A:
+                      ansible_host: 172.16.47.33
+                    DC1_LEAF-2B:
+                      ansible_host: 172.16.47.34
+                DC1_LEAF3:
                   hosts:
-                    DC1-L2LEAF1A:
-                      ansible_host: 10.255.0.17
-                DC1_L2LEAF2:
-                  hosts:
-                    DC1-L2LEAF2A:
-                      ansible_host: 10.255.0.18
+                    DC1_LEAF-3A:
+                      ansible_host: 172.16.47.35
+                    DC1_LEAF-3B:
+                      ansible_host: 172.16.47.36                                                  
           vars:
             ansible_connection: httpapi
             ansible_network_os: eos
             ansible_user: ansible
             # should use vault for passwords
-            ansible_ssh_pass: ansible
+            ansible_ssh_pass: '@rista123!'
             ansible_become: true
             ansible_become_method: enable
             ansible_httpapi_use_ssl: true
@@ -73,8 +71,6 @@ all:
         DC1_TENANTS_NETWORKS:
           children:
             DC1_L3LEAFS:
-            DC1_L2LEAFS:
         DC1_SERVERS:
           children:
             DC1_L3LEAFS:
-            DC1_L2LEAFS:
