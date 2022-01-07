@@ -16,10 +16,30 @@ bgp_peer_groups:
   MLAG_IPv4_UNDERLAY_PEER:
     password: "vnEaG8gMeQf3d3cN6PktXQ=="
 
+# Point to Point Network Summary range, assigned as /31 for each
+# uplink interfaces
+# Assign range larger then total [spines * total potential leafs * 2]
+#underlay_p2p_network_summary: 172.31.255.0/24
+
+# IP address range for evpn loopback for all switches in fabric,
+# assigned as /32s
+# Assign range larger then total spines + total leafs switches
+#overlay_loopback_network_summary: 192.168.255.0/24
+
+# VTEP VXLAN Tunnel source loopback IP for leaf switches, assigned in /32s
+# Assign range larger then total leaf switches
+#vtep_loopback_network_summary: 192.168.254.0/24
+
+# mlag pair IP assignment - assign blocks - Assign range larger then
+# total spines + total leafs switches
+#mlag_ips:
+#  leaf_peer_l3: 10.255.251.0/24
+#  mlag_peer: 10.255.252.0/24
+
 # Spine Switches
 spine:
   defaults:
-    platform: vEOS-LAB
+    platform: vEOS
     bgp_as: 65001
     loopback_ipv4_pool: 192.168.255.0/24
     bgp_defaults:
@@ -30,12 +50,18 @@ spine:
     mlag_peer_ipv4_pool: 10.255.252.0/24
     mlag_peer_l3_ipv4_pool: 10.255.251.0/24
   nodes:
-    DC1-SPINE1:
+    DC1_SPINE-1:
       id: 1
-      mgmt_ip: 10.255.0.11/24
-    DC1-SPINE2:
+      mgmt_ip: 172.16.47.21/24
+    DC1_SPINE-2:
       id: 2
-      mgmt_ip: 10.255.0.12/24
+      mgmt_ip: 172.16.47.22/24
+    DC1_SPINE-3:
+      id: 3
+      mgmt_ip: 172.16.47.23/24
+    DC1_SPINE-4:
+      id: 4
+      mgmt_ip: 172.16.47.24/24      
 
 # Leaf switch groups
 # A maximum of two nodes can form a leaf group
@@ -43,14 +69,14 @@ spine:
 
 l3leaf:
   defaults:
-    platform: vEOS-LAB
+    platform: vEOS
     loopback_ipv4_pool: 192.168.255.0/24
     loopback_ipv4_offset: 2
     vtep_loopback_ipv4_pool: 192.168.254.0/24
-    uplink_interfaces: ['Ethernet1', 'Ethernet2']
-    uplink_switches: ['DC1-SPINE1', 'DC1-SPINE2']
+    uplink_interfaces: ['Ethernet1', 'Ethernet2', 'Ethernet3', 'Ethernet4']
+    uplink_switches: ['DC1_SPINE-1', 'DC1_SPINE-2', 'DC1_SPINE-3', 'DC1_SPINE-4']
     uplink_ipv4_pool: 172.31.255.0/24
-    mlag_interfaces: [ Ethernet3, Ethernet4 ]
+    mlag_interfaces: [ Ethernet5 ]
     mlag_peer_ipv4_pool: 10.255.252.0/24
     mlag_peer_l3_ipv4_pool: 10.255.251.0/24
     virtual_router_mac_address: 00:1c:73:00:dc:01
@@ -65,60 +91,71 @@ l3leaf:
     DC1_LEAF1:
       bgp_as: 65101
       nodes:
-        DC1-LEAF1A:
+        DC1_LEAF-1A:
           id: 1
-          mgmt_ip: 10.255.0.13/24
-          uplink_switch_interfaces: [Ethernet1, Ethernet1]
-        DC1-LEAF1B:
+          mgmt_ip: 172.16.47.31/24
+          uplink_switch_interfaces: [Ethernet1, Ethernet1, Ethernet1, Ethernet1]
+        DC1_LEAF-1B:
           id: 2
-          mgmt_ip: 10.255.0.14/24
-          uplink_switch_interfaces: [Ethernet2, Ethernet2]
+          mgmt_ip: 172.16.47.32/24
+          uplink_switch_interfaces: [Ethernet2, Ethernet2, Ethernet2, Ethernet2]
     DC1_LEAF2:
       bgp_as: 65102
       nodes:
-        DC1-LEAF2A:
+        DC1_LEAF-2A:
           id: 3
-          mgmt_ip: 10.255.0.15/24
-          uplink_switch_interfaces: [Ethernet3, Ethernet3]
-        DC1-LEAF2B:
+          mgmt_ip: 172.16.47.33/24
+          uplink_switch_interfaces: [Ethernet3, Ethernet3, Ethernet3, Ethernet3]
+        DC1_LEAF-2B:
           id: 4
-          mgmt_ip: 10.255.0.16/24
-          uplink_switch_interfaces: [Ethernet4, Ethernet4]
-
-
-l2leaf:
-  defaults:
-    platform: vEOS-LAB
-    uplink_switches: ['DC1-LEAF1A', 'DC1-LEAF1B']
-    uplink_interfaces: [ Ethernet1, Ethernet2 ]
-    mlag_interfaces: [ Ethernet3, Ethernet4 ]
-    mlag_peer_ipv4_pool: 10.255.252.0/24
-    mlag_peer_l3_ipv4_pool: 10.255.251.0/24
-    virtual_router_mac_address: 00:1c:73:00:dc:01
-    spanning_tree_mode: mstp
-    spanning_tree_priority: 16384
-    mlag: false
-  node_groups:
-    DC1_L2LEAF1:
-      uplink_switches: [ DC1-LEAF1A, DC1-LEAF1B ]
-      filter:
-        tenants: [ Tenant_A ]
-        tags: [ opzone, web, app ]
+          mgmt_ip: 172.16.47.34/24
+          uplink_switch_interfaces: [Ethernet4, Ethernet4, Ethernet4, Ethernet4]
+    DC1_LEAF3:
+      bgp_as: 65103
       nodes:
-        DC1-L2LEAF1A:
+        DC1_LEAF-3A:
           id: 5
-          mgmt_ip: 10.255.0.17/24
-          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
-    DC1_L2LEAF2:
-      uplink_switches: [ DC1-LEAF2A, DC1-LEAF2B ]
-      filter:
-        tenants: [ Tenant_A ]
-        tags: [ opzone, web, app ]
-      nodes:
-        DC1-L2LEAF2A:
-          id: 7
-          mgmt_ip: 10.255.0.18/24
-          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+          mgmt_ip: 172.16.47.35/24
+          uplink_switch_interfaces: [Ethernet5, Ethernet5, Ethernet5, Ethernet5]
+        DC1_LEAF-3B:
+          id: 6
+          mgmt_ip: 172.16.47.36/24
+          uplink_switch_interfaces: [Ethernet6, Ethernet6, Ethernet6, Ethernet6]          
+
+
+#l2leaf:
+#  defaults:
+#    platform: vEOS-LAB
+#    uplink_switches: ['DC1-LEAF1A', 'DC1-LEAF1B']
+#    uplink_interfaces: [ Ethernet1, Ethernet2 ]
+#    mlag_interfaces: [ Ethernet3, Ethernet4 ]
+#    mlag_peer_ipv4_pool: 10.255.252.0/24
+#    mlag_peer_l3_ipv4_pool: 10.255.251.0/24
+#    virtual_router_mac_address: 00:1c:73:00:dc:01
+#    spanning_tree_mode: mstp
+#    spanning_tree_priority: 16384
+#    mlag: false
+#  node_groups:
+#    DC1_L2LEAF1:
+#      uplink_switches: [ DC1-LEAF1A, DC1-LEAF1B ]
+#      filter:
+#        tenants: [ Tenant_A ]
+#        tags: [ opzone, web, app ]
+#      nodes:
+#        DC1-L2LEAF1A:
+#          id: 5
+#          mgmt_ip: 10.255.0.17/24
+#          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+#    DC1_L2LEAF2:
+#      uplink_switches: [ DC1-LEAF2A, DC1-LEAF2B ]
+#      filter:
+#        tenants: [ Tenant_A ]
+#        tags: [ opzone, web, app ]
+#      nodes:
+#        DC1-L2LEAF2A:
+#          id: 7
+#          mgmt_ip: 10.255.0.18/24
+#          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
 
 #### Override for vEOS Lab Caveats ####
 
@@ -127,7 +164,8 @@ l2leaf:
 # Refer to design guide
 
 # Update p2p mtu 9000 -> 1500
-p2p_uplinks_mtu: 1500
+# p2p_uplinks_mtu: 1500
+p2p_uplinks_mtu: 9000
 
 # Adjust default bfd values
 bfd_multihop:

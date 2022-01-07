@@ -36,6 +36,6 @@
       vars:
         container_root: 'DC1_FABRIC'
         configlets_prefix: 'DC1-AVD'
-        device_filter: 'DC1'
+        device_filter: 'DC1_'
         state: present
         cv_collection: v3

@@ -1,67 +1,75 @@
 ---
 CVP_DEVICES:
-  DC1-L2LEAF1A:
-    name: DC1-L2LEAF1A
-    parentContainerName: DC1_L2LEAF1
-    configlets:
-      - DC1-AVD_DC1-L2LEAF1A
-    imageBundle: []
-  DC1-L2LEAF2A:
-    name: DC1-L2LEAF2A
-    parentContainerName: DC1_L2LEAF2
-    configlets:
-      - DC1-AVD_DC1-L2LEAF2A
-    imageBundle: []
-  DC1-LEAF1A:
-    name: DC1-LEAF1A
+  DC1_LEAF-1A:
+    name: DC1_LEAF-1A
     parentContainerName: DC1_LEAF1
     configlets:
-      - DC1-AVD_DC1-LEAF1A
+      - DC1-AVD_DC1_LEAF-1A
     imageBundle: []
-  DC1-LEAF1B:
-    name: DC1-LEAF1B
+  DC1_LEAF-1B:
+    name: DC1_LEAF-1B
     parentContainerName: DC1_LEAF1
     configlets:
-      - DC1-AVD_DC1-LEAF1B
+      - DC1-AVD_DC1_LEAF-1B
     imageBundle: []
-  DC1-LEAF2A:
-    name: DC1-LEAF2A
+  DC1_LEAF-2A:
+    name: DC1_LEAF-2A
     parentContainerName: DC1_LEAF2
     configlets:
-      - DC1-AVD_DC1-LEAF2A
+      - DC1-AVD_DC1_LEAF-2A
     imageBundle: []
-  DC1-LEAF2B:
-    name: DC1-LEAF2B
+  DC1_LEAF-2B:
+    name: DC1_LEAF-2B
     parentContainerName: DC1_LEAF2
     configlets:
-      - DC1-AVD_DC1-LEAF2B
+      - DC1-AVD_DC1_LEAF-2B
     imageBundle: []
-  DC1-SPINE1:
-    name: DC1-SPINE1
+  DC1_LEAF-3A:
+    name: DC1_LEAF-3A
+    parentContainerName: DC1_LEAF3
+    configlets:
+      - DC1-AVD_DC1_LEAF-3A
+    imageBundle: []
+  DC1_LEAF-3B:
+    name: DC1_LEAF-3B
+    parentContainerName: DC1_LEAF3
+    configlets:
+      - DC1-AVD_DC1_LEAF-3B
+    imageBundle: []
+  DC1_SPINE-1:
+    name: DC1_SPINE-1
     parentContainerName: DC1_SPINES
     configlets:
-      - DC1-AVD_DC1-SPINE1
+      - DC1-AVD_DC1_SPINE-1
     imageBundle: []
-  DC1-SPINE2:
-    name: DC1-SPINE2
+  DC1_SPINE-2:
+    name: DC1_SPINE-2
     parentContainerName: DC1_SPINES
     configlets:
-      - DC1-AVD_DC1-SPINE2
+      - DC1-AVD_DC1_SPINE-2
+    imageBundle: []
+  DC1_SPINE-3:
+    name: DC1_SPINE-3
+    parentContainerName: DC1_SPINES
+    configlets:
+      - DC1-AVD_DC1_SPINE-3
+    imageBundle: []
+  DC1_SPINE-4:
+    name: DC1_SPINE-4
+    parentContainerName: DC1_SPINES
+    configlets:
+      - DC1-AVD_DC1_SPINE-4
     imageBundle: []
 CVP_CONTAINERS:
   DC1_FABRIC:
     parent_container: Tenant
-  DC1_L2LEAF1:
-    parent_container: DC1_L2LEAFS
-  DC1_L2LEAF2:
-    parent_container: DC1_L2LEAFS
-  DC1_L2LEAFS:
-    parent_container: DC1_FABRIC
   DC1_L3LEAFS:
     parent_container: DC1_FABRIC
   DC1_LEAF1:
     parent_container: DC1_L3LEAFS
   DC1_LEAF2:
+    parent_container: DC1_L3LEAFS
+  DC1_LEAF3:
     parent_container: DC1_L3LEAFS
   DC1_SPINES:
     parent_container: DC1_FABRIC
