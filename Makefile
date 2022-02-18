@@ -46,6 +46,7 @@ install-git: ## Install Ansible collections from git
 install: ## Install Ansible collections
 	ansible-galaxy collection install arista.avd:==${AVD_COLLECTION_VERSION}
 	ansible-galaxy collection install arista.cvp:==${CVP_COLLECTION_VERSION}
+	ansible-galaxy collection install community.general
 
 .PHONY: uninstall
 uninstall: ## Remove collection from ansible
