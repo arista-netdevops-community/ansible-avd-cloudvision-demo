@@ -29,9 +29,9 @@ all:
                 type: spine
               hosts:
                 DC1-SPINE1:
-                  ansible_host: 10.255.0.11
+                  ansible_host: 192.168.0.11
                 DC1-SPINE2:
-                  ansible_host: 10.255.0.12
+                  ansible_host: 192.168.0.12
             DC1_L3LEAFS:
               vars:
                 type: l3leaf
@@ -39,15 +39,15 @@ all:
                 DC1_LEAF1:
                   hosts:
                     DC1-LEAF1A:
-                      ansible_host: 10.255.0.13
+                      ansible_host: 192.168.0.13
                     DC1-LEAF1B:
-                      ansible_host: 10.255.0.14
+                      ansible_host: 192.168.0.14
                 DC1_LEAF2:
                   hosts:
                     DC1-LEAF2A:
-                      ansible_host: 10.255.0.15
+                      ansible_host: 192.168.0.15
                     DC1-LEAF2B:
-                      ansible_host: 10.255.0.16
+                      ansible_host: 192.168.0.16
             DC1_L2LEAFS:
               vars:
                 type: l2leaf
@@ -55,11 +55,11 @@ all:
                 DC1_L2LEAF1:
                   hosts:
                     DC1-L2LEAF1A:
-                      ansible_host: 10.255.0.17
+                      ansible_host: 192.168.0.17
                 DC1_L2LEAF2:
                   hosts:
                     DC1-L2LEAF2A:
-                      ansible_host: 10.255.0.18
+                      ansible_host: 192.168.0.18
           vars:
             ansible_connection: httpapi
             ansible_network_os: eos
