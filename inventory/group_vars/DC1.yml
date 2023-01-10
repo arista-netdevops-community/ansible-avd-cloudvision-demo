@@ -28,6 +28,11 @@ cvp_instance_ip: 192.168.0.5
 cvp_ingestauth_key: ''
 # cvp_ingestauth_key: telarista
 
+custom_structured_configuration_daemon_terminattr:
+  cvauth:
+    method: "token"
+    token_file: "/tmp/token"
+
 # OOB Management network default gateway.
 mgmt_interface: Management1
 mgmt_interface_vrf: MGMT
