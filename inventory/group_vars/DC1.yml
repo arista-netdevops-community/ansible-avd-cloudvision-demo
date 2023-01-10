@@ -24,7 +24,7 @@ local_users:
     sha512_password: "$6$Dzu11L7yp9j3nCM9$FSptxMPyIL555OMO.ldnjDXgwZmrfMYwHSr0uznE5Qoqvd9a6UdjiFcJUhGLtvXVZR1r.A/iF5aAt50hf/EK4/"
 
 # Cloud Vision server information
-cvp_instance_ip: 192.168.0.5
+cvp_instance_ip: 192.168.0.1
 cvp_ingestauth_key: ''
 # cvp_ingestauth_key: telarista
 
@@ -36,11 +36,11 @@ custom_structured_configuration_daemon_terminattr:
 # OOB Management network default gateway.
 mgmt_interface: Management1
 mgmt_interface_vrf: MGMT
-mgmt_gateway: 192.168.0.5
+mgmt_gateway: 192.168.0.1
 
 # dns servers.
 name_servers:
-  - 192.168.0.5
+  - 192.168.0.1
   - 8.8.8.8
 
 # NTP Servers IP or DNS name, first NTP server will be prefered, and sourced from Managment VRF

@@ -1,11 +1,11 @@
 CVP_CONFIGLETS:
   DC1-AVD_DC1-L2LEAF1A: "!RANCID-CONTENT-TYPE: arista\n!\ndaemon TerminAttr\n   exec\
-    \ /usr/bin/TerminAttr -cvaddr=192.168.0.5:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
+    \ /usr/bin/TerminAttr -cvaddr=192.168.0.1:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
     \ -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent\
     \ -taillogs\n   no shutdown\n!\nvlan internal order ascending range 1006 1199\n\
     !\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n\
     !\nhostname DC1-L2LEAF1A\nip name-server vrf MGMT 8.8.8.8\nip name-server vrf\
-    \ MGMT 192.168.0.5\n!\nntp local-interface vrf MGMT Management1\nntp server vrf\
+    \ MGMT 192.168.0.1\n!\nntp local-interface vrf MGMT Management1\nntp server vrf\
     \ MGMT 0.fr.pool.ntp.org prefer\nntp server vrf MGMT 1.fr.pool.ntp.org\n!\nspanning-tree\
     \ mode mstp\nspanning-tree mst 0 priority 16384\n!\nno enable password\nno aaa\
     \ root\n!\nusername admin privilege 15 role network-admin secret sha512 $6$Df86J4/SFMDE3/1K$Hef4KstdoxNDaami37cBquTWOTplC.miMPjXVgQxMe92.e5wxlnXOLlebgPj8Fz1KO0za/RCO7ZIs4Q6Eiq1g1\n\
@@ -23,16 +23,16 @@ CVP_CONFIGLETS:
     \ server01_Eth0\n   no shutdown\n   switchport access vlan 110\n   switchport\
     \ mode access\n   switchport\n!\ninterface Management1\n   description oob_management\n\
     \   no shutdown\n   vrf MGMT\n   ip address 192.168.0.17/24\n!\nip routing\nno\
-    \ ip routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.5\n!\nmanagement\
+    \ ip routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nmanagement\
     \ api http-commands\n   protocol https\n   no shutdown\n   !\n   vrf MGMT\n  \
     \    no shutdown\n!\nend\n"
   DC1-AVD_DC1-L2LEAF2A: "!RANCID-CONTENT-TYPE: arista\n!\ndaemon TerminAttr\n   exec\
-    \ /usr/bin/TerminAttr -cvaddr=192.168.0.5:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
+    \ /usr/bin/TerminAttr -cvaddr=192.168.0.1:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
     \ -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent\
     \ -taillogs\n   no shutdown\n!\nvlan internal order ascending range 1006 1199\n\
     !\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n\
     !\nhostname DC1-L2LEAF2A\nip name-server vrf MGMT 8.8.8.8\nip name-server vrf\
-    \ MGMT 192.168.0.5\n!\nntp local-interface vrf MGMT Management1\nntp server vrf\
+    \ MGMT 192.168.0.1\n!\nntp local-interface vrf MGMT Management1\nntp server vrf\
     \ MGMT 0.fr.pool.ntp.org prefer\nntp server vrf MGMT 1.fr.pool.ntp.org\n!\nspanning-tree\
     \ mode mstp\nspanning-tree mst 0 priority 16384\n!\nno enable password\nno aaa\
     \ root\n!\nusername admin privilege 15 role network-admin secret sha512 $6$Df86J4/SFMDE3/1K$Hef4KstdoxNDaami37cBquTWOTplC.miMPjXVgQxMe92.e5wxlnXOLlebgPj8Fz1KO0za/RCO7ZIs4Q6Eiq1g1\n\
@@ -50,16 +50,16 @@ CVP_CONFIGLETS:
     \ server02_Eth0\n   no shutdown\n   switchport access vlan 110\n   switchport\
     \ mode access\n   switchport\n!\ninterface Management1\n   description oob_management\n\
     \   no shutdown\n   vrf MGMT\n   ip address 192.168.0.18/24\n!\nip routing\nno\
-    \ ip routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.5\n!\nmanagement\
+    \ ip routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nmanagement\
     \ api http-commands\n   protocol https\n   no shutdown\n   !\n   vrf MGMT\n  \
     \    no shutdown\n!\nend\n"
   DC1-AVD_DC1-LEAF1A: "!RANCID-CONTENT-TYPE: arista\n!\ndaemon TerminAttr\n   exec\
-    \ /usr/bin/TerminAttr -cvaddr=192.168.0.5:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
+    \ /usr/bin/TerminAttr -cvaddr=192.168.0.1:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
     \ -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent\
     \ -taillogs\n   no shutdown\n!\nvlan internal order ascending range 1006 1199\n\
     !\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n\
     !\nhostname DC1-LEAF1A\nip name-server vrf MGMT 8.8.8.8\nip name-server vrf MGMT\
-    \ 192.168.0.5\n!\nntp local-interface vrf MGMT Management1\nntp server vrf MGMT\
+    \ 192.168.0.1\n!\nntp local-interface vrf MGMT Management1\nntp server vrf MGMT\
     \ 0.fr.pool.ntp.org prefer\nntp server vrf MGMT 1.fr.pool.ntp.org\n!\nspanning-tree\
     \ mode mstp\nno spanning-tree vlan-id 4093-4094\nspanning-tree mst 0 priority\
     \ 16384\n!\nno enable password\nno aaa root\n!\nusername admin privilege 15 role\
@@ -176,7 +176,7 @@ CVP_CONFIGLETS:
     \ eq 32\n   seq 20 permit 192.168.254.0/24 eq 32\n!\nmlag configuration\n   domain-id\
     \ DC1_LEAF1\n   local-interface Vlan4094\n   peer-address 10.255.252.1\n   peer-link\
     \ Port-Channel3\n   reload-delay mlag 300\n   reload-delay non-mlag 330\n!\nip\
-    \ route vrf MGMT 0.0.0.0/0 192.168.0.5\n!\nroute-map RM-CONN-2-BGP permit 10\n\
+    \ route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nroute-map RM-CONN-2-BGP permit 10\n\
     \   match ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY\n!\nroute-map RM-MLAG-PEER-IN\
     \ permit 10\n   description Make routes learned over MLAG Peer-link less preferred\
     \ on spines to ensure optimal routing\n   set origin incomplete\n!\nrouter bfd\n\
@@ -258,12 +258,12 @@ CVP_CONFIGLETS:
     \      redistribute connected\n!\nmanagement api http-commands\n   protocol https\n\
     \   no shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
   DC1-AVD_DC1-LEAF1B: "!RANCID-CONTENT-TYPE: arista\n!\ndaemon TerminAttr\n   exec\
-    \ /usr/bin/TerminAttr -cvaddr=192.168.0.5:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
+    \ /usr/bin/TerminAttr -cvaddr=192.168.0.1:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
     \ -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent\
     \ -taillogs\n   no shutdown\n!\nvlan internal order ascending range 1006 1199\n\
     !\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n\
     !\nhostname DC1-LEAF1B\nip name-server vrf MGMT 8.8.8.8\nip name-server vrf MGMT\
-    \ 192.168.0.5\n!\nntp local-interface vrf MGMT Management1\nntp server vrf MGMT\
+    \ 192.168.0.1\n!\nntp local-interface vrf MGMT Management1\nntp server vrf MGMT\
     \ 0.fr.pool.ntp.org prefer\nntp server vrf MGMT 1.fr.pool.ntp.org\n!\nspanning-tree\
     \ mode mstp\nno spanning-tree vlan-id 4093-4094\nspanning-tree mst 0 priority\
     \ 16384\n!\nno enable password\nno aaa root\n!\nusername admin privilege 15 role\
@@ -380,7 +380,7 @@ CVP_CONFIGLETS:
     \ eq 32\n   seq 20 permit 192.168.254.0/24 eq 32\n!\nmlag configuration\n   domain-id\
     \ DC1_LEAF1\n   local-interface Vlan4094\n   peer-address 10.255.252.0\n   peer-link\
     \ Port-Channel3\n   reload-delay mlag 300\n   reload-delay non-mlag 330\n!\nip\
-    \ route vrf MGMT 0.0.0.0/0 192.168.0.5\n!\nroute-map RM-CONN-2-BGP permit 10\n\
+    \ route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nroute-map RM-CONN-2-BGP permit 10\n\
     \   match ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY\n!\nroute-map RM-MLAG-PEER-IN\
     \ permit 10\n   description Make routes learned over MLAG Peer-link less preferred\
     \ on spines to ensure optimal routing\n   set origin incomplete\n!\nrouter bfd\n\
@@ -462,12 +462,12 @@ CVP_CONFIGLETS:
     \      redistribute connected\n!\nmanagement api http-commands\n   protocol https\n\
     \   no shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
   DC1-AVD_DC1-LEAF2A: "!RANCID-CONTENT-TYPE: arista\n!\ndaemon TerminAttr\n   exec\
-    \ /usr/bin/TerminAttr -cvaddr=192.168.0.5:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
+    \ /usr/bin/TerminAttr -cvaddr=192.168.0.1:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
     \ -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent\
     \ -taillogs\n   no shutdown\n!\nvlan internal order ascending range 1006 1199\n\
     !\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n\
     !\nhostname DC1-LEAF2A\nip name-server vrf MGMT 8.8.8.8\nip name-server vrf MGMT\
-    \ 192.168.0.5\n!\nntp local-interface vrf MGMT Management1\nntp server vrf MGMT\
+    \ 192.168.0.1\n!\nntp local-interface vrf MGMT Management1\nntp server vrf MGMT\
     \ 0.fr.pool.ntp.org prefer\nntp server vrf MGMT 1.fr.pool.ntp.org\n!\nspanning-tree\
     \ mode mstp\nno spanning-tree vlan-id 4093-4094\nspanning-tree mst 0 priority\
     \ 16384\n!\nno enable password\nno aaa root\n!\nusername admin privilege 15 role\
@@ -584,7 +584,7 @@ CVP_CONFIGLETS:
     \ eq 32\n   seq 20 permit 192.168.254.0/24 eq 32\n!\nmlag configuration\n   domain-id\
     \ DC1_LEAF2\n   local-interface Vlan4094\n   peer-address 10.255.252.5\n   peer-link\
     \ Port-Channel3\n   reload-delay mlag 300\n   reload-delay non-mlag 330\n!\nip\
-    \ route vrf MGMT 0.0.0.0/0 192.168.0.5\n!\nroute-map RM-CONN-2-BGP permit 10\n\
+    \ route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nroute-map RM-CONN-2-BGP permit 10\n\
     \   match ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY\n!\nroute-map RM-MLAG-PEER-IN\
     \ permit 10\n   description Make routes learned over MLAG Peer-link less preferred\
     \ on spines to ensure optimal routing\n   set origin incomplete\n!\nrouter bfd\n\
@@ -666,12 +666,12 @@ CVP_CONFIGLETS:
     \      redistribute connected\n!\nmanagement api http-commands\n   protocol https\n\
     \   no shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
   DC1-AVD_DC1-LEAF2B: "!RANCID-CONTENT-TYPE: arista\n!\ndaemon TerminAttr\n   exec\
-    \ /usr/bin/TerminAttr -cvaddr=192.168.0.5:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
+    \ /usr/bin/TerminAttr -cvaddr=192.168.0.1:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
     \ -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent\
     \ -taillogs\n   no shutdown\n!\nvlan internal order ascending range 1006 1199\n\
     !\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n\
     !\nhostname DC1-LEAF2B\nip name-server vrf MGMT 8.8.8.8\nip name-server vrf MGMT\
-    \ 192.168.0.5\n!\nntp local-interface vrf MGMT Management1\nntp server vrf MGMT\
+    \ 192.168.0.1\n!\nntp local-interface vrf MGMT Management1\nntp server vrf MGMT\
     \ 0.fr.pool.ntp.org prefer\nntp server vrf MGMT 1.fr.pool.ntp.org\n!\nspanning-tree\
     \ mode mstp\nno spanning-tree vlan-id 4093-4094\nspanning-tree mst 0 priority\
     \ 16384\n!\nno enable password\nno aaa root\n!\nusername admin privilege 15 role\
@@ -788,7 +788,7 @@ CVP_CONFIGLETS:
     \ eq 32\n   seq 20 permit 192.168.254.0/24 eq 32\n!\nmlag configuration\n   domain-id\
     \ DC1_LEAF2\n   local-interface Vlan4094\n   peer-address 10.255.252.4\n   peer-link\
     \ Port-Channel3\n   reload-delay mlag 300\n   reload-delay non-mlag 330\n!\nip\
-    \ route vrf MGMT 0.0.0.0/0 192.168.0.5\n!\nroute-map RM-CONN-2-BGP permit 10\n\
+    \ route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nroute-map RM-CONN-2-BGP permit 10\n\
     \   match ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY\n!\nroute-map RM-MLAG-PEER-IN\
     \ permit 10\n   description Make routes learned over MLAG Peer-link less preferred\
     \ on spines to ensure optimal routing\n   set origin incomplete\n!\nrouter bfd\n\
@@ -870,12 +870,12 @@ CVP_CONFIGLETS:
     \      redistribute connected\n!\nmanagement api http-commands\n   protocol https\n\
     \   no shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
   DC1-AVD_DC1-SPINE1: "!RANCID-CONTENT-TYPE: arista\n!\ndaemon TerminAttr\n   exec\
-    \ /usr/bin/TerminAttr -cvaddr=192.168.0.5:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
+    \ /usr/bin/TerminAttr -cvaddr=192.168.0.1:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
     \ -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent\
     \ -taillogs\n   no shutdown\n!\nvlan internal order ascending range 1006 1199\n\
     !\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n\
     !\nhostname DC1-SPINE1\nip name-server vrf MGMT 8.8.8.8\nip name-server vrf MGMT\
-    \ 192.168.0.5\n!\nntp local-interface vrf MGMT Management1\nntp server vrf MGMT\
+    \ 192.168.0.1\n!\nntp local-interface vrf MGMT Management1\nntp server vrf MGMT\
     \ 0.fr.pool.ntp.org prefer\nntp server vrf MGMT 1.fr.pool.ntp.org\n!\nspanning-tree\
     \ mode none\n!\nno enable password\nno aaa root\n!\nusername admin privilege 15\
     \ role network-admin secret sha512 $6$Df86J4/SFMDE3/1K$Hef4KstdoxNDaami37cBquTWOTplC.miMPjXVgQxMe92.e5wxlnXOLlebgPj8Fz1KO0za/RCO7ZIs4Q6Eiq1g1\n\
@@ -893,7 +893,7 @@ CVP_CONFIGLETS:
     !\ninterface Management1\n   description oob_management\n   no shutdown\n   vrf\
     \ MGMT\n   ip address 192.168.0.11/24\n!\nip routing\nno ip routing vrf MGMT\n\
     !\nip prefix-list PL-LOOPBACKS-EVPN-OVERLAY\n   seq 10 permit 192.168.255.0/24\
-    \ eq 32\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.5\n!\nroute-map RM-CONN-2-BGP\
+    \ eq 32\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nroute-map RM-CONN-2-BGP\
     \ permit 10\n   match ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY\n!\nrouter\
     \ bfd\n   multihop interval 1200 min-rx 1200 multiplier 3\n!\nrouter bgp 65001\n\
     \   router-id 192.168.255.1\n   no bgp default ipv4-unicast\n   distance bgp 20\
@@ -927,12 +927,12 @@ CVP_CONFIGLETS:
     \ activate\n!\nmanagement api http-commands\n   protocol https\n   no shutdown\n\
     \   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
   DC1-AVD_DC1-SPINE2: "!RANCID-CONTENT-TYPE: arista\n!\ndaemon TerminAttr\n   exec\
-    \ /usr/bin/TerminAttr -cvaddr=192.168.0.5:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
+    \ /usr/bin/TerminAttr -cvaddr=192.168.0.1:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
     \ -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent\
     \ -taillogs\n   no shutdown\n!\nvlan internal order ascending range 1006 1199\n\
     !\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n\
     !\nhostname DC1-SPINE2\nip name-server vrf MGMT 8.8.8.8\nip name-server vrf MGMT\
-    \ 192.168.0.5\n!\nntp local-interface vrf MGMT Management1\nntp server vrf MGMT\
+    \ 192.168.0.1\n!\nntp local-interface vrf MGMT Management1\nntp server vrf MGMT\
     \ 0.fr.pool.ntp.org prefer\nntp server vrf MGMT 1.fr.pool.ntp.org\n!\nspanning-tree\
     \ mode none\n!\nno enable password\nno aaa root\n!\nusername admin privilege 15\
     \ role network-admin secret sha512 $6$Df86J4/SFMDE3/1K$Hef4KstdoxNDaami37cBquTWOTplC.miMPjXVgQxMe92.e5wxlnXOLlebgPj8Fz1KO0za/RCO7ZIs4Q6Eiq1g1\n\
@@ -950,7 +950,7 @@ CVP_CONFIGLETS:
     !\ninterface Management1\n   description oob_management\n   no shutdown\n   vrf\
     \ MGMT\n   ip address 192.168.0.12/24\n!\nip routing\nno ip routing vrf MGMT\n\
     !\nip prefix-list PL-LOOPBACKS-EVPN-OVERLAY\n   seq 10 permit 192.168.255.0/24\
-    \ eq 32\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.5\n!\nroute-map RM-CONN-2-BGP\
+    \ eq 32\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nroute-map RM-CONN-2-BGP\
     \ permit 10\n   match ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY\n!\nrouter\
     \ bfd\n   multihop interval 1200 min-rx 1200 multiplier 3\n!\nrouter bgp 65001\n\
     \   router-id 192.168.255.2\n   no bgp default ipv4-unicast\n   distance bgp 20\
