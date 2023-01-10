@@ -71,14 +71,15 @@ router_bgp:
 static_routes:
 - vrf: MGMT
   destination_address_prefix: 0.0.0.0/0
-  gateway: 10.255.0.1
+  gateway: 192.168.0.5
 service_routing_protocols_model: multi-agent
 ip_routing: true
 daemon_terminattr:
   cvaddrs:
-  - 10.255.0.1:9910
+  - 192.168.0.5:9910
   cvauth:
     method: key
+    key: ''
   cvvrf: MGMT
   smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
   ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
@@ -92,7 +93,7 @@ name_server:
   source:
     vrf: MGMT
   nodes:
-  - 192.168.2.1
+  - 192.168.0.5
   - 8.8.8.8
 spanning_tree:
   mode: none
@@ -108,7 +109,7 @@ local_users:
   cvpadmin:
     privilege: 15
     role: network-admin
-    sha512_password: $6$rZKcbIZ7iWGAWTUM$TCgDn1KcavS0s.OV8lacMTUkxTByfzcGlFlYUWroxYuU7M/9bIodhRO7nXGzMweUxvbk8mJmQl8Bh44cRktUj.
+    sha512_password: $6$13994$MwG2qno1XZb8XXmxtsnzpFApf52gCQ7q/8mTu3drfQ7lDezXZDq0.2aTcCHdVt/0OUi4.PRjrZnLJI6lIUz7U1
 vrfs:
   MGMT:
     ip_routing: false
@@ -117,8 +118,8 @@ management_interfaces:
     description: oob_management
     shutdown: false
     vrf: MGMT
-    ip_address: 10.255.0.11/24
-    gateway: 10.255.0.1
+    ip_address: 192.168.0.11/24
+    gateway: 192.168.0.5
     type: oob
 management_api_http:
   enable_vrfs:
