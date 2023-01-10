@@ -1,0 +1,24 @@
+---
+# For validation, we need the inventory files and group_vars updated with at least the topology parts
+# Structured configuration needs to have been created
+# can we use it without having any config on the devices yet?
+
+- name: Validate Arista EOS EVPN/VXLAN Configuration
+  hosts: DC1_FABRIC
+  gather_facts: false
+  collections:
+    - arista.avd
+  tasks:
+    - name: generate intended variables
+      import_role:
+        name: arista.avd.eos_designs
+      tags: generate
+
+    - name: Validate State
+      import_role:
+        name: arsita.avd.eos_validate_state
+      vars:
+        structured_dir: ../inventory/intended/structured_configs
+        eos_validate_state_dir: ../inventory/reports
+        validate_state_markdown_flavor: github
+      when: is_deployed is not arista.avd.defined(false)

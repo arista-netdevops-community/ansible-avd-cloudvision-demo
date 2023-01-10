@@ -24,6 +24,10 @@ provision: ## Run ansible playbook to deploy EVPN Fabric.
 deploy: ## Run ansible playbook to deploy EVPN Fabric.
 	ansible-playbook playbooks/dc1-fabric-deploy-cvp.yml --extra-vars "execute_tasks=true" --tags "build,provision,apply"
 
+.PHONY: validate
+validate: ## Run ansible playbook to validate EVPN Fabric.
+	ansible-playbook playbooks/dc1-fabric-validate.yml $(OPTIONS)
+
 .PHONY: reset
 reset: ## Run ansible playbook to reset all devices.
 	ansible-playbook playbooks/dc1-fabric-reset-cvp.yml
