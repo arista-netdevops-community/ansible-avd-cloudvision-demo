@@ -38,6 +38,13 @@ mgmt_interface: Management1
 mgmt_interface_vrf: MGMT
 mgmt_gateway: 192.168.0.1
 
+# This is only required in the lab, to enable eAPI on
+# the default vrf as well
+custom_structured_configuration_management_api_http:
+  enable_vrfs:
+    MGMT: {}
+    default: {}
+
 # dns servers.
 name_servers:
   - 192.168.0.1
