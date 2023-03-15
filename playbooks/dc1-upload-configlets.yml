@@ -7,7 +7,7 @@
     - arista.avd
     - arista.cvp
   tasks:
-    - name: upload cvp configlets
+    - name: 'upload configlets to cloudvision {{inventory_hostname}}'
       import_role:
         name: arista.avd.cvp_configlet_upload
       vars:
