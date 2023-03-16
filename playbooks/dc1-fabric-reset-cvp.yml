@@ -1,5 +1,5 @@
 ---
-- name: Clenup CVP in default configuration
+- name: Cleanup CVP in default configuration
   hosts: cv_server
   connection: local
   gather_facts: false
@@ -13,5 +13,5 @@
       vars:
         container_root: 'DC1_FABRIC'
         configlets_prefix: 'DC1-AVD'
-        device_filter: 'DC1-'
+        device_filter: 'DC1_'
         state: absent
