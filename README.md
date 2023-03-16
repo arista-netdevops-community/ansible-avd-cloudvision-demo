@@ -30,6 +30,7 @@ $ make shell
 # Install required ansible collections
 $ ansible-galaxy collection install arista.avd:==2.0.0
 $ ansible-galaxy collection install arista.cvp:==2.1.2
+$ ansible-galaxy collection install community.general
 
 # Edit Inventory information & Authentication information
 $ vim inventory/inventory.yml

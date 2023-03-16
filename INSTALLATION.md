@@ -79,6 +79,7 @@ $ make install
 #  Manual installation
 $ ansible-galaxy collection install arista.avd:==2.0.0
 $ ansible-galaxy collection install arista.cvp:==2.1.2
+$ ansible-galaxy collection install community.general
 ```
 
 ## Configure DHCP server on CloudVision
