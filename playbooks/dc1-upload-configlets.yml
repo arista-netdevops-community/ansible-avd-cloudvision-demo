@@ -11,6 +11,8 @@
       import_role:
         name: arista.avd.cvp_configlet_upload
       vars:
-        configlet_directory: '{{ configlet_dir_var }}'
-        configlets_cvp_prefix: '{{ configlets_prefix_var }}'
-        file_extension: '{{configlet_file_extension}}'
+        configlet_directory: 'inventory/intended/configs'
+        file_extension: 'cfg'
+        configlets_cvp_prefix: 'none'
+        execute_tasks: false
+        cv_collection: v3
