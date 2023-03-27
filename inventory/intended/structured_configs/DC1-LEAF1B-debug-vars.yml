@@ -7,7 +7,6 @@ ansible_become_method: enable
 ansible_httpapi_use_ssl: true
 ansible_httpapi_validate_certs: false
 type: l3leaf
-cvp_password: cvp123!
 local_users:
   admin:
     privilege: 15
@@ -16,7 +15,7 @@ local_users:
   cvpadmin:
     privilege: 15
     role: network-admin
-    sha512_password: $6$22869$jKtUmmitV6nMTXOOJ.LUyKxrxddSNmYCzb4WOre8VqXVFFcHmyP1Pfti4JhHq4Ne6ewi2WG/U3sL1IwctYuMb1
+    sha512_password: '{{ hostvars[''cv_server''][''ansible_password''] | password_hash(''sha512'',  65534 | random(seed=inventory_hostname) | string) }}'
   ansible:
     privilege: 15
     role: network-admin
@@ -3298,7 +3297,7 @@ groups:
   GENERIC:
   - Server01
   - Server02
-omit: __omit_place_holder__e174164806db49d0694f1889fe33fd68fdf31dc1
+omit: __omit_place_holder__b2e55a16869c663c6624ade2d9813937cacbcd57
 ansible_version:
   string: 2.13.8
   full: 2.13.8

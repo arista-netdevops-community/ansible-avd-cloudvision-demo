@@ -1,7 +1,4 @@
 ---
-
-cvp_password : "cvp123!"
-
 # Validation lab
 # local users
 local_users:
@@ -13,10 +10,16 @@ local_users:
   cvpadmin:
     privilege: 15
     role: network-admin
-    # Generate the password hash from the cvp_password
-    # The salt is a pseudo-random number generated from the inventory_hostname. It is deterministic (always the same), and unique to each
-    # device
-    sha512_password: "{{ cvp_password | password_hash('sha512',  65534 | random(seed=inventory_hostname) | string) }}"
+    # ==== DO NOT USE IN PRODUCTION !! ======
+    # Generate the password hash from the ansible_password for
+    # cv_server in inventory
+    # The salt is a pseudo-random number generated from the inventory_hostname.
+    # It is deterministic (always the same after each ansible playbook run),
+    # and unique to each device. CARE SHOULD BE TAKEN TO
+    # NOT USE THIS APPROACH IN PRODUCTION, as it means that the password
+    # is being processed in cleartext by ansible.
+    sha512_password: "{{ hostvars['cv_server']['ansible_password'] | password_hash('sha512',  65534 | random(seed=inventory_hostname) | string) }}"
+    # ==== DO NOT USE IN PRODUCTION !! ======
 
   ansible:
     privilege: 15
@@ -57,8 +60,8 @@ custom_structured_configuration_ntp:
     name: Management1
     vrf: MGMT
   servers:
-  - name: 0.fr.pool.ntp.org
-    preferred: true
-    vrf: MGMT
-  - name: 1.fr.pool.ntp.org
-    vrf: MGMT
+    - name: 0.fr.pool.ntp.org
+      preferred: true
+      vrf: MGMT
+    - name: 1.fr.pool.ntp.org
+      vrf: MGMT
