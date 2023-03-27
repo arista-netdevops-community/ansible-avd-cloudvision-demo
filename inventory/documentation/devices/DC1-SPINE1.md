@@ -53,7 +53,7 @@
 
 | Management Interface | description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management1 | oob_management | oob | MGMT | -  | - |
+| Management1 | oob_management | oob | MGMT | - | - |
 
 ### Management Interfaces Device Configuration
 
@@ -120,6 +120,7 @@ ntp server vrf MGMT 1.fr.pool.ntp.org
 
 | VRF Name | IPv4 ACL | IPv6 ACL |
 | -------- | -------- | -------- |
+| default | - | - |
 | MGMT | - | - |
 
 ### Management API HTTP Configuration
@@ -129,6 +130,9 @@ ntp server vrf MGMT 1.fr.pool.ntp.org
 management api http-commands
    protocol https
    no shutdown
+   !
+   vrf default
+      no shutdown
    !
    vrf MGMT
       no shutdown
@@ -140,11 +144,11 @@ management api http-commands
 
 ### Local Users Summary
 
-| User | Privilege | Role |
-| ---- | --------- | ---- |
-| admin | 15 | network-admin |
-| ansible | 15 | network-admin |
-| cvpadmin | 15 | network-admin |
+| User | Privilege | Role | Disabled |
+| ---- | --------- | ---- | -------- |
+| admin | 15 | network-admin | False |
+| ansible | 15 | network-admin | False |
+| cvpadmin | 15 | network-admin | False |
 
 ### Local Users Device Configuration
 
@@ -163,14 +167,14 @@ username cvpadmin privilege 15 role network-admin secret sha512 $6$13994$MwG2qno
 
 | CV Compression | CloudVision Servers | VRF | Authentication | Smash Excludes | Ingest Exclude | Bypass AAA |
 | -------------- | ------------------- | --- | -------------- | -------------- | -------------- | ---------- |
-| gzip | 192.168.0.1:9910 | MGMT | token,/tmp/token | ale,flexCounter,hardware,kni,pulse,strata | /Sysdb/cell/1/agent,/Sysdb/cell/2/agent | False |
+| gzip | 192.168.0.5:9910 | MGMT | token,/tmp/token | ale,flexCounter,hardware,kni,pulse,strata | /Sysdb/cell/1/agent,/Sysdb/cell/2/agent | False |
 
 ### TerminAttr Daemon Device Configuration
 
 ```eos
 !
 daemon TerminAttr
-   exec /usr/bin/TerminAttr -cvaddr=192.168.0.1:9910 -cvauth=token,/tmp/token -cvvrf=MGMT -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs
+   exec /usr/bin/TerminAttr -cvaddr=192.168.0.5:9910 -cvauth=token,/tmp/token -cvvrf=MGMT -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs
    no shutdown
 ```
 
@@ -219,10 +223,10 @@ vlan internal order ascending range 1006 1199
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet1 | P2P_LINK_TO_DC1-LEAF1A_Ethernet1 | routed | - | 172.31.255.0/31 | default | 1500 | false | - | - |
-| Ethernet2 | P2P_LINK_TO_DC1-LEAF1B_Ethernet1 | routed | - | 172.31.255.4/31 | default | 1500 | false | - | - |
-| Ethernet3 | P2P_LINK_TO_DC1-LEAF2A_Ethernet1 | routed | - | 172.31.255.8/31 | default | 1500 | false | - | - |
-| Ethernet4 | P2P_LINK_TO_DC1-LEAF2B_Ethernet1 | routed | - | 172.31.255.12/31 | default | 1500 | false | - | - |
+| Ethernet1 | P2P_LINK_TO_DC1-LEAF1A_Ethernet1 | routed | - | 172.31.255.0/31 | default | 1500 | False | - | - |
+| Ethernet2 | P2P_LINK_TO_DC1-LEAF1B_Ethernet1 | routed | - | 172.31.255.4/31 | default | 1500 | False | - | - |
+| Ethernet3 | P2P_LINK_TO_DC1-LEAF2A_Ethernet1 | routed | - | 172.31.255.8/31 | default | 1500 | False | - | - |
+| Ethernet4 | P2P_LINK_TO_DC1-LEAF2B_Ethernet1 | routed | - | 172.31.255.12/31 | default | 1500 | False | - | - |
 
 ### Ethernet Interfaces Device Configuration
 
@@ -300,7 +304,7 @@ service routing protocols model multi-agent
 
 | VRF | Routing Enabled |
 | --- | --------------- |
-| default | true |
+| default | True |
 | MGMT | false |
 
 ### IP Routing Device Configuration
@@ -316,7 +320,7 @@ no ip routing vrf MGMT
 
 | VRF | Routing Enabled |
 | --- | --------------- |
-| default | false |
+| default | False |
 | MGMT | false |
 
 ## Static Routes
@@ -374,16 +378,16 @@ ip route vrf MGMT 0.0.0.0/0 192.168.0.1
 
 ### BGP Neighbors
 
-| Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain |
-| -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- |
-| 172.31.255.1 | 65101 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - |
-| 172.31.255.5 | 65101 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - |
-| 172.31.255.9 | 65102 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - |
-| 172.31.255.13 | 65102 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - |
-| 192.168.255.3 | 65101 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - |
-| 192.168.255.4 | 65101 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - |
-| 192.168.255.5 | 65102 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - |
-| 192.168.255.6 | 65102 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - |
+| Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client |
+| -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- |
+| 172.31.255.1 | 65101 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - |
+| 172.31.255.5 | 65101 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - |
+| 172.31.255.9 | 65102 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - |
+| 172.31.255.13 | 65102 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - |
+| 192.168.255.3 | 65101 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - |
+| 192.168.255.4 | 65101 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - |
+| 192.168.255.5 | 65102 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - |
+| 192.168.255.6 | 65102 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - |
 
 ### Router BGP EVPN Address Family
 
@@ -496,9 +500,9 @@ ip prefix-list PL-LOOPBACKS-EVPN-OVERLAY
 
 #### RM-CONN-2-BGP
 
-| Sequence | Type | Match and/or Set |
-| -------- | ---- | ---------------- |
-| 10 | permit | match ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY |
+| Sequence | Type | Match | Set | Sub-Route-Map | Continue |
+| -------- | ---- | ----- | --- | ------------- | -------- |
+| 10 | permit | ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY | - | - | - |
 
 ### Route-maps Device Configuration
 

@@ -6,7 +6,7 @@ service_routing_protocols_model: multi-agent
 ip_routing: true
 daemon_terminattr:
   cvaddrs:
-  - 192.168.0.1:9910
+  - 192.168.0.5:9910
   cvauth:
     method: token
     key: ''
@@ -58,6 +58,7 @@ management_interfaces:
 management_api_http:
   enable_vrfs:
     MGMT: {}
+    default: {}
   enable_https: true
 ethernet_interfaces:
   Ethernet1:
@@ -65,8 +66,8 @@ ethernet_interfaces:
     peer_interface: Ethernet5
     peer_type: l3leaf
     description: DC1-LEAF1A_Ethernet5
-    type: switched
     shutdown: false
+    type: switched
     channel_group:
       id: 1
       mode: active
@@ -75,8 +76,8 @@ ethernet_interfaces:
     peer_interface: Ethernet5
     peer_type: l3leaf
     description: DC1-LEAF1B_Ethernet5
-    type: switched
     shutdown: false
+    type: switched
     channel_group:
       id: 1
       mode: active
@@ -88,14 +89,14 @@ ethernet_interfaces:
     type: switched
     shutdown: false
     mode: access
-    vlans: 110
+    vlans: '110'
 port_channel_interfaces:
   Port-Channel1:
     description: DC1_LEAF1_Po5
     type: switched
     shutdown: false
-    vlans: 110-112,120-121,130-131
     mode: trunk
+    vlans: 110-112,120-121,130-131
 vlans:
   130:
     tenant: Tenant_A

@@ -17,10 +17,10 @@ router_bgp:
       type: evpn
       update_source: Loopback0
       bfd: true
-      ebgp_multihop: '3'
       password: q+VNViP5i4rVjW1cxFv2wA==
       send_community: all
       maximum_routes: 0
+      ebgp_multihop: 3
       next_hop_unchanged: true
   address_family_ipv4:
     peer_groups:
@@ -76,7 +76,7 @@ service_routing_protocols_model: multi-agent
 ip_routing: true
 daemon_terminattr:
   cvaddrs:
-  - 192.168.0.1:9910
+  - 192.168.0.5:9910
   cvauth:
     method: token
     key: ''
@@ -125,6 +125,7 @@ management_interfaces:
 management_api_http:
   enable_vrfs:
     MGMT: {}
+    default: {}
   enable_https: true
 ethernet_interfaces:
   Ethernet1:
@@ -132,36 +133,36 @@ ethernet_interfaces:
     peer_interface: Ethernet1
     peer_type: l3leaf
     description: P2P_LINK_TO_DC1-LEAF1A_Ethernet1
+    shutdown: false
     mtu: 1500
     type: routed
-    shutdown: false
     ip_address: 172.31.255.0/31
   Ethernet2:
     peer: DC1-LEAF1B
     peer_interface: Ethernet1
     peer_type: l3leaf
     description: P2P_LINK_TO_DC1-LEAF1B_Ethernet1
+    shutdown: false
     mtu: 1500
     type: routed
-    shutdown: false
     ip_address: 172.31.255.4/31
   Ethernet3:
     peer: DC1-LEAF2A
     peer_interface: Ethernet1
     peer_type: l3leaf
     description: P2P_LINK_TO_DC1-LEAF2A_Ethernet1
+    shutdown: false
     mtu: 1500
     type: routed
-    shutdown: false
     ip_address: 172.31.255.8/31
   Ethernet4:
     peer: DC1-LEAF2B
     peer_interface: Ethernet1
     peer_type: l3leaf
     description: P2P_LINK_TO_DC1-LEAF2B_Ethernet1
+    shutdown: false
     mtu: 1500
     type: routed
-    shutdown: false
     ip_address: 172.31.255.12/31
 loopback_interfaces:
   Loopback0:

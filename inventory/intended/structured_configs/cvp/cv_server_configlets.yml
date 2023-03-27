@@ -1,6 +1,6 @@
 CVP_CONFIGLETS:
   DC1-AVD_DC1-L2LEAF1A: "!RANCID-CONTENT-TYPE: arista\n!\ndaemon TerminAttr\n   exec\
-    \ /usr/bin/TerminAttr -cvaddr=192.168.0.1:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
+    \ /usr/bin/TerminAttr -cvaddr=192.168.0.5:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
     \ -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent\
     \ -taillogs\n   no shutdown\n!\nvlan internal order ascending range 1006 1199\n\
     !\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n\
@@ -24,10 +24,10 @@ CVP_CONFIGLETS:
     \ mode access\n   switchport\n!\ninterface Management1\n   description oob_management\n\
     \   no shutdown\n   vrf MGMT\n   ip address 192.168.0.17/24\n!\nip routing\nno\
     \ ip routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nmanagement\
-    \ api http-commands\n   protocol https\n   no shutdown\n   !\n   vrf MGMT\n  \
-    \    no shutdown\n!\nend\n"
+    \ api http-commands\n   protocol https\n   no shutdown\n   !\n   vrf default\n\
+    \      no shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
   DC1-AVD_DC1-L2LEAF2A: "!RANCID-CONTENT-TYPE: arista\n!\ndaemon TerminAttr\n   exec\
-    \ /usr/bin/TerminAttr -cvaddr=192.168.0.1:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
+    \ /usr/bin/TerminAttr -cvaddr=192.168.0.5:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
     \ -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent\
     \ -taillogs\n   no shutdown\n!\nvlan internal order ascending range 1006 1199\n\
     !\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n\
@@ -51,10 +51,10 @@ CVP_CONFIGLETS:
     \ mode access\n   switchport\n!\ninterface Management1\n   description oob_management\n\
     \   no shutdown\n   vrf MGMT\n   ip address 192.168.0.18/24\n!\nip routing\nno\
     \ ip routing vrf MGMT\n!\nip route vrf MGMT 0.0.0.0/0 192.168.0.1\n!\nmanagement\
-    \ api http-commands\n   protocol https\n   no shutdown\n   !\n   vrf MGMT\n  \
-    \    no shutdown\n!\nend\n"
+    \ api http-commands\n   protocol https\n   no shutdown\n   !\n   vrf default\n\
+    \      no shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
   DC1-AVD_DC1-LEAF1A: "!RANCID-CONTENT-TYPE: arista\n!\ndaemon TerminAttr\n   exec\
-    \ /usr/bin/TerminAttr -cvaddr=192.168.0.1:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
+    \ /usr/bin/TerminAttr -cvaddr=192.168.0.5:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
     \ -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent\
     \ -taillogs\n   no shutdown\n!\nvlan internal order ascending range 1006 1199\n\
     !\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n\
@@ -256,9 +256,10 @@ CVP_CONFIGLETS:
     \      route-target import evpn 31:31\n      route-target export evpn 31:31\n\
     \      router-id 192.168.255.3\n      neighbor 10.255.251.1 peer group MLAG-IPv4-UNDERLAY-PEER\n\
     \      redistribute connected\n!\nmanagement api http-commands\n   protocol https\n\
-    \   no shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
+    \   no shutdown\n   !\n   vrf default\n      no shutdown\n   !\n   vrf MGMT\n\
+    \      no shutdown\n!\nend\n"
   DC1-AVD_DC1-LEAF1B: "!RANCID-CONTENT-TYPE: arista\n!\ndaemon TerminAttr\n   exec\
-    \ /usr/bin/TerminAttr -cvaddr=192.168.0.1:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
+    \ /usr/bin/TerminAttr -cvaddr=192.168.0.5:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
     \ -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent\
     \ -taillogs\n   no shutdown\n!\nvlan internal order ascending range 1006 1199\n\
     !\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n\
@@ -460,9 +461,10 @@ CVP_CONFIGLETS:
     \      route-target import evpn 31:31\n      route-target export evpn 31:31\n\
     \      router-id 192.168.255.4\n      neighbor 10.255.251.0 peer group MLAG-IPv4-UNDERLAY-PEER\n\
     \      redistribute connected\n!\nmanagement api http-commands\n   protocol https\n\
-    \   no shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
+    \   no shutdown\n   !\n   vrf default\n      no shutdown\n   !\n   vrf MGMT\n\
+    \      no shutdown\n!\nend\n"
   DC1-AVD_DC1-LEAF2A: "!RANCID-CONTENT-TYPE: arista\n!\ndaemon TerminAttr\n   exec\
-    \ /usr/bin/TerminAttr -cvaddr=192.168.0.1:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
+    \ /usr/bin/TerminAttr -cvaddr=192.168.0.5:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
     \ -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent\
     \ -taillogs\n   no shutdown\n!\nvlan internal order ascending range 1006 1199\n\
     !\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n\
@@ -664,9 +666,10 @@ CVP_CONFIGLETS:
     \      route-target import evpn 31:31\n      route-target export evpn 31:31\n\
     \      router-id 192.168.255.5\n      neighbor 10.255.251.5 peer group MLAG-IPv4-UNDERLAY-PEER\n\
     \      redistribute connected\n!\nmanagement api http-commands\n   protocol https\n\
-    \   no shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
+    \   no shutdown\n   !\n   vrf default\n      no shutdown\n   !\n   vrf MGMT\n\
+    \      no shutdown\n!\nend\n"
   DC1-AVD_DC1-LEAF2B: "!RANCID-CONTENT-TYPE: arista\n!\ndaemon TerminAttr\n   exec\
-    \ /usr/bin/TerminAttr -cvaddr=192.168.0.1:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
+    \ /usr/bin/TerminAttr -cvaddr=192.168.0.5:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
     \ -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent\
     \ -taillogs\n   no shutdown\n!\nvlan internal order ascending range 1006 1199\n\
     !\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n\
@@ -868,9 +871,10 @@ CVP_CONFIGLETS:
     \      route-target import evpn 31:31\n      route-target export evpn 31:31\n\
     \      router-id 192.168.255.6\n      neighbor 10.255.251.4 peer group MLAG-IPv4-UNDERLAY-PEER\n\
     \      redistribute connected\n!\nmanagement api http-commands\n   protocol https\n\
-    \   no shutdown\n   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
+    \   no shutdown\n   !\n   vrf default\n      no shutdown\n   !\n   vrf MGMT\n\
+    \      no shutdown\n!\nend\n"
   DC1-AVD_DC1-SPINE1: "!RANCID-CONTENT-TYPE: arista\n!\ndaemon TerminAttr\n   exec\
-    \ /usr/bin/TerminAttr -cvaddr=192.168.0.1:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
+    \ /usr/bin/TerminAttr -cvaddr=192.168.0.5:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
     \ -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent\
     \ -taillogs\n   no shutdown\n!\nvlan internal order ascending range 1006 1199\n\
     !\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n\
@@ -925,9 +929,10 @@ CVP_CONFIGLETS:
     \      neighbor EVPN-OVERLAY-PEERS activate\n   !\n   address-family ipv4\n  \
     \    no neighbor EVPN-OVERLAY-PEERS activate\n      neighbor IPv4-UNDERLAY-PEERS\
     \ activate\n!\nmanagement api http-commands\n   protocol https\n   no shutdown\n\
-    \   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
+    \   !\n   vrf default\n      no shutdown\n   !\n   vrf MGMT\n      no shutdown\n\
+    !\nend\n"
   DC1-AVD_DC1-SPINE2: "!RANCID-CONTENT-TYPE: arista\n!\ndaemon TerminAttr\n   exec\
-    \ /usr/bin/TerminAttr -cvaddr=192.168.0.1:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
+    \ /usr/bin/TerminAttr -cvaddr=192.168.0.5:9910 -cvauth=token,/tmp/token -cvvrf=MGMT\
     \ -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent\
     \ -taillogs\n   no shutdown\n!\nvlan internal order ascending range 1006 1199\n\
     !\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n\
@@ -982,7 +987,8 @@ CVP_CONFIGLETS:
     \      neighbor EVPN-OVERLAY-PEERS activate\n   !\n   address-family ipv4\n  \
     \    no neighbor EVPN-OVERLAY-PEERS activate\n      neighbor IPv4-UNDERLAY-PEERS\
     \ activate\n!\nmanagement api http-commands\n   protocol https\n   no shutdown\n\
-    \   !\n   vrf MGMT\n      no shutdown\n!\nend\n"
+    \   !\n   vrf default\n      no shutdown\n   !\n   vrf MGMT\n      no shutdown\n\
+    !\nend\n"
 CVP_TOPOLOGY:
   DC1_FABRIC:
     parent_container: Tenant

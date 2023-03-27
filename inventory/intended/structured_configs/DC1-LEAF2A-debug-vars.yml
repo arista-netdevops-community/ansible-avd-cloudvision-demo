@@ -1,7 +1,7 @@
 ansible_connection: httpapi
 ansible_network_os: eos
-ansible_user: ansible
-ansible_ssh_pass: ansible
+ansible_user: cvpadmin
+ansible_ssh_pass: cvp123!
 ansible_become: true
 ansible_become_method: enable
 ansible_httpapi_use_ssl: true
@@ -21,7 +21,7 @@ local_users:
     privilege: 15
     role: network-admin
     sha512_password: $6$Dzu11L7yp9j3nCM9$FSptxMPyIL555OMO.ldnjDXgwZmrfMYwHSr0uznE5Qoqvd9a6UdjiFcJUhGLtvXVZR1r.A/iF5aAt50hf/EK4/
-cvp_instance_ip: 192.168.0.1
+cvp_instance_ip: 192.168.0.5
 cvp_ingestauth_key: ''
 custom_structured_configuration_daemon_terminattr:
   cvauth:
@@ -30,6 +30,10 @@ custom_structured_configuration_daemon_terminattr:
 mgmt_interface: Management1
 mgmt_interface_vrf: MGMT
 mgmt_gateway: 192.168.0.1
+custom_structured_configuration_management_api_http:
+  enable_vrfs:
+    MGMT: {}
+    default: {}
 name_servers:
 - 192.168.0.1
 - 8.8.8.8
@@ -372,9 +376,9 @@ tenants:
             - wan
             enabled: true
             ip_subnet: 10.3.50.1/24
-inventory_file: /projects/inventory/inventory.yml
-inventory_dir: /projects/inventory
-ansible_host: 192.168.0.15
+inventory_file: /home/avd/projects/inventory/inventory.yml
+inventory_dir: /home/avd/projects/inventory
+ansible_host: 10.255.119.79
 inventory_hostname: DC1-LEAF2A
 inventory_hostname_short: DC1-LEAF2A
 group_names:
@@ -384,11 +388,69 @@ group_names:
 - DC1_LEAF2
 - DC1_SERVERS
 - DC1_TENANTS_NETWORKS
+- VEOS
 ansible_facts:
   avd_switch_facts:
     DC1-SPINE1:
       switch:
-        bgp_as: '65001'
+        type: spine
+        hostname: DC1-SPINE1
+        node_type_key: spine
+        connected_endpoints: false
+        default_downlink_interfaces: []
+        default_evpn_role: server
+        default_interfaces: {}
+        default_underlay_routing_protocol: ebgp
+        default_overlay_routing_protocol: ebgp
+        default_overlay_address_families:
+        - evpn
+        default_mpls_overlay_role: none
+        mpls_lsr: false
+        mlag_support: false
+        network_services_l1: false
+        network_services_l2: false
+        network_services_l3: false
+        underlay_router: true
+        uplink_type: p2p
+        vtep: false
+        ip_addressing:
+          python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.ip_addressing
+          python_class_name: AvdIpAddressing
+        interface_descriptions:
+          python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.interface_descriptions
+          python_class_name: AvdInterfaceDescriptions
+        id: 1
+        mgmt_ip: 192.168.0.11/24
+        platform: vEOS-LAB
+        max_parallel_uplinks: 1
+        uplink_interfaces: []
+        uplink_switch_interfaces: []
+        default_ptp_priority1: 20
+        max_uplink_switches: 0
+        is_deployed: true
+        platform_settings:
+          platforms:
+          - default
+          reload_delay:
+            mlag: 300
+            non_mlag: 330
+          feature_support:
+            queue_monitor_length_notify: false
+        mgmt_interface: Management1
+        underlay_routing_protocol: ebgp
+        overlay_routing_protocol: ebgp
+        overlay_address_families:
+        - evpn
+        endpoint_trunk_groups: []
+        vlans: ''
+        spanning_tree_mode: none
+        overlay_rd_type_admin_subfield: 192.168.255.1
+        loopback_ipv4_pool: 192.168.255.0/24
+        loopback_ipv4_offset: 0
+        router_id: 192.168.255.1
+        evpn_gateway_vxlan_l2: false
+        evpn_gateway_vxlan_l3: false
+        evpn_gateway_vxlan_l3_inter_domain: true
         bgp_defaults:
         - no bgp default ipv4-unicast
         - distance bgp 20 200 200
@@ -419,182 +481,75 @@ ansible_facts:
             name: RR-OVERLAY-PEERS
             password: null
             structured_config: null
-        connected_endpoints: false
-        default_downlink_interfaces: []
-        default_evpn_role: server
-        default_interfaces: {}
-        default_mpls_overlay_role: none
-        default_overlay_address_families:
-        - evpn
-        default_overlay_routing_protocol: ebgp
-        default_underlay_routing_protocol: ebgp
-        endpoint_trunk_groups: []
-        evpn_gateway_vxlan_l2: false
-        evpn_gateway_vxlan_l3: false
-        evpn_gateway_vxlan_l3_inter_domain: true
+          ipvpn_gateway_peers:
+            name: IPVPN-GATEWAY-PEERS
+            password: null
+            structured_config: null
         evpn_role: server
-        hostname: DC1-SPINE1
-        id: 1
-        interface_descriptions:
-          underlay_ethernet_interfaces: interface_descriptions/underlay/ethernet-interfaces.j2
-          underlay_port_channel_interfaces: interface_descriptions/underlay/port-channel-interfaces.j2
-          mlag_ethernet_interfaces: interface_descriptions/mlag/ethernet-interfaces.j2
-          mlag_port_channel_interfaces: interface_descriptions/mlag/port-channel-interfaces.j2
-          connected_endpoints_ethernet_interfaces: interface_descriptions/connected_endpoints/ethernet-interfaces.j2
-          connected_endpoints_port_channel_interfaces: interface_descriptions/connected_endpoints/port-channel-interfaces.j2
-          overlay_loopback_interface: interface_descriptions/loopback_interfaces/overlay-loopback.j2
-          vtep_loopback_interface: interface_descriptions/loopback_interfaces/vtep-loopback.j2
-        ip_addressing:
-          router_id: ip_addressing/router-id.j2
-          ipv6_router_id: ip_addressing/router-id-ipv6.j2
-          mlag_ip_primary: ip_addressing/mlag-ip-primary.j2
-          mlag_ip_secondary: ip_addressing/mlag-ip-secondary.j2
-          mlag_l3_ip_primary: ip_addressing/mlag-l3-ip-primary.j2
-          mlag_l3_ip_secondary: ip_addressing/mlag-l3-ip-secondary.j2
-          mlag_ibgp_peering_ip_primary: ip_addressing/mlag-ibgp-peering-ip-primary.j2
-          mlag_ibgp_peering_ip_secondary: ip_addressing/mlag-ibgp-peering-ip-secondary.j2
-          p2p_uplinks_ip: ip_addressing/p2p-uplinks-ip.j2
-          p2p_uplinks_peer_ip: ip_addressing/p2p-uplinks-peer-ip.j2
-          vtep_ip_mlag: ip_addressing/vtep-ip-mlag.j2
-          vtep_ip: ip_addressing/vtep-ip.j2
-        is_deployed: true
-        loopback_ipv4_offset: 0
-        loopback_ipv4_pool: 192.168.255.0/24
-        max_parallel_uplinks: 1
-        max_uplink_switches: 0
-        mgmt_interface: Management1
-        mgmt_ip: 192.168.0.11/24
-        mlag: false
-        mlag_support: false
-        mpls_ler: false
-        mpls_lsr: false
         mpls_overlay_role: none
-        network_services_l1: false
-        network_services_l2: false
-        network_services_l3: false
-        node_type_key: spine
-        overlay_address_families:
-        - evpn
-        overlay_rd_type_admin_subfield: 192.168.255.1
-        overlay_routing_protocol: ebgp
-        overlay_routing_protocol_address_family: ipv4
-        overlay_routing_protocol_peering_address: 192.168.255.1
-        platform: vEOS-LAB
-        platform_settings:
-          platforms:
-          - default
-          reload_delay:
-            mlag: 300
-            non_mlag: 330
-          feature_support:
-            queue_monitor_length_notify: false
-        router_id: 192.168.255.1
-        spanning_tree_mode: none
-        type: spine
+        bgp_as: '65001'
         underlay_ipv6: false
-        underlay_router: true
-        underlay_routing_protocol: ebgp
-        uplink_interfaces: []
-        uplink_peers: []
-        uplink_switch_interfaces: []
-        uplink_type: p2p
+        mlag: false
         uplinks: []
-        vlans: ''
-        vtep: false
+        uplink_peers: []
+        overlay_routing_protocol_address_family: ipv4
+        bgp: true
+        evpn_encapsulation: vxlan
+        underlay:
+          bgp: true
+          ldp: false
+          mpls: false
+          sr: false
+          ospf: false
+          isis: false
+        overlay:
+          peering_address: 192.168.255.1
+          ler: false
+          vtep: false
+          evpn: true
+          evpn_vxlan: true
+          evpn_mpls: false
+          vpn_ipv4: false
+          vpn_ipv6: false
+          ipvpn_gateway: false
+          dpath: false
     DC1-SPINE2:
       switch:
-        bgp_as: '65001'
-        bgp_defaults:
-        - no bgp default ipv4-unicast
-        - distance bgp 20 200 200
-        - graceful-restart restart-time 300
-        - graceful-restart
-        bgp_peer_groups:
-          ipv4_underlay_peers:
-            name: IPv4-UNDERLAY-PEERS
-            password: AQQvKeimxJu+uGQ/yYvv9w==
-            structured_config: null
-          mlag_ipv4_underlay_peer:
-            name: MLAG-IPv4-UNDERLAY-PEER
-            password: vnEaG8gMeQf3d3cN6PktXQ==
-            structured_config: null
-          evpn_overlay_peers:
-            name: EVPN-OVERLAY-PEERS
-            password: q+VNViP5i4rVjW1cxFv2wA==
-            structured_config: null
-          evpn_overlay_core:
-            name: EVPN-OVERLAY-CORE
-            password: null
-            structured_config: null
-          mpls_overlay_peers:
-            name: MPLS-OVERLAY-PEERS
-            password: null
-            structured_config: null
-          rr_overlay_peers:
-            name: RR-OVERLAY-PEERS
-            password: null
-            structured_config: null
+        type: spine
+        hostname: DC1-SPINE2
+        node_type_key: spine
         connected_endpoints: false
         default_downlink_interfaces: []
         default_evpn_role: server
         default_interfaces: {}
-        default_mpls_overlay_role: none
+        default_underlay_routing_protocol: ebgp
+        default_overlay_routing_protocol: ebgp
         default_overlay_address_families:
         - evpn
-        default_overlay_routing_protocol: ebgp
-        default_underlay_routing_protocol: ebgp
-        endpoint_trunk_groups: []
-        evpn_gateway_vxlan_l2: false
-        evpn_gateway_vxlan_l3: false
-        evpn_gateway_vxlan_l3_inter_domain: true
-        evpn_role: server
-        hostname: DC1-SPINE2
-        id: 2
-        interface_descriptions:
-          underlay_ethernet_interfaces: interface_descriptions/underlay/ethernet-interfaces.j2
-          underlay_port_channel_interfaces: interface_descriptions/underlay/port-channel-interfaces.j2
-          mlag_ethernet_interfaces: interface_descriptions/mlag/ethernet-interfaces.j2
-          mlag_port_channel_interfaces: interface_descriptions/mlag/port-channel-interfaces.j2
-          connected_endpoints_ethernet_interfaces: interface_descriptions/connected_endpoints/ethernet-interfaces.j2
-          connected_endpoints_port_channel_interfaces: interface_descriptions/connected_endpoints/port-channel-interfaces.j2
-          overlay_loopback_interface: interface_descriptions/loopback_interfaces/overlay-loopback.j2
-          vtep_loopback_interface: interface_descriptions/loopback_interfaces/vtep-loopback.j2
-        ip_addressing:
-          router_id: ip_addressing/router-id.j2
-          ipv6_router_id: ip_addressing/router-id-ipv6.j2
-          mlag_ip_primary: ip_addressing/mlag-ip-primary.j2
-          mlag_ip_secondary: ip_addressing/mlag-ip-secondary.j2
-          mlag_l3_ip_primary: ip_addressing/mlag-l3-ip-primary.j2
-          mlag_l3_ip_secondary: ip_addressing/mlag-l3-ip-secondary.j2
-          mlag_ibgp_peering_ip_primary: ip_addressing/mlag-ibgp-peering-ip-primary.j2
-          mlag_ibgp_peering_ip_secondary: ip_addressing/mlag-ibgp-peering-ip-secondary.j2
-          p2p_uplinks_ip: ip_addressing/p2p-uplinks-ip.j2
-          p2p_uplinks_peer_ip: ip_addressing/p2p-uplinks-peer-ip.j2
-          vtep_ip_mlag: ip_addressing/vtep-ip-mlag.j2
-          vtep_ip: ip_addressing/vtep-ip.j2
-        is_deployed: true
-        loopback_ipv4_offset: 0
-        loopback_ipv4_pool: 192.168.255.0/24
-        max_parallel_uplinks: 1
-        max_uplink_switches: 0
-        mgmt_interface: Management1
-        mgmt_ip: 192.168.0.12/24
-        mlag: false
-        mlag_support: false
-        mpls_ler: false
+        default_mpls_overlay_role: none
         mpls_lsr: false
-        mpls_overlay_role: none
+        mlag_support: false
         network_services_l1: false
         network_services_l2: false
         network_services_l3: false
-        node_type_key: spine
-        overlay_address_families:
-        - evpn
-        overlay_rd_type_admin_subfield: 192.168.255.2
-        overlay_routing_protocol: ebgp
-        overlay_routing_protocol_address_family: ipv4
-        overlay_routing_protocol_peering_address: 192.168.255.2
+        underlay_router: true
+        uplink_type: p2p
+        vtep: false
+        ip_addressing:
+          python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.ip_addressing
+          python_class_name: AvdIpAddressing
+        interface_descriptions:
+          python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.interface_descriptions
+          python_class_name: AvdInterfaceDescriptions
+        id: 2
+        mgmt_ip: 192.168.0.12/24
         platform: vEOS-LAB
+        max_parallel_uplinks: 1
+        uplink_interfaces: []
+        uplink_switch_interfaces: []
+        default_ptp_priority1: 20
+        max_uplink_switches: 0
+        is_deployed: true
         platform_settings:
           platforms:
           - default
@@ -603,22 +558,21 @@ ansible_facts:
             non_mlag: 330
           feature_support:
             queue_monitor_length_notify: false
-        router_id: 192.168.255.2
-        spanning_tree_mode: none
-        type: spine
-        underlay_ipv6: false
-        underlay_router: true
+        mgmt_interface: Management1
         underlay_routing_protocol: ebgp
-        uplink_interfaces: []
-        uplink_peers: []
-        uplink_switch_interfaces: []
-        uplink_type: p2p
-        uplinks: []
+        overlay_routing_protocol: ebgp
+        overlay_address_families:
+        - evpn
+        endpoint_trunk_groups: []
         vlans: ''
-        vtep: false
-    DC1-LEAF1A:
-      switch:
-        bgp_as: '65101'
+        spanning_tree_mode: none
+        overlay_rd_type_admin_subfield: 192.168.255.2
+        loopback_ipv4_pool: 192.168.255.0/24
+        loopback_ipv4_offset: 0
+        router_id: 192.168.255.2
+        evpn_gateway_vxlan_l2: false
+        evpn_gateway_vxlan_l3: false
+        evpn_gateway_vxlan_l3_inter_domain: true
         bgp_defaults:
         - no bgp default ipv4-unicast
         - distance bgp 20 200 200
@@ -649,101 +603,83 @@ ansible_facts:
             name: RR-OVERLAY-PEERS
             password: null
             structured_config: null
+          ipvpn_gateway_peers:
+            name: IPVPN-GATEWAY-PEERS
+            password: null
+            structured_config: null
+        evpn_role: server
+        mpls_overlay_role: none
+        bgp_as: '65001'
+        underlay_ipv6: false
+        mlag: false
+        uplinks: []
+        uplink_peers: []
+        overlay_routing_protocol_address_family: ipv4
+        bgp: true
+        evpn_encapsulation: vxlan
+        underlay:
+          bgp: true
+          ldp: false
+          mpls: false
+          sr: false
+          ospf: false
+          isis: false
+        overlay:
+          peering_address: 192.168.255.2
+          ler: false
+          vtep: false
+          evpn: true
+          evpn_vxlan: true
+          evpn_mpls: false
+          vpn_ipv4: false
+          vpn_ipv6: false
+          ipvpn_gateway: false
+          dpath: false
+    DC1-LEAF1A:
+      switch:
+        type: l3leaf
+        hostname: DC1-LEAF1A
+        node_type_key: l3leaf
         connected_endpoints: true
         default_downlink_interfaces: []
         default_evpn_role: client
         default_interfaces: {}
-        default_mpls_overlay_role: none
+        default_underlay_routing_protocol: ebgp
+        default_overlay_routing_protocol: ebgp
         default_overlay_address_families:
         - evpn
-        default_overlay_routing_protocol: ebgp
-        default_underlay_routing_protocol: ebgp
-        enable_trunk_groups: false
-        endpoint_trunk_groups: []
-        evpn_gateway_vxlan_l2: false
-        evpn_gateway_vxlan_l3: false
-        evpn_gateway_vxlan_l3_inter_domain: true
-        evpn_role: client
-        evpn_route_servers:
-        - DC1-SPINE1
-        - DC1-SPINE2
-        filter_only_vlans_in_use: false
-        filter_tags:
-        - all
-        - DC1_LEAF1
-        filter_tenants:
-        - all
-        group: DC1_LEAF1
-        hostname: DC1-LEAF1A
-        id: 1
-        igmp_snooping_enabled: true
-        interface_descriptions:
-          underlay_ethernet_interfaces: interface_descriptions/underlay/ethernet-interfaces.j2
-          underlay_port_channel_interfaces: interface_descriptions/underlay/port-channel-interfaces.j2
-          mlag_ethernet_interfaces: interface_descriptions/mlag/ethernet-interfaces.j2
-          mlag_port_channel_interfaces: interface_descriptions/mlag/port-channel-interfaces.j2
-          connected_endpoints_ethernet_interfaces: interface_descriptions/connected_endpoints/ethernet-interfaces.j2
-          connected_endpoints_port_channel_interfaces: interface_descriptions/connected_endpoints/port-channel-interfaces.j2
-          overlay_loopback_interface: interface_descriptions/loopback_interfaces/overlay-loopback.j2
-          vtep_loopback_interface: interface_descriptions/loopback_interfaces/vtep-loopback.j2
-        ip_addressing:
-          router_id: ip_addressing/router-id.j2
-          ipv6_router_id: ip_addressing/router-id-ipv6.j2
-          mlag_ip_primary: ip_addressing/mlag-ip-primary.j2
-          mlag_ip_secondary: ip_addressing/mlag-ip-secondary.j2
-          mlag_l3_ip_primary: ip_addressing/mlag-l3-ip-primary.j2
-          mlag_l3_ip_secondary: ip_addressing/mlag-l3-ip-secondary.j2
-          mlag_ibgp_peering_ip_primary: ip_addressing/mlag-ibgp-peering-ip-primary.j2
-          mlag_ibgp_peering_ip_secondary: ip_addressing/mlag-ibgp-peering-ip-secondary.j2
-          p2p_uplinks_ip: ip_addressing/p2p-uplinks-ip.j2
-          p2p_uplinks_peer_ip: ip_addressing/p2p-uplinks-peer-ip.j2
-          vtep_ip_mlag: ip_addressing/vtep-ip-mlag.j2
-          vtep_ip: ip_addressing/vtep-ip.j2
-        is_deployed: true
-        loopback_ipv4_offset: 2
-        loopback_ipv4_pool: 192.168.255.0/24
-        max_parallel_uplinks: 1
-        max_uplink_switches: 2
-        mgmt_interface: Management1
-        mgmt_ip: 192.168.0.13/24
-        mlag: true
-        mlag_dual_primary_detection: false
-        mlag_ibgp_origin_incomplete: true
-        mlag_interfaces:
-        - Ethernet3
-        - Ethernet4
-        mlag_ip: 10.255.252.0
-        mlag_l3: true
-        mlag_l3_ip: 10.255.251.0
-        mlag_peer: DC1-LEAF1B
-        mlag_peer_ip: 10.255.252.1
-        mlag_peer_ipv4_pool: 10.255.252.0/24
-        mlag_peer_l3_ip: 10.255.251.1
-        mlag_peer_l3_ipv4_pool: 10.255.251.0/24
-        mlag_peer_l3_vlan: 4093
-        mlag_peer_link_allowed_vlans: 2-4094
-        mlag_peer_mgmt_ip: 192.168.0.14
-        mlag_peer_vlan: 4094
-        mlag_port_channel_id: '3'
-        mlag_role: primary
-        mlag_support: true
-        mlag_switch_ids:
-          primary: 1
-          secondary: 2
-        mpls_ler: false
+        default_mpls_overlay_role: none
         mpls_lsr: false
-        mpls_overlay_role: none
+        mlag_support: true
         network_services_l1: false
         network_services_l2: true
         network_services_l3: true
-        node_type_key: l3leaf
-        overlay_address_families:
-        - evpn
-        overlay_rd_type_admin_subfield: 192.168.255.3
-        overlay_routing_protocol: ebgp
-        overlay_routing_protocol_address_family: ipv4
-        overlay_routing_protocol_peering_address: 192.168.255.3
+        underlay_router: true
+        uplink_type: p2p
+        vtep: true
+        ip_addressing:
+          python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.ip_addressing
+          python_class_name: AvdIpAddressing
+        interface_descriptions:
+          python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.interface_descriptions
+          python_class_name: AvdInterfaceDescriptions
+        group: DC1_LEAF1
+        id: 1
+        mgmt_ip: 192.168.0.13/24
         platform: vEOS-LAB
+        max_parallel_uplinks: 1
+        uplink_switches:
+        - DC1-SPINE1
+        - DC1-SPINE2
+        uplink_interfaces:
+        - Ethernet1
+        - Ethernet2
+        uplink_switch_interfaces:
+        - Ethernet1
+        - Ethernet1
+        default_ptp_priority1: 30
+        max_uplink_switches: 2
+        is_deployed: true
         platform_settings:
           platforms:
           - default
@@ -752,27 +688,97 @@ ansible_facts:
             non_mlag: 330
           feature_support:
             queue_monitor_length_notify: false
-        router_id: 192.168.255.3
+        mgmt_interface: Management1
+        underlay_routing_protocol: ebgp
+        overlay_routing_protocol: ebgp
+        overlay_address_families:
+        - evpn
+        filter_tenants:
+        - all
+        filter_tags:
+        - all
+        - DC1_LEAF1
+        filter_only_vlans_in_use: false
+        virtual_router_mac_address: 00:1c:73:00:dc:01
+        trunk_groups:
+          mlag:
+            name: MLAG
+          mlag_l3:
+            name: LEAF_PEER_L3
+          uplink:
+            name: UPLINK
+        enable_trunk_groups: false
+        endpoint_trunk_groups: []
+        vlans: 110-112,120-121,130-131,140-141,150,160-161,210-211,250,310-311,350
         spanning_tree_mode: mstp
         spanning_tree_priority: 16384
-        type: l3leaf
-        underlay_ipv6: false
-        underlay_router: true
-        underlay_routing_protocol: ebgp
-        uplink_interfaces:
-        - Ethernet1
-        - Ethernet2
+        overlay_rd_type_admin_subfield: 192.168.255.3
+        igmp_snooping_enabled: true
+        loopback_ipv4_pool: 192.168.255.0/24
+        loopback_ipv4_offset: 2
         uplink_ipv4_pool: 172.31.255.0/24
-        uplink_peers:
+        router_id: 192.168.255.3
+        evpn_gateway_vxlan_l2: false
+        evpn_gateway_vxlan_l3: false
+        evpn_gateway_vxlan_l3_inter_domain: true
+        bgp_defaults:
+        - no bgp default ipv4-unicast
+        - distance bgp 20 200 200
+        - graceful-restart restart-time 300
+        - graceful-restart
+        bgp_peer_groups:
+          ipv4_underlay_peers:
+            name: IPv4-UNDERLAY-PEERS
+            password: AQQvKeimxJu+uGQ/yYvv9w==
+            structured_config: null
+          mlag_ipv4_underlay_peer:
+            name: MLAG-IPv4-UNDERLAY-PEER
+            password: vnEaG8gMeQf3d3cN6PktXQ==
+            structured_config: null
+          evpn_overlay_peers:
+            name: EVPN-OVERLAY-PEERS
+            password: q+VNViP5i4rVjW1cxFv2wA==
+            structured_config: null
+          evpn_overlay_core:
+            name: EVPN-OVERLAY-CORE
+            password: null
+            structured_config: null
+          mpls_overlay_peers:
+            name: MPLS-OVERLAY-PEERS
+            password: null
+            structured_config: null
+          rr_overlay_peers:
+            name: RR-OVERLAY-PEERS
+            password: null
+            structured_config: null
+          ipvpn_gateway_peers:
+            name: IPVPN-GATEWAY-PEERS
+            password: null
+            structured_config: null
+        evpn_role: client
+        mpls_overlay_role: none
+        bgp_as: '65101'
+        evpn_route_servers:
         - DC1-SPINE1
         - DC1-SPINE2
-        uplink_switch_interfaces:
-        - Ethernet1
-        - Ethernet1
-        uplink_switches:
-        - DC1-SPINE1
-        - DC1-SPINE2
-        uplink_type: p2p
+        underlay_ipv6: false
+        mlag: true
+        mlag_ibgp_origin_incomplete: true
+        mlag_peer_vlan: 4094
+        mlag_peer_link_allowed_vlans: 2-4094
+        mlag_dual_primary_detection: false
+        mlag_interfaces:
+        - Ethernet3
+        - Ethernet4
+        mlag_peer_ipv4_pool: 10.255.252.0/24
+        mlag_peer_l3_ipv4_pool: 10.255.251.0/24
+        mlag_role: primary
+        mlag_peer: DC1-LEAF1B
+        mlag_l3: true
+        mlag_peer_l3_vlan: 4093
+        mlag_port_channel_id: '3'
+        vtep_loopback_ipv4_pool: 192.168.254.0/24
+        vtep_loopback: Loopback1
         uplinks:
         - interface: Ethernet1
           peer: DC1-SPINE1
@@ -792,15 +798,125 @@ ansible_facts:
           type: underlay_p2p
           ip_address: 172.31.255.3
           peer_ip_address: 172.31.255.2
-        virtual_router_mac_address: 00:1c:73:00:dc:01
-        vlans: 110-112,120-121,130-131,140-141,150,160-161,210-211,250,310-311,350
-        vtep: true
+        uplink_peers:
+        - DC1-SPINE1
+        - DC1-SPINE2
+        mlag_switch_ids:
+          primary: 1
+          secondary: 2
         vtep_ip: 192.168.254.3
-        vtep_loopback: Loopback1
-        vtep_loopback_ipv4_pool: 192.168.254.0/24
+        mlag_ip: 10.255.252.0
+        mlag_peer_ip: 10.255.252.1
+        mlag_l3_ip: 10.255.251.0
+        mlag_peer_l3_ip: 10.255.251.1
+        mlag_peer_mgmt_ip: 192.168.0.14
+        overlay_routing_protocol_address_family: ipv4
+        bgp: true
+        evpn_encapsulation: vxlan
+        underlay:
+          bgp: true
+          ldp: false
+          mpls: false
+          sr: false
+          ospf: false
+          isis: false
+        overlay:
+          peering_address: 192.168.255.3
+          ler: false
+          vtep: true
+          evpn: true
+          evpn_vxlan: true
+          evpn_mpls: false
+          vpn_ipv4: false
+          vpn_ipv6: false
+          ipvpn_gateway: false
+          dpath: false
     DC1-LEAF1B:
       switch:
-        bgp_as: '65101'
+        type: l3leaf
+        hostname: DC1-LEAF1B
+        node_type_key: l3leaf
+        connected_endpoints: true
+        default_downlink_interfaces: []
+        default_evpn_role: client
+        default_interfaces: {}
+        default_underlay_routing_protocol: ebgp
+        default_overlay_routing_protocol: ebgp
+        default_overlay_address_families:
+        - evpn
+        default_mpls_overlay_role: none
+        mpls_lsr: false
+        mlag_support: true
+        network_services_l1: false
+        network_services_l2: true
+        network_services_l3: true
+        underlay_router: true
+        uplink_type: p2p
+        vtep: true
+        ip_addressing:
+          python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.ip_addressing
+          python_class_name: AvdIpAddressing
+        interface_descriptions:
+          python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.interface_descriptions
+          python_class_name: AvdInterfaceDescriptions
+        group: DC1_LEAF1
+        id: 2
+        mgmt_ip: 192.168.0.14/24
+        platform: vEOS-LAB
+        max_parallel_uplinks: 1
+        uplink_switches:
+        - DC1-SPINE1
+        - DC1-SPINE2
+        uplink_interfaces:
+        - Ethernet1
+        - Ethernet2
+        uplink_switch_interfaces:
+        - Ethernet2
+        - Ethernet2
+        default_ptp_priority1: 30
+        max_uplink_switches: 2
+        is_deployed: true
+        platform_settings:
+          platforms:
+          - default
+          reload_delay:
+            mlag: 300
+            non_mlag: 330
+          feature_support:
+            queue_monitor_length_notify: false
+        mgmt_interface: Management1
+        underlay_routing_protocol: ebgp
+        overlay_routing_protocol: ebgp
+        overlay_address_families:
+        - evpn
+        filter_tenants:
+        - all
+        filter_tags:
+        - all
+        - DC1_LEAF1
+        filter_only_vlans_in_use: false
+        virtual_router_mac_address: 00:1c:73:00:dc:01
+        trunk_groups:
+          mlag:
+            name: MLAG
+          mlag_l3:
+            name: LEAF_PEER_L3
+          uplink:
+            name: UPLINK
+        enable_trunk_groups: false
+        endpoint_trunk_groups: []
+        vlans: 110-112,120-121,130-131,140-141,150,160-161,210-211,250,310-311,350
+        spanning_tree_mode: mstp
+        spanning_tree_priority: 16384
+        overlay_rd_type_admin_subfield: 192.168.255.4
+        igmp_snooping_enabled: true
+        loopback_ipv4_pool: 192.168.255.0/24
+        loopback_ipv4_offset: 2
+        uplink_ipv4_pool: 172.31.255.0/24
+        router_id: 192.168.255.4
+        evpn_gateway_vxlan_l2: false
+        evpn_gateway_vxlan_l3: false
+        evpn_gateway_vxlan_l3_inter_domain: true
         bgp_defaults:
         - no bgp default ipv4-unicast
         - distance bgp 20 200 200
@@ -831,130 +947,34 @@ ansible_facts:
             name: RR-OVERLAY-PEERS
             password: null
             structured_config: null
-        connected_endpoints: true
-        default_downlink_interfaces: []
-        default_evpn_role: client
-        default_interfaces: {}
-        default_mpls_overlay_role: none
-        default_overlay_address_families:
-        - evpn
-        default_overlay_routing_protocol: ebgp
-        default_underlay_routing_protocol: ebgp
-        enable_trunk_groups: false
-        endpoint_trunk_groups: []
-        evpn_gateway_vxlan_l2: false
-        evpn_gateway_vxlan_l3: false
-        evpn_gateway_vxlan_l3_inter_domain: true
+          ipvpn_gateway_peers:
+            name: IPVPN-GATEWAY-PEERS
+            password: null
+            structured_config: null
         evpn_role: client
+        mpls_overlay_role: none
+        bgp_as: '65101'
         evpn_route_servers:
         - DC1-SPINE1
         - DC1-SPINE2
-        filter_only_vlans_in_use: false
-        filter_tags:
-        - all
-        - DC1_LEAF1
-        filter_tenants:
-        - all
-        group: DC1_LEAF1
-        hostname: DC1-LEAF1B
-        id: 2
-        igmp_snooping_enabled: true
-        interface_descriptions:
-          underlay_ethernet_interfaces: interface_descriptions/underlay/ethernet-interfaces.j2
-          underlay_port_channel_interfaces: interface_descriptions/underlay/port-channel-interfaces.j2
-          mlag_ethernet_interfaces: interface_descriptions/mlag/ethernet-interfaces.j2
-          mlag_port_channel_interfaces: interface_descriptions/mlag/port-channel-interfaces.j2
-          connected_endpoints_ethernet_interfaces: interface_descriptions/connected_endpoints/ethernet-interfaces.j2
-          connected_endpoints_port_channel_interfaces: interface_descriptions/connected_endpoints/port-channel-interfaces.j2
-          overlay_loopback_interface: interface_descriptions/loopback_interfaces/overlay-loopback.j2
-          vtep_loopback_interface: interface_descriptions/loopback_interfaces/vtep-loopback.j2
-        ip_addressing:
-          router_id: ip_addressing/router-id.j2
-          ipv6_router_id: ip_addressing/router-id-ipv6.j2
-          mlag_ip_primary: ip_addressing/mlag-ip-primary.j2
-          mlag_ip_secondary: ip_addressing/mlag-ip-secondary.j2
-          mlag_l3_ip_primary: ip_addressing/mlag-l3-ip-primary.j2
-          mlag_l3_ip_secondary: ip_addressing/mlag-l3-ip-secondary.j2
-          mlag_ibgp_peering_ip_primary: ip_addressing/mlag-ibgp-peering-ip-primary.j2
-          mlag_ibgp_peering_ip_secondary: ip_addressing/mlag-ibgp-peering-ip-secondary.j2
-          p2p_uplinks_ip: ip_addressing/p2p-uplinks-ip.j2
-          p2p_uplinks_peer_ip: ip_addressing/p2p-uplinks-peer-ip.j2
-          vtep_ip_mlag: ip_addressing/vtep-ip-mlag.j2
-          vtep_ip: ip_addressing/vtep-ip.j2
-        is_deployed: true
-        loopback_ipv4_offset: 2
-        loopback_ipv4_pool: 192.168.255.0/24
-        max_parallel_uplinks: 1
-        max_uplink_switches: 2
-        mgmt_interface: Management1
-        mgmt_ip: 192.168.0.14/24
+        underlay_ipv6: false
         mlag: true
-        mlag_dual_primary_detection: false
         mlag_ibgp_origin_incomplete: true
+        mlag_peer_vlan: 4094
+        mlag_peer_link_allowed_vlans: 2-4094
+        mlag_dual_primary_detection: false
         mlag_interfaces:
         - Ethernet3
         - Ethernet4
-        mlag_ip: 10.255.252.1
-        mlag_l3: true
-        mlag_l3_ip: 10.255.251.1
-        mlag_peer: DC1-LEAF1A
-        mlag_peer_ip: 10.255.252.0
         mlag_peer_ipv4_pool: 10.255.252.0/24
-        mlag_peer_l3_ip: 10.255.251.0
         mlag_peer_l3_ipv4_pool: 10.255.251.0/24
-        mlag_peer_l3_vlan: 4093
-        mlag_peer_link_allowed_vlans: 2-4094
-        mlag_peer_mgmt_ip: 192.168.0.13
-        mlag_peer_vlan: 4094
-        mlag_port_channel_id: '3'
         mlag_role: secondary
-        mlag_support: true
-        mlag_switch_ids:
-          primary: 1
-          secondary: 2
-        mpls_ler: false
-        mpls_lsr: false
-        mpls_overlay_role: none
-        network_services_l1: false
-        network_services_l2: true
-        network_services_l3: true
-        node_type_key: l3leaf
-        overlay_address_families:
-        - evpn
-        overlay_rd_type_admin_subfield: 192.168.255.4
-        overlay_routing_protocol: ebgp
-        overlay_routing_protocol_address_family: ipv4
-        overlay_routing_protocol_peering_address: 192.168.255.4
-        platform: vEOS-LAB
-        platform_settings:
-          platforms:
-          - default
-          reload_delay:
-            mlag: 300
-            non_mlag: 330
-          feature_support:
-            queue_monitor_length_notify: false
-        router_id: 192.168.255.4
-        spanning_tree_mode: mstp
-        spanning_tree_priority: 16384
-        type: l3leaf
-        underlay_ipv6: false
-        underlay_router: true
-        underlay_routing_protocol: ebgp
-        uplink_interfaces:
-        - Ethernet1
-        - Ethernet2
-        uplink_ipv4_pool: 172.31.255.0/24
-        uplink_peers:
-        - DC1-SPINE1
-        - DC1-SPINE2
-        uplink_switch_interfaces:
-        - Ethernet2
-        - Ethernet2
-        uplink_switches:
-        - DC1-SPINE1
-        - DC1-SPINE2
-        uplink_type: p2p
+        mlag_peer: DC1-LEAF1A
+        mlag_l3: true
+        mlag_peer_l3_vlan: 4093
+        mlag_port_channel_id: '3'
+        vtep_loopback_ipv4_pool: 192.168.254.0/24
+        vtep_loopback: Loopback1
         uplinks:
         - interface: Ethernet1
           peer: DC1-SPINE1
@@ -974,15 +994,125 @@ ansible_facts:
           type: underlay_p2p
           ip_address: 172.31.255.7
           peer_ip_address: 172.31.255.6
-        virtual_router_mac_address: 00:1c:73:00:dc:01
-        vlans: 110-112,120-121,130-131,140-141,150,160-161,210-211,250,310-311,350
-        vtep: true
+        uplink_peers:
+        - DC1-SPINE1
+        - DC1-SPINE2
+        mlag_switch_ids:
+          primary: 1
+          secondary: 2
         vtep_ip: 192.168.254.3
-        vtep_loopback: Loopback1
-        vtep_loopback_ipv4_pool: 192.168.254.0/24
+        mlag_ip: 10.255.252.1
+        mlag_peer_ip: 10.255.252.0
+        mlag_l3_ip: 10.255.251.1
+        mlag_peer_l3_ip: 10.255.251.0
+        mlag_peer_mgmt_ip: 192.168.0.13
+        overlay_routing_protocol_address_family: ipv4
+        bgp: true
+        evpn_encapsulation: vxlan
+        underlay:
+          bgp: true
+          ldp: false
+          mpls: false
+          sr: false
+          ospf: false
+          isis: false
+        overlay:
+          peering_address: 192.168.255.4
+          ler: false
+          vtep: true
+          evpn: true
+          evpn_vxlan: true
+          evpn_mpls: false
+          vpn_ipv4: false
+          vpn_ipv6: false
+          ipvpn_gateway: false
+          dpath: false
     DC1-LEAF2A:
       switch:
-        bgp_as: '65102'
+        type: l3leaf
+        hostname: DC1-LEAF2A
+        node_type_key: l3leaf
+        connected_endpoints: true
+        default_downlink_interfaces: []
+        default_evpn_role: client
+        default_interfaces: {}
+        default_underlay_routing_protocol: ebgp
+        default_overlay_routing_protocol: ebgp
+        default_overlay_address_families:
+        - evpn
+        default_mpls_overlay_role: none
+        mpls_lsr: false
+        mlag_support: true
+        network_services_l1: false
+        network_services_l2: true
+        network_services_l3: true
+        underlay_router: true
+        uplink_type: p2p
+        vtep: true
+        ip_addressing:
+          python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.ip_addressing
+          python_class_name: AvdIpAddressing
+        interface_descriptions:
+          python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.interface_descriptions
+          python_class_name: AvdInterfaceDescriptions
+        group: DC1_LEAF2
+        id: 3
+        mgmt_ip: 192.168.0.15/24
+        platform: vEOS-LAB
+        max_parallel_uplinks: 1
+        uplink_switches:
+        - DC1-SPINE1
+        - DC1-SPINE2
+        uplink_interfaces:
+        - Ethernet1
+        - Ethernet2
+        uplink_switch_interfaces:
+        - Ethernet3
+        - Ethernet3
+        default_ptp_priority1: 30
+        max_uplink_switches: 2
+        is_deployed: true
+        platform_settings:
+          platforms:
+          - default
+          reload_delay:
+            mlag: 300
+            non_mlag: 330
+          feature_support:
+            queue_monitor_length_notify: false
+        mgmt_interface: Management1
+        underlay_routing_protocol: ebgp
+        overlay_routing_protocol: ebgp
+        overlay_address_families:
+        - evpn
+        filter_tenants:
+        - all
+        filter_tags:
+        - all
+        - DC1_LEAF2
+        filter_only_vlans_in_use: false
+        virtual_router_mac_address: 00:1c:73:00:dc:01
+        trunk_groups:
+          mlag:
+            name: MLAG
+          mlag_l3:
+            name: LEAF_PEER_L3
+          uplink:
+            name: UPLINK
+        enable_trunk_groups: false
+        endpoint_trunk_groups: []
+        vlans: 110-112,120-121,130-131,140-141,150,160-161,210-211,250,310-311,350
+        spanning_tree_mode: mstp
+        spanning_tree_priority: 16384
+        overlay_rd_type_admin_subfield: 192.168.255.5
+        igmp_snooping_enabled: true
+        loopback_ipv4_pool: 192.168.255.0/24
+        loopback_ipv4_offset: 2
+        uplink_ipv4_pool: 172.31.255.0/24
+        router_id: 192.168.255.5
+        evpn_gateway_vxlan_l2: false
+        evpn_gateway_vxlan_l3: false
+        evpn_gateway_vxlan_l3_inter_domain: true
         bgp_defaults:
         - no bgp default ipv4-unicast
         - distance bgp 20 200 200
@@ -1013,130 +1143,34 @@ ansible_facts:
             name: RR-OVERLAY-PEERS
             password: null
             structured_config: null
-        connected_endpoints: true
-        default_downlink_interfaces: []
-        default_evpn_role: client
-        default_interfaces: {}
-        default_mpls_overlay_role: none
-        default_overlay_address_families:
-        - evpn
-        default_overlay_routing_protocol: ebgp
-        default_underlay_routing_protocol: ebgp
-        enable_trunk_groups: false
-        endpoint_trunk_groups: []
-        evpn_gateway_vxlan_l2: false
-        evpn_gateway_vxlan_l3: false
-        evpn_gateway_vxlan_l3_inter_domain: true
+          ipvpn_gateway_peers:
+            name: IPVPN-GATEWAY-PEERS
+            password: null
+            structured_config: null
         evpn_role: client
+        mpls_overlay_role: none
+        bgp_as: '65102'
         evpn_route_servers:
         - DC1-SPINE1
         - DC1-SPINE2
-        filter_only_vlans_in_use: false
-        filter_tags:
-        - all
-        - DC1_LEAF2
-        filter_tenants:
-        - all
-        group: DC1_LEAF2
-        hostname: DC1-LEAF2A
-        id: 3
-        igmp_snooping_enabled: true
-        interface_descriptions:
-          underlay_ethernet_interfaces: interface_descriptions/underlay/ethernet-interfaces.j2
-          underlay_port_channel_interfaces: interface_descriptions/underlay/port-channel-interfaces.j2
-          mlag_ethernet_interfaces: interface_descriptions/mlag/ethernet-interfaces.j2
-          mlag_port_channel_interfaces: interface_descriptions/mlag/port-channel-interfaces.j2
-          connected_endpoints_ethernet_interfaces: interface_descriptions/connected_endpoints/ethernet-interfaces.j2
-          connected_endpoints_port_channel_interfaces: interface_descriptions/connected_endpoints/port-channel-interfaces.j2
-          overlay_loopback_interface: interface_descriptions/loopback_interfaces/overlay-loopback.j2
-          vtep_loopback_interface: interface_descriptions/loopback_interfaces/vtep-loopback.j2
-        ip_addressing:
-          router_id: ip_addressing/router-id.j2
-          ipv6_router_id: ip_addressing/router-id-ipv6.j2
-          mlag_ip_primary: ip_addressing/mlag-ip-primary.j2
-          mlag_ip_secondary: ip_addressing/mlag-ip-secondary.j2
-          mlag_l3_ip_primary: ip_addressing/mlag-l3-ip-primary.j2
-          mlag_l3_ip_secondary: ip_addressing/mlag-l3-ip-secondary.j2
-          mlag_ibgp_peering_ip_primary: ip_addressing/mlag-ibgp-peering-ip-primary.j2
-          mlag_ibgp_peering_ip_secondary: ip_addressing/mlag-ibgp-peering-ip-secondary.j2
-          p2p_uplinks_ip: ip_addressing/p2p-uplinks-ip.j2
-          p2p_uplinks_peer_ip: ip_addressing/p2p-uplinks-peer-ip.j2
-          vtep_ip_mlag: ip_addressing/vtep-ip-mlag.j2
-          vtep_ip: ip_addressing/vtep-ip.j2
-        is_deployed: true
-        loopback_ipv4_offset: 2
-        loopback_ipv4_pool: 192.168.255.0/24
-        max_parallel_uplinks: 1
-        max_uplink_switches: 2
-        mgmt_interface: Management1
-        mgmt_ip: 192.168.0.15/24
+        underlay_ipv6: false
         mlag: true
-        mlag_dual_primary_detection: false
         mlag_ibgp_origin_incomplete: true
+        mlag_peer_vlan: 4094
+        mlag_peer_link_allowed_vlans: 2-4094
+        mlag_dual_primary_detection: false
         mlag_interfaces:
         - Ethernet3
         - Ethernet4
-        mlag_ip: 10.255.252.4
-        mlag_l3: true
-        mlag_l3_ip: 10.255.251.4
-        mlag_peer: DC1-LEAF2B
-        mlag_peer_ip: 10.255.252.5
         mlag_peer_ipv4_pool: 10.255.252.0/24
-        mlag_peer_l3_ip: 10.255.251.5
         mlag_peer_l3_ipv4_pool: 10.255.251.0/24
-        mlag_peer_l3_vlan: 4093
-        mlag_peer_link_allowed_vlans: 2-4094
-        mlag_peer_mgmt_ip: 192.168.0.16
-        mlag_peer_vlan: 4094
-        mlag_port_channel_id: '3'
         mlag_role: primary
-        mlag_support: true
-        mlag_switch_ids:
-          primary: 3
-          secondary: 4
-        mpls_ler: false
-        mpls_lsr: false
-        mpls_overlay_role: none
-        network_services_l1: false
-        network_services_l2: true
-        network_services_l3: true
-        node_type_key: l3leaf
-        overlay_address_families:
-        - evpn
-        overlay_rd_type_admin_subfield: 192.168.255.5
-        overlay_routing_protocol: ebgp
-        overlay_routing_protocol_address_family: ipv4
-        overlay_routing_protocol_peering_address: 192.168.255.5
-        platform: vEOS-LAB
-        platform_settings:
-          platforms:
-          - default
-          reload_delay:
-            mlag: 300
-            non_mlag: 330
-          feature_support:
-            queue_monitor_length_notify: false
-        router_id: 192.168.255.5
-        spanning_tree_mode: mstp
-        spanning_tree_priority: 16384
-        type: l3leaf
-        underlay_ipv6: false
-        underlay_router: true
-        underlay_routing_protocol: ebgp
-        uplink_interfaces:
-        - Ethernet1
-        - Ethernet2
-        uplink_ipv4_pool: 172.31.255.0/24
-        uplink_peers:
-        - DC1-SPINE1
-        - DC1-SPINE2
-        uplink_switch_interfaces:
-        - Ethernet3
-        - Ethernet3
-        uplink_switches:
-        - DC1-SPINE1
-        - DC1-SPINE2
-        uplink_type: p2p
+        mlag_peer: DC1-LEAF2B
+        mlag_l3: true
+        mlag_peer_l3_vlan: 4093
+        mlag_port_channel_id: '3'
+        vtep_loopback_ipv4_pool: 192.168.254.0/24
+        vtep_loopback: Loopback1
         uplinks:
         - interface: Ethernet1
           peer: DC1-SPINE1
@@ -1156,15 +1190,125 @@ ansible_facts:
           type: underlay_p2p
           ip_address: 172.31.255.11
           peer_ip_address: 172.31.255.10
-        virtual_router_mac_address: 00:1c:73:00:dc:01
-        vlans: 110-112,120-121,130-131,140-141,150,160-161,210-211,250,310-311,350
-        vtep: true
+        uplink_peers:
+        - DC1-SPINE1
+        - DC1-SPINE2
+        mlag_switch_ids:
+          primary: 3
+          secondary: 4
         vtep_ip: 192.168.254.5
-        vtep_loopback: Loopback1
-        vtep_loopback_ipv4_pool: 192.168.254.0/24
+        mlag_ip: 10.255.252.4
+        mlag_peer_ip: 10.255.252.5
+        mlag_l3_ip: 10.255.251.4
+        mlag_peer_l3_ip: 10.255.251.5
+        mlag_peer_mgmt_ip: 192.168.0.16
+        overlay_routing_protocol_address_family: ipv4
+        bgp: true
+        evpn_encapsulation: vxlan
+        underlay:
+          bgp: true
+          ldp: false
+          mpls: false
+          sr: false
+          ospf: false
+          isis: false
+        overlay:
+          peering_address: 192.168.255.5
+          ler: false
+          vtep: true
+          evpn: true
+          evpn_vxlan: true
+          evpn_mpls: false
+          vpn_ipv4: false
+          vpn_ipv6: false
+          ipvpn_gateway: false
+          dpath: false
     DC1-LEAF2B:
       switch:
-        bgp_as: '65102'
+        type: l3leaf
+        hostname: DC1-LEAF2B
+        node_type_key: l3leaf
+        connected_endpoints: true
+        default_downlink_interfaces: []
+        default_evpn_role: client
+        default_interfaces: {}
+        default_underlay_routing_protocol: ebgp
+        default_overlay_routing_protocol: ebgp
+        default_overlay_address_families:
+        - evpn
+        default_mpls_overlay_role: none
+        mpls_lsr: false
+        mlag_support: true
+        network_services_l1: false
+        network_services_l2: true
+        network_services_l3: true
+        underlay_router: true
+        uplink_type: p2p
+        vtep: true
+        ip_addressing:
+          python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.ip_addressing
+          python_class_name: AvdIpAddressing
+        interface_descriptions:
+          python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.interface_descriptions
+          python_class_name: AvdInterfaceDescriptions
+        group: DC1_LEAF2
+        id: 4
+        mgmt_ip: 192.168.0.16/24
+        platform: vEOS-LAB
+        max_parallel_uplinks: 1
+        uplink_switches:
+        - DC1-SPINE1
+        - DC1-SPINE2
+        uplink_interfaces:
+        - Ethernet1
+        - Ethernet2
+        uplink_switch_interfaces:
+        - Ethernet4
+        - Ethernet4
+        default_ptp_priority1: 30
+        max_uplink_switches: 2
+        is_deployed: true
+        platform_settings:
+          platforms:
+          - default
+          reload_delay:
+            mlag: 300
+            non_mlag: 330
+          feature_support:
+            queue_monitor_length_notify: false
+        mgmt_interface: Management1
+        underlay_routing_protocol: ebgp
+        overlay_routing_protocol: ebgp
+        overlay_address_families:
+        - evpn
+        filter_tenants:
+        - all
+        filter_tags:
+        - all
+        - DC1_LEAF2
+        filter_only_vlans_in_use: false
+        virtual_router_mac_address: 00:1c:73:00:dc:01
+        trunk_groups:
+          mlag:
+            name: MLAG
+          mlag_l3:
+            name: LEAF_PEER_L3
+          uplink:
+            name: UPLINK
+        enable_trunk_groups: false
+        endpoint_trunk_groups: []
+        vlans: 110-112,120-121,130-131,140-141,150,160-161,210-211,250,310-311,350
+        spanning_tree_mode: mstp
+        spanning_tree_priority: 16384
+        overlay_rd_type_admin_subfield: 192.168.255.6
+        igmp_snooping_enabled: true
+        loopback_ipv4_pool: 192.168.255.0/24
+        loopback_ipv4_offset: 2
+        uplink_ipv4_pool: 172.31.255.0/24
+        router_id: 192.168.255.6
+        evpn_gateway_vxlan_l2: false
+        evpn_gateway_vxlan_l3: false
+        evpn_gateway_vxlan_l3_inter_domain: true
         bgp_defaults:
         - no bgp default ipv4-unicast
         - distance bgp 20 200 200
@@ -1195,130 +1339,34 @@ ansible_facts:
             name: RR-OVERLAY-PEERS
             password: null
             structured_config: null
-        connected_endpoints: true
-        default_downlink_interfaces: []
-        default_evpn_role: client
-        default_interfaces: {}
-        default_mpls_overlay_role: none
-        default_overlay_address_families:
-        - evpn
-        default_overlay_routing_protocol: ebgp
-        default_underlay_routing_protocol: ebgp
-        enable_trunk_groups: false
-        endpoint_trunk_groups: []
-        evpn_gateway_vxlan_l2: false
-        evpn_gateway_vxlan_l3: false
-        evpn_gateway_vxlan_l3_inter_domain: true
+          ipvpn_gateway_peers:
+            name: IPVPN-GATEWAY-PEERS
+            password: null
+            structured_config: null
         evpn_role: client
+        mpls_overlay_role: none
+        bgp_as: '65102'
         evpn_route_servers:
         - DC1-SPINE1
         - DC1-SPINE2
-        filter_only_vlans_in_use: false
-        filter_tags:
-        - all
-        - DC1_LEAF2
-        filter_tenants:
-        - all
-        group: DC1_LEAF2
-        hostname: DC1-LEAF2B
-        id: 4
-        igmp_snooping_enabled: true
-        interface_descriptions:
-          underlay_ethernet_interfaces: interface_descriptions/underlay/ethernet-interfaces.j2
-          underlay_port_channel_interfaces: interface_descriptions/underlay/port-channel-interfaces.j2
-          mlag_ethernet_interfaces: interface_descriptions/mlag/ethernet-interfaces.j2
-          mlag_port_channel_interfaces: interface_descriptions/mlag/port-channel-interfaces.j2
-          connected_endpoints_ethernet_interfaces: interface_descriptions/connected_endpoints/ethernet-interfaces.j2
-          connected_endpoints_port_channel_interfaces: interface_descriptions/connected_endpoints/port-channel-interfaces.j2
-          overlay_loopback_interface: interface_descriptions/loopback_interfaces/overlay-loopback.j2
-          vtep_loopback_interface: interface_descriptions/loopback_interfaces/vtep-loopback.j2
-        ip_addressing:
-          router_id: ip_addressing/router-id.j2
-          ipv6_router_id: ip_addressing/router-id-ipv6.j2
-          mlag_ip_primary: ip_addressing/mlag-ip-primary.j2
-          mlag_ip_secondary: ip_addressing/mlag-ip-secondary.j2
-          mlag_l3_ip_primary: ip_addressing/mlag-l3-ip-primary.j2
-          mlag_l3_ip_secondary: ip_addressing/mlag-l3-ip-secondary.j2
-          mlag_ibgp_peering_ip_primary: ip_addressing/mlag-ibgp-peering-ip-primary.j2
-          mlag_ibgp_peering_ip_secondary: ip_addressing/mlag-ibgp-peering-ip-secondary.j2
-          p2p_uplinks_ip: ip_addressing/p2p-uplinks-ip.j2
-          p2p_uplinks_peer_ip: ip_addressing/p2p-uplinks-peer-ip.j2
-          vtep_ip_mlag: ip_addressing/vtep-ip-mlag.j2
-          vtep_ip: ip_addressing/vtep-ip.j2
-        is_deployed: true
-        loopback_ipv4_offset: 2
-        loopback_ipv4_pool: 192.168.255.0/24
-        max_parallel_uplinks: 1
-        max_uplink_switches: 2
-        mgmt_interface: Management1
-        mgmt_ip: 192.168.0.16/24
+        underlay_ipv6: false
         mlag: true
-        mlag_dual_primary_detection: false
         mlag_ibgp_origin_incomplete: true
+        mlag_peer_vlan: 4094
+        mlag_peer_link_allowed_vlans: 2-4094
+        mlag_dual_primary_detection: false
         mlag_interfaces:
         - Ethernet3
         - Ethernet4
-        mlag_ip: 10.255.252.5
-        mlag_l3: true
-        mlag_l3_ip: 10.255.251.5
-        mlag_peer: DC1-LEAF2A
-        mlag_peer_ip: 10.255.252.4
         mlag_peer_ipv4_pool: 10.255.252.0/24
-        mlag_peer_l3_ip: 10.255.251.4
         mlag_peer_l3_ipv4_pool: 10.255.251.0/24
-        mlag_peer_l3_vlan: 4093
-        mlag_peer_link_allowed_vlans: 2-4094
-        mlag_peer_mgmt_ip: 192.168.0.15
-        mlag_peer_vlan: 4094
-        mlag_port_channel_id: '3'
         mlag_role: secondary
-        mlag_support: true
-        mlag_switch_ids:
-          primary: 3
-          secondary: 4
-        mpls_ler: false
-        mpls_lsr: false
-        mpls_overlay_role: none
-        network_services_l1: false
-        network_services_l2: true
-        network_services_l3: true
-        node_type_key: l3leaf
-        overlay_address_families:
-        - evpn
-        overlay_rd_type_admin_subfield: 192.168.255.6
-        overlay_routing_protocol: ebgp
-        overlay_routing_protocol_address_family: ipv4
-        overlay_routing_protocol_peering_address: 192.168.255.6
-        platform: vEOS-LAB
-        platform_settings:
-          platforms:
-          - default
-          reload_delay:
-            mlag: 300
-            non_mlag: 330
-          feature_support:
-            queue_monitor_length_notify: false
-        router_id: 192.168.255.6
-        spanning_tree_mode: mstp
-        spanning_tree_priority: 16384
-        type: l3leaf
-        underlay_ipv6: false
-        underlay_router: true
-        underlay_routing_protocol: ebgp
-        uplink_interfaces:
-        - Ethernet1
-        - Ethernet2
-        uplink_ipv4_pool: 172.31.255.0/24
-        uplink_peers:
-        - DC1-SPINE1
-        - DC1-SPINE2
-        uplink_switch_interfaces:
-        - Ethernet4
-        - Ethernet4
-        uplink_switches:
-        - DC1-SPINE1
-        - DC1-SPINE2
-        uplink_type: p2p
+        mlag_peer: DC1-LEAF2A
+        mlag_l3: true
+        mlag_peer_l3_vlan: 4093
+        mlag_port_channel_id: '3'
+        vtep_loopback_ipv4_pool: 192.168.254.0/24
+        vtep_loopback: Loopback1
         uplinks:
         - interface: Ethernet1
           peer: DC1-SPINE1
@@ -1338,78 +1386,84 @@ ansible_facts:
           type: underlay_p2p
           ip_address: 172.31.255.15
           peer_ip_address: 172.31.255.14
-        virtual_router_mac_address: 00:1c:73:00:dc:01
-        vlans: 110-112,120-121,130-131,140-141,150,160-161,210-211,250,310-311,350
-        vtep: true
+        uplink_peers:
+        - DC1-SPINE1
+        - DC1-SPINE2
+        mlag_switch_ids:
+          primary: 3
+          secondary: 4
         vtep_ip: 192.168.254.5
-        vtep_loopback: Loopback1
-        vtep_loopback_ipv4_pool: 192.168.254.0/24
+        mlag_ip: 10.255.252.5
+        mlag_peer_ip: 10.255.252.4
+        mlag_l3_ip: 10.255.251.5
+        mlag_peer_l3_ip: 10.255.251.4
+        mlag_peer_mgmt_ip: 192.168.0.15
+        overlay_routing_protocol_address_family: ipv4
+        bgp: true
+        evpn_encapsulation: vxlan
+        underlay:
+          bgp: true
+          ldp: false
+          mpls: false
+          sr: false
+          ospf: false
+          isis: false
+        overlay:
+          peering_address: 192.168.255.6
+          ler: false
+          vtep: true
+          evpn: true
+          evpn_vxlan: true
+          evpn_mpls: false
+          vpn_ipv4: false
+          vpn_ipv6: false
+          ipvpn_gateway: false
+          dpath: false
     DC1-L2LEAF1A:
       switch:
+        type: l2leaf
+        hostname: DC1-L2LEAF1A
+        node_type_key: l2leaf
         connected_endpoints: true
         default_downlink_interfaces: []
         default_evpn_role: none
         default_interfaces: {}
-        default_mpls_overlay_role: none
+        default_underlay_routing_protocol: ebgp
+        default_overlay_routing_protocol: ebgp
         default_overlay_address_families:
         - evpn
-        default_overlay_routing_protocol: ebgp
-        default_underlay_routing_protocol: ebgp
-        enable_trunk_groups: false
-        endpoint_trunk_groups: []
-        evpn_route_servers: []
-        filter_only_vlans_in_use: false
-        filter_tags:
-        - opzone
-        - web
-        - app
-        - DC1_L2LEAF1
-        filter_tenants:
-        - Tenant_A
-        group: DC1_L2LEAF1
-        hostname: DC1-L2LEAF1A
-        id: 5
-        igmp_snooping_enabled: true
-        interface_descriptions:
-          underlay_ethernet_interfaces: interface_descriptions/underlay/ethernet-interfaces.j2
-          underlay_port_channel_interfaces: interface_descriptions/underlay/port-channel-interfaces.j2
-          mlag_ethernet_interfaces: interface_descriptions/mlag/ethernet-interfaces.j2
-          mlag_port_channel_interfaces: interface_descriptions/mlag/port-channel-interfaces.j2
-          connected_endpoints_ethernet_interfaces: interface_descriptions/connected_endpoints/ethernet-interfaces.j2
-          connected_endpoints_port_channel_interfaces: interface_descriptions/connected_endpoints/port-channel-interfaces.j2
-          overlay_loopback_interface: interface_descriptions/loopback_interfaces/overlay-loopback.j2
-          vtep_loopback_interface: interface_descriptions/loopback_interfaces/vtep-loopback.j2
-        ip_addressing:
-          router_id: ip_addressing/router-id.j2
-          ipv6_router_id: ip_addressing/router-id-ipv6.j2
-          mlag_ip_primary: ip_addressing/mlag-ip-primary.j2
-          mlag_ip_secondary: ip_addressing/mlag-ip-secondary.j2
-          mlag_l3_ip_primary: ip_addressing/mlag-l3-ip-primary.j2
-          mlag_l3_ip_secondary: ip_addressing/mlag-l3-ip-secondary.j2
-          mlag_ibgp_peering_ip_primary: ip_addressing/mlag-ibgp-peering-ip-primary.j2
-          mlag_ibgp_peering_ip_secondary: ip_addressing/mlag-ibgp-peering-ip-secondary.j2
-          p2p_uplinks_ip: ip_addressing/p2p-uplinks-ip.j2
-          p2p_uplinks_peer_ip: ip_addressing/p2p-uplinks-peer-ip.j2
-          vtep_ip_mlag: ip_addressing/vtep-ip-mlag.j2
-          vtep_ip: ip_addressing/vtep-ip.j2
-        is_deployed: true
-        max_parallel_uplinks: 1
-        max_uplink_switches: 2
-        mgmt_interface: Management1
-        mgmt_ip: 192.168.0.17/24
-        mlag: false
-        mlag_support: true
-        mpls_ler: false
+        default_mpls_overlay_role: none
         mpls_lsr: false
+        mlag_support: true
         network_services_l1: false
         network_services_l2: true
         network_services_l3: false
-        node_type_key: l2leaf
-        overlay_address_families:
-        - evpn
-        overlay_routing_protocol: ebgp
-        overlay_routing_protocol_address_family: ipv4
+        underlay_router: false
+        uplink_type: port-channel
+        vtep: false
+        ip_addressing:
+          python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.ip_addressing
+          python_class_name: AvdIpAddressing
+        interface_descriptions:
+          python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.interface_descriptions
+          python_class_name: AvdInterfaceDescriptions
+        group: DC1_L2LEAF1
+        id: 5
+        mgmt_ip: 192.168.0.17/24
         platform: vEOS-LAB
+        max_parallel_uplinks: 1
+        uplink_switches:
+        - DC1-LEAF1A
+        - DC1-LEAF1B
+        uplink_interfaces:
+        - Ethernet1
+        - Ethernet2
+        uplink_switch_interfaces:
+        - Ethernet5
+        - Ethernet5
+        default_ptp_priority1: 127
+        max_uplink_switches: 2
+        is_deployed: true
         platform_settings:
           platforms:
           - default
@@ -1418,24 +1472,35 @@ ansible_facts:
             non_mlag: 330
           feature_support:
             queue_monitor_length_notify: false
+        mgmt_interface: Management1
+        underlay_routing_protocol: ebgp
+        overlay_routing_protocol: ebgp
+        overlay_address_families:
+        - evpn
+        filter_tenants:
+        - Tenant_A
+        filter_tags:
+        - opzone
+        - web
+        - app
+        - DC1_L2LEAF1
+        filter_only_vlans_in_use: false
+        virtual_router_mac_address: 00:1c:73:00:dc:01
+        trunk_groups:
+          mlag:
+            name: MLAG
+          mlag_l3:
+            name: LEAF_PEER_L3
+          uplink:
+            name: UPLINK
+        enable_trunk_groups: false
+        endpoint_trunk_groups: []
+        vlans: 110-112,120-121,130-131
         spanning_tree_mode: mstp
         spanning_tree_priority: 16384
-        type: l2leaf
-        underlay_router: false
-        underlay_routing_protocol: ebgp
-        uplink_interfaces:
-        - Ethernet1
-        - Ethernet2
-        uplink_peers:
-        - DC1-LEAF1A
-        - DC1-LEAF1B
-        uplink_switch_interfaces:
-        - Ethernet5
-        - Ethernet5
-        uplink_switches:
-        - DC1-LEAF1A
-        - DC1-LEAF1B
-        uplink_type: port-channel
+        igmp_snooping_enabled: true
+        evpn_route_servers: []
+        mlag: false
         uplinks:
         - interface: Ethernet1
           peer: DC1-LEAF1A
@@ -1457,75 +1522,75 @@ ansible_facts:
           channel_group_id: '1'
           peer_channel_group_id: '5'
           vlans: 110-112,120-121,130-131
-        virtual_router_mac_address: 00:1c:73:00:dc:01
-        vlans: 110-112,120-121,130-131
-        vtep: false
+        uplink_peers:
+        - DC1-LEAF1A
+        - DC1-LEAF1B
+        overlay_routing_protocol_address_family: ipv4
+        bgp: false
+        evpn_encapsulation: vxlan
+        underlay:
+          bgp: false
+          ldp: false
+          sr: false
+          mpls: false
+          ospf: false
+          isis: false
+        overlay:
+          peering_address: null
+          ler: false
+          vtep: false
+          evpn: false
+          evpn_vxlan: false
+          evpn_mpls: false
+          vpn_ipv4: false
+          vpn_ipv6: false
+          ipvpn_gateway: false
+          dpath: false
     DC1-L2LEAF2A:
       switch:
+        type: l2leaf
+        hostname: DC1-L2LEAF2A
+        node_type_key: l2leaf
         connected_endpoints: true
         default_downlink_interfaces: []
         default_evpn_role: none
         default_interfaces: {}
-        default_mpls_overlay_role: none
+        default_underlay_routing_protocol: ebgp
+        default_overlay_routing_protocol: ebgp
         default_overlay_address_families:
         - evpn
-        default_overlay_routing_protocol: ebgp
-        default_underlay_routing_protocol: ebgp
-        enable_trunk_groups: false
-        endpoint_trunk_groups: []
-        evpn_route_servers: []
-        filter_only_vlans_in_use: false
-        filter_tags:
-        - opzone
-        - web
-        - app
-        - DC1_L2LEAF2
-        filter_tenants:
-        - Tenant_A
-        group: DC1_L2LEAF2
-        hostname: DC1-L2LEAF2A
-        id: 7
-        igmp_snooping_enabled: true
-        interface_descriptions:
-          underlay_ethernet_interfaces: interface_descriptions/underlay/ethernet-interfaces.j2
-          underlay_port_channel_interfaces: interface_descriptions/underlay/port-channel-interfaces.j2
-          mlag_ethernet_interfaces: interface_descriptions/mlag/ethernet-interfaces.j2
-          mlag_port_channel_interfaces: interface_descriptions/mlag/port-channel-interfaces.j2
-          connected_endpoints_ethernet_interfaces: interface_descriptions/connected_endpoints/ethernet-interfaces.j2
-          connected_endpoints_port_channel_interfaces: interface_descriptions/connected_endpoints/port-channel-interfaces.j2
-          overlay_loopback_interface: interface_descriptions/loopback_interfaces/overlay-loopback.j2
-          vtep_loopback_interface: interface_descriptions/loopback_interfaces/vtep-loopback.j2
-        ip_addressing:
-          router_id: ip_addressing/router-id.j2
-          ipv6_router_id: ip_addressing/router-id-ipv6.j2
-          mlag_ip_primary: ip_addressing/mlag-ip-primary.j2
-          mlag_ip_secondary: ip_addressing/mlag-ip-secondary.j2
-          mlag_l3_ip_primary: ip_addressing/mlag-l3-ip-primary.j2
-          mlag_l3_ip_secondary: ip_addressing/mlag-l3-ip-secondary.j2
-          mlag_ibgp_peering_ip_primary: ip_addressing/mlag-ibgp-peering-ip-primary.j2
-          mlag_ibgp_peering_ip_secondary: ip_addressing/mlag-ibgp-peering-ip-secondary.j2
-          p2p_uplinks_ip: ip_addressing/p2p-uplinks-ip.j2
-          p2p_uplinks_peer_ip: ip_addressing/p2p-uplinks-peer-ip.j2
-          vtep_ip_mlag: ip_addressing/vtep-ip-mlag.j2
-          vtep_ip: ip_addressing/vtep-ip.j2
-        is_deployed: true
-        max_parallel_uplinks: 1
-        max_uplink_switches: 2
-        mgmt_interface: Management1
-        mgmt_ip: 192.168.0.18/24
-        mlag: false
-        mlag_support: true
-        mpls_ler: false
+        default_mpls_overlay_role: none
         mpls_lsr: false
+        mlag_support: true
         network_services_l1: false
         network_services_l2: true
         network_services_l3: false
-        node_type_key: l2leaf
-        overlay_address_families:
-        - evpn
-        overlay_routing_protocol: ebgp
-        overlay_routing_protocol_address_family: ipv4
+        underlay_router: false
+        uplink_type: port-channel
+        vtep: false
+        ip_addressing:
+          python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.ip_addressing
+          python_class_name: AvdIpAddressing
+        interface_descriptions:
+          python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.interface_descriptions
+          python_class_name: AvdInterfaceDescriptions
+        group: DC1_L2LEAF2
+        id: 7
+        mgmt_ip: 192.168.0.18/24
         platform: vEOS-LAB
+        max_parallel_uplinks: 1
+        uplink_switches:
+        - DC1-LEAF2A
+        - DC1-LEAF2B
+        uplink_interfaces:
+        - Ethernet1
+        - Ethernet2
+        uplink_switch_interfaces:
+        - Ethernet5
+        - Ethernet5
+        default_ptp_priority1: 127
+        max_uplink_switches: 2
+        is_deployed: true
         platform_settings:
           platforms:
           - default
@@ -1534,24 +1599,35 @@ ansible_facts:
             non_mlag: 330
           feature_support:
             queue_monitor_length_notify: false
+        mgmt_interface: Management1
+        underlay_routing_protocol: ebgp
+        overlay_routing_protocol: ebgp
+        overlay_address_families:
+        - evpn
+        filter_tenants:
+        - Tenant_A
+        filter_tags:
+        - opzone
+        - web
+        - app
+        - DC1_L2LEAF2
+        filter_only_vlans_in_use: false
+        virtual_router_mac_address: 00:1c:73:00:dc:01
+        trunk_groups:
+          mlag:
+            name: MLAG
+          mlag_l3:
+            name: LEAF_PEER_L3
+          uplink:
+            name: UPLINK
+        enable_trunk_groups: false
+        endpoint_trunk_groups: []
+        vlans: 110-112,120-121,130-131
         spanning_tree_mode: mstp
         spanning_tree_priority: 16384
-        type: l2leaf
-        underlay_router: false
-        underlay_routing_protocol: ebgp
-        uplink_interfaces:
-        - Ethernet1
-        - Ethernet2
-        uplink_peers:
-        - DC1-LEAF2A
-        - DC1-LEAF2B
-        uplink_switch_interfaces:
-        - Ethernet5
-        - Ethernet5
-        uplink_switches:
-        - DC1-LEAF2A
-        - DC1-LEAF2B
-        uplink_type: port-channel
+        igmp_snooping_enabled: true
+        evpn_route_servers: []
+        mlag: false
         uplinks:
         - interface: Ethernet1
           peer: DC1-LEAF2A
@@ -1573,9 +1649,30 @@ ansible_facts:
           channel_group_id: '1'
           peer_channel_group_id: '5'
           vlans: 110-112,120-121,130-131
-        virtual_router_mac_address: 00:1c:73:00:dc:01
-        vlans: 110-112,120-121,130-131
-        vtep: false
+        uplink_peers:
+        - DC1-LEAF2A
+        - DC1-LEAF2B
+        overlay_routing_protocol_address_family: ipv4
+        bgp: false
+        evpn_encapsulation: vxlan
+        underlay:
+          bgp: false
+          ldp: false
+          sr: false
+          mpls: false
+          ospf: false
+          isis: false
+        overlay:
+          peering_address: null
+          ler: false
+          vtep: false
+          evpn: false
+          evpn_vxlan: false
+          evpn_mpls: false
+          vpn_ipv4: false
+          vpn_ipv6: false
+          ipvpn_gateway: false
+          dpath: false
   avd_overlay_peers:
     DC1-SPINE1:
     - DC1-LEAF1A
@@ -1609,7 +1706,64 @@ ansible_facts:
 avd_switch_facts:
   DC1-SPINE1:
     switch:
-      bgp_as: '65001'
+      type: spine
+      hostname: DC1-SPINE1
+      node_type_key: spine
+      connected_endpoints: false
+      default_downlink_interfaces: []
+      default_evpn_role: server
+      default_interfaces: {}
+      default_underlay_routing_protocol: ebgp
+      default_overlay_routing_protocol: ebgp
+      default_overlay_address_families:
+      - evpn
+      default_mpls_overlay_role: none
+      mpls_lsr: false
+      mlag_support: false
+      network_services_l1: false
+      network_services_l2: false
+      network_services_l3: false
+      underlay_router: true
+      uplink_type: p2p
+      vtep: false
+      ip_addressing:
+        python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.ip_addressing
+        python_class_name: AvdIpAddressing
+      interface_descriptions:
+        python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.interface_descriptions
+        python_class_name: AvdInterfaceDescriptions
+      id: 1
+      mgmt_ip: 192.168.0.11/24
+      platform: vEOS-LAB
+      max_parallel_uplinks: 1
+      uplink_interfaces: []
+      uplink_switch_interfaces: []
+      default_ptp_priority1: 20
+      max_uplink_switches: 0
+      is_deployed: true
+      platform_settings:
+        platforms:
+        - default
+        reload_delay:
+          mlag: 300
+          non_mlag: 330
+        feature_support:
+          queue_monitor_length_notify: false
+      mgmt_interface: Management1
+      underlay_routing_protocol: ebgp
+      overlay_routing_protocol: ebgp
+      overlay_address_families:
+      - evpn
+      endpoint_trunk_groups: []
+      vlans: ''
+      spanning_tree_mode: none
+      overlay_rd_type_admin_subfield: 192.168.255.1
+      loopback_ipv4_pool: 192.168.255.0/24
+      loopback_ipv4_offset: 0
+      router_id: 192.168.255.1
+      evpn_gateway_vxlan_l2: false
+      evpn_gateway_vxlan_l3: false
+      evpn_gateway_vxlan_l3_inter_domain: true
       bgp_defaults:
       - no bgp default ipv4-unicast
       - distance bgp 20 200 200
@@ -1640,182 +1794,75 @@ avd_switch_facts:
           name: RR-OVERLAY-PEERS
           password: null
           structured_config: null
-      connected_endpoints: false
-      default_downlink_interfaces: []
-      default_evpn_role: server
-      default_interfaces: {}
-      default_mpls_overlay_role: none
-      default_overlay_address_families:
-      - evpn
-      default_overlay_routing_protocol: ebgp
-      default_underlay_routing_protocol: ebgp
-      endpoint_trunk_groups: []
-      evpn_gateway_vxlan_l2: false
-      evpn_gateway_vxlan_l3: false
-      evpn_gateway_vxlan_l3_inter_domain: true
+        ipvpn_gateway_peers:
+          name: IPVPN-GATEWAY-PEERS
+          password: null
+          structured_config: null
       evpn_role: server
-      hostname: DC1-SPINE1
-      id: 1
-      interface_descriptions:
-        underlay_ethernet_interfaces: interface_descriptions/underlay/ethernet-interfaces.j2
-        underlay_port_channel_interfaces: interface_descriptions/underlay/port-channel-interfaces.j2
-        mlag_ethernet_interfaces: interface_descriptions/mlag/ethernet-interfaces.j2
-        mlag_port_channel_interfaces: interface_descriptions/mlag/port-channel-interfaces.j2
-        connected_endpoints_ethernet_interfaces: interface_descriptions/connected_endpoints/ethernet-interfaces.j2
-        connected_endpoints_port_channel_interfaces: interface_descriptions/connected_endpoints/port-channel-interfaces.j2
-        overlay_loopback_interface: interface_descriptions/loopback_interfaces/overlay-loopback.j2
-        vtep_loopback_interface: interface_descriptions/loopback_interfaces/vtep-loopback.j2
-      ip_addressing:
-        router_id: ip_addressing/router-id.j2
-        ipv6_router_id: ip_addressing/router-id-ipv6.j2
-        mlag_ip_primary: ip_addressing/mlag-ip-primary.j2
-        mlag_ip_secondary: ip_addressing/mlag-ip-secondary.j2
-        mlag_l3_ip_primary: ip_addressing/mlag-l3-ip-primary.j2
-        mlag_l3_ip_secondary: ip_addressing/mlag-l3-ip-secondary.j2
-        mlag_ibgp_peering_ip_primary: ip_addressing/mlag-ibgp-peering-ip-primary.j2
-        mlag_ibgp_peering_ip_secondary: ip_addressing/mlag-ibgp-peering-ip-secondary.j2
-        p2p_uplinks_ip: ip_addressing/p2p-uplinks-ip.j2
-        p2p_uplinks_peer_ip: ip_addressing/p2p-uplinks-peer-ip.j2
-        vtep_ip_mlag: ip_addressing/vtep-ip-mlag.j2
-        vtep_ip: ip_addressing/vtep-ip.j2
-      is_deployed: true
-      loopback_ipv4_offset: 0
-      loopback_ipv4_pool: 192.168.255.0/24
-      max_parallel_uplinks: 1
-      max_uplink_switches: 0
-      mgmt_interface: Management1
-      mgmt_ip: 192.168.0.11/24
-      mlag: false
-      mlag_support: false
-      mpls_ler: false
-      mpls_lsr: false
       mpls_overlay_role: none
-      network_services_l1: false
-      network_services_l2: false
-      network_services_l3: false
-      node_type_key: spine
-      overlay_address_families:
-      - evpn
-      overlay_rd_type_admin_subfield: 192.168.255.1
-      overlay_routing_protocol: ebgp
-      overlay_routing_protocol_address_family: ipv4
-      overlay_routing_protocol_peering_address: 192.168.255.1
-      platform: vEOS-LAB
-      platform_settings:
-        platforms:
-        - default
-        reload_delay:
-          mlag: 300
-          non_mlag: 330
-        feature_support:
-          queue_monitor_length_notify: false
-      router_id: 192.168.255.1
-      spanning_tree_mode: none
-      type: spine
+      bgp_as: '65001'
       underlay_ipv6: false
-      underlay_router: true
-      underlay_routing_protocol: ebgp
-      uplink_interfaces: []
-      uplink_peers: []
-      uplink_switch_interfaces: []
-      uplink_type: p2p
+      mlag: false
       uplinks: []
-      vlans: ''
-      vtep: false
+      uplink_peers: []
+      overlay_routing_protocol_address_family: ipv4
+      bgp: true
+      evpn_encapsulation: vxlan
+      underlay:
+        bgp: true
+        ldp: false
+        mpls: false
+        sr: false
+        ospf: false
+        isis: false
+      overlay:
+        peering_address: 192.168.255.1
+        ler: false
+        vtep: false
+        evpn: true
+        evpn_vxlan: true
+        evpn_mpls: false
+        vpn_ipv4: false
+        vpn_ipv6: false
+        ipvpn_gateway: false
+        dpath: false
   DC1-SPINE2:
     switch:
-      bgp_as: '65001'
-      bgp_defaults:
-      - no bgp default ipv4-unicast
-      - distance bgp 20 200 200
-      - graceful-restart restart-time 300
-      - graceful-restart
-      bgp_peer_groups:
-        ipv4_underlay_peers:
-          name: IPv4-UNDERLAY-PEERS
-          password: AQQvKeimxJu+uGQ/yYvv9w==
-          structured_config: null
-        mlag_ipv4_underlay_peer:
-          name: MLAG-IPv4-UNDERLAY-PEER
-          password: vnEaG8gMeQf3d3cN6PktXQ==
-          structured_config: null
-        evpn_overlay_peers:
-          name: EVPN-OVERLAY-PEERS
-          password: q+VNViP5i4rVjW1cxFv2wA==
-          structured_config: null
-        evpn_overlay_core:
-          name: EVPN-OVERLAY-CORE
-          password: null
-          structured_config: null
-        mpls_overlay_peers:
-          name: MPLS-OVERLAY-PEERS
-          password: null
-          structured_config: null
-        rr_overlay_peers:
-          name: RR-OVERLAY-PEERS
-          password: null
-          structured_config: null
+      type: spine
+      hostname: DC1-SPINE2
+      node_type_key: spine
       connected_endpoints: false
       default_downlink_interfaces: []
       default_evpn_role: server
       default_interfaces: {}
-      default_mpls_overlay_role: none
+      default_underlay_routing_protocol: ebgp
+      default_overlay_routing_protocol: ebgp
       default_overlay_address_families:
       - evpn
-      default_overlay_routing_protocol: ebgp
-      default_underlay_routing_protocol: ebgp
-      endpoint_trunk_groups: []
-      evpn_gateway_vxlan_l2: false
-      evpn_gateway_vxlan_l3: false
-      evpn_gateway_vxlan_l3_inter_domain: true
-      evpn_role: server
-      hostname: DC1-SPINE2
-      id: 2
-      interface_descriptions:
-        underlay_ethernet_interfaces: interface_descriptions/underlay/ethernet-interfaces.j2
-        underlay_port_channel_interfaces: interface_descriptions/underlay/port-channel-interfaces.j2
-        mlag_ethernet_interfaces: interface_descriptions/mlag/ethernet-interfaces.j2
-        mlag_port_channel_interfaces: interface_descriptions/mlag/port-channel-interfaces.j2
-        connected_endpoints_ethernet_interfaces: interface_descriptions/connected_endpoints/ethernet-interfaces.j2
-        connected_endpoints_port_channel_interfaces: interface_descriptions/connected_endpoints/port-channel-interfaces.j2
-        overlay_loopback_interface: interface_descriptions/loopback_interfaces/overlay-loopback.j2
-        vtep_loopback_interface: interface_descriptions/loopback_interfaces/vtep-loopback.j2
-      ip_addressing:
-        router_id: ip_addressing/router-id.j2
-        ipv6_router_id: ip_addressing/router-id-ipv6.j2
-        mlag_ip_primary: ip_addressing/mlag-ip-primary.j2
-        mlag_ip_secondary: ip_addressing/mlag-ip-secondary.j2
-        mlag_l3_ip_primary: ip_addressing/mlag-l3-ip-primary.j2
-        mlag_l3_ip_secondary: ip_addressing/mlag-l3-ip-secondary.j2
-        mlag_ibgp_peering_ip_primary: ip_addressing/mlag-ibgp-peering-ip-primary.j2
-        mlag_ibgp_peering_ip_secondary: ip_addressing/mlag-ibgp-peering-ip-secondary.j2
-        p2p_uplinks_ip: ip_addressing/p2p-uplinks-ip.j2
-        p2p_uplinks_peer_ip: ip_addressing/p2p-uplinks-peer-ip.j2
-        vtep_ip_mlag: ip_addressing/vtep-ip-mlag.j2
-        vtep_ip: ip_addressing/vtep-ip.j2
-      is_deployed: true
-      loopback_ipv4_offset: 0
-      loopback_ipv4_pool: 192.168.255.0/24
-      max_parallel_uplinks: 1
-      max_uplink_switches: 0
-      mgmt_interface: Management1
-      mgmt_ip: 192.168.0.12/24
-      mlag: false
-      mlag_support: false
-      mpls_ler: false
+      default_mpls_overlay_role: none
       mpls_lsr: false
-      mpls_overlay_role: none
+      mlag_support: false
       network_services_l1: false
       network_services_l2: false
       network_services_l3: false
-      node_type_key: spine
-      overlay_address_families:
-      - evpn
-      overlay_rd_type_admin_subfield: 192.168.255.2
-      overlay_routing_protocol: ebgp
-      overlay_routing_protocol_address_family: ipv4
-      overlay_routing_protocol_peering_address: 192.168.255.2
+      underlay_router: true
+      uplink_type: p2p
+      vtep: false
+      ip_addressing:
+        python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.ip_addressing
+        python_class_name: AvdIpAddressing
+      interface_descriptions:
+        python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.interface_descriptions
+        python_class_name: AvdInterfaceDescriptions
+      id: 2
+      mgmt_ip: 192.168.0.12/24
       platform: vEOS-LAB
+      max_parallel_uplinks: 1
+      uplink_interfaces: []
+      uplink_switch_interfaces: []
+      default_ptp_priority1: 20
+      max_uplink_switches: 0
+      is_deployed: true
       platform_settings:
         platforms:
         - default
@@ -1824,22 +1871,21 @@ avd_switch_facts:
           non_mlag: 330
         feature_support:
           queue_monitor_length_notify: false
-      router_id: 192.168.255.2
-      spanning_tree_mode: none
-      type: spine
-      underlay_ipv6: false
-      underlay_router: true
+      mgmt_interface: Management1
       underlay_routing_protocol: ebgp
-      uplink_interfaces: []
-      uplink_peers: []
-      uplink_switch_interfaces: []
-      uplink_type: p2p
-      uplinks: []
+      overlay_routing_protocol: ebgp
+      overlay_address_families:
+      - evpn
+      endpoint_trunk_groups: []
       vlans: ''
-      vtep: false
-  DC1-LEAF1A:
-    switch:
-      bgp_as: '65101'
+      spanning_tree_mode: none
+      overlay_rd_type_admin_subfield: 192.168.255.2
+      loopback_ipv4_pool: 192.168.255.0/24
+      loopback_ipv4_offset: 0
+      router_id: 192.168.255.2
+      evpn_gateway_vxlan_l2: false
+      evpn_gateway_vxlan_l3: false
+      evpn_gateway_vxlan_l3_inter_domain: true
       bgp_defaults:
       - no bgp default ipv4-unicast
       - distance bgp 20 200 200
@@ -1870,101 +1916,83 @@ avd_switch_facts:
           name: RR-OVERLAY-PEERS
           password: null
           structured_config: null
+        ipvpn_gateway_peers:
+          name: IPVPN-GATEWAY-PEERS
+          password: null
+          structured_config: null
+      evpn_role: server
+      mpls_overlay_role: none
+      bgp_as: '65001'
+      underlay_ipv6: false
+      mlag: false
+      uplinks: []
+      uplink_peers: []
+      overlay_routing_protocol_address_family: ipv4
+      bgp: true
+      evpn_encapsulation: vxlan
+      underlay:
+        bgp: true
+        ldp: false
+        mpls: false
+        sr: false
+        ospf: false
+        isis: false
+      overlay:
+        peering_address: 192.168.255.2
+        ler: false
+        vtep: false
+        evpn: true
+        evpn_vxlan: true
+        evpn_mpls: false
+        vpn_ipv4: false
+        vpn_ipv6: false
+        ipvpn_gateway: false
+        dpath: false
+  DC1-LEAF1A:
+    switch:
+      type: l3leaf
+      hostname: DC1-LEAF1A
+      node_type_key: l3leaf
       connected_endpoints: true
       default_downlink_interfaces: []
       default_evpn_role: client
       default_interfaces: {}
-      default_mpls_overlay_role: none
+      default_underlay_routing_protocol: ebgp
+      default_overlay_routing_protocol: ebgp
       default_overlay_address_families:
       - evpn
-      default_overlay_routing_protocol: ebgp
-      default_underlay_routing_protocol: ebgp
-      enable_trunk_groups: false
-      endpoint_trunk_groups: []
-      evpn_gateway_vxlan_l2: false
-      evpn_gateway_vxlan_l3: false
-      evpn_gateway_vxlan_l3_inter_domain: true
-      evpn_role: client
-      evpn_route_servers:
-      - DC1-SPINE1
-      - DC1-SPINE2
-      filter_only_vlans_in_use: false
-      filter_tags:
-      - all
-      - DC1_LEAF1
-      filter_tenants:
-      - all
-      group: DC1_LEAF1
-      hostname: DC1-LEAF1A
-      id: 1
-      igmp_snooping_enabled: true
-      interface_descriptions:
-        underlay_ethernet_interfaces: interface_descriptions/underlay/ethernet-interfaces.j2
-        underlay_port_channel_interfaces: interface_descriptions/underlay/port-channel-interfaces.j2
-        mlag_ethernet_interfaces: interface_descriptions/mlag/ethernet-interfaces.j2
-        mlag_port_channel_interfaces: interface_descriptions/mlag/port-channel-interfaces.j2
-        connected_endpoints_ethernet_interfaces: interface_descriptions/connected_endpoints/ethernet-interfaces.j2
-        connected_endpoints_port_channel_interfaces: interface_descriptions/connected_endpoints/port-channel-interfaces.j2
-        overlay_loopback_interface: interface_descriptions/loopback_interfaces/overlay-loopback.j2
-        vtep_loopback_interface: interface_descriptions/loopback_interfaces/vtep-loopback.j2
-      ip_addressing:
-        router_id: ip_addressing/router-id.j2
-        ipv6_router_id: ip_addressing/router-id-ipv6.j2
-        mlag_ip_primary: ip_addressing/mlag-ip-primary.j2
-        mlag_ip_secondary: ip_addressing/mlag-ip-secondary.j2
-        mlag_l3_ip_primary: ip_addressing/mlag-l3-ip-primary.j2
-        mlag_l3_ip_secondary: ip_addressing/mlag-l3-ip-secondary.j2
-        mlag_ibgp_peering_ip_primary: ip_addressing/mlag-ibgp-peering-ip-primary.j2
-        mlag_ibgp_peering_ip_secondary: ip_addressing/mlag-ibgp-peering-ip-secondary.j2
-        p2p_uplinks_ip: ip_addressing/p2p-uplinks-ip.j2
-        p2p_uplinks_peer_ip: ip_addressing/p2p-uplinks-peer-ip.j2
-        vtep_ip_mlag: ip_addressing/vtep-ip-mlag.j2
-        vtep_ip: ip_addressing/vtep-ip.j2
-      is_deployed: true
-      loopback_ipv4_offset: 2
-      loopback_ipv4_pool: 192.168.255.0/24
-      max_parallel_uplinks: 1
-      max_uplink_switches: 2
-      mgmt_interface: Management1
-      mgmt_ip: 192.168.0.13/24
-      mlag: true
-      mlag_dual_primary_detection: false
-      mlag_ibgp_origin_incomplete: true
-      mlag_interfaces:
-      - Ethernet3
-      - Ethernet4
-      mlag_ip: 10.255.252.0
-      mlag_l3: true
-      mlag_l3_ip: 10.255.251.0
-      mlag_peer: DC1-LEAF1B
-      mlag_peer_ip: 10.255.252.1
-      mlag_peer_ipv4_pool: 10.255.252.0/24
-      mlag_peer_l3_ip: 10.255.251.1
-      mlag_peer_l3_ipv4_pool: 10.255.251.0/24
-      mlag_peer_l3_vlan: 4093
-      mlag_peer_link_allowed_vlans: 2-4094
-      mlag_peer_mgmt_ip: 192.168.0.14
-      mlag_peer_vlan: 4094
-      mlag_port_channel_id: '3'
-      mlag_role: primary
-      mlag_support: true
-      mlag_switch_ids:
-        primary: 1
-        secondary: 2
-      mpls_ler: false
+      default_mpls_overlay_role: none
       mpls_lsr: false
-      mpls_overlay_role: none
+      mlag_support: true
       network_services_l1: false
       network_services_l2: true
       network_services_l3: true
-      node_type_key: l3leaf
-      overlay_address_families:
-      - evpn
-      overlay_rd_type_admin_subfield: 192.168.255.3
-      overlay_routing_protocol: ebgp
-      overlay_routing_protocol_address_family: ipv4
-      overlay_routing_protocol_peering_address: 192.168.255.3
+      underlay_router: true
+      uplink_type: p2p
+      vtep: true
+      ip_addressing:
+        python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.ip_addressing
+        python_class_name: AvdIpAddressing
+      interface_descriptions:
+        python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.interface_descriptions
+        python_class_name: AvdInterfaceDescriptions
+      group: DC1_LEAF1
+      id: 1
+      mgmt_ip: 192.168.0.13/24
       platform: vEOS-LAB
+      max_parallel_uplinks: 1
+      uplink_switches:
+      - DC1-SPINE1
+      - DC1-SPINE2
+      uplink_interfaces:
+      - Ethernet1
+      - Ethernet2
+      uplink_switch_interfaces:
+      - Ethernet1
+      - Ethernet1
+      default_ptp_priority1: 30
+      max_uplink_switches: 2
+      is_deployed: true
       platform_settings:
         platforms:
         - default
@@ -1973,27 +2001,97 @@ avd_switch_facts:
           non_mlag: 330
         feature_support:
           queue_monitor_length_notify: false
-      router_id: 192.168.255.3
+      mgmt_interface: Management1
+      underlay_routing_protocol: ebgp
+      overlay_routing_protocol: ebgp
+      overlay_address_families:
+      - evpn
+      filter_tenants:
+      - all
+      filter_tags:
+      - all
+      - DC1_LEAF1
+      filter_only_vlans_in_use: false
+      virtual_router_mac_address: 00:1c:73:00:dc:01
+      trunk_groups:
+        mlag:
+          name: MLAG
+        mlag_l3:
+          name: LEAF_PEER_L3
+        uplink:
+          name: UPLINK
+      enable_trunk_groups: false
+      endpoint_trunk_groups: []
+      vlans: 110-112,120-121,130-131,140-141,150,160-161,210-211,250,310-311,350
       spanning_tree_mode: mstp
       spanning_tree_priority: 16384
-      type: l3leaf
-      underlay_ipv6: false
-      underlay_router: true
-      underlay_routing_protocol: ebgp
-      uplink_interfaces:
-      - Ethernet1
-      - Ethernet2
+      overlay_rd_type_admin_subfield: 192.168.255.3
+      igmp_snooping_enabled: true
+      loopback_ipv4_pool: 192.168.255.0/24
+      loopback_ipv4_offset: 2
       uplink_ipv4_pool: 172.31.255.0/24
-      uplink_peers:
+      router_id: 192.168.255.3
+      evpn_gateway_vxlan_l2: false
+      evpn_gateway_vxlan_l3: false
+      evpn_gateway_vxlan_l3_inter_domain: true
+      bgp_defaults:
+      - no bgp default ipv4-unicast
+      - distance bgp 20 200 200
+      - graceful-restart restart-time 300
+      - graceful-restart
+      bgp_peer_groups:
+        ipv4_underlay_peers:
+          name: IPv4-UNDERLAY-PEERS
+          password: AQQvKeimxJu+uGQ/yYvv9w==
+          structured_config: null
+        mlag_ipv4_underlay_peer:
+          name: MLAG-IPv4-UNDERLAY-PEER
+          password: vnEaG8gMeQf3d3cN6PktXQ==
+          structured_config: null
+        evpn_overlay_peers:
+          name: EVPN-OVERLAY-PEERS
+          password: q+VNViP5i4rVjW1cxFv2wA==
+          structured_config: null
+        evpn_overlay_core:
+          name: EVPN-OVERLAY-CORE
+          password: null
+          structured_config: null
+        mpls_overlay_peers:
+          name: MPLS-OVERLAY-PEERS
+          password: null
+          structured_config: null
+        rr_overlay_peers:
+          name: RR-OVERLAY-PEERS
+          password: null
+          structured_config: null
+        ipvpn_gateway_peers:
+          name: IPVPN-GATEWAY-PEERS
+          password: null
+          structured_config: null
+      evpn_role: client
+      mpls_overlay_role: none
+      bgp_as: '65101'
+      evpn_route_servers:
       - DC1-SPINE1
       - DC1-SPINE2
-      uplink_switch_interfaces:
-      - Ethernet1
-      - Ethernet1
-      uplink_switches:
-      - DC1-SPINE1
-      - DC1-SPINE2
-      uplink_type: p2p
+      underlay_ipv6: false
+      mlag: true
+      mlag_ibgp_origin_incomplete: true
+      mlag_peer_vlan: 4094
+      mlag_peer_link_allowed_vlans: 2-4094
+      mlag_dual_primary_detection: false
+      mlag_interfaces:
+      - Ethernet3
+      - Ethernet4
+      mlag_peer_ipv4_pool: 10.255.252.0/24
+      mlag_peer_l3_ipv4_pool: 10.255.251.0/24
+      mlag_role: primary
+      mlag_peer: DC1-LEAF1B
+      mlag_l3: true
+      mlag_peer_l3_vlan: 4093
+      mlag_port_channel_id: '3'
+      vtep_loopback_ipv4_pool: 192.168.254.0/24
+      vtep_loopback: Loopback1
       uplinks:
       - interface: Ethernet1
         peer: DC1-SPINE1
@@ -2013,15 +2111,125 @@ avd_switch_facts:
         type: underlay_p2p
         ip_address: 172.31.255.3
         peer_ip_address: 172.31.255.2
-      virtual_router_mac_address: 00:1c:73:00:dc:01
-      vlans: 110-112,120-121,130-131,140-141,150,160-161,210-211,250,310-311,350
-      vtep: true
+      uplink_peers:
+      - DC1-SPINE1
+      - DC1-SPINE2
+      mlag_switch_ids:
+        primary: 1
+        secondary: 2
       vtep_ip: 192.168.254.3
-      vtep_loopback: Loopback1
-      vtep_loopback_ipv4_pool: 192.168.254.0/24
+      mlag_ip: 10.255.252.0
+      mlag_peer_ip: 10.255.252.1
+      mlag_l3_ip: 10.255.251.0
+      mlag_peer_l3_ip: 10.255.251.1
+      mlag_peer_mgmt_ip: 192.168.0.14
+      overlay_routing_protocol_address_family: ipv4
+      bgp: true
+      evpn_encapsulation: vxlan
+      underlay:
+        bgp: true
+        ldp: false
+        mpls: false
+        sr: false
+        ospf: false
+        isis: false
+      overlay:
+        peering_address: 192.168.255.3
+        ler: false
+        vtep: true
+        evpn: true
+        evpn_vxlan: true
+        evpn_mpls: false
+        vpn_ipv4: false
+        vpn_ipv6: false
+        ipvpn_gateway: false
+        dpath: false
   DC1-LEAF1B:
     switch:
-      bgp_as: '65101'
+      type: l3leaf
+      hostname: DC1-LEAF1B
+      node_type_key: l3leaf
+      connected_endpoints: true
+      default_downlink_interfaces: []
+      default_evpn_role: client
+      default_interfaces: {}
+      default_underlay_routing_protocol: ebgp
+      default_overlay_routing_protocol: ebgp
+      default_overlay_address_families:
+      - evpn
+      default_mpls_overlay_role: none
+      mpls_lsr: false
+      mlag_support: true
+      network_services_l1: false
+      network_services_l2: true
+      network_services_l3: true
+      underlay_router: true
+      uplink_type: p2p
+      vtep: true
+      ip_addressing:
+        python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.ip_addressing
+        python_class_name: AvdIpAddressing
+      interface_descriptions:
+        python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.interface_descriptions
+        python_class_name: AvdInterfaceDescriptions
+      group: DC1_LEAF1
+      id: 2
+      mgmt_ip: 192.168.0.14/24
+      platform: vEOS-LAB
+      max_parallel_uplinks: 1
+      uplink_switches:
+      - DC1-SPINE1
+      - DC1-SPINE2
+      uplink_interfaces:
+      - Ethernet1
+      - Ethernet2
+      uplink_switch_interfaces:
+      - Ethernet2
+      - Ethernet2
+      default_ptp_priority1: 30
+      max_uplink_switches: 2
+      is_deployed: true
+      platform_settings:
+        platforms:
+        - default
+        reload_delay:
+          mlag: 300
+          non_mlag: 330
+        feature_support:
+          queue_monitor_length_notify: false
+      mgmt_interface: Management1
+      underlay_routing_protocol: ebgp
+      overlay_routing_protocol: ebgp
+      overlay_address_families:
+      - evpn
+      filter_tenants:
+      - all
+      filter_tags:
+      - all
+      - DC1_LEAF1
+      filter_only_vlans_in_use: false
+      virtual_router_mac_address: 00:1c:73:00:dc:01
+      trunk_groups:
+        mlag:
+          name: MLAG
+        mlag_l3:
+          name: LEAF_PEER_L3
+        uplink:
+          name: UPLINK
+      enable_trunk_groups: false
+      endpoint_trunk_groups: []
+      vlans: 110-112,120-121,130-131,140-141,150,160-161,210-211,250,310-311,350
+      spanning_tree_mode: mstp
+      spanning_tree_priority: 16384
+      overlay_rd_type_admin_subfield: 192.168.255.4
+      igmp_snooping_enabled: true
+      loopback_ipv4_pool: 192.168.255.0/24
+      loopback_ipv4_offset: 2
+      uplink_ipv4_pool: 172.31.255.0/24
+      router_id: 192.168.255.4
+      evpn_gateway_vxlan_l2: false
+      evpn_gateway_vxlan_l3: false
+      evpn_gateway_vxlan_l3_inter_domain: true
       bgp_defaults:
       - no bgp default ipv4-unicast
       - distance bgp 20 200 200
@@ -2052,130 +2260,34 @@ avd_switch_facts:
           name: RR-OVERLAY-PEERS
           password: null
           structured_config: null
-      connected_endpoints: true
-      default_downlink_interfaces: []
-      default_evpn_role: client
-      default_interfaces: {}
-      default_mpls_overlay_role: none
-      default_overlay_address_families:
-      - evpn
-      default_overlay_routing_protocol: ebgp
-      default_underlay_routing_protocol: ebgp
-      enable_trunk_groups: false
-      endpoint_trunk_groups: []
-      evpn_gateway_vxlan_l2: false
-      evpn_gateway_vxlan_l3: false
-      evpn_gateway_vxlan_l3_inter_domain: true
+        ipvpn_gateway_peers:
+          name: IPVPN-GATEWAY-PEERS
+          password: null
+          structured_config: null
       evpn_role: client
+      mpls_overlay_role: none
+      bgp_as: '65101'
       evpn_route_servers:
       - DC1-SPINE1
       - DC1-SPINE2
-      filter_only_vlans_in_use: false
-      filter_tags:
-      - all
-      - DC1_LEAF1
-      filter_tenants:
-      - all
-      group: DC1_LEAF1
-      hostname: DC1-LEAF1B
-      id: 2
-      igmp_snooping_enabled: true
-      interface_descriptions:
-        underlay_ethernet_interfaces: interface_descriptions/underlay/ethernet-interfaces.j2
-        underlay_port_channel_interfaces: interface_descriptions/underlay/port-channel-interfaces.j2
-        mlag_ethernet_interfaces: interface_descriptions/mlag/ethernet-interfaces.j2
-        mlag_port_channel_interfaces: interface_descriptions/mlag/port-channel-interfaces.j2
-        connected_endpoints_ethernet_interfaces: interface_descriptions/connected_endpoints/ethernet-interfaces.j2
-        connected_endpoints_port_channel_interfaces: interface_descriptions/connected_endpoints/port-channel-interfaces.j2
-        overlay_loopback_interface: interface_descriptions/loopback_interfaces/overlay-loopback.j2
-        vtep_loopback_interface: interface_descriptions/loopback_interfaces/vtep-loopback.j2
-      ip_addressing:
-        router_id: ip_addressing/router-id.j2
-        ipv6_router_id: ip_addressing/router-id-ipv6.j2
-        mlag_ip_primary: ip_addressing/mlag-ip-primary.j2
-        mlag_ip_secondary: ip_addressing/mlag-ip-secondary.j2
-        mlag_l3_ip_primary: ip_addressing/mlag-l3-ip-primary.j2
-        mlag_l3_ip_secondary: ip_addressing/mlag-l3-ip-secondary.j2
-        mlag_ibgp_peering_ip_primary: ip_addressing/mlag-ibgp-peering-ip-primary.j2
-        mlag_ibgp_peering_ip_secondary: ip_addressing/mlag-ibgp-peering-ip-secondary.j2
-        p2p_uplinks_ip: ip_addressing/p2p-uplinks-ip.j2
-        p2p_uplinks_peer_ip: ip_addressing/p2p-uplinks-peer-ip.j2
-        vtep_ip_mlag: ip_addressing/vtep-ip-mlag.j2
-        vtep_ip: ip_addressing/vtep-ip.j2
-      is_deployed: true
-      loopback_ipv4_offset: 2
-      loopback_ipv4_pool: 192.168.255.0/24
-      max_parallel_uplinks: 1
-      max_uplink_switches: 2
-      mgmt_interface: Management1
-      mgmt_ip: 192.168.0.14/24
+      underlay_ipv6: false
       mlag: true
-      mlag_dual_primary_detection: false
       mlag_ibgp_origin_incomplete: true
+      mlag_peer_vlan: 4094
+      mlag_peer_link_allowed_vlans: 2-4094
+      mlag_dual_primary_detection: false
       mlag_interfaces:
       - Ethernet3
       - Ethernet4
-      mlag_ip: 10.255.252.1
-      mlag_l3: true
-      mlag_l3_ip: 10.255.251.1
-      mlag_peer: DC1-LEAF1A
-      mlag_peer_ip: 10.255.252.0
       mlag_peer_ipv4_pool: 10.255.252.0/24
-      mlag_peer_l3_ip: 10.255.251.0
       mlag_peer_l3_ipv4_pool: 10.255.251.0/24
-      mlag_peer_l3_vlan: 4093
-      mlag_peer_link_allowed_vlans: 2-4094
-      mlag_peer_mgmt_ip: 192.168.0.13
-      mlag_peer_vlan: 4094
-      mlag_port_channel_id: '3'
       mlag_role: secondary
-      mlag_support: true
-      mlag_switch_ids:
-        primary: 1
-        secondary: 2
-      mpls_ler: false
-      mpls_lsr: false
-      mpls_overlay_role: none
-      network_services_l1: false
-      network_services_l2: true
-      network_services_l3: true
-      node_type_key: l3leaf
-      overlay_address_families:
-      - evpn
-      overlay_rd_type_admin_subfield: 192.168.255.4
-      overlay_routing_protocol: ebgp
-      overlay_routing_protocol_address_family: ipv4
-      overlay_routing_protocol_peering_address: 192.168.255.4
-      platform: vEOS-LAB
-      platform_settings:
-        platforms:
-        - default
-        reload_delay:
-          mlag: 300
-          non_mlag: 330
-        feature_support:
-          queue_monitor_length_notify: false
-      router_id: 192.168.255.4
-      spanning_tree_mode: mstp
-      spanning_tree_priority: 16384
-      type: l3leaf
-      underlay_ipv6: false
-      underlay_router: true
-      underlay_routing_protocol: ebgp
-      uplink_interfaces:
-      - Ethernet1
-      - Ethernet2
-      uplink_ipv4_pool: 172.31.255.0/24
-      uplink_peers:
-      - DC1-SPINE1
-      - DC1-SPINE2
-      uplink_switch_interfaces:
-      - Ethernet2
-      - Ethernet2
-      uplink_switches:
-      - DC1-SPINE1
-      - DC1-SPINE2
-      uplink_type: p2p
+      mlag_peer: DC1-LEAF1A
+      mlag_l3: true
+      mlag_peer_l3_vlan: 4093
+      mlag_port_channel_id: '3'
+      vtep_loopback_ipv4_pool: 192.168.254.0/24
+      vtep_loopback: Loopback1
       uplinks:
       - interface: Ethernet1
         peer: DC1-SPINE1
@@ -2195,15 +2307,125 @@ avd_switch_facts:
         type: underlay_p2p
         ip_address: 172.31.255.7
         peer_ip_address: 172.31.255.6
-      virtual_router_mac_address: 00:1c:73:00:dc:01
-      vlans: 110-112,120-121,130-131,140-141,150,160-161,210-211,250,310-311,350
-      vtep: true
+      uplink_peers:
+      - DC1-SPINE1
+      - DC1-SPINE2
+      mlag_switch_ids:
+        primary: 1
+        secondary: 2
       vtep_ip: 192.168.254.3
-      vtep_loopback: Loopback1
-      vtep_loopback_ipv4_pool: 192.168.254.0/24
+      mlag_ip: 10.255.252.1
+      mlag_peer_ip: 10.255.252.0
+      mlag_l3_ip: 10.255.251.1
+      mlag_peer_l3_ip: 10.255.251.0
+      mlag_peer_mgmt_ip: 192.168.0.13
+      overlay_routing_protocol_address_family: ipv4
+      bgp: true
+      evpn_encapsulation: vxlan
+      underlay:
+        bgp: true
+        ldp: false
+        mpls: false
+        sr: false
+        ospf: false
+        isis: false
+      overlay:
+        peering_address: 192.168.255.4
+        ler: false
+        vtep: true
+        evpn: true
+        evpn_vxlan: true
+        evpn_mpls: false
+        vpn_ipv4: false
+        vpn_ipv6: false
+        ipvpn_gateway: false
+        dpath: false
   DC1-LEAF2A:
     switch:
-      bgp_as: '65102'
+      type: l3leaf
+      hostname: DC1-LEAF2A
+      node_type_key: l3leaf
+      connected_endpoints: true
+      default_downlink_interfaces: []
+      default_evpn_role: client
+      default_interfaces: {}
+      default_underlay_routing_protocol: ebgp
+      default_overlay_routing_protocol: ebgp
+      default_overlay_address_families:
+      - evpn
+      default_mpls_overlay_role: none
+      mpls_lsr: false
+      mlag_support: true
+      network_services_l1: false
+      network_services_l2: true
+      network_services_l3: true
+      underlay_router: true
+      uplink_type: p2p
+      vtep: true
+      ip_addressing:
+        python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.ip_addressing
+        python_class_name: AvdIpAddressing
+      interface_descriptions:
+        python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.interface_descriptions
+        python_class_name: AvdInterfaceDescriptions
+      group: DC1_LEAF2
+      id: 3
+      mgmt_ip: 192.168.0.15/24
+      platform: vEOS-LAB
+      max_parallel_uplinks: 1
+      uplink_switches:
+      - DC1-SPINE1
+      - DC1-SPINE2
+      uplink_interfaces:
+      - Ethernet1
+      - Ethernet2
+      uplink_switch_interfaces:
+      - Ethernet3
+      - Ethernet3
+      default_ptp_priority1: 30
+      max_uplink_switches: 2
+      is_deployed: true
+      platform_settings:
+        platforms:
+        - default
+        reload_delay:
+          mlag: 300
+          non_mlag: 330
+        feature_support:
+          queue_monitor_length_notify: false
+      mgmt_interface: Management1
+      underlay_routing_protocol: ebgp
+      overlay_routing_protocol: ebgp
+      overlay_address_families:
+      - evpn
+      filter_tenants:
+      - all
+      filter_tags:
+      - all
+      - DC1_LEAF2
+      filter_only_vlans_in_use: false
+      virtual_router_mac_address: 00:1c:73:00:dc:01
+      trunk_groups:
+        mlag:
+          name: MLAG
+        mlag_l3:
+          name: LEAF_PEER_L3
+        uplink:
+          name: UPLINK
+      enable_trunk_groups: false
+      endpoint_trunk_groups: []
+      vlans: 110-112,120-121,130-131,140-141,150,160-161,210-211,250,310-311,350
+      spanning_tree_mode: mstp
+      spanning_tree_priority: 16384
+      overlay_rd_type_admin_subfield: 192.168.255.5
+      igmp_snooping_enabled: true
+      loopback_ipv4_pool: 192.168.255.0/24
+      loopback_ipv4_offset: 2
+      uplink_ipv4_pool: 172.31.255.0/24
+      router_id: 192.168.255.5
+      evpn_gateway_vxlan_l2: false
+      evpn_gateway_vxlan_l3: false
+      evpn_gateway_vxlan_l3_inter_domain: true
       bgp_defaults:
       - no bgp default ipv4-unicast
       - distance bgp 20 200 200
@@ -2234,130 +2456,34 @@ avd_switch_facts:
           name: RR-OVERLAY-PEERS
           password: null
           structured_config: null
-      connected_endpoints: true
-      default_downlink_interfaces: []
-      default_evpn_role: client
-      default_interfaces: {}
-      default_mpls_overlay_role: none
-      default_overlay_address_families:
-      - evpn
-      default_overlay_routing_protocol: ebgp
-      default_underlay_routing_protocol: ebgp
-      enable_trunk_groups: false
-      endpoint_trunk_groups: []
-      evpn_gateway_vxlan_l2: false
-      evpn_gateway_vxlan_l3: false
-      evpn_gateway_vxlan_l3_inter_domain: true
+        ipvpn_gateway_peers:
+          name: IPVPN-GATEWAY-PEERS
+          password: null
+          structured_config: null
       evpn_role: client
+      mpls_overlay_role: none
+      bgp_as: '65102'
       evpn_route_servers:
       - DC1-SPINE1
       - DC1-SPINE2
-      filter_only_vlans_in_use: false
-      filter_tags:
-      - all
-      - DC1_LEAF2
-      filter_tenants:
-      - all
-      group: DC1_LEAF2
-      hostname: DC1-LEAF2A
-      id: 3
-      igmp_snooping_enabled: true
-      interface_descriptions:
-        underlay_ethernet_interfaces: interface_descriptions/underlay/ethernet-interfaces.j2
-        underlay_port_channel_interfaces: interface_descriptions/underlay/port-channel-interfaces.j2
-        mlag_ethernet_interfaces: interface_descriptions/mlag/ethernet-interfaces.j2
-        mlag_port_channel_interfaces: interface_descriptions/mlag/port-channel-interfaces.j2
-        connected_endpoints_ethernet_interfaces: interface_descriptions/connected_endpoints/ethernet-interfaces.j2
-        connected_endpoints_port_channel_interfaces: interface_descriptions/connected_endpoints/port-channel-interfaces.j2
-        overlay_loopback_interface: interface_descriptions/loopback_interfaces/overlay-loopback.j2
-        vtep_loopback_interface: interface_descriptions/loopback_interfaces/vtep-loopback.j2
-      ip_addressing:
-        router_id: ip_addressing/router-id.j2
-        ipv6_router_id: ip_addressing/router-id-ipv6.j2
-        mlag_ip_primary: ip_addressing/mlag-ip-primary.j2
-        mlag_ip_secondary: ip_addressing/mlag-ip-secondary.j2
-        mlag_l3_ip_primary: ip_addressing/mlag-l3-ip-primary.j2
-        mlag_l3_ip_secondary: ip_addressing/mlag-l3-ip-secondary.j2
-        mlag_ibgp_peering_ip_primary: ip_addressing/mlag-ibgp-peering-ip-primary.j2
-        mlag_ibgp_peering_ip_secondary: ip_addressing/mlag-ibgp-peering-ip-secondary.j2
-        p2p_uplinks_ip: ip_addressing/p2p-uplinks-ip.j2
-        p2p_uplinks_peer_ip: ip_addressing/p2p-uplinks-peer-ip.j2
-        vtep_ip_mlag: ip_addressing/vtep-ip-mlag.j2
-        vtep_ip: ip_addressing/vtep-ip.j2
-      is_deployed: true
-      loopback_ipv4_offset: 2
-      loopback_ipv4_pool: 192.168.255.0/24
-      max_parallel_uplinks: 1
-      max_uplink_switches: 2
-      mgmt_interface: Management1
-      mgmt_ip: 192.168.0.15/24
+      underlay_ipv6: false
       mlag: true
-      mlag_dual_primary_detection: false
       mlag_ibgp_origin_incomplete: true
+      mlag_peer_vlan: 4094
+      mlag_peer_link_allowed_vlans: 2-4094
+      mlag_dual_primary_detection: false
       mlag_interfaces:
       - Ethernet3
       - Ethernet4
-      mlag_ip: 10.255.252.4
-      mlag_l3: true
-      mlag_l3_ip: 10.255.251.4
-      mlag_peer: DC1-LEAF2B
-      mlag_peer_ip: 10.255.252.5
       mlag_peer_ipv4_pool: 10.255.252.0/24
-      mlag_peer_l3_ip: 10.255.251.5
       mlag_peer_l3_ipv4_pool: 10.255.251.0/24
-      mlag_peer_l3_vlan: 4093
-      mlag_peer_link_allowed_vlans: 2-4094
-      mlag_peer_mgmt_ip: 192.168.0.16
-      mlag_peer_vlan: 4094
-      mlag_port_channel_id: '3'
       mlag_role: primary
-      mlag_support: true
-      mlag_switch_ids:
-        primary: 3
-        secondary: 4
-      mpls_ler: false
-      mpls_lsr: false
-      mpls_overlay_role: none
-      network_services_l1: false
-      network_services_l2: true
-      network_services_l3: true
-      node_type_key: l3leaf
-      overlay_address_families:
-      - evpn
-      overlay_rd_type_admin_subfield: 192.168.255.5
-      overlay_routing_protocol: ebgp
-      overlay_routing_protocol_address_family: ipv4
-      overlay_routing_protocol_peering_address: 192.168.255.5
-      platform: vEOS-LAB
-      platform_settings:
-        platforms:
-        - default
-        reload_delay:
-          mlag: 300
-          non_mlag: 330
-        feature_support:
-          queue_monitor_length_notify: false
-      router_id: 192.168.255.5
-      spanning_tree_mode: mstp
-      spanning_tree_priority: 16384
-      type: l3leaf
-      underlay_ipv6: false
-      underlay_router: true
-      underlay_routing_protocol: ebgp
-      uplink_interfaces:
-      - Ethernet1
-      - Ethernet2
-      uplink_ipv4_pool: 172.31.255.0/24
-      uplink_peers:
-      - DC1-SPINE1
-      - DC1-SPINE2
-      uplink_switch_interfaces:
-      - Ethernet3
-      - Ethernet3
-      uplink_switches:
-      - DC1-SPINE1
-      - DC1-SPINE2
-      uplink_type: p2p
+      mlag_peer: DC1-LEAF2B
+      mlag_l3: true
+      mlag_peer_l3_vlan: 4093
+      mlag_port_channel_id: '3'
+      vtep_loopback_ipv4_pool: 192.168.254.0/24
+      vtep_loopback: Loopback1
       uplinks:
       - interface: Ethernet1
         peer: DC1-SPINE1
@@ -2377,15 +2503,125 @@ avd_switch_facts:
         type: underlay_p2p
         ip_address: 172.31.255.11
         peer_ip_address: 172.31.255.10
-      virtual_router_mac_address: 00:1c:73:00:dc:01
-      vlans: 110-112,120-121,130-131,140-141,150,160-161,210-211,250,310-311,350
-      vtep: true
+      uplink_peers:
+      - DC1-SPINE1
+      - DC1-SPINE2
+      mlag_switch_ids:
+        primary: 3
+        secondary: 4
       vtep_ip: 192.168.254.5
-      vtep_loopback: Loopback1
-      vtep_loopback_ipv4_pool: 192.168.254.0/24
+      mlag_ip: 10.255.252.4
+      mlag_peer_ip: 10.255.252.5
+      mlag_l3_ip: 10.255.251.4
+      mlag_peer_l3_ip: 10.255.251.5
+      mlag_peer_mgmt_ip: 192.168.0.16
+      overlay_routing_protocol_address_family: ipv4
+      bgp: true
+      evpn_encapsulation: vxlan
+      underlay:
+        bgp: true
+        ldp: false
+        mpls: false
+        sr: false
+        ospf: false
+        isis: false
+      overlay:
+        peering_address: 192.168.255.5
+        ler: false
+        vtep: true
+        evpn: true
+        evpn_vxlan: true
+        evpn_mpls: false
+        vpn_ipv4: false
+        vpn_ipv6: false
+        ipvpn_gateway: false
+        dpath: false
   DC1-LEAF2B:
     switch:
-      bgp_as: '65102'
+      type: l3leaf
+      hostname: DC1-LEAF2B
+      node_type_key: l3leaf
+      connected_endpoints: true
+      default_downlink_interfaces: []
+      default_evpn_role: client
+      default_interfaces: {}
+      default_underlay_routing_protocol: ebgp
+      default_overlay_routing_protocol: ebgp
+      default_overlay_address_families:
+      - evpn
+      default_mpls_overlay_role: none
+      mpls_lsr: false
+      mlag_support: true
+      network_services_l1: false
+      network_services_l2: true
+      network_services_l3: true
+      underlay_router: true
+      uplink_type: p2p
+      vtep: true
+      ip_addressing:
+        python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.ip_addressing
+        python_class_name: AvdIpAddressing
+      interface_descriptions:
+        python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.interface_descriptions
+        python_class_name: AvdInterfaceDescriptions
+      group: DC1_LEAF2
+      id: 4
+      mgmt_ip: 192.168.0.16/24
+      platform: vEOS-LAB
+      max_parallel_uplinks: 1
+      uplink_switches:
+      - DC1-SPINE1
+      - DC1-SPINE2
+      uplink_interfaces:
+      - Ethernet1
+      - Ethernet2
+      uplink_switch_interfaces:
+      - Ethernet4
+      - Ethernet4
+      default_ptp_priority1: 30
+      max_uplink_switches: 2
+      is_deployed: true
+      platform_settings:
+        platforms:
+        - default
+        reload_delay:
+          mlag: 300
+          non_mlag: 330
+        feature_support:
+          queue_monitor_length_notify: false
+      mgmt_interface: Management1
+      underlay_routing_protocol: ebgp
+      overlay_routing_protocol: ebgp
+      overlay_address_families:
+      - evpn
+      filter_tenants:
+      - all
+      filter_tags:
+      - all
+      - DC1_LEAF2
+      filter_only_vlans_in_use: false
+      virtual_router_mac_address: 00:1c:73:00:dc:01
+      trunk_groups:
+        mlag:
+          name: MLAG
+        mlag_l3:
+          name: LEAF_PEER_L3
+        uplink:
+          name: UPLINK
+      enable_trunk_groups: false
+      endpoint_trunk_groups: []
+      vlans: 110-112,120-121,130-131,140-141,150,160-161,210-211,250,310-311,350
+      spanning_tree_mode: mstp
+      spanning_tree_priority: 16384
+      overlay_rd_type_admin_subfield: 192.168.255.6
+      igmp_snooping_enabled: true
+      loopback_ipv4_pool: 192.168.255.0/24
+      loopback_ipv4_offset: 2
+      uplink_ipv4_pool: 172.31.255.0/24
+      router_id: 192.168.255.6
+      evpn_gateway_vxlan_l2: false
+      evpn_gateway_vxlan_l3: false
+      evpn_gateway_vxlan_l3_inter_domain: true
       bgp_defaults:
       - no bgp default ipv4-unicast
       - distance bgp 20 200 200
@@ -2416,130 +2652,34 @@ avd_switch_facts:
           name: RR-OVERLAY-PEERS
           password: null
           structured_config: null
-      connected_endpoints: true
-      default_downlink_interfaces: []
-      default_evpn_role: client
-      default_interfaces: {}
-      default_mpls_overlay_role: none
-      default_overlay_address_families:
-      - evpn
-      default_overlay_routing_protocol: ebgp
-      default_underlay_routing_protocol: ebgp
-      enable_trunk_groups: false
-      endpoint_trunk_groups: []
-      evpn_gateway_vxlan_l2: false
-      evpn_gateway_vxlan_l3: false
-      evpn_gateway_vxlan_l3_inter_domain: true
+        ipvpn_gateway_peers:
+          name: IPVPN-GATEWAY-PEERS
+          password: null
+          structured_config: null
       evpn_role: client
+      mpls_overlay_role: none
+      bgp_as: '65102'
       evpn_route_servers:
       - DC1-SPINE1
       - DC1-SPINE2
-      filter_only_vlans_in_use: false
-      filter_tags:
-      - all
-      - DC1_LEAF2
-      filter_tenants:
-      - all
-      group: DC1_LEAF2
-      hostname: DC1-LEAF2B
-      id: 4
-      igmp_snooping_enabled: true
-      interface_descriptions:
-        underlay_ethernet_interfaces: interface_descriptions/underlay/ethernet-interfaces.j2
-        underlay_port_channel_interfaces: interface_descriptions/underlay/port-channel-interfaces.j2
-        mlag_ethernet_interfaces: interface_descriptions/mlag/ethernet-interfaces.j2
-        mlag_port_channel_interfaces: interface_descriptions/mlag/port-channel-interfaces.j2
-        connected_endpoints_ethernet_interfaces: interface_descriptions/connected_endpoints/ethernet-interfaces.j2
-        connected_endpoints_port_channel_interfaces: interface_descriptions/connected_endpoints/port-channel-interfaces.j2
-        overlay_loopback_interface: interface_descriptions/loopback_interfaces/overlay-loopback.j2
-        vtep_loopback_interface: interface_descriptions/loopback_interfaces/vtep-loopback.j2
-      ip_addressing:
-        router_id: ip_addressing/router-id.j2
-        ipv6_router_id: ip_addressing/router-id-ipv6.j2
-        mlag_ip_primary: ip_addressing/mlag-ip-primary.j2
-        mlag_ip_secondary: ip_addressing/mlag-ip-secondary.j2
-        mlag_l3_ip_primary: ip_addressing/mlag-l3-ip-primary.j2
-        mlag_l3_ip_secondary: ip_addressing/mlag-l3-ip-secondary.j2
-        mlag_ibgp_peering_ip_primary: ip_addressing/mlag-ibgp-peering-ip-primary.j2
-        mlag_ibgp_peering_ip_secondary: ip_addressing/mlag-ibgp-peering-ip-secondary.j2
-        p2p_uplinks_ip: ip_addressing/p2p-uplinks-ip.j2
-        p2p_uplinks_peer_ip: ip_addressing/p2p-uplinks-peer-ip.j2
-        vtep_ip_mlag: ip_addressing/vtep-ip-mlag.j2
-        vtep_ip: ip_addressing/vtep-ip.j2
-      is_deployed: true
-      loopback_ipv4_offset: 2
-      loopback_ipv4_pool: 192.168.255.0/24
-      max_parallel_uplinks: 1
-      max_uplink_switches: 2
-      mgmt_interface: Management1
-      mgmt_ip: 192.168.0.16/24
+      underlay_ipv6: false
       mlag: true
-      mlag_dual_primary_detection: false
       mlag_ibgp_origin_incomplete: true
+      mlag_peer_vlan: 4094
+      mlag_peer_link_allowed_vlans: 2-4094
+      mlag_dual_primary_detection: false
       mlag_interfaces:
       - Ethernet3
       - Ethernet4
-      mlag_ip: 10.255.252.5
-      mlag_l3: true
-      mlag_l3_ip: 10.255.251.5
-      mlag_peer: DC1-LEAF2A
-      mlag_peer_ip: 10.255.252.4
       mlag_peer_ipv4_pool: 10.255.252.0/24
-      mlag_peer_l3_ip: 10.255.251.4
       mlag_peer_l3_ipv4_pool: 10.255.251.0/24
-      mlag_peer_l3_vlan: 4093
-      mlag_peer_link_allowed_vlans: 2-4094
-      mlag_peer_mgmt_ip: 192.168.0.15
-      mlag_peer_vlan: 4094
-      mlag_port_channel_id: '3'
       mlag_role: secondary
-      mlag_support: true
-      mlag_switch_ids:
-        primary: 3
-        secondary: 4
-      mpls_ler: false
-      mpls_lsr: false
-      mpls_overlay_role: none
-      network_services_l1: false
-      network_services_l2: true
-      network_services_l3: true
-      node_type_key: l3leaf
-      overlay_address_families:
-      - evpn
-      overlay_rd_type_admin_subfield: 192.168.255.6
-      overlay_routing_protocol: ebgp
-      overlay_routing_protocol_address_family: ipv4
-      overlay_routing_protocol_peering_address: 192.168.255.6
-      platform: vEOS-LAB
-      platform_settings:
-        platforms:
-        - default
-        reload_delay:
-          mlag: 300
-          non_mlag: 330
-        feature_support:
-          queue_monitor_length_notify: false
-      router_id: 192.168.255.6
-      spanning_tree_mode: mstp
-      spanning_tree_priority: 16384
-      type: l3leaf
-      underlay_ipv6: false
-      underlay_router: true
-      underlay_routing_protocol: ebgp
-      uplink_interfaces:
-      - Ethernet1
-      - Ethernet2
-      uplink_ipv4_pool: 172.31.255.0/24
-      uplink_peers:
-      - DC1-SPINE1
-      - DC1-SPINE2
-      uplink_switch_interfaces:
-      - Ethernet4
-      - Ethernet4
-      uplink_switches:
-      - DC1-SPINE1
-      - DC1-SPINE2
-      uplink_type: p2p
+      mlag_peer: DC1-LEAF2A
+      mlag_l3: true
+      mlag_peer_l3_vlan: 4093
+      mlag_port_channel_id: '3'
+      vtep_loopback_ipv4_pool: 192.168.254.0/24
+      vtep_loopback: Loopback1
       uplinks:
       - interface: Ethernet1
         peer: DC1-SPINE1
@@ -2559,78 +2699,84 @@ avd_switch_facts:
         type: underlay_p2p
         ip_address: 172.31.255.15
         peer_ip_address: 172.31.255.14
-      virtual_router_mac_address: 00:1c:73:00:dc:01
-      vlans: 110-112,120-121,130-131,140-141,150,160-161,210-211,250,310-311,350
-      vtep: true
+      uplink_peers:
+      - DC1-SPINE1
+      - DC1-SPINE2
+      mlag_switch_ids:
+        primary: 3
+        secondary: 4
       vtep_ip: 192.168.254.5
-      vtep_loopback: Loopback1
-      vtep_loopback_ipv4_pool: 192.168.254.0/24
+      mlag_ip: 10.255.252.5
+      mlag_peer_ip: 10.255.252.4
+      mlag_l3_ip: 10.255.251.5
+      mlag_peer_l3_ip: 10.255.251.4
+      mlag_peer_mgmt_ip: 192.168.0.15
+      overlay_routing_protocol_address_family: ipv4
+      bgp: true
+      evpn_encapsulation: vxlan
+      underlay:
+        bgp: true
+        ldp: false
+        mpls: false
+        sr: false
+        ospf: false
+        isis: false
+      overlay:
+        peering_address: 192.168.255.6
+        ler: false
+        vtep: true
+        evpn: true
+        evpn_vxlan: true
+        evpn_mpls: false
+        vpn_ipv4: false
+        vpn_ipv6: false
+        ipvpn_gateway: false
+        dpath: false
   DC1-L2LEAF1A:
     switch:
+      type: l2leaf
+      hostname: DC1-L2LEAF1A
+      node_type_key: l2leaf
       connected_endpoints: true
       default_downlink_interfaces: []
       default_evpn_role: none
       default_interfaces: {}
-      default_mpls_overlay_role: none
+      default_underlay_routing_protocol: ebgp
+      default_overlay_routing_protocol: ebgp
       default_overlay_address_families:
       - evpn
-      default_overlay_routing_protocol: ebgp
-      default_underlay_routing_protocol: ebgp
-      enable_trunk_groups: false
-      endpoint_trunk_groups: []
-      evpn_route_servers: []
-      filter_only_vlans_in_use: false
-      filter_tags:
-      - opzone
-      - web
-      - app
-      - DC1_L2LEAF1
-      filter_tenants:
-      - Tenant_A
-      group: DC1_L2LEAF1
-      hostname: DC1-L2LEAF1A
-      id: 5
-      igmp_snooping_enabled: true
-      interface_descriptions:
-        underlay_ethernet_interfaces: interface_descriptions/underlay/ethernet-interfaces.j2
-        underlay_port_channel_interfaces: interface_descriptions/underlay/port-channel-interfaces.j2
-        mlag_ethernet_interfaces: interface_descriptions/mlag/ethernet-interfaces.j2
-        mlag_port_channel_interfaces: interface_descriptions/mlag/port-channel-interfaces.j2
-        connected_endpoints_ethernet_interfaces: interface_descriptions/connected_endpoints/ethernet-interfaces.j2
-        connected_endpoints_port_channel_interfaces: interface_descriptions/connected_endpoints/port-channel-interfaces.j2
-        overlay_loopback_interface: interface_descriptions/loopback_interfaces/overlay-loopback.j2
-        vtep_loopback_interface: interface_descriptions/loopback_interfaces/vtep-loopback.j2
-      ip_addressing:
-        router_id: ip_addressing/router-id.j2
-        ipv6_router_id: ip_addressing/router-id-ipv6.j2
-        mlag_ip_primary: ip_addressing/mlag-ip-primary.j2
-        mlag_ip_secondary: ip_addressing/mlag-ip-secondary.j2
-        mlag_l3_ip_primary: ip_addressing/mlag-l3-ip-primary.j2
-        mlag_l3_ip_secondary: ip_addressing/mlag-l3-ip-secondary.j2
-        mlag_ibgp_peering_ip_primary: ip_addressing/mlag-ibgp-peering-ip-primary.j2
-        mlag_ibgp_peering_ip_secondary: ip_addressing/mlag-ibgp-peering-ip-secondary.j2
-        p2p_uplinks_ip: ip_addressing/p2p-uplinks-ip.j2
-        p2p_uplinks_peer_ip: ip_addressing/p2p-uplinks-peer-ip.j2
-        vtep_ip_mlag: ip_addressing/vtep-ip-mlag.j2
-        vtep_ip: ip_addressing/vtep-ip.j2
-      is_deployed: true
-      max_parallel_uplinks: 1
-      max_uplink_switches: 2
-      mgmt_interface: Management1
-      mgmt_ip: 192.168.0.17/24
-      mlag: false
-      mlag_support: true
-      mpls_ler: false
+      default_mpls_overlay_role: none
       mpls_lsr: false
+      mlag_support: true
       network_services_l1: false
       network_services_l2: true
       network_services_l3: false
-      node_type_key: l2leaf
-      overlay_address_families:
-      - evpn
-      overlay_routing_protocol: ebgp
-      overlay_routing_protocol_address_family: ipv4
+      underlay_router: false
+      uplink_type: port-channel
+      vtep: false
+      ip_addressing:
+        python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.ip_addressing
+        python_class_name: AvdIpAddressing
+      interface_descriptions:
+        python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.interface_descriptions
+        python_class_name: AvdInterfaceDescriptions
+      group: DC1_L2LEAF1
+      id: 5
+      mgmt_ip: 192.168.0.17/24
       platform: vEOS-LAB
+      max_parallel_uplinks: 1
+      uplink_switches:
+      - DC1-LEAF1A
+      - DC1-LEAF1B
+      uplink_interfaces:
+      - Ethernet1
+      - Ethernet2
+      uplink_switch_interfaces:
+      - Ethernet5
+      - Ethernet5
+      default_ptp_priority1: 127
+      max_uplink_switches: 2
+      is_deployed: true
       platform_settings:
         platforms:
         - default
@@ -2639,24 +2785,35 @@ avd_switch_facts:
           non_mlag: 330
         feature_support:
           queue_monitor_length_notify: false
+      mgmt_interface: Management1
+      underlay_routing_protocol: ebgp
+      overlay_routing_protocol: ebgp
+      overlay_address_families:
+      - evpn
+      filter_tenants:
+      - Tenant_A
+      filter_tags:
+      - opzone
+      - web
+      - app
+      - DC1_L2LEAF1
+      filter_only_vlans_in_use: false
+      virtual_router_mac_address: 00:1c:73:00:dc:01
+      trunk_groups:
+        mlag:
+          name: MLAG
+        mlag_l3:
+          name: LEAF_PEER_L3
+        uplink:
+          name: UPLINK
+      enable_trunk_groups: false
+      endpoint_trunk_groups: []
+      vlans: 110-112,120-121,130-131
       spanning_tree_mode: mstp
       spanning_tree_priority: 16384
-      type: l2leaf
-      underlay_router: false
-      underlay_routing_protocol: ebgp
-      uplink_interfaces:
-      - Ethernet1
-      - Ethernet2
-      uplink_peers:
-      - DC1-LEAF1A
-      - DC1-LEAF1B
-      uplink_switch_interfaces:
-      - Ethernet5
-      - Ethernet5
-      uplink_switches:
-      - DC1-LEAF1A
-      - DC1-LEAF1B
-      uplink_type: port-channel
+      igmp_snooping_enabled: true
+      evpn_route_servers: []
+      mlag: false
       uplinks:
       - interface: Ethernet1
         peer: DC1-LEAF1A
@@ -2678,75 +2835,75 @@ avd_switch_facts:
         channel_group_id: '1'
         peer_channel_group_id: '5'
         vlans: 110-112,120-121,130-131
-      virtual_router_mac_address: 00:1c:73:00:dc:01
-      vlans: 110-112,120-121,130-131
-      vtep: false
+      uplink_peers:
+      - DC1-LEAF1A
+      - DC1-LEAF1B
+      overlay_routing_protocol_address_family: ipv4
+      bgp: false
+      evpn_encapsulation: vxlan
+      underlay:
+        bgp: false
+        ldp: false
+        sr: false
+        mpls: false
+        ospf: false
+        isis: false
+      overlay:
+        peering_address: null
+        ler: false
+        vtep: false
+        evpn: false
+        evpn_vxlan: false
+        evpn_mpls: false
+        vpn_ipv4: false
+        vpn_ipv6: false
+        ipvpn_gateway: false
+        dpath: false
   DC1-L2LEAF2A:
     switch:
+      type: l2leaf
+      hostname: DC1-L2LEAF2A
+      node_type_key: l2leaf
       connected_endpoints: true
       default_downlink_interfaces: []
       default_evpn_role: none
       default_interfaces: {}
-      default_mpls_overlay_role: none
+      default_underlay_routing_protocol: ebgp
+      default_overlay_routing_protocol: ebgp
       default_overlay_address_families:
       - evpn
-      default_overlay_routing_protocol: ebgp
-      default_underlay_routing_protocol: ebgp
-      enable_trunk_groups: false
-      endpoint_trunk_groups: []
-      evpn_route_servers: []
-      filter_only_vlans_in_use: false
-      filter_tags:
-      - opzone
-      - web
-      - app
-      - DC1_L2LEAF2
-      filter_tenants:
-      - Tenant_A
-      group: DC1_L2LEAF2
-      hostname: DC1-L2LEAF2A
-      id: 7
-      igmp_snooping_enabled: true
-      interface_descriptions:
-        underlay_ethernet_interfaces: interface_descriptions/underlay/ethernet-interfaces.j2
-        underlay_port_channel_interfaces: interface_descriptions/underlay/port-channel-interfaces.j2
-        mlag_ethernet_interfaces: interface_descriptions/mlag/ethernet-interfaces.j2
-        mlag_port_channel_interfaces: interface_descriptions/mlag/port-channel-interfaces.j2
-        connected_endpoints_ethernet_interfaces: interface_descriptions/connected_endpoints/ethernet-interfaces.j2
-        connected_endpoints_port_channel_interfaces: interface_descriptions/connected_endpoints/port-channel-interfaces.j2
-        overlay_loopback_interface: interface_descriptions/loopback_interfaces/overlay-loopback.j2
-        vtep_loopback_interface: interface_descriptions/loopback_interfaces/vtep-loopback.j2
-      ip_addressing:
-        router_id: ip_addressing/router-id.j2
-        ipv6_router_id: ip_addressing/router-id-ipv6.j2
-        mlag_ip_primary: ip_addressing/mlag-ip-primary.j2
-        mlag_ip_secondary: ip_addressing/mlag-ip-secondary.j2
-        mlag_l3_ip_primary: ip_addressing/mlag-l3-ip-primary.j2
-        mlag_l3_ip_secondary: ip_addressing/mlag-l3-ip-secondary.j2
-        mlag_ibgp_peering_ip_primary: ip_addressing/mlag-ibgp-peering-ip-primary.j2
-        mlag_ibgp_peering_ip_secondary: ip_addressing/mlag-ibgp-peering-ip-secondary.j2
-        p2p_uplinks_ip: ip_addressing/p2p-uplinks-ip.j2
-        p2p_uplinks_peer_ip: ip_addressing/p2p-uplinks-peer-ip.j2
-        vtep_ip_mlag: ip_addressing/vtep-ip-mlag.j2
-        vtep_ip: ip_addressing/vtep-ip.j2
-      is_deployed: true
-      max_parallel_uplinks: 1
-      max_uplink_switches: 2
-      mgmt_interface: Management1
-      mgmt_ip: 192.168.0.18/24
-      mlag: false
-      mlag_support: true
-      mpls_ler: false
+      default_mpls_overlay_role: none
       mpls_lsr: false
+      mlag_support: true
       network_services_l1: false
       network_services_l2: true
       network_services_l3: false
-      node_type_key: l2leaf
-      overlay_address_families:
-      - evpn
-      overlay_routing_protocol: ebgp
-      overlay_routing_protocol_address_family: ipv4
+      underlay_router: false
+      uplink_type: port-channel
+      vtep: false
+      ip_addressing:
+        python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.ip_addressing
+        python_class_name: AvdIpAddressing
+      interface_descriptions:
+        python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.interface_descriptions
+        python_class_name: AvdInterfaceDescriptions
+      group: DC1_L2LEAF2
+      id: 7
+      mgmt_ip: 192.168.0.18/24
       platform: vEOS-LAB
+      max_parallel_uplinks: 1
+      uplink_switches:
+      - DC1-LEAF2A
+      - DC1-LEAF2B
+      uplink_interfaces:
+      - Ethernet1
+      - Ethernet2
+      uplink_switch_interfaces:
+      - Ethernet5
+      - Ethernet5
+      default_ptp_priority1: 127
+      max_uplink_switches: 2
+      is_deployed: true
       platform_settings:
         platforms:
         - default
@@ -2755,24 +2912,35 @@ avd_switch_facts:
           non_mlag: 330
         feature_support:
           queue_monitor_length_notify: false
+      mgmt_interface: Management1
+      underlay_routing_protocol: ebgp
+      overlay_routing_protocol: ebgp
+      overlay_address_families:
+      - evpn
+      filter_tenants:
+      - Tenant_A
+      filter_tags:
+      - opzone
+      - web
+      - app
+      - DC1_L2LEAF2
+      filter_only_vlans_in_use: false
+      virtual_router_mac_address: 00:1c:73:00:dc:01
+      trunk_groups:
+        mlag:
+          name: MLAG
+        mlag_l3:
+          name: LEAF_PEER_L3
+        uplink:
+          name: UPLINK
+      enable_trunk_groups: false
+      endpoint_trunk_groups: []
+      vlans: 110-112,120-121,130-131
       spanning_tree_mode: mstp
       spanning_tree_priority: 16384
-      type: l2leaf
-      underlay_router: false
-      underlay_routing_protocol: ebgp
-      uplink_interfaces:
-      - Ethernet1
-      - Ethernet2
-      uplink_peers:
-      - DC1-LEAF2A
-      - DC1-LEAF2B
-      uplink_switch_interfaces:
-      - Ethernet5
-      - Ethernet5
-      uplink_switches:
-      - DC1-LEAF2A
-      - DC1-LEAF2B
-      uplink_type: port-channel
+      igmp_snooping_enabled: true
+      evpn_route_servers: []
+      mlag: false
       uplinks:
       - interface: Ethernet1
         peer: DC1-LEAF2A
@@ -2794,9 +2962,30 @@ avd_switch_facts:
         channel_group_id: '1'
         peer_channel_group_id: '5'
         vlans: 110-112,120-121,130-131
-      virtual_router_mac_address: 00:1c:73:00:dc:01
-      vlans: 110-112,120-121,130-131
-      vtep: false
+      uplink_peers:
+      - DC1-LEAF2A
+      - DC1-LEAF2B
+      overlay_routing_protocol_address_family: ipv4
+      bgp: false
+      evpn_encapsulation: vxlan
+      underlay:
+        bgp: false
+        ldp: false
+        sr: false
+        mpls: false
+        ospf: false
+        isis: false
+      overlay:
+        peering_address: null
+        ler: false
+        vtep: false
+        evpn: false
+        evpn_vxlan: false
+        evpn_mpls: false
+        vpn_ipv4: false
+        vpn_ipv6: false
+        ipvpn_gateway: false
+        dpath: false
 avd_overlay_peers:
   DC1-SPINE1:
   - DC1-LEAF1A
@@ -2829,7 +3018,90 @@ avd_topology_peers:
   - DC1-L2LEAF2A
 avd_collection_version: version
 switch:
-  bgp_as: '65102'
+  type: l3leaf
+  hostname: DC1-LEAF2A
+  node_type_key: l3leaf
+  connected_endpoints: true
+  default_downlink_interfaces: []
+  default_evpn_role: client
+  default_interfaces: {}
+  default_underlay_routing_protocol: ebgp
+  default_overlay_routing_protocol: ebgp
+  default_overlay_address_families:
+  - evpn
+  default_mpls_overlay_role: none
+  mpls_lsr: false
+  mlag_support: true
+  network_services_l1: false
+  network_services_l2: true
+  network_services_l3: true
+  underlay_router: true
+  uplink_type: p2p
+  vtep: true
+  ip_addressing:
+    python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.ip_addressing
+    python_class_name: AvdIpAddressing
+  interface_descriptions:
+    python_module: ansible_collections.arista.avd.roles.eos_designs.python_modules.interface_descriptions
+    python_class_name: AvdInterfaceDescriptions
+  group: DC1_LEAF2
+  id: 3
+  mgmt_ip: 192.168.0.15/24
+  platform: vEOS-LAB
+  max_parallel_uplinks: 1
+  uplink_switches:
+  - DC1-SPINE1
+  - DC1-SPINE2
+  uplink_interfaces:
+  - Ethernet1
+  - Ethernet2
+  uplink_switch_interfaces:
+  - Ethernet3
+  - Ethernet3
+  default_ptp_priority1: 30
+  max_uplink_switches: 2
+  is_deployed: true
+  platform_settings:
+    platforms:
+    - default
+    reload_delay:
+      mlag: 300
+      non_mlag: 330
+    feature_support:
+      queue_monitor_length_notify: false
+  mgmt_interface: Management1
+  underlay_routing_protocol: ebgp
+  overlay_routing_protocol: ebgp
+  overlay_address_families:
+  - evpn
+  filter_tenants:
+  - all
+  filter_tags:
+  - all
+  - DC1_LEAF2
+  filter_only_vlans_in_use: false
+  virtual_router_mac_address: 00:1c:73:00:dc:01
+  trunk_groups:
+    mlag:
+      name: MLAG
+    mlag_l3:
+      name: LEAF_PEER_L3
+    uplink:
+      name: UPLINK
+  enable_trunk_groups: false
+  endpoint_trunk_groups: []
+  vlans: 110-112,120-121,130-131,140-141,150,160-161,210-211,250,310-311,350
+  spanning_tree_mode: mstp
+  spanning_tree_priority: 16384
+  overlay_rd_type_admin_subfield: 192.168.255.5
+  igmp_snooping_enabled: true
+  loopback_ipv4_pool: 192.168.255.0/24
+  loopback_ipv4_offset: 2
+  uplink_ipv4_pool: 172.31.255.0/24
+  router_id: 192.168.255.5
+  evpn_gateway_vxlan_l2: false
+  evpn_gateway_vxlan_l3: false
+  evpn_gateway_vxlan_l3_inter_domain: true
   bgp_defaults:
   - no bgp default ipv4-unicast
   - distance bgp 20 200 200
@@ -2860,130 +3132,34 @@ switch:
       name: RR-OVERLAY-PEERS
       password: null
       structured_config: null
-  connected_endpoints: true
-  default_downlink_interfaces: []
-  default_evpn_role: client
-  default_interfaces: {}
-  default_mpls_overlay_role: none
-  default_overlay_address_families:
-  - evpn
-  default_overlay_routing_protocol: ebgp
-  default_underlay_routing_protocol: ebgp
-  enable_trunk_groups: false
-  endpoint_trunk_groups: []
-  evpn_gateway_vxlan_l2: false
-  evpn_gateway_vxlan_l3: false
-  evpn_gateway_vxlan_l3_inter_domain: true
+    ipvpn_gateway_peers:
+      name: IPVPN-GATEWAY-PEERS
+      password: null
+      structured_config: null
   evpn_role: client
+  mpls_overlay_role: none
+  bgp_as: '65102'
   evpn_route_servers:
   - DC1-SPINE1
   - DC1-SPINE2
-  filter_only_vlans_in_use: false
-  filter_tags:
-  - all
-  - DC1_LEAF2
-  filter_tenants:
-  - all
-  group: DC1_LEAF2
-  hostname: DC1-LEAF2A
-  id: 3
-  igmp_snooping_enabled: true
-  interface_descriptions:
-    underlay_ethernet_interfaces: interface_descriptions/underlay/ethernet-interfaces.j2
-    underlay_port_channel_interfaces: interface_descriptions/underlay/port-channel-interfaces.j2
-    mlag_ethernet_interfaces: interface_descriptions/mlag/ethernet-interfaces.j2
-    mlag_port_channel_interfaces: interface_descriptions/mlag/port-channel-interfaces.j2
-    connected_endpoints_ethernet_interfaces: interface_descriptions/connected_endpoints/ethernet-interfaces.j2
-    connected_endpoints_port_channel_interfaces: interface_descriptions/connected_endpoints/port-channel-interfaces.j2
-    overlay_loopback_interface: interface_descriptions/loopback_interfaces/overlay-loopback.j2
-    vtep_loopback_interface: interface_descriptions/loopback_interfaces/vtep-loopback.j2
-  ip_addressing:
-    router_id: ip_addressing/router-id.j2
-    ipv6_router_id: ip_addressing/router-id-ipv6.j2
-    mlag_ip_primary: ip_addressing/mlag-ip-primary.j2
-    mlag_ip_secondary: ip_addressing/mlag-ip-secondary.j2
-    mlag_l3_ip_primary: ip_addressing/mlag-l3-ip-primary.j2
-    mlag_l3_ip_secondary: ip_addressing/mlag-l3-ip-secondary.j2
-    mlag_ibgp_peering_ip_primary: ip_addressing/mlag-ibgp-peering-ip-primary.j2
-    mlag_ibgp_peering_ip_secondary: ip_addressing/mlag-ibgp-peering-ip-secondary.j2
-    p2p_uplinks_ip: ip_addressing/p2p-uplinks-ip.j2
-    p2p_uplinks_peer_ip: ip_addressing/p2p-uplinks-peer-ip.j2
-    vtep_ip_mlag: ip_addressing/vtep-ip-mlag.j2
-    vtep_ip: ip_addressing/vtep-ip.j2
-  is_deployed: true
-  loopback_ipv4_offset: 2
-  loopback_ipv4_pool: 192.168.255.0/24
-  max_parallel_uplinks: 1
-  max_uplink_switches: 2
-  mgmt_interface: Management1
-  mgmt_ip: 192.168.0.15/24
+  underlay_ipv6: false
   mlag: true
-  mlag_dual_primary_detection: false
   mlag_ibgp_origin_incomplete: true
+  mlag_peer_vlan: 4094
+  mlag_peer_link_allowed_vlans: 2-4094
+  mlag_dual_primary_detection: false
   mlag_interfaces:
   - Ethernet3
   - Ethernet4
-  mlag_ip: 10.255.252.4
-  mlag_l3: true
-  mlag_l3_ip: 10.255.251.4
-  mlag_peer: DC1-LEAF2B
-  mlag_peer_ip: 10.255.252.5
   mlag_peer_ipv4_pool: 10.255.252.0/24
-  mlag_peer_l3_ip: 10.255.251.5
   mlag_peer_l3_ipv4_pool: 10.255.251.0/24
-  mlag_peer_l3_vlan: 4093
-  mlag_peer_link_allowed_vlans: 2-4094
-  mlag_peer_mgmt_ip: 192.168.0.16
-  mlag_peer_vlan: 4094
-  mlag_port_channel_id: '3'
   mlag_role: primary
-  mlag_support: true
-  mlag_switch_ids:
-    primary: 3
-    secondary: 4
-  mpls_ler: false
-  mpls_lsr: false
-  mpls_overlay_role: none
-  network_services_l1: false
-  network_services_l2: true
-  network_services_l3: true
-  node_type_key: l3leaf
-  overlay_address_families:
-  - evpn
-  overlay_rd_type_admin_subfield: 192.168.255.5
-  overlay_routing_protocol: ebgp
-  overlay_routing_protocol_address_family: ipv4
-  overlay_routing_protocol_peering_address: 192.168.255.5
-  platform: vEOS-LAB
-  platform_settings:
-    platforms:
-    - default
-    reload_delay:
-      mlag: 300
-      non_mlag: 330
-    feature_support:
-      queue_monitor_length_notify: false
-  router_id: 192.168.255.5
-  spanning_tree_mode: mstp
-  spanning_tree_priority: 16384
-  type: l3leaf
-  underlay_ipv6: false
-  underlay_router: true
-  underlay_routing_protocol: ebgp
-  uplink_interfaces:
-  - Ethernet1
-  - Ethernet2
-  uplink_ipv4_pool: 172.31.255.0/24
-  uplink_peers:
-  - DC1-SPINE1
-  - DC1-SPINE2
-  uplink_switch_interfaces:
-  - Ethernet3
-  - Ethernet3
-  uplink_switches:
-  - DC1-SPINE1
-  - DC1-SPINE2
-  uplink_type: p2p
+  mlag_peer: DC1-LEAF2B
+  mlag_l3: true
+  mlag_peer_l3_vlan: 4093
+  mlag_port_channel_id: '3'
+  vtep_loopback_ipv4_pool: 192.168.254.0/24
+  vtep_loopback: Loopback1
   uplinks:
   - interface: Ethernet1
     peer: DC1-SPINE1
@@ -3003,27 +3179,56 @@ switch:
     type: underlay_p2p
     ip_address: 172.31.255.11
     peer_ip_address: 172.31.255.10
-  virtual_router_mac_address: 00:1c:73:00:dc:01
-  vlans: 110-112,120-121,130-131,140-141,150,160-161,210-211,250,310-311,350
-  vtep: true
+  uplink_peers:
+  - DC1-SPINE1
+  - DC1-SPINE2
+  mlag_switch_ids:
+    primary: 3
+    secondary: 4
   vtep_ip: 192.168.254.5
-  vtep_loopback: Loopback1
-  vtep_loopback_ipv4_pool: 192.168.254.0/24
-playbook_dir: /projects/playbooks
+  mlag_ip: 10.255.252.4
+  mlag_peer_ip: 10.255.252.5
+  mlag_l3_ip: 10.255.251.4
+  mlag_peer_l3_ip: 10.255.251.5
+  mlag_peer_mgmt_ip: 192.168.0.16
+  overlay_routing_protocol_address_family: ipv4
+  bgp: true
+  evpn_encapsulation: vxlan
+  underlay:
+    bgp: true
+    ldp: false
+    mpls: false
+    sr: false
+    ospf: false
+    isis: false
+  overlay:
+    peering_address: 192.168.255.5
+    ler: false
+    vtep: true
+    evpn: true
+    evpn_vxlan: true
+    evpn_mpls: false
+    vpn_ipv4: false
+    vpn_ipv6: false
+    ipvpn_gateway: false
+    dpath: false
+playbook_dir: /home/avd/projects/playbooks
 ansible_playbook_python: /usr/local/bin/python
-ansible_config_file: /projects/ansible.cfg
+ansible_config_file: /home/avd/projects/ansible.cfg
 groups:
   all:
   - cv_ztp
   - cv_server
-  - DC1-SPINE1
-  - DC1-SPINE2
+  - DC1-L2LEAF1A
+  - DC1-L2LEAF2A
   - DC1-LEAF1A
   - DC1-LEAF1B
   - DC1-LEAF2A
   - DC1-LEAF2B
-  - DC1-L2LEAF1A
-  - DC1-L2LEAF2A
+  - DC1-SPINE1
+  - DC1-SPINE2
+  - Server01
+  - Server02
   ungrouped: []
   CVP:
   - cv_ztp
@@ -3031,12 +3236,12 @@ groups:
   DC1:
   - DC1-SPINE1
   - DC1-SPINE2
-  - DC1-L2LEAF1A
-  - DC1-L2LEAF2A
   - DC1-LEAF1A
   - DC1-LEAF1B
   - DC1-LEAF2A
   - DC1-LEAF2B
+  - DC1-L2LEAF1A
+  - DC1-L2LEAF2A
   DC1_FABRIC:
   - DC1-SPINE1
   - DC1-SPINE2
@@ -3081,18 +3286,31 @@ groups:
   - DC1-LEAF2B
   - DC1-L2LEAF1A
   - DC1-L2LEAF2A
-omit: __omit_place_holder__21441c8a056e52d46f0a4179ee029daf1c34e8d7
+  VEOS:
+  - DC1-L2LEAF1A
+  - DC1-L2LEAF2A
+  - DC1-LEAF1A
+  - DC1-LEAF1B
+  - DC1-LEAF2A
+  - DC1-LEAF2B
+  - DC1-SPINE1
+  - DC1-SPINE2
+  GENERIC:
+  - Server01
+  - Server02
+omit: __omit_place_holder__e174164806db49d0694f1889fe33fd68fdf31dc1
 ansible_version:
-  string: 2.12.7
-  full: 2.12.7
+  string: 2.13.8
+  full: 2.13.8
   major: 2
-  minor: 12
-  revision: 7
+  minor: 13
+  revision: 8
 ansible_check_mode: false
 ansible_diff_mode: false
 ansible_forks: 5
 ansible_inventory_sources:
-- /projects/inventory/inventory.yml
+- /home/avd/projects/inventory/inventory.yml
+- /home/avd/projects/inventory/AVD-test.yml
 ansible_skip_tags: []
 ansible_run_tags:
 - build

@@ -1,9 +1,13 @@
-CONTAINER ?= avdteam/base:3.8-edge
+CONTAINER ?= ghcr.io/arista-netdevops-community/avd-all-in-one-container/avd-all-in-one
 VSCODE_CONTAINER ?= avdteam/vscode:latest
 VSCODE_PORT ?= 8080
 HOME_DIR = $(shell pwd)
-AVD_COLLECTION_VERSION ?= 3.7.0
-CVP_COLLECTION_VERSION ?= 3.5.1
+AVD_UID ?= $(shell id -u)
+GIT_USERNAME ?= $(shell git config --get user.name)
+GIT_EMAIL ?= $(shell git config --get user.email)
+AVD_COLLECTION_VERSION ?= 3.8.4
+CVP_COLLECTION_VERSION ?= 3.6.0
+COLLECTION_PATH = $(shell ansible-galaxy collection list arista.avd --format yaml | sed -n  -e 's/://g' -e '1 p')
 
 help: ## Display help message
 	@grep -E '^[0-9a-zA-Z_-]+\.*[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -14,11 +18,19 @@ help: ## Display help message
 
 .PHONY: build
 build: ## Run ansible playbook to build EVPN Fabric configuration.
-	ansible-playbook playbooks/dc1-fabric-deploy-cvp.yml --tags build
+	ansible-playbook playbooks/dc1-fabric-deploy-cvp.yml --tags build ${OPTIONS}
+
+.PHONY: build-act
+build-act: ## Run ansible playbook to build EVPN Fabric configuration when following ACT User guide
+	ansible-playbook playbooks/dc1-fabric-deploy-cvp.yml --tags build -i inventory/inventory.yml -i inventory/AVD-test.yml
 
 .PHONY: provision
 provision: ## Run ansible playbook to deploy EVPN Fabric.
-	ansible-playbook playbooks/dc1-fabric-deploy-cvp.yml --tags provision
+	ansible-playbook playbooks/dc1-fabric-deploy-cvp.yml --tags provision ${OPTIONS}
+
+.PHONY: provision-act
+provision-act: ## Run ansible playbook to deploy EVPN Fabric when following ACT User guide.
+	ansible-playbook playbooks/dc1-fabric-deploy-cvp.yml --tags provision -i inventory/inventory.yml -i inventory/AVD-test.yml
 
 .PHONY: deploy
 deploy: ## Run ansible playbook to deploy EVPN Fabric.
@@ -27,6 +39,10 @@ deploy: ## Run ansible playbook to deploy EVPN Fabric.
 .PHONY: validate
 validate: ## Run ansible playbook to validate EVPN Fabric.
 	ansible-playbook playbooks/dc1-fabric-validate.yml $(OPTIONS)
+
+.PHONY: validate-act
+validate-act: ## Run ansible playbook to validate EVPN Fabric when following ACT User guide.
+	ansible-playbook playbooks/dc1-fabric-validate.yml  -i inventory/inventory.yml -i inventory/AVD-test.yml
 
 .PHONY: reset
 reset: ## Run ansible playbook to reset all devices.
@@ -50,6 +66,7 @@ install-git: ## Install Ansible collections from git
 install: ## Install Ansible collections
 	ansible-galaxy collection install arista.avd:==${AVD_COLLECTION_VERSION}
 	ansible-galaxy collection install arista.cvp:==${CVP_COLLECTION_VERSION}
+	pip3 install -r ${COLLECTION_PATH}/arista/avd/requirements.txt
 
 .PHONY: uninstall
 uninstall: ## Remove collection from ansible
@@ -64,7 +81,9 @@ webdoc: ## Build documentation to publish static content
 shell: ## Start docker to get a preconfigured shell
 	docker pull $(CONTAINER) && \
 	docker run --rm -it \
-		-v $(HOME_DIR)/:/projects \
+		-e AVD_GIT_USER="$(GIT_USERNAME)" \
+		-e AVD_GIT_EMAIL="$(GIT_EMAIL)" \
+		-v $(HOME_DIR)/:/home/avd/projects/ \
 		-v /etc/hosts:/etc/hosts $(CONTAINER)
 
 .PHONY: vscode
