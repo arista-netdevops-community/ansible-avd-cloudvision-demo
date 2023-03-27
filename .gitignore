@@ -1,3 +1,11 @@
 *.retry
 ansible-*
 .vscode
+.DS_Store
+
+# AVD related files
+inventory/reports
+logs.txt
+
+# ACT/User guide related files
+AVD-test.yml

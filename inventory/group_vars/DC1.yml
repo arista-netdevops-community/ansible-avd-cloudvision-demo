@@ -10,7 +10,16 @@ local_users:
   cvpadmin:
     privilege: 15
     role: network-admin
-    sha512_password: "$6$rZKcbIZ7iWGAWTUM$TCgDn1KcavS0s.OV8lacMTUkxTByfzcGlFlYUWroxYuU7M/9bIodhRO7nXGzMweUxvbk8mJmQl8Bh44cRktUj."
+    # ==== DO NOT USE IN PRODUCTION !! ======
+    # Generate the password hash from the ansible_password for
+    # cv_server in inventory
+    # The salt is a pseudo-random number generated from the inventory_hostname.
+    # It is deterministic (always the same after each ansible playbook run),
+    # and unique to each device. CARE SHOULD BE TAKEN TO
+    # NOT USE THIS APPROACH IN PRODUCTION, as it means that the password
+    # is being processed in cleartext by ansible.
+    sha512_password: "{{ hostvars['cv_server']['ansible_password'] | password_hash('sha512',  65534 | random(seed=inventory_hostname) | string) }}"
+    # ==== DO NOT USE IN PRODUCTION !! ======
 
   ansible:
     privilege: 15
@@ -18,18 +27,31 @@ local_users:
     sha512_password: "$6$Dzu11L7yp9j3nCM9$FSptxMPyIL555OMO.ldnjDXgwZmrfMYwHSr0uznE5Qoqvd9a6UdjiFcJUhGLtvXVZR1r.A/iF5aAt50hf/EK4/"
 
 # Cloud Vision server information
-cvp_instance_ip: 10.255.0.1
+cvp_instance_ip: 192.168.0.5
 cvp_ingestauth_key: ''
-# cvp_ingestauth_key: telarista
+
+# This configures terminattr to use default token
+# authentication used in the more recent CVP versions
+custom_structured_configuration_daemon_terminattr:
+  cvauth:
+    method: "token"
+    token_file: "/tmp/token"
 
 # OOB Management network default gateway.
 mgmt_interface: Management1
 mgmt_interface_vrf: MGMT
-mgmt_gateway: 10.255.0.1
+mgmt_gateway: 192.168.0.1
+
+# This is only required in the lab, to enable eAPI on
+# the default vrf as well
+custom_structured_configuration_management_api_http:
+  enable_vrfs:
+    MGMT: {}
+    default: {}
 
 # dns servers.
 name_servers:
-  - 192.168.2.1
+  - 192.168.0.1
   - 8.8.8.8
 
 # NTP Servers IP or DNS name, first NTP server will be prefered, and sourced from Managment VRF
@@ -38,8 +60,8 @@ custom_structured_configuration_ntp:
     name: Management1
     vrf: MGMT
   servers:
-  - name: 0.fr.pool.ntp.org
-    preferred: true
-    vrf: MGMT
-  - name: 1.fr.pool.ntp.org
-    vrf: MGMT
+    - name: 0.fr.pool.ntp.org
+      preferred: true
+      vrf: MGMT
+    - name: 1.fr.pool.ntp.org
+      vrf: MGMT

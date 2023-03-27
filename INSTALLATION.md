@@ -1,6 +1,6 @@
 # Installation Process
 
-This document explain how to customize demo information and how to setup this environment.
+This document explains how to customize demo information and how to setup this environment.
 
 <!-- code_chunk_output -->
 
@@ -33,16 +33,16 @@ This document explain how to customize demo information and how to setup this en
 
 - ___CloudVision IP address___:
     - Cluster interface: eth0 / Should use your own IP address
-    - Device interface: eth1 / `10.255.0.1/24`
-- ___Management Network___: `10.255.0.0/24`
-    - _DC1-SPINE1_: `10.255.0.11/24`
-    - _DC1-SPINE2_: `10.255.0.12/24`
-    - _DC1-LEAF1A_: `10.255.0.13/24`
-    - _DC1-LEAF1B_: `10.255.0.14/24`
-    - _DC1-LEAF2A_: `10.255.0.15/24`
-    - _DC1-LEAF2B_: `10.255.0.16/24`
-    - _DC1-L2LEAF1A_: `10.255.0.17/24`
-    - _DC1-L2LEAF2B_: `10.255.0.18/24`
+    - Device interface: eth1 / `192.168.0.5/24`
+- ___Management Network___: `192.168.0.0/24`
+    - _DC1-SPINE1_: `192.168.0.11/24`
+    - _DC1-SPINE2_: `192.168.0.12/24`
+    - _DC1-LEAF1A_: `192.168.0.13/24`
+    - _DC1-LEAF1B_: `192.168.0.14/24`
+    - _DC1-LEAF2A_: `192.168.0.15/24`
+    - _DC1-LEAF2B_: `192.168.0.16/24`
+    - _DC1-L2LEAF1A_: `192.168.0.17/24`
+    - _DC1-L2LEAF2B_: `192.168.0.18/24`
 - ___Default Username & Password___:
     - admin / arista123
     - cvpdamin / arista123
@@ -67,25 +67,20 @@ $ cd ansible-avd-cloudvision-demo
 # Run demo shell using docker
 #  Makefile approach
 $ make shell
-#  Manual installation
-$ docker pull avdteam/base:3.6
-$ docker run --rm -it \
-		-v ./:/projects \
-		-v /etc/hosts:/etc/hosts avdteam/base:3.6
 
 # Install required ansible collections
 #  Makefile approach
 $ make install
 #  Manual installation
-$ ansible-galaxy collection install arista.avd:==2.0.0
-$ ansible-galaxy collection install arista.cvp:==2.1.2
+$ ansible-galaxy collection install arista.avd:==3.8.4
+$ ansible-galaxy collection install arista.cvp:==3.6.0
 ```
 
 ## Configure DHCP server on CloudVision
 
 In this scenario, we use CloudVision (CV) as ZTP server to provision devices and register them onto CV.
 
-Once you get mac-address of your switches, edit file `/etc/dhcp/dhcpd.conf` in CloudVision. In this scenario, CV use following address to connect to devices: `10.255.0.1`
+Once you get mac-address of your switches, edit file `/etc/dhcp/dhcpd.conf` in CloudVision. In this scenario, CV use following address to connect to devices: `192.168.0.5`
 
 If CVP has not been configured to activate ZTP services, it is higly recommended to follow [these steps](https://www.arista.com/en/cg-cv/cv-dhcp-service-for-zero-touch-provisioning-ztp-setup)
 
@@ -99,24 +94,24 @@ An ansible playbook is available to configure CloudVision to act as a DHCP serve
 vars:
 ztp:
   default:
-    registration: 'http://10.255.0.1/ztp/bootstrap'
-    gateway: 10.255.0.3
+    registration: 'http://192.168.0.1/ztp/bootstrap'
+    gateway: 192.168.0.3
     nameservers:
-      - '10.255.0.3'
+      - '192.168.0.3'
   general:
     subnets:
-      - network: 10.255.0.0
+      - network: 192.168.0.0
         netmask: 255.255.255.0
-        gateway: 10.255.0.3
+        gateway: 192.168.0.3
         nameservers:
-          - '10.255.0.3'
-        start: 10.255.0.200
-        end: 10.255.0.250
+          - '192.168.0.3'
+        start: 192.168.0.200
+        end: 192.168.0.250
         lease_time: 300
   clients:
     - name: DC1-SPINE1
       mac: "0c:1d:c0:1d:62:01"
-      ip4: 10.255.0.11
+      ip4: 192.168.0.11
 ```
 
 > Please ensure to use quote to define your mac-address. Otherwise in some cases, ansible might consider them as HEX string.
@@ -170,18 +165,18 @@ On your DHCP server, create configuration for all your devices. Below is an exam
 ```shell
 $ vi /etc/dhcp/dhcpd.conf
 
-subnet 10.255.0.0 netmask 255.255.255.0 {
-    range 10.255.0.200 10.255.0.250;
-    option routers 10.255.0.1;
+subnet 192.168.0.0 netmask 255.255.255.0 {
+    range 192.168.0.200 192.168.0.250;
+    option routers 192.168.0.1;
     option domain-name-servers 10.83.28.52, 10.83.29.222;
-    option bootfile-name "http://10.255.0.1/ztp/bootstrap";
+    option bootfile-name "http://192.168.0.1/ztp/bootstrap";
 }
 
 host DC1-SPINE1 {
     option host-name "DC1-SPINE1";
     hardware ethernet 0c:1d:c0:1d:62:01;
-    fixed-address 10.255.0.11;
-    option bootfile-name "http://10.255.0.1/ztp/bootstrap";
+    fixed-address 192.168.0.11;
+    option bootfile-name "http://192.168.0.1/ztp/bootstrap";
 }
 
 [...]
@@ -243,11 +238,11 @@ In this example, we only use `spine` and `l3leafs` devices. Below is an example 
       nodes:
         DC1-LEAF1A:
           id: 1
-          mgmt_ip: 10.255.0.13/24
+          mgmt_ip: 192.168.0.13/24
           spine_interfaces: [ Ethernet1, Ethernet1 ]
         DC1-LEAF1B:
           id: 2
-          mgmt_ip: 10.255.0.14/24
+          mgmt_ip: 192.168.0.14/24
           spine_interfaces: [ Ethernet2, Ethernet2 ]
 ```
 
@@ -288,6 +283,6 @@ You must use same user on CVP and EOS for the demo.
 
 ```yaml
 # Cloud Vision server information
-cvp_instance_ip: 10.255.0.1
+cvp_instance_ip: 192.168.0.1
 cvp_ingestauth_key: ''
 ```
