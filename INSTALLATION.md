@@ -1,6 +1,6 @@
 # Installation Process
 
-This document explain how to customize demo information and how to setup this environment.
+This document explains how to customize demo information and how to setup this environment.
 
 <!-- code_chunk_output -->
 
@@ -33,7 +33,7 @@ This document explain how to customize demo information and how to setup this en
 
 - ___CloudVision IP address___:
     - Cluster interface: eth0 / Should use your own IP address
-    - Device interface: eth1 / `192.168.0.1/24`
+    - Device interface: eth1 / `192.168.0.5/24`
 - ___Management Network___: `192.168.0.0/24`
     - _DC1-SPINE1_: `192.168.0.11/24`
     - _DC1-SPINE2_: `192.168.0.12/24`
@@ -67,25 +67,20 @@ $ cd ansible-avd-cloudvision-demo
 # Run demo shell using docker
 #  Makefile approach
 $ make shell
-#  Manual installation
-$ docker pull avdteam/base:3.6
-$ docker run --rm -it \
-		-v ./:/projects \
-		-v /etc/hosts:/etc/hosts avdteam/base:3.6
 
 # Install required ansible collections
 #  Makefile approach
 $ make install
 #  Manual installation
-$ ansible-galaxy collection install arista.avd:==2.0.0
-$ ansible-galaxy collection install arista.cvp:==2.1.2
+$ ansible-galaxy collection install arista.avd:==3.8.4
+$ ansible-galaxy collection install arista.cvp:==3.6.0
 ```
 
 ## Configure DHCP server on CloudVision
 
 In this scenario, we use CloudVision (CV) as ZTP server to provision devices and register them onto CV.
 
-Once you get mac-address of your switches, edit file `/etc/dhcp/dhcpd.conf` in CloudVision. In this scenario, CV use following address to connect to devices: `192.168.0.1`
+Once you get mac-address of your switches, edit file `/etc/dhcp/dhcpd.conf` in CloudVision. In this scenario, CV use following address to connect to devices: `192.168.0.5`
 
 If CVP has not been configured to activate ZTP services, it is higly recommended to follow [these steps](https://www.arista.com/en/cg-cv/cv-dhcp-service-for-zero-touch-provisioning-ztp-setup)
 
